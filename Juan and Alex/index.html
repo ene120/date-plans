@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juan &amp; Alex's Sunday Date Options</title>
+  <title>Juan &amp; Alex's Sunday Date</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -63,26 +63,25 @@
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
       background-clip:text;
     }
-    .hero-sub{font-size:1.05rem;color:var(--text-muted);margin-bottom:50px;max-width:450px}
+    .hero-sub{font-size:1.05rem;color:var(--text-muted);margin-bottom:16px;max-width:500px}
     .hero-sub strong{color:var(--rose-deep)}
-    .hero-note{font-size:.88rem;color:var(--text-muted);max-width:500px;margin-bottom:30px;line-height:1.6;font-style:italic;opacity:.8}
+    .hero-tagline{font-size:.92rem;color:var(--text-muted);max-width:520px;margin-bottom:40px;line-height:1.7;font-style:italic;opacity:.85}
 
-    /* ── Option Chooser Cards ── */
-    .chooser{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;max-width:700px}
-    .choose-card{
-      flex:1;min-width:260px;max-width:320px;
-      background:white;border-radius:24px;padding:40px 30px;
-      text-align:center;cursor:pointer;position:relative;
+    /* ── Hero Single Card ── */
+    .hero-card{
+      background:white;border-radius:24px;padding:40px 36px;
+      text-align:center;max-width:440px;width:100%;
       border:3px solid transparent;
       box-shadow:0 8px 40px rgba(196,69,105,.1);
       transition:all .35s cubic-bezier(.4,0,.2,1);
+      cursor:pointer;
     }
-    .choose-card:hover{
+    .hero-card:hover{
       transform:translateY(-6px);
       box-shadow:0 16px 50px rgba(196,69,105,.2);
       border-color:var(--rose-glow);
     }
-    .choose-card:active{transform:translateY(-2px)}
+    .hero-card:active{transform:translateY(-2px)}
     .card-emoji{font-size:3rem;margin-bottom:16px;display:block}
     .card-label{
       font-family:'Playfair Display',serif;font-size:.85rem;font-weight:600;
@@ -100,13 +99,7 @@
       font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:600;
       letter-spacing:.03em;transition:all .3s ease;
     }
-    .choose-card:hover .card-cta{box-shadow:0 6px 25px rgba(224,87,128,.45);transform:scale(1.03)}
-    .card-rec{
-      display:inline-block;margin-top:12px;
-      font-size:.75rem;color:var(--rose-deep);font-weight:600;
-      background:#fff0f5;padding:4px 14px;border-radius:20px;
-      letter-spacing:.03em;
-    }
+    .hero-card:hover .card-cta{box-shadow:0 6px 25px rgba(224,87,128,.45);transform:scale(1.03)}
     .arrow-hint{
       margin-top:40px;font-size:.85rem;color:var(--text-muted);opacity:.6;
       animation:bounce 2s ease-in-out infinite;
@@ -271,6 +264,8 @@
     .parking-option h4{font-size:1rem;color:var(--text-dark);margin-bottom:8px;font-weight:600}
     .parking-option p{font-size:.88rem;color:var(--text-muted);margin-bottom:10px;line-height:1.6}
     .parking-links{display:flex;gap:8px;flex-wrap:wrap}
+    .parking-alert{background:linear-gradient(135deg,#fff8e7,#fff3d0);border:2px solid #ffd966;border-radius:14px;padding:16px 20px;margin-top:18px}
+    .parking-alert p{color:#8b6914;font-size:.85rem;line-height:1.6;margin:0}
 
     /* ── Addresses & Links Section ── */
     .addresses-section{background:linear-gradient(135deg,#fff8fa,#fff0f5);border:2px solid #ffe4f1;border-radius:18px;padding:28px;margin-top:35px}
@@ -281,6 +276,7 @@
     .address-block p{font-size:.85rem;color:var(--text-muted);margin-bottom:4px;line-height:1.6}
     .address-block a{color:var(--rose-deep);text-decoration:none;font-weight:500}
     .address-block a:hover{text-decoration:underline}
+    .address-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 
     /* ── Footer ── */
     .footer{
@@ -294,8 +290,7 @@
     /* ── Responsive ── */
     @media(max-width:768px){
       .hero h1{font-size:2.4rem}
-      .chooser{gap:16px}
-      .choose-card{padding:30px 22px;min-width:220px}
+      .hero-card{padding:30px 22px}
       .card-title{font-size:1.25rem}
       .section-header{padding:35px 25px;border-radius:20px 20px 0 0}
       .section-header h2{font-size:1.7rem}
@@ -307,7 +302,6 @@
     }
     @media(max-width:400px){
       .hero h1{font-size:2rem}
-      .choose-card{min-width:100%}
     }
   </style>
 </head>
@@ -321,146 +315,151 @@
     <div class="cupid-icon">&#128152;</div>
     <div class="hero-brand">DateFlo</div>
     <h1>Juan &amp; Alex's <span>Sunday Date</span></h1>
-    <p class="hero-sub">Two date-plan options for <strong>Sunday, March 8, 2026</strong>. Pick the one that feels right.</p>
-    <p class="hero-note">Both options stay in one walkable cluster each, so the end of the date stays close to where you parked.</p>
+    <p class="hero-sub">Your date plan for <strong>Sunday, March 8, 2026</strong></p>
+    <p class="hero-tagline">A calm, pretty park walk &rarr; a cozy Moroccan dinner &rarr; a martini lounge moment in the same building. The last stop is within about 1 to 3 minutes of your car.</p>
 
-    <div class="chooser">
-      <div class="choose-card" onclick="showOption('A')">
-        <span class="card-emoji">&#127807;</span>
-        <div class="card-label">Option 1</div>
-        <div class="card-title">Old Town Revisit + Harney Sushi + Soft Sweet Finish</div>
-        <p class="card-desc">Familiar in a good way &mdash; sunny, browse-y, and easy. Harney Sushi feels intentional, and the night ends without extra hassle.</p>
-        <span class="card-cta">View This Date &rarr;</span>
-      </div>
-      <div class="choose-card" onclick="showOption('B')">
-        <span class="card-emoji">&#127754;</span>
-        <div class="card-label">Option 2</div>
-        <div class="card-title">Matcha + La Jolla Village + Roppongi + Gelato</div>
-        <p class="card-desc">New but still easy &mdash; matcha, scenic walking, Asian flavors, and a lactose-friendlier dessert ending.</p>
-        <span class="card-cta">View This Date &rarr;</span>
-        <span class="card-rec">&#11088; Recommended</span>
-      </div>
+    <div class="hero-card" onclick="showPlan()">
+      <span class="card-emoji">&#127803;</span>
+      <div class="card-label">Hillcrest Park-and-Play</div>
+      <div class="card-title">Park Stroll + Kous Kous Moroccan + Martini Nightcap</div>
+      <p class="card-desc">Everything stays in one tight Hillcrest/Mission Hills pocket &mdash; relaxed, intentional, and easy to end right by the car.</p>
+      <span class="card-cta">View the Full Plan &rarr;</span>
     </div>
-    <p class="arrow-hint">&darr; tap a card to see the full plan</p>
+    <p class="arrow-hint">&darr; tap to see every detail</p>
   </div>
 
-  <!-- ══════════ OPTION 1 ══════════ -->
-  <div class="date-wrap" id="optionA">
-    <button class="back-btn" onclick="goBack()">&larr; Back to Options</button>
+  <!-- ══════════ THE PLAN ══════════ -->
+  <div class="date-wrap" id="thePlan">
+    <button class="back-btn" onclick="goBack()">&larr; Back</button>
 
     <div class="section-header">
-      <div class="section-badge">&#127807; Option 1</div>
-      <h2>Old Town Revisit + Harney Sushi + Soft Sweet Finish</h2>
-      <p>Familiar in the best way &mdash; sunny, browse-y, and easy</p>
+      <div class="section-badge">&#127803; The Plan</div>
+      <h2>Hillcrest Park-and-Play Date</h2>
+      <p>Built so the last stop is within about 1 to 3 minutes of your car</p>
     </div>
     <div class="content-card">
       <div class="meta">
         <div class="meta-item"><div class="meta-label">Date</div><div class="meta-value">Sunday, March 8, 2026</div></div>
-        <div class="meta-item"><div class="meta-label">Start</div><div class="meta-value">~12:30&ndash;1:00 PM</div></div>
-        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">5.5&ndash;6.5 hours</div></div>
+        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">~5&ndash;6 hours</div></div>
+        <div class="meta-item"><div class="meta-label">Area</div><div class="meta-value">Hillcrest / Mission Hills</div></div>
       </div>
       <div class="summary">
         <h3 class="summary-title">&#127801; The Vibe</h3>
-        <p>This option feels familiar in a good way. It would give you both a sunny Old Town start, a little browsing and walking, then a Harney Sushi dinner that feels intentional instead of last-minute, followed by an easy dessert-style finish nearby so the night can end without extra hassle. Harney Sushi lists Sunday hours from 4:00 PM to 10:00 PM, and the restaurant has a lively atmosphere, plus a small back lot, valet, and general street parking.</p>
+        <p>A calm, pretty park walk that feels intentional, then a cozy Moroccan dinner that feels different from your usual go-tos, finishing with a martini lounge moment in the same building so you end the date basically at your car. Everything stays in one tight Hillcrest/Mission Hills pocket so it stays relaxed and not rushed.</p>
       </div>
 
-      <!-- Stop 1 -->
+      <!-- Stop 1: Mission Hills Park -->
       <div class="stop">
         <div class="stop-number">1</div>
         <div class="stop-header">
-          <h3 class="stop-title">Old Town Wandering Before Dinner</h3>
-          <p class="stop-location">Old Town San Diego State Historic Park</p>
+          <h3 class="stop-title">Mission Hills Park (Pioneer Park) Stroll</h3>
+          <p class="stop-location">1521 Washington Pl, San Diego, CA 92103</p>
         </div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Old+Town+San+Diego+State+Historic+Park" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Old%20Town%20San%20Diego%20State%20Historic%20Park" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
-          <a href="https://oldtownstatehistoricpark.org/" target="_blank" class="btn btn-menu"><i data-lucide="external-link"></i> Park Info</a>
+          <a href="https://www.google.com/maps?q=1521+Washington+Pl,+San+Diego,+CA+92103" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=1521%20Washington%20Pl,%20San%20Diego,%20CA%2092103" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.sandiego.gov/park-and-recreation/parks/regional/presidio/missionhills" target="_blank" class="btn btn-menu"><i data-lucide="external-link"></i> Park Info</a>
         </div>
-        <div class="vibe-box">sunny &bull; relaxed &bull; browse-y</div>
+        <div class="vibe-box">scenic &bull; calm &bull; old-San-Diego</div>
         <div class="description">
-          <p>A slow Old Town start could work really well here because it gives the date some shape before dinner without making the day feel over-planned. The state park area is centered around San Diego Avenue and Twiggs Street, and the district is built for walkability and daytime exploring.</p>
-          <p><strong>What this could feel like:</strong> A gentle loop through the historic core, a little shopping, a little people-watching, and just enough walking that dinner feels like the second chapter of the date instead of the whole thing.</p>
+          <p>You start with a slow wander under big trees and open lawn space. It feels like a small &ldquo;reset&rdquo; before dinner, and it scratches that spontaneous-overlook-date feeling without needing a big drive. The park is available from 6 AM to dusk.</p>
+          <p><strong>What you do:</strong> Take one loop, then sit for a few minutes and people-watch.</p>
         </div>
         <div class="description-highlight">
           <h4>&#10024; You might like:</h4>
-          <ul><li><strong>Bazaar del Mundo</strong> &mdash; Perfect for the &ldquo;walk around and look at cute things&rdquo; part of the afternoon. Their location is right in Old Town with current Sunday hours.</li></ul>
+          <ul><li>Bringing something small to share (sparkling water, a little snack) so it feels like a mini picnic without effort.</li></ul>
         </div>
         <div class="backup-box">
           <h5>&#128203; Backup Plan</h5>
-          <p><strong>Heritage County Park</strong> could be a quieter version of the same start if you want less foot traffic. This backup is there so the beginning can still feel calm if the main Old Town stretch feels busier than you want.</p>
+          <p>Keep it even simpler and do a short neighborhood walk around Washington St instead, then head straight to dinner early. Backup exists so the start stays easy even if you want less walking.</p>
         </div>
       </div>
 
-      <!-- Stop 2 -->
+      <!-- Stop 2: Kous Kous -->
       <div class="stop">
         <div class="stop-number">2</div>
         <div class="stop-header">
-          <h3 class="stop-title">Harney Sushi Dinner</h3>
-          <p class="stop-location">3964 Harney St, San Diego, CA 92110</p>
-          <p class="stop-phone">(619) 295-3272</p>
+          <h3 class="stop-title">Dinner at Kous Kous Moroccan Bistro</h3>
+          <p class="stop-location">3940 Fourth Ave #110, San Diego, CA 92103</p>
+          <p class="stop-phone">(619) 295-5560</p>
         </div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=3964+Harney+St+San+Diego+CA+92110" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=3964%20Harney%20St%2C%20San%20Diego%2C%20CA%2092110" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
-          <a href="tel:6192953272" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
-          <a href="https://www.harneysushi.com/" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
-          <a href="https://www.opentable.com/r/harney-sushi-old-town" target="_blank" class="btn btn-reserve"><i data-lucide="calendar"></i> Reserve on OpenTable</a>
+          <a href="https://www.google.com/maps?q=3940+Fourth+Ave+%23110,+San+Diego,+CA+92103" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=3940%20Fourth%20Ave%20%23110,%20San%20Diego,%20CA%2092103" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="tel:6192955560" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
+          <a href="https://places.singleplatform.com/kous-kous-moroccan-bistro/menu" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
+          <a href="https://www.opentable.com/r/kous-kous-moroccan-bistro-reservations-san-diego" target="_blank" class="btn btn-reserve"><i data-lucide="calendar"></i> Reserve on OpenTable</a>
         </div>
-        <div class="vibe-box">lively &bull; familiar-favorite &bull; date-night</div>
+        <div class="vibe-box">intimate &bull; warm-lit &bull; &ldquo;new experience&rdquo;</div>
         <div class="description">
-          <p>Dinner at Harney Sushi makes a lot of sense here because it already feels meaningful to you both, but the rest of the plan around it helps it feel like a full date. The restaurant has general street parking, valet, and a small lot in the back.</p>
-          <p><strong>Hours:</strong> Sunday 4:00 PM &ndash; 10:00 PM</p>
-          <p>Because your tastes overlap quite a bit, the best way to split the recommendations is not really &ldquo;his and hers,&rdquo; but more like two different lanes you could each pick from.</p>
+          <p>This is your &ldquo;we got ready&rdquo; anchor. Moroccan food gives you bold, memorable flavors without stepping into the sweet-sauce zone you dislike. OpenTable is the move here so dinner is locked in.</p>
+          <p><strong>What you do:</strong> Share one starter, then each pick a main that fits your lane (savory-forward or adventurous), and finish with mint tea so you don't feel rushed heading upstairs after.</p>
         </div>
         <div class="menu-recommendations">
           <h4>&#127869; What to Order</h4>
-          <p style="text-align:center;color:var(--text-muted);font-size:.82rem;margin-bottom:14px">Pick your lane &mdash; or mix and match!</p>
+          <p style="text-align:center;color:var(--text-muted);font-size:.82rem;margin-bottom:14px">Two routes tuned to your tastes &mdash; overlap a bit because you both like flavorful, memorable meals.</p>
           <div class="menu-lanes">
             <div class="menu-lane">
-              <h5>&#10024; Brighter, Cleaner, Lighter</h5>
-              <ul><li>Andy 2 Roll</li><li>Protein Roll</li><li>Avocado Roll or Hippie Roll</li></ul>
-              <p style="font-size:.78rem;color:#999;margin-top:8px">Citrusy, fresher, and a little less heavy.</p>
+              <h5>&#10024; Alex&rsquo;s Route &mdash; Savory, Not Sweet-Forward</h5>
+              <ul>
+                <li>Chicken tagine with olives and lemon</li>
+                <li>Harira soup (hearty, comforting starter)</li>
+                <li>Chicken or shrimp kabobs (simple, flavorful, reliable)</li>
+              </ul>
+              <p style="font-size:.78rem;color:#999;margin-top:8px">Clean, savory, no sweet-sauce territory.</p>
             </div>
             <div class="menu-lane">
-              <h5>&#128293; Bolder, Spicier, More Playful</h5>
-              <ul><li>Culichi Wa Roll</li><li>Crunch Roll</li><li>All 4 Edamame or another shared appetizer</li></ul>
-              <p style="font-size:.78rem;color:#999;margin-top:8px">The &ldquo;fun sushi date&rdquo; version of dinner.</p>
+              <h5>&#128293; Juan&rsquo;s Route &mdash; A Little Bolder, Memorable</h5>
+              <ul>
+                <li>Lamb tagine with honey, nuts, and fruit (the &ldquo;wow&rdquo; dish)</li>
+                <li>Chicken or shrimp b'stila in phyllo (unique, date-night fun)</li>
+                <li>Couscous main (classic centerpiece, easy to share)</li>
+              </ul>
+              <p style="font-size:.78rem;color:#999;margin-top:8px">Bold, adventurous, and shareable.</p>
             </div>
           </div>
         </div>
         <div class="description-highlight">
-          <h4>&#129472; Lactose Note</h4>
-          <p>A few specialty rolls at Harney do include cream cheese or creamier sauces, so sticking closer to the cleaner fish-forward and cucumber-wrap side of the menu would probably make this easier for the lactose issue.</p>
-        </div>
-        <div class="description-highlight">
           <h4>&#128221; Reservation Note</h4>
-          <p>Harney has an official reservations page and an active OpenTable listing, so booking ahead would probably make this version feel much smoother.</p>
+          <p>Reserve on OpenTable so it doesn't turn into a wait. This keeps the dinner locked in and stress-free.</p>
         </div>
         <div class="backup-box">
           <h5>&#128203; Backup Plan</h5>
-          <p>If Harney feels louder than expected, the rest of the Old Town flow still works, and dinner could shift within the neighborhood without breaking the date. This backup is there so the structure of the night still holds even if the main restaurant mood feels off.</p>
+          <p><strong>Parma Cucina Italiana</strong> (Hillcrest) is open Sundays and takes reservations, so you still get a cozy date-night dinner without gambling on walk-in timing. Backup exists to keep dinner stress-free if your preferred slot disappears.</p>
+          <div class="parking-links" style="margin-top:10px">
+            <a href="https://www.opentable.com/r/parma-cucina-italiana" target="_blank" class="btn btn-reserve" style="font-size:.78rem;padding:7px 14px"><i data-lucide="calendar"></i> Reserve Parma</a>
+            <a href="https://parmaitaliankitchen.com/" target="_blank" class="btn btn-menu" style="font-size:.78rem;padding:7px 14px"><i data-lucide="external-link"></i> Parma Site</a>
+          </div>
         </div>
       </div>
 
-      <!-- Stop 3 -->
+      <!-- Stop 3: Martinis -->
       <div class="stop">
         <div class="stop-number">3</div>
         <div class="stop-header">
-          <h3 class="stop-title">Candy-Shop Finish &amp; Short Old Town Walk</h3>
-          <p class="stop-location">Cousin's Old Town Candy Shop</p>
+          <h3 class="stop-title">Martini Lounge Nightcap</h3>
+          <p class="stop-location">3940 Fourth Ave (2nd floor), San Diego, CA 92103</p>
+          <p class="stop-phone">(619) 546-9983</p>
         </div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Cousins+Candy+Old+Town+San+Diego" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Cousins%20Candy%20Old%20Town%20San%20Diego" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps?q=3940+Fourth+Ave,+San+Diego,+CA+92103" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=3940%20Fourth%20Ave,%20San%20Diego,%20CA%2092103" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="tel:6195469983" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
+          <a href="https://www.martinissandiego.com/menu/" target="_blank" class="btn btn-menu"><i data-lucide="wine"></i> Drink Menu</a>
+          <a href="https://www.martinissandiego.com/" target="_blank" class="btn btn-menu"><i data-lucide="external-link"></i> Website</a>
         </div>
-        <div class="vibe-box">easy &bull; playful &bull; low-pressure</div>
+        <div class="vibe-box">playful &bull; nightlife &bull; &ldquo;date not just dinner&rdquo;</div>
         <div class="description">
-          <p>A tiny sweet stop works better here than another full dessert place. Cousin's Old Town Candy Shop is part of the historic park mix, so it keeps the ending easy and nearby.</p>
-          <p><strong>What this could feel like:</strong> A few candies or a small treat to share, then one more short walk through Old Town before heading back to the car.</p>
+          <p>You go upstairs for one drink and a little live-entertainment energy. The key here is that it's at the <strong>same address</strong> as dinner, so the last stop stays very close to where you parked. Their site lists Sunday hours and happy hour details, so it's worth planning this as an early-evening finish.</p>
+          <p><strong>What you do:</strong> One round each, linger for the vibe, then head out while it still feels special.</p>
+        </div>
+        <div class="description-highlight">
+          <h4>&#10024; You might like:</h4>
+          <ul><li>Catching their happy hour window if it lines up, then keeping the rest of the night slow and sweet.</li></ul>
         </div>
         <div class="backup-box">
           <h5>&#128203; Backup Plan</h5>
-          <p>If dessert does not sound necessary, this could simply become a longer post-dinner walk. This backup is there because sometimes the best ending is just the conversation carrying the date the rest of the way.</p>
+          <p>If you'd rather keep it quieter, stay downstairs and do Moroccan mint tea and dessert as your &ldquo;nightcap&rdquo; instead. Backup exists so the ending can match your energy without adding distance from the car.</p>
         </div>
       </div>
 
@@ -468,318 +467,92 @@
       <div class="budget">
         <h3 class="budget-title">&#128176; Budget for Two</h3>
         <div class="budget-items">
-          <div class="budget-item"><div class="budget-label">Wandering &amp; Browsing</div><div class="budget-value">$0 &ndash; $20</div></div>
-          <div class="budget-item"><div class="budget-label">Harney Sushi Dinner</div><div class="budget-value">$60 &ndash; $110</div></div>
-          <div class="budget-item"><div class="budget-label">Small Sweet Finish</div><div class="budget-value">$10 &ndash; $20</div></div>
+          <div class="budget-item"><div class="budget-label">Park Stroll</div><div class="budget-value">$0</div></div>
+          <div class="budget-item"><div class="budget-label">Kous Kous Dinner</div><div class="budget-value">$70 &ndash; $140</div></div>
+          <div class="budget-item"><div class="budget-label">Drinks Upstairs</div><div class="budget-value">$25 &ndash; $60</div></div>
         </div>
-        <div class="budget-total budget-item"><div class="budget-label">Estimated Total</div><div class="budget-value">$70 &ndash; $150</div></div>
+        <div class="budget-total budget-item"><div class="budget-label">Estimated Total</div><div class="budget-value">$95 &ndash; $200</div></div>
+        <p style="font-size:.8rem;opacity:.8;margin-top:12px">Closest to ~$100 target if you share 1 starter + 2 mains and keep drinks modest.</p>
       </div>
 
       <!-- Weather -->
       <div class="weather-note">
         <h4>&#9748;&#65039; Weather Heads-Up</h4>
-        <p>A light layer would probably help once the sun drops. Old Town is easy to walk, but the evening can feel cooler after dinner.</p>
+        <p>Early March can cool off fast after sunset. A light jacket makes the park stroll and the walk back to the car feel cozy instead of chilly.</p>
       </div>
 
       <!-- Parking -->
       <div class="parking-section">
         <h3>&#127359;&#65039; Parking</h3>
         <div class="parking-option">
-          <h4>&#127383; Street Parking (Free)</h4>
-          <p>Harney Sushi has general street parking &mdash; the easiest free option to try first if you want to stay closest to dinner.</p>
+          <h4>&#127383; Free Street Parking</h4>
+          <p>Free street parking is often available on nearby residential blocks, but always check posted signs and any meter rules.</p>
+          <p><strong>Suggested free-street pin:</strong> 3830 Front St, San Diego, CA 92103</p>
           <div class="parking-links">
-            <a href="https://www.google.com/maps/search/?api=1&query=Harney+St+and+San+Diego+Ave%2C+San+Diego%2C+CA+92110" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Search Area on Google</a>
-            <a href="https://maps.apple.com/?q=Harney%20St%20and%20San%20Diego%20Ave%2C%20San%20Diego%2C%20CA%2092110" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+            <a href="https://www.google.com/maps?q=3830+Front+St,+San+Diego,+CA+92103" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+            <a href="https://maps.apple.com/?q=3830%20Front%20St,%20San%20Diego,%20CA%2092103" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
           </div>
         </div>
         <div class="parking-option">
-          <h4>&#127359;&#65039; Paid Parking (Easiest)</h4>
-          <p>Harney offers <strong>valet</strong> and a <strong>small lot in the back</strong>, which keeps the end of the date very close to the car.</p>
+          <h4>&#127359;&#65039; Paid Parking &mdash; LAZ Parking (Recommended)</h4>
+          <p>This is the cleanest option for ending within minutes of the car, because it's basically next door. <strong>Open 24/7.</strong></p>
+          <p><strong>LAZ Parking:</strong> 3930 4th Ave, San Diego, CA 92103</p>
           <div class="parking-links">
-            <a href="https://www.google.com/maps/search/?api=1&query=3964+Harney+St%2C+San+Diego%2C+CA+92110" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Valet on Google</a>
-            <a href="https://maps.apple.com/?q=3964%20Harney%20St%2C%20San%20Diego%2C%20CA%2092110" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+            <a href="https://www.lazparking.com/local/san-diego-ca/4th-avenue-medical" target="_blank" class="btn btn-menu"><i data-lucide="external-link"></i> Reserve / Info</a>
+            <a href="https://www.google.com/maps?q=3930+4th+Ave,+San+Diego,+CA+92103" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+            <a href="https://maps.apple.com/?q=3930%204th%20Ave,%20San%20Diego,%20CA%2092103" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
           </div>
+        </div>
+        <div class="parking-alert">
+          <p>&#9888;&#65039; <strong>Heads up:</strong> If your Sunday lands on a weekend with a big Balboa Park event (like the large rummage sale weekend listed for March 7&ndash;8, 2026), parking demand nearby can jump.</p>
         </div>
       </div>
 
       <!-- Addresses & Links -->
       <div class="addresses-section">
         <h3>&#128205; Addresses &amp; Main Links</h3>
+
         <div class="address-block">
-          <h4>Harney Sushi</h4>
-          <p>&#127855; <a href="https://www.harneysushi.com/" target="_blank">Official Website</a> &nbsp;|&nbsp; <a href="https://www.harneysushi.com/reservations" target="_blank">Reservations</a> &nbsp;|&nbsp; <a href="https://www.opentable.com/r/harney-sushi-old-town" target="_blank">OpenTable</a></p>
-          <p>&#128205; 3964 Harney St, San Diego, CA 92110</p>
-          <p>&#128222; (619) 295-3272</p>
+          <h4>Mission Hills Park (Pioneer Park)</h4>
+          <p>&#128205; 1521 Washington Pl, San Diego, CA 92103</p>
+          <p>&#127807; <a href="https://www.sandiego.gov/park-and-recreation/parks/regional/presidio/missionhills" target="_blank">Official Park Info</a></p>
+          <div class="address-links">
+            <a href="https://www.google.com/maps?q=1521+Washington+Pl,+San+Diego,+CA+92103" target="_blank" class="btn btn-dir" style="font-size:.78rem;padding:7px 12px"><i data-lucide="map"></i> Google</a>
+            <a href="https://maps.apple.com/?q=1521%20Washington%20Pl,%20San%20Diego,%20CA%2092103" target="_blank" class="btn btn-dir" style="font-size:.78rem;padding:7px 12px"><i data-lucide="navigation"></i> Apple</a>
+          </div>
         </div>
+
         <div class="address-block">
-          <h4>Old Town State Historic Park</h4>
-          <p>&#127807; <a href="https://oldtownstatehistoricpark.org/mobile/about-us.html" target="_blank">Official Info</a> &nbsp;|&nbsp; <a href="https://www.parks.ca.gov/pages/663/files/OTSDSHP-ParkingMap_ADA-Compliant_20200207.pdf" target="_blank">Parking Map (PDF)</a></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p class="footer-tagline">&ldquo;Let us make date planning feel fun.&rdquo;</p>
-    </div>
-  </div>
-
-  <!-- ══════════ OPTION 2 ══════════ -->
-  <div class="date-wrap" id="optionB">
-    <button class="back-btn" onclick="goBack()">&larr; Back to Options</button>
-
-    <div class="section-header" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">
-      <div class="section-badge">&#127754; Option 2</div>
-      <h2>Matcha + La Jolla Village Walk + Roppongi + Gelato</h2>
-      <p>New but still easy &mdash; polished, scenic, and coastal</p>
-    </div>
-    <div class="content-card">
-      <div class="meta" style="border-left-color:#5b86e5">
-        <div class="meta-item"><div class="meta-label" style="color:#5b86e5">Date</div><div class="meta-value">Sunday, March 8, 2026</div></div>
-        <div class="meta-item"><div class="meta-label" style="color:#5b86e5">Pace</div><div class="meta-value">Full but relaxed</div></div>
-        <div class="meta-item"><div class="meta-label" style="color:#5b86e5">Duration</div><div class="meta-value">6&ndash;7 hours</div></div>
-      </div>
-      <div class="summary">
-        <h3 class="summary-title">&#127801; The Vibe</h3>
-        <p>This option feels a little more &ldquo;new but still easy.&rdquo; It would start with matcha, move into a walk through La Jolla Village and the cove area, then turn into an early dinner at Roppongi with a gelato finish that stays friendly to the lactose issue. It stays in one compact La Jolla cluster so the end of the date can stay close to the car instead of turning into another commute.</p>
-      </div>
-
-      <!-- Stop 1: Blue Whale -->
-      <div class="stop">
-        <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">1</div>
-        <div class="stop-header">
-          <h3 class="stop-title">Matcha Start at Blue Whale</h3>
-          <p class="stop-location">834 Kline St, La Jolla, CA 92037</p>
-          <p class="stop-phone">(858) 352-6580</p>
-        </div>
-        <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=834+Kline+St+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=834%20Kline%20St%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-          <a href="tel:8583526580" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
-          <a href="https://www.bluewhalesd.com/menu" target="_blank" class="btn btn-menu" style="color:#5b86e5;border-color:#5b86e5"><i data-lucide="utensils"></i> Menu</a>
-        </div>
-        <div class="vibe-box" style="border-left-color:#5b86e5;color:#4a70c7">polished &bull; calm &bull; cozy</div>
-        <div class="description">
-          <p>Since you both like matcha, this feels like a natural opening move. Blue Whale is polished and cozy &mdash; a great way to ease into the date with something warm and intentional.</p>
-          <p><strong>Hours:</strong> Daily 8:00 AM &ndash; 6:00 PM</p>
-          <p>Because your tastes overlap here too, the easiest split is lighter caf&eacute; route versus slightly more filling route.</p>
-        </div>
-        <div class="menu-recommendations">
-          <h4>&#127861; What to Order</h4>
-          <p style="text-align:center;color:var(--text-muted);font-size:.82rem;margin-bottom:14px">Matcha-forward or something more lunch-like</p>
-          <div class="menu-lanes">
-            <div class="menu-lane">
-              <h5>&#127861; Matcha-Forward</h5>
-              <ul><li>Magic Matcha</li><li>Kyoto Matcha Latte (oat, almond, or coconut milk)</li><li>A second matcha special for the ritual part of the date</li></ul>
-              <p style="font-size:.78rem;color:#999;margin-top:8px">Let this be the calm, cozy opening moment.</p>
-            </div>
-            <div class="menu-lane">
-              <h5>&#129385; More Lunch-Like</h5>
-              <ul><li>Avo Toast</li><li>Lox Toast</li><li>Breakfast Bowl</li></ul>
-              <p style="font-size:.78rem;color:#999;margin-top:8px">If you want this stop to double as a light lunch.</p>
-            </div>
+          <h4>Kous Kous Moroccan Bistro</h4>
+          <p>&#128205; 3940 Fourth Ave #110, San Diego, CA 92103</p>
+          <p>&#128222; (619) 295-5560</p>
+          <p>&#127869; <a href="https://www.opentable.com/r/kous-kous-moroccan-bistro-reservations-san-diego" target="_blank">OpenTable Reservations</a> &nbsp;|&nbsp; <a href="https://places.singleplatform.com/kous-kous-moroccan-bistro/menu" target="_blank">Menu</a></p>
+          <div class="address-links">
+            <a href="https://www.google.com/maps?q=3940+Fourth+Ave+%23110,+San+Diego,+CA+92103" target="_blank" class="btn btn-dir" style="font-size:.78rem;padding:7px 12px"><i data-lucide="map"></i> Google</a>
+            <a href="https://maps.apple.com/?q=3940%20Fourth%20Ave%20%23110,%20San%20Diego,%20CA%2092103" target="_blank" class="btn btn-dir" style="font-size:.78rem;padding:7px 12px"><i data-lucide="navigation"></i> Apple</a>
           </div>
         </div>
-        <div class="backup-box">
-          <h5>&#128203; Backup Plan</h5>
-          <p>If Blue Whale feels unexpectedly packed, the rest of the village plan still works, and the date can shift into more walking time before dinner. This backup is there so the start stays easy and not line-heavy.</p>
-        </div>
-      </div>
 
-      <!-- Stop 2: La Jolla Walk -->
-      <div class="stop">
-        <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">2</div>
-        <div class="stop-header">
-          <h3 class="stop-title">La Jolla Village Wandering &amp; Cove Walk</h3>
-          <p class="stop-location">Ellen Browning Scripps Park / La Jolla Cove</p>
-        </div>
-        <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Ellen+Browning+Scripps+Park+La+Jolla" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Ellen%20Browning%20Scripps%20Park%20La%20Jolla" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-        </div>
-        <div class="vibe-box" style="border-left-color:#5b86e5;color:#4a70c7">scenic &bull; browse-y &bull; romantic</div>
-        <div class="description">
-          <p>This is the part that gives the date that &ldquo;walk somewhere pretty after trying something new&rdquo; feeling. The cove area is a public shoreline park, and the village is central to walking between dining, shopping, and the coast.</p>
-          <p><strong>What this could feel like:</strong> A village stroll, a stop or two to browse, then a water-view walk before dinner.</p>
-          <p>This keeps the date from feeling like it is only about food, but it still stays soft and conversation-friendly.</p>
-        </div>
-        <div class="description-highlight">
-          <h4>&#10024; You might like:</h4>
-          <ul>
-            <li>Browse the village shops along Prospect St and Girard Ave</li>
-            <li>Walk down to the cove for ocean views and sea lions</li>
-            <li>Ellen Browning Scripps Park for a grassy, scenic pause</li>
-          </ul>
-        </div>
-        <div class="backup-box">
-          <h5>&#128203; Backup Plan</h5>
-          <p>If the coastline feels busier than you want, the village streets can still carry this middle section nicely. This backup is there so the date can stay calm without losing the scenic part of the plan.</p>
-        </div>
-      </div>
-
-      <!-- Stop 3: Roppongi -->
-      <div class="stop">
-        <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">3</div>
-        <div class="stop-header">
-          <h3 class="stop-title">Early Dinner at Roppongi</h3>
-          <p class="stop-location">875 Prospect St, La Jolla, CA 92037</p>
-          <p class="stop-phone">(858) 551-5252</p>
-        </div>
-        <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=875+Prospect+St+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=875%20Prospect%20St%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-          <a href="tel:8585515252" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
-          <a href="https://roppongiusa.net/menu/" target="_blank" class="btn btn-menu" style="color:#5b86e5;border-color:#5b86e5"><i data-lucide="utensils"></i> Menu</a>
-          <a href="https://www.opentable.com/r/roppongi-restaurant-and-lounge-san-diego" target="_blank" class="btn btn-reserve"><i data-lucide="calendar"></i> Reserve on OpenTable</a>
-        </div>
-        <div class="vibe-box" style="border-left-color:#5b86e5;color:#4a70c7">polished &bull; lively &bull; Asian-fusion date-night</div>
-        <div class="description">
-          <p>Roppongi fits your food profile really well because it gives you Asian flavors, seafood, tapas-style sharing, and a stronger date-night atmosphere.</p>
-          <p><strong>Happy Hour:</strong> Daily 3:00 PM &ndash; 5:30 PM</p>
-          <p><strong>Dinner Hours:</strong> Sunday 5:00 PM &ndash; 9:00 PM</p>
-          <p>A lot of these dishes naturally sit outside the heavy-dairy zone, which makes the lactose issue easier to work around than at a more butter-heavy restaurant.</p>
-        </div>
-        <div class="menu-recommendations">
-          <h4>&#127869; What to Order</h4>
-          <p style="text-align:center;color:var(--text-muted);font-size:.82rem;margin-bottom:14px">Fresher/brighter or bolder/spicier</p>
-          <div class="menu-lanes">
-            <div class="menu-lane">
-              <h5>&#10024; Fresher, Brighter, Seafood-Forward</h5>
-              <ul><li>Hamachi Tacos</li><li>Ahi Poke</li><li>Marinated Cucumber</li></ul>
-              <p style="font-size:.78rem;color:#999;margin-top:8px">Clean, bright, and seafood-focused.</p>
-            </div>
-            <div class="menu-lane">
-              <h5>&#128293; Bolder, Spicier, More Playful</h5>
-              <ul><li>Spicy Edamame</li><li>Kung Pao Calamari</li><li>Salmon Karaage or Indonesian Satay</li></ul>
-              <p style="font-size:.78rem;color:#999;margin-top:8px">The &ldquo;fun and flavorful&rdquo; route.</p>
-            </div>
-          </div>
-        </div>
-        <div class="description-highlight">
-          <h4>&#128161; Reservation Note</h4>
-          <p>An early reservation would probably be the sweet spot here because it keeps you closer to budget, helps with noise, and lines up with the better-value happy-hour window (3:00&ndash;5:30 PM).</p>
-        </div>
-        <div class="backup-box">
-          <h5>&#128203; Backup Plan</h5>
-          <p>If you wanted to keep the same La Jolla flow but pivot the meal, the village has enough density that the structure of the date still works. This backup is there so the day stays flexible without losing its shape.</p>
-        </div>
-      </div>
-
-      <!-- Stop 4: Bobboi -->
-      <div class="stop">
-        <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">4</div>
-        <div class="stop-header">
-          <h3 class="stop-title">Gelato Finish at Bobboi</h3>
-          <p class="stop-location">8008 Girard Ave, Suite 150, La Jolla, CA 92037</p>
-          <p class="stop-phone">(858) 255-8693</p>
-        </div>
-        <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=8008+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=8008%20Girard%20Ave%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-          <a href="tel:8582558693" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
-          <a href="https://www.bobboi.com/la-jolla" target="_blank" class="btn btn-menu" style="color:#5b86e5;border-color:#5b86e5"><i data-lucide="external-link"></i> Flavors</a>
-        </div>
-        <div class="vibe-box" style="border-left-color:#5b86e5;color:#4a70c7">sweet &bull; coastal &bull; easy ending</div>
-        <div class="description">
-          <p>Bobboi works especially well here because vegan options are part of the shop's appeal. You can check the flavors of the day on their site. It's a sweet, low-pressure ending that keeps you in the village close to where you parked.</p>
-        </div>
-        <div class="menu-recommendations">
-          <h4>&#127846; What to Order</h4>
-          <p style="text-align:center;color:var(--text-muted);font-size:.82rem;margin-bottom:14px">Lighter/fruit-forward or classic gelato</p>
-          <div class="menu-lanes">
-            <div class="menu-lane">
-              <h5>&#127827; Lighter, Fruit-Forward Finish</h5>
-              <ul><li>A vegan fruit-forward flavor</li><li>A citrusy or sorbet-style vegan option</li><li>A brighter seasonal flavor</li></ul>
-              <p style="font-size:.78rem;color:#999;margin-top:8px">Fresh, dairy-free, and perfect for a coastal walk.</p>
-            </div>
-            <div class="menu-lane">
-              <h5>&#127851; Classic Gelato Finish</h5>
-              <ul><li>One richer gelato flavor</li><li>One dairy-free option alongside it</li><li>One staff-recommended signature flavor to keep the ending playful</li></ul>
-              <p style="font-size:.78rem;color:#999;margin-top:8px">The best of both worlds.</p>
-            </div>
-          </div>
-        </div>
-        <div class="backup-box">
-          <h5>&#128203; Backup Plan</h5>
-          <p>If dessert feels unnecessary by the end, a short village walk back toward the car would still close this option really nicely. This backup is there because the best ending sometimes is just the atmosphere doing the work.</p>
-        </div>
-      </div>
-
-      <!-- Budget -->
-      <div class="budget" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">
-        <h3 class="budget-title">&#128176; Budget for Two</h3>
-        <div class="budget-items">
-          <div class="budget-item"><div class="budget-label">Matcha &amp; Light Start</div><div class="budget-value">$20 &ndash; $40</div></div>
-          <div class="budget-item"><div class="budget-label">Roppongi Dinner</div><div class="budget-value">$60 &ndash; $110</div></div>
-          <div class="budget-item"><div class="budget-label">Gelato Finish</div><div class="budget-value">$10 &ndash; $20</div></div>
-        </div>
-        <div class="budget-total budget-item"><div class="budget-label">Estimated Total</div><div class="budget-value">$90 &ndash; $170</div></div>
-        <p style="font-size:.8rem;opacity:.8;margin-top:12px">Lower end works better if you use the happy-hour window.</p>
-      </div>
-
-      <!-- Weather -->
-      <div class="weather-note">
-        <h4>&#9748;&#65039; Weather Heads-Up</h4>
-        <p>A light extra layer would probably make this option more comfortable because it spends more time near the water.</p>
-      </div>
-
-      <!-- Parking -->
-      <div class="parking-section">
-        <h3>&#127359;&#65039; Parking in La Jolla Village</h3>
-        <div class="parking-option">
-          <h4>&#127383; Street Parking (Free, Limited)</h4>
-          <p>The area has over 2,000 street spots, but free street parking is limited and strictly monitored. Look near Wall Street, close to the village core.</p>
-          <div class="parking-links" style="margin-bottom:12px">
-            <a href="https://www.google.com/maps/search/?api=1&query=1032+Wall+Street%2C+La+Jolla%2C+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> 1032 Wall St</a>
-            <a href="https://maps.apple.com/?q=1032%20Wall%20Street%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-          </div>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/search/?api=1&query=1101+Wall+Street%2C+La+Jolla%2C+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> 1101 Wall St</a>
-            <a href="https://maps.apple.com/?q=1101%20Wall%20Street%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-          </div>
-        </div>
-        <div class="parking-option">
-          <h4>&#127359;&#65039; Wall St Garage (Recommended)</h4>
-          <p><strong>7855 Ivanhoe Ave, La Jolla</strong> &mdash; Available Saturday and Sunday all day. Close to Roppongi, the village core, and Bobboi.</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/search/?api=1&query=7855+Ivanhoe+Ave%2C+La+Jolla%2C+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Garage on Google</a>
-            <a href="https://maps.apple.com/?q=7855%20Ivanhoe%20Ave%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-          </div>
-        </div>
-        <div class="parking-option">
-          <h4>&#127359;&#65039; Fay Ave Garage (24/7)</h4>
-          <p><strong>7825 Fay Ave, La Jolla</strong> &mdash; Open 24/7 and central to the village.</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/search/?api=1&query=7825+Fay+Ave%2C+La+Jolla%2C+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Garage on Google</a>
-            <a href="https://maps.apple.com/?q=7825%20Fay%20Ave%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Addresses & Links -->
-      <div class="addresses-section">
-        <h3>&#128205; Addresses &amp; Main Links</h3>
         <div class="address-block">
-          <h4>Blue Whale</h4>
-          <p>&#127861; <a href="https://www.bluewhalesd.com/contact" target="_blank">Official Site / Contact</a> &nbsp;|&nbsp; <a href="https://www.bluewhalesd.com/menu" target="_blank">Menu</a></p>
-          <p>&#128205; 834 Kline St, La Jolla, CA 92037</p>
-          <p>&#128222; (858) 352-6580</p>
+          <h4>Martinis (Nightcap &mdash; Same Building, 2nd Floor)</h4>
+          <p>&#128205; 3940 Fourth Ave (2nd floor), San Diego, CA 92103</p>
+          <p>&#128222; (619) 546-9983</p>
+          <p>&#127864; <a href="https://www.martinissandiego.com/" target="_blank">Website</a> &nbsp;|&nbsp; <a href="https://www.martinissandiego.com/menu/" target="_blank">Menu</a></p>
+          <div class="address-links">
+            <a href="https://www.google.com/maps?q=3940+Fourth+Ave,+San+Diego,+CA+92103" target="_blank" class="btn btn-dir" style="font-size:.78rem;padding:7px 12px"><i data-lucide="map"></i> Google</a>
+            <a href="https://maps.apple.com/?q=3940%20Fourth%20Ave,%20San%20Diego,%20CA%2092103" target="_blank" class="btn btn-dir" style="font-size:.78rem;padding:7px 12px"><i data-lucide="navigation"></i> Apple</a>
+          </div>
         </div>
+
         <div class="address-block">
-          <h4>Roppongi Restaurant &amp; Lounge</h4>
-          <p>&#127869; <a href="https://roppongiusa.net/menu/" target="_blank">Official Menu / Site</a> &nbsp;|&nbsp; <a href="https://www.opentable.com/r/roppongi-restaurant-and-lounge-san-diego" target="_blank">OpenTable</a></p>
-          <p>&#128205; 875 Prospect St, La Jolla, CA 92037</p>
-          <p>&#128222; (858) 551-5252</p>
-        </div>
-        <div class="address-block">
-          <h4>Bobboi Natural Gelato</h4>
-          <p>&#127846; <a href="https://www.bobboi.com/la-jolla" target="_blank">Official La Jolla Location</a></p>
-          <p>&#128205; 8008 Girard Ave, Suite 150, La Jolla, CA 92037</p>
-          <p>&#128222; (858) 255-8693</p>
-        </div>
-        <div class="address-block">
-          <h4>La Jolla Parking</h4>
-          <p>&#127359;&#65039; <a href="https://lajollabythesea.com/visitor-information-2/" target="_blank">Official Visitor Parking Guide</a></p>
+          <h4>Backup Dinner: Parma Cucina Italiana</h4>
+          <p>&#128205; 3850 Fifth Ave, San Diego, CA 92103</p>
+          <p>&#128222; (619) 543-0049</p>
+          <p>&#127837; <a href="https://parmaitaliankitchen.com/" target="_blank">Website</a> &nbsp;|&nbsp; <a href="https://www.opentable.com/r/parma-cucina-italiana" target="_blank">OpenTable</a></p>
+          <div class="address-links">
+            <a href="https://www.google.com/maps?q=3850+Fifth+Ave,+San+Diego,+CA+92103" target="_blank" class="btn btn-dir" style="font-size:.78rem;padding:7px 12px"><i data-lucide="map"></i> Google</a>
+            <a href="https://maps.apple.com/?q=3850%20Fifth%20Ave,%20San%20Diego,%20CA%2092103" target="_blank" class="btn btn-dir" style="font-size:.78rem;padding:7px 12px"><i data-lucide="navigation"></i> Apple</a>
+          </div>
         </div>
       </div>
     </div>
@@ -807,18 +580,15 @@
       }
     })();
 
-    // Show/hide options
-    function showOption(opt){
+    // Show/hide plan
+    function showPlan(){
       document.getElementById('hero').style.display='none';
-      document.getElementById('optionA').classList.remove('visible');
-      document.getElementById('optionB').classList.remove('visible');
-      document.getElementById('option'+opt).classList.add('visible');
+      document.getElementById('thePlan').classList.add('visible');
       window.scrollTo({top:0,behavior:'smooth'});
       lucide.createIcons();
     }
     function goBack(){
-      document.getElementById('optionA').classList.remove('visible');
-      document.getElementById('optionB').classList.remove('visible');
+      document.getElementById('thePlan').classList.remove('visible');
       document.getElementById('hero').style.display='flex';
       window.scrollTo({top:0,behavior:'smooth'});
     }
