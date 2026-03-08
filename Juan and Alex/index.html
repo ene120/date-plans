@@ -265,13 +265,37 @@
     .budget-total .budget-value{font-size:1.4rem}
     .budget-tip{font-size:.8rem;opacity:.8;margin-top:12px}
 
-    /* ── Logistics Checklist ── */
-    .logistics{background:linear-gradient(135deg,#f8f9fa,#f0f2f5);border:2px solid #e0e4ea;border-radius:18px;padding:28px;margin-top:28px}
-    .logistics h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:18px;color:var(--text-dark)}
-    .logistics ul{list-style:none;padding:0}
-    .logistics li{padding:8px 0 8px 26px;position:relative;color:var(--text-muted);font-size:.9rem;line-height:1.7;border-bottom:1px dashed #e0e4ea}
-    .logistics li:last-child{border-bottom:none}
-    .logistics li::before{content:"✓";position:absolute;left:0;color:var(--rose);font-weight:700;font-size:1rem}
+    /* ── Interactive Checklist ── */
+    .checklist-section{background:linear-gradient(135deg,#f8f9fa,#f0f2f5);border:2px solid #e0e4ea;border-radius:18px;padding:28px;margin-top:28px}
+    .checklist-section h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:6px;color:var(--text-dark)}
+    .checklist-subtitle{font-size:.82rem;color:var(--text-muted);margin-bottom:20px;font-style:italic}
+    .checklist-item{
+      display:flex;align-items:flex-start;gap:14px;
+      padding:14px 16px;margin-bottom:8px;
+      background:white;border:2px solid #e8ecf2;border-radius:14px;
+      cursor:pointer;transition:all .25s ease;position:relative;
+    }
+    .checklist-item:hover{border-color:var(--rose);background:#fff8fa}
+    .checklist-item.priority-high{border-left:4px solid var(--rose)}
+    .checklist-item input[type="checkbox"]{display:none}
+    .checkmark{
+      width:24px;height:24px;min-width:24px;border-radius:8px;
+      border:2px solid #ccc;display:flex;align-items:center;justify-content:center;
+      transition:all .25s ease;margin-top:1px;
+    }
+    .checkmark::after{
+      content:"✓";font-size:.85rem;color:white;opacity:0;transition:opacity .2s ease;
+    }
+    .checklist-item input:checked ~ .checkmark{
+      background:var(--rose);border-color:var(--rose);
+    }
+    .checklist-item input:checked ~ .checkmark::after{opacity:1}
+    .checklist-item input:checked ~ .checklist-text{
+      text-decoration:line-through;opacity:.55;
+    }
+    .checklist-text{font-size:.9rem;color:var(--text-muted);line-height:1.6;flex:1}
+    .checklist-text strong{color:var(--text-dark);font-weight:600}
+    .checklist-text a{color:var(--rose-deep);font-weight:500}
 
     /* ── Weather ── */
     .weather-note{background:linear-gradient(135deg,#e8f4fd,#d1ecf1);border:2px solid #c4e1f5;border-radius:14px;padding:18px 22px;margin-top:28px}
@@ -417,6 +441,12 @@
         <p>&#128694; <strong>Route:</strong> Parking &rarr; Bookstore &rarr; Dinner &rarr; Arcade &rarr; Gelato &rarr; Car</p>
       </div>
 
+      <!-- Weather (top) -->
+      <div class="weather-note">
+        <h4>&#9748;&#65039; Weather &mdash; Sunday, March 8</h4>
+        <p>Warm afternoon in the low 80s, settling into upper 60s at night. A light layer for later is enough &mdash; nice day for a dressed-up date. The walking parts will feel great and the evening stays comfortable.</p>
+      </div>
+
       <!-- Stop 1: Verbatim Books -->
       <div class="stop">
         <div class="stop-number">1</div>
@@ -528,20 +558,40 @@
         <p class="budget-tip">To stay closer to ~$100: garage parking, one shared dessert, and lighter arcade spend.</p>
       </div>
 
-      <!-- Logistics -->
-      <div class="logistics">
-        <h3>&#128221; Logistics Checklist</h3>
-        <ul>
-          <li><strong>Reservation:</strong> Reserve One Door North a few days ahead &mdash; it has an active reservation page and Sunday dinner can tighten up.</li>
-          <li><strong>What to bring:</strong> Just normal date-night stuff. Nothing special needed.</li>
-          <li><strong>Parking:</strong> Free street parking can work, but double-check curb signs and stay clear of crosswalk corners.</li>
-        </ul>
-      </div>
-
-      <!-- Weather -->
-      <div class="weather-note">
-        <h4>&#9748;&#65039; Weather &mdash; Sunday, March 8</h4>
-        <p>Warm afternoon in the low 80s, settling into upper 60s at night. A light layer for later is enough &mdash; nice day for a dressed-up date. The walking parts will feel great and the evening stays comfortable.</p>
+      <!-- Checklist -->
+      <div class="checklist-section">
+        <h3>&#9989; Date Prep Checklist</h3>
+        <p class="checklist-subtitle">Most important first &mdash; your progress is saved automatically.</p>
+        <label class="checklist-item priority-high" data-key="p1-reservation">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>&#128308; Reserve One Door North</strong> &mdash; Sunday dinner fills up fast. Book a few days ahead via <a href="https://www.opentable.com/r/one-door-north-san-diego" target="_blank">OpenTable</a>.</span>
+        </label>
+        <label class="checklist-item" data-key="p1-outfit">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Pick out date-night outfits</strong> &mdash; polished but comfortable for walking.</span>
+        </label>
+        <label class="checklist-item" data-key="p1-parking">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Plan parking</strong> &mdash; North Park Garage ($5 evening) or scope free street spots.</span>
+        </label>
+        <label class="checklist-item" data-key="p1-phone">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Charge phones</strong> &mdash; you'll want them for photos and maps.</span>
+        </label>
+        <label class="checklist-item" data-key="p1-cash">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Bring some cash</strong> &mdash; useful for arcade games at Coin-Op.</span>
+        </label>
+        <label class="checklist-item" data-key="p1-layer">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Pack a light layer</strong> &mdash; 80s afternoon drops to upper 60s by evening.</span>
+        </label>
       </div>
 
       <!-- Parking -->
@@ -643,6 +693,12 @@
       </div>
       <div class="route-tag" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);border-color:#c4d0f5">
         <p style="color:#4a5a99">&#128694; <strong>Route:</strong> Parking &rarr; Gallery &rarr; Bookstore &rarr; Dinner &rarr; Quiet Close &rarr; Car</p>
+      </div>
+
+      <!-- Weather (top) -->
+      <div class="weather-note">
+        <h4>&#9748;&#65039; Weather &mdash; Sunday, March 8</h4>
+        <p>Warm afternoon in the low 80s, settling into upper 60s at night. A light layer for later is enough &mdash; the warm afternoon makes the walking parts nice, and the evening stays comfortable.</p>
       </div>
 
       <!-- Stop 1: ART Produce -->
@@ -749,20 +805,40 @@
         <p class="budget-tip">This is the easier one to keep right around the ~$100 target.</p>
       </div>
 
-      <!-- Logistics -->
-      <div class="logistics">
-        <h3>&#128221; Logistics Checklist</h3>
-        <ul>
-          <li><strong>Reservation:</strong> Encontro appears bookable through OpenTable &mdash; lock it in if you want the day to feel fully set.</li>
-          <li><strong>Time note:</strong> This works best as an afternoon into early evening date, while the gallery and bookstore are comfortably open.</li>
-          <li><strong>Parking:</strong> Garage is the easy choice, curb parking is the nice surprise.</li>
-        </ul>
-      </div>
-
-      <!-- Weather -->
-      <div class="weather-note">
-        <h4>&#9748;&#65039; Weather &mdash; Sunday, March 8</h4>
-        <p>Warm afternoon in the low 80s, settling into upper 60s at night. A light layer for later is enough &mdash; the warm afternoon makes the walking parts nice, and the evening stays comfortable.</p>
+      <!-- Checklist -->
+      <div class="checklist-section">
+        <h3>&#9989; Date Prep Checklist</h3>
+        <p class="checklist-subtitle">Most important first &mdash; your progress is saved automatically.</p>
+        <label class="checklist-item priority-high" data-key="p2-reservation">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>&#128308; Reserve Encontro</strong> &mdash; bookable via <a href="https://www.opentable.com/r/encontro-san-diego" target="_blank">OpenTable</a>. Lock it in so the day feels fully set.</span>
+        </label>
+        <label class="checklist-item" data-key="p2-timing">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Confirm gallery hours</strong> &mdash; ART Produce is best visited afternoon while comfortably open.</span>
+        </label>
+        <label class="checklist-item" data-key="p2-outfit">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Pick out outfits</strong> &mdash; artsy-casual, comfortable for walking and the park.</span>
+        </label>
+        <label class="checklist-item" data-key="p2-parking">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Plan parking</strong> &mdash; Garage is the easy choice, curb parking is the nice surprise.</span>
+        </label>
+        <label class="checklist-item" data-key="p2-phone">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Charge phones</strong> &mdash; you'll want them for gallery photos and maps.</span>
+        </label>
+        <label class="checklist-item" data-key="p2-layer">
+          <input type="checkbox" onchange="saveCheck(this)">
+          <span class="checkmark"></span>
+          <span class="checklist-text"><strong>Pack a light layer</strong> &mdash; nice afternoon but evenings cool down.</span>
+        </label>
       </div>
 
       <!-- Parking -->
@@ -946,6 +1022,26 @@
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
     }
+
+    // ── Checklist persistence via localStorage ──
+    function saveCheck(cb){
+      var key=cb.closest('.checklist-item').getAttribute('data-key');
+      if(cb.checked){
+        localStorage.setItem('datecheck_'+key,'1');
+      } else {
+        localStorage.removeItem('datecheck_'+key);
+      }
+    }
+    function loadChecks(){
+      document.querySelectorAll('.checklist-item').forEach(function(item){
+        var key=item.getAttribute('data-key');
+        var saved=localStorage.getItem('datecheck_'+key);
+        if(saved==='1'){
+          item.querySelector('input[type="checkbox"]').checked=true;
+        }
+      });
+    }
+    loadChecks();
 
     lucide.createIcons();
   </script>
