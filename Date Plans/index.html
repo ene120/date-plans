@@ -1,558 +1,1013 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alyssa's Sunday Date Options — March 8, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --rose: #e05780;
+      --rose-deep: #c44569;
+      --pink-light: #fff5f7;
+      --pink-medium: #ffeef8;
+      --text-dark: #4a2c3e;
+      --text-muted: #5a3c4e;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #ffeef8 0%, #fff5f7 50%, #ffe4f1 100%);
+      color: var(--text-dark);
+      min-height: 100vh;
+      padding: 40px 20px;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(219, 112, 147, 0.15);
+    }
+    .header {
+      background: linear-gradient(135deg, #ff6b9d, #c44569);
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+    }
+    .header::before {
+      content: "\U0001F495";
+      position: absolute;
+      top: 20px;
+      left: 40px;
+      font-size: 2rem;
+      opacity: 0.3;
+    }
+    .header::after {
+      content: "\u2728";
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 2rem;
+      opacity: 0.3;
+    }
+    .dateflo-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .header-subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    /* Option Sections */
+    .option-section {
+      padding: 50px 40px;
+      border-bottom: 3px solid #ffe4f1;
+    }
+    .option-section:last-child {
+      border-bottom: none;
+    }
+    .option-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .option-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff6b9d, #c44569);
+      color: white;
+      padding: 8px 24px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 15px;
+    }
+    .option-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .option-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    .meta {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+      background: linear-gradient(135deg, #fff5f7, #ffeef8);
+      padding: 20px 25px;
+      border-radius: 16px;
+      border-left: 4px solid var(--rose);
+    }
+    .meta-item {
+      flex: 1;
+      min-width: 120px;
+    }
+    .meta-label {
+      font-size: 0.75rem;
+      color: var(--rose);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    .summary {
+      background: linear-gradient(135deg, #fff5f7, #ffeef8);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 40px;
+      border: 2px solid #ffe4f1;
+    }
+    .summary-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+    }
+    .summary-title::before {
+      content: "\U0001F339 ";
+    }
+    .summary p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    /* Stops */
+    .stop {
+      background: linear-gradient(135deg, #fff 0%, #fffbfc 100%);
+      border: 2px solid #ffe4f1;
+      border-radius: 24px;
+      padding: 35px;
+      margin-bottom: 30px;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(219, 112, 147, 0.1);
+    }
+    .stop-number {
+      position: absolute;
+      top: -18px;
+      left: 30px;
+      background: linear-gradient(135deg, #ff6b9d, #c44569);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(224, 87, 128, 0.4);
+    }
+    .stop-header {
+      margin-bottom: 20px;
+    }
+    .stop-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+    .stop-location {
+      color: var(--rose-deep);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .stop-phone {
+      color: #888;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+    }
+    .stop-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .btn-dir {
+      background: linear-gradient(135deg, #ff6b9d, #c44569);
+      color: white;
+    }
+    .btn-dir:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(224, 87, 128, 0.4);
+    }
+    .btn-phone {
+      background: #4a2c3e;
+      color: white;
+    }
+    .btn-phone:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74, 44, 62, 0.3);
+    }
+    .btn-menu {
+      background: #fff5f7;
+      color: var(--rose-deep);
+      border: 2px solid var(--rose);
+    }
+    .btn-menu:hover {
+      background: var(--rose);
+      color: white;
+    }
+    .btn-reserve {
+      background: linear-gradient(135deg, #4285f4, #34a853);
+      color: white;
+    }
+    .btn-reserve:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+    }
+    .vibe-box {
+      background: #fff5f7;
+      border-left: 4px solid var(--rose);
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+      color: var(--rose-deep);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    /* Description Section */
+    .description {
+      margin: 25px 0;
+    }
+    .description p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.9;
+      margin-bottom: 15px;
+    }
+    .description-highlight {
+      background: linear-gradient(135deg, #fff5f7, #ffeef8);
+      border-radius: 16px;
+      padding: 20px 25px;
+      margin: 20px 0;
+    }
+    .description-highlight h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--text-dark);
+    }
+    .description-highlight ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .description-highlight li {
+      position: relative;
+      padding: 8px 0 8px 25px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .description-highlight li::before {
+      content: "\u2192";
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-weight: 700;
+    }
+    /* Menu Recommendations */
+    .menu-recommendations {
+      background: white;
+      border: 2px solid #ffe4f1;
+      border-radius: 16px;
+      padding: 25px;
+      margin: 25px 0;
+    }
+    .menu-recommendations h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+      text-align: center;
+    }
+    .menu-lanes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 600px) {
+      .menu-lanes {
+        grid-template-columns: 1fr;
+      }
+    }
+    .menu-lane {
+      background: linear-gradient(135deg, #fff5f7, #ffeef8);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .menu-lane h5 {
+      font-size: 0.9rem;
+      color: var(--rose-deep);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .menu-lane ul {
+      list-style: none;
+    }
+    .menu-lane li {
+      padding: 6px 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-bottom: 1px dashed #ffe4f1;
+    }
+    .menu-lane li:last-child {
+      border-bottom: none;
+    }
+    /* Backup Box */
+    .backup-box {
+      background: linear-gradient(135deg, #fff9e6, #fff3cd);
+      border: 2px solid #ffd966;
+      border-radius: 16px;
+      padding: 20px 25px;
+      margin-top: 25px;
+    }
+    .backup-box h5 {
+      color: #8b6914;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .backup-box h5::before {
+      content: "\U0001F4CB";
+    }
+    .backup-box p {
+      color: #a08520;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    /* Budget */
+    .budget {
+      background: linear-gradient(135deg, #c44569, #ff6b9d);
+      color: white;
+      padding: 35px;
+      border-radius: 20px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .budget-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+    }
+    .budget-items {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .budget-item {
+      text-align: center;
+    }
+    .budget-label {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .budget-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .budget-total {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.3);
+    }
+    .budget-total .budget-value {
+      font-size: 1.5rem;
+    }
+    /* Parking Section */
+    .parking-section {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 40px;
+    }
+    .parking-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+    .parking-section h3::before {
+      content: "\U0001F17F\uFE0F ";
+    }
+    .parking-option {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #dee2e6;
+    }
+    .parking-option:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .parking-option h4 {
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .parking-option p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .parking-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    /* Weather Note */
+    .weather-note {
+      background: linear-gradient(135deg, #e8f4fd, #d1ecf1);
+      border: 2px solid #c4e1f5;
+      border-radius: 16px;
+      padding: 20px 25px;
+      margin-top: 30px;
+    }
+    .weather-note h4 {
+      color: #2c5f8d;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .weather-note h4::before {
+      content: "\U0001F324\uFE0F";
+    }
+    .weather-note p {
+      color: #3d6a8f;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid #ffe4f1;
+      background: linear-gradient(135deg, #fff5f7, #ffeef8);
+    }
+    .footer-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--rose-deep);
+      font-style: italic;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    .footer-link:hover {
+      color: var(--rose);
+    }
+    @media (max-width: 768px) {
+      body { padding: 20px 15px; }
+      .header { padding: 40px 25px; }
+      .option-section { padding: 35px 25px; }
+      .stop { padding: 25px; }
+      .stop-title { font-size: 1.5rem; }
+      h1 { font-size: 2rem; }
+      .option-title { font-size: 1.6rem; }
+    }
+    html { scroll-behavior: smooth; }
   </style>
 </head>
 <body>
-<p class="p1"><br></p>
-<p class="p1"><br></p>
-<p class="p2">```html</p>
-<p class="p2">&lt;!DOCTYPE html&gt;</p>
-<p class="p2">&lt;html lang="en"&gt;</p>
-<p class="p2">&lt;head&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;title&gt;Alyssa's Sunday Date — March 8, 2026&lt;/title&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>* { margin: 0; padding: 0; box-sizing: border-box; }</p>
-<p class="p2"><span class="Apple-converted-space">    </span>:root {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>--rose: #e05780;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>--rose-deep: #c44569;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>--pink-light: #fff5f7;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>--pink-medium: #ffeef8;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>--text-dark: #4a2c3e;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>--text-muted: #5a3c4e;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Montserrat', sans-serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #ffeef8 0%, #fff5f7 50%, #ffe4f1 100%);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-dark);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>min-height: 100vh;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 40px 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>line-height: 1.7;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.container {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>max-width: 900px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: white;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 24px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>box-shadow: 0 20px 60px rgba(219, 112, 147, 0.15);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.header {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #ff6b9d, #c44569);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 60px 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.header::before {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>content: "💕";</p>
-<p class="p2"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>top: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>left: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 2rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>opacity: 0.3;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.header::after {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>content: "✨";</p>
-<p class="p2"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>top: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>right: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 2rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>opacity: 0.3;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.dateflo-logo {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.4rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 15px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>opacity: 0.9;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>h1 {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 2.5rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.header-subtitle {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>opacity: 0.9;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>/* Option Sections */</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.option-section {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 50px 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-bottom: 3px solid #ffe4f1;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.option-section:last-child {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-bottom: none;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.option-header {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.option-badge {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: inline-block;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #ff6b9d, #c44569);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 8px 24px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 30px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>letter-spacing: 0.1em;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 15px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.option-title {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 2rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-dark);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.option-subtitle {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1rem;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>.meta {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 30px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 35px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #fff5f7, #ffeef8);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 20px 25px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 16px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-left: 4px solid var(--rose);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.meta-item {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>flex: 1;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>min-width: 120px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.meta-label {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--rose);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>letter-spacing: 0.1em;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 5px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.meta-value {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.05rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-dark);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>.summary {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #fff5f7, #ffeef8);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 30px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border: 2px solid #ffe4f1;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.summary-title {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.4rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 15px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-dark);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.summary-title::before {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>content: "🌹 ";</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.summary p {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>line-height: 1.8;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>/* Stops */</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.stop {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #fff 0%, #fffbfc 100%);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border: 2px solid #ffe4f1;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 24px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 35px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 30px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>box-shadow: 0 8px 30px rgba(219, 112, 147, 0.1);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.stop-number {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>top: -18px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>left: 30px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #ff6b9d, #c44569);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>width: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>height: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.1rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 15px rgba(224, 87, 128, 0.4);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.stop-header {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.stop-title {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.8rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-dark);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.stop-location {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--rose-deep);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 500;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 5px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.stop-phone {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #888;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 15px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.stop-buttons {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.btn {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 6px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 10px 18px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 500;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>transition: all 0.3s ease;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Montserrat', sans-serif;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.btn-dir {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #ff6b9d, #c44569);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.btn-dir:hover {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>transform: translateY(-2px);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>box-shadow: 0 6px 20px rgba(224, 87, 128, 0.4);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.btn-phone {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: #4a2c3e;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.btn-phone:hover {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>transform: translateY(-2px);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>box-shadow: 0 6px 20px rgba(74, 44, 62, 0.3);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.btn-menu {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: #fff5f7;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--rose-deep);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border: 2px solid var(--rose);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.btn-menu:hover {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: var(--rose);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.btn-reserve {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #4285f4, #34a853);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.btn-reserve:hover {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>transform: translateY(-2px);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>.vibe-box {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: #fff5f7;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-left: 4px solid var(--rose);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 15px 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin: 20px 0;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 0 12px 12px 0;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-style: italic;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--rose-deep);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 500;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>/* Description Section */</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.description {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin: 25px 0;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.description p {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>line-height: 1.9;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 15px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.description-highlight {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #fff5f7, #ffeef8);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 16px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 20px 25px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin: 20px 0;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.description-highlight h4 {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.1rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 12px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-dark);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.description-highlight ul {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>list-style: none;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding-left: 0;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.description-highlight li {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 8px 0 8px 25px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.description-highlight li::before {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>content: "→";</p>
-<p class="p2"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>left: 0;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--rose);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>/* Menu Recommendations */</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.menu-recommendations {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: white;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border: 2px solid #ffe4f1;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 16px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 25px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin: 25px 0;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.menu-recommendations h4 {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.15rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-dark);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.menu-lanes {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>grid-template-columns: 1fr 1fr;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>@media (max-width: 600px) {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>.menu-lanes {</p>
-<p class="p2"><span class="Apple-converted-space">        </span>grid-template-columns: 1fr;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.menu-lane {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #fff5f7, #ffeef8);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.menu-lane h5 {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--rose-deep);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 12px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.menu-lane ul {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>list-style: none;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.menu-lane li {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 6px 0;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.85rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-bottom: 1px dashed #ffe4f1;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.menu-lane li:last-child {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-bottom: none;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>/* Backup Box */</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.backup-box {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #fff9e6, #fff3cd);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border: 2px solid #ffd966;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 16px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 20px 25px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-top: 25px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.backup-box h5 {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #8b6914;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 8px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.backup-box h5::before {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>content: "📋";</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.backup-box p {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #a08520;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>line-height: 1.6;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>/* Budget */</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.budget {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #c44569, #ff6b9d);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 35px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-top: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.budget-title {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.5rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 25px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.budget-items {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.budget-item {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.budget-label {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>opacity: 0.85;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>letter-spacing: 0.05em;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.budget-value {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.2rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.budget-total {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-top: 25px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding-top: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-top: 1px solid rgba(255,255,255,0.3);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.budget-total .budget-value {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.5rem;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>/* Parking Section */</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.parking-section {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: #f8f9fa;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border: 2px solid #e9ecef;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 30px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-top: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.parking-section h3 {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.3rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-dark);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.parking-section h3::before {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>content: "🅿️ ";</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.parking-option {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 25px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding-bottom: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-bottom: 1px dashed #dee2e6;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.parking-option:last-child {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 0;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding-bottom: 0;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-bottom: none;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.parking-option h4 {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.05rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-dark);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.parking-option p {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 12px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>line-height: 1.6;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.parking-links {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>/* Weather Note */</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.weather-note {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #e8f4fd, #d1ecf1);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border: 2px solid #c4e1f5;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 16px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 20px 25px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-top: 30px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.weather-note h4 {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #2c5f8d;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 8px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.weather-note h4::before {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>content: "🌤️";</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.weather-note p {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #3d6a8f;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>line-height: 1.6;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>/* Footer */</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.footer {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 40px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-top: 1px solid #ffe4f1;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #fff5f7, #ffeef8);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.footer-tagline {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 1.2rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--rose-deep);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-style: italic;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.footer-links {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 30px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-top: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.footer-link {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>gap: 8px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>transition: color 0.3s ease;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.footer-link:hover {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: var(--rose);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><br></p>
-<p class="p2"><span class="Apple-converted-space">    </span>@media (max-width: 768px) {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>body { padding: 20px 15px; }</p>
-<p class="p2"><span class="Apple-converted-space">      </span>.header { padding: 40px 25px; }</p>
-<p class="p2"><span class="Apple-converted-space">      </span>.option-section { padding: 35px 25px;</p>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="dateflo-logo">&#10024; DateFlo</div>
+      <h1>Alyssa's Sunday Date</h1>
+      <p class="header-subtitle">Two beautiful options for March 8, 2026</p>
+    </div>
+
+    <!-- ========== OPTION 1: OLD TOWN + HARNEY SUSHI ========== -->
+    <div class="option-section">
+      <div class="option-header">
+        <div class="option-badge">&#127807; Option 1</div>
+        <h2 class="option-title">Old Town Revisit + Harney Sushi + Sweet Finish</h2>
+        <p class="option-subtitle">Familiar in the best way &#8212; sunny, browse-y, and easy</p>
+      </div>
+
+      <div class="meta">
+        <div class="meta-item">
+          <div class="meta-label">Date</div>
+          <div class="meta-value">Sunday, March 8, 2026</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Time</div>
+          <div class="meta-value">12:30 PM &#8211; 8:00 PM</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Duration</div>
+          <div class="meta-value">5.5&#8211;6.5 hours</div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h3 class="summary-title">The Vibe</h3>
+        <p>This option feels familiar in a good way. A sunny Old Town start gives you both some shape before dinner without making the day feel over-planned. Harney Sushi becomes the intentional centerpiece instead of a last-minute choice. Then an easy dessert-style finish nearby so the night can end without extra hassle &#8212; close to where you parked.</p>
+      </div>
+
+      <!-- Stop 1: Old Town -->
+      <div class="stop" data-number="1">
+        <div class="stop-number">1</div>
+        <div class="stop-header">
+          <h3 class="stop-title">Old Town Wandering</h3>
+          <p class="stop-location">Old Town San Diego State Historic Park</p>
+        </div>
+        <div class="stop-buttons">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Old+Town+San+Diego+State+Historic+Park" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=Old%20Town%20San%20Diego%20State%20Historic%20Park" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://oldtownstatehistoricpark.org/" target="_blank" class="btn btn-menu"><i data-lucide="external-link"></i> Park Info</a>
+        </div>
+        <div class="vibe-box">sunny &#8226; relaxed &#8226; browse-y</div>
+        <div class="description">
+          <p>A slow Old Town start could work really well here because it gives the date some shape before dinner without making the day feel over-planned. The state park area is centered around San Diego Avenue and Twiggs Street, and the district is built for walkability and daytime exploring.</p>
+          <p><strong>What this could feel like:</strong> A gentle loop through the historic core, a little shopping, a little people-watching, and just enough walking that dinner feels like the second chapter of the date instead of the whole thing.</p>
+        </div>
+        <div class="description-highlight">
+          <h4>&#10024; You might like:</h4>
+          <ul>
+            <li><strong>Bazaar del Mundo</strong> &#8212; Perfect for the "walk around and look at cute things" part of the afternoon. Colorful, browse-worthy, and right in the heart of Old Town.</li>
+          </ul>
+        </div>
+        <div class="backup-box">
+          <h5>Backup Plan</h5>
+          <p><strong>Heritage County Park</strong> could be a quieter version of the same start if you want less foot traffic. This backup is there so the beginning can still feel calm if the main Old Town stretch feels busier than you want.</p>
+        </div>
+      </div>
+
+      <!-- Stop 2: Harney Sushi -->
+      <div class="stop" data-number="2">
+        <div class="stop-number">2</div>
+        <div class="stop-header">
+          <h3 class="stop-title">Harney Sushi Dinner</h3>
+          <p class="stop-location">3964 Harney St, San Diego, CA 92110</p>
+          <p class="stop-phone">(619) 295-3272</p>
+        </div>
+        <div class="stop-buttons">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=3964+Harney+St+San+Diego+CA+92110" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=3964%20Harney%20St%2C%20San%20Diego%2C%20CA%2092110" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="tel:6192953272" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
+          <a href="https://www.harneysushi.com/" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
+          <a href="https://www.opentable.com/r/harney-sushi-old-town" target="_blank" class="btn btn-reserve"><i data-lucide="calendar"></i> Reserve on OpenTable</a>
+        </div>
+        <div class="vibe-box">lively &#8226; familiar-favorite &#8226; date-night</div>
+        <div class="description">
+          <p>Dinner at Harney Sushi makes a lot of sense here because it already feels meaningful to you both, but the rest of the plan around it helps it feel like a full date &#8212; not just dinner with a side activity. The restaurant has general street parking, valet, and a small lot in the back.</p>
+          <p><strong>Hours:</strong> Sunday 4:00 PM &#8211; 10:00 PM</p>
+          <p><strong>Atmosphere:</strong> Lively and fun &#8212; great for a date night where you want energy but still want to hear each other.</p>
+        </div>
+        <div class="menu-recommendations">
+          <h4>&#127869; What to Order</h4>
+          <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Because your tastes overlap, pick your lane &#8212; or mix and match!</p>
+          <div class="menu-lanes">
+            <div class="menu-lane">
+              <h5>&#10024; Lane 1: Brighter, Cleaner, Lighter</h5>
+              <ul>
+                <li>Andy 2 Roll</li>
+                <li>Protein Roll</li>
+                <li>Avocado Roll or Hippie Roll</li>
+              </ul>
+              <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Citrusy, fresher, and a little less heavy.</p>
+            </div>
+            <div class="menu-lane">
+              <h5>&#128293; Lane 2: Bolder, Spicier, More Playful</h5>
+              <ul>
+                <li>Culichi Wa Roll</li>
+                <li>Crunch Roll</li>
+                <li>All 4 Edamame (shared appetizer)</li>
+              </ul>
+              <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">The "fun sushi date" version of dinner.</p>
+            </div>
+          </div>
+        </div>
+        <div class="description-highlight">
+          <h4>&#129472; Lactose Note</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7;">A few specialty rolls at Harney do include cream cheese or creamier sauces. Sticking closer to the cleaner fish-forward and cucumber-wrap side of the menu would probably make this easier for the lactose issue.</p>
+        </div>
+        <div class="backup-box">
+          <h5>Backup Plan</h5>
+          <p>If Harney feels louder than expected, the rest of the Old Town flow still works, and dinner could shift within the neighborhood without breaking the date. The structure of the night still holds even if the main restaurant mood feels off.</p>
+        </div>
+      </div>
+
+      <!-- Stop 3: Candy Shop -->
+      <div class="stop" data-number="3">
+        <div class="stop-number">3</div>
+        <div class="stop-header">
+          <h3 class="stop-title">Candy-Shop Finish</h3>
+          <p class="stop-location">Cousin's Old Town Candy Shop</p>
+        </div>
+        <div class="stop-buttons">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Cousins+Candy+Old+Town+San+Diego" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=Cousins%20Candy%20Old%20Town%20San%20Diego" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+        </div>
+        <div class="vibe-box">easy &#8226; playful &#8226; low-pressure</div>
+        <div class="description">
+          <p>A tiny sweet stop works better here than another full dessert place. Cousin's Old Town Candy Shop is part of the historic park mix, so it keeps the ending easy and nearby.</p>
+          <p><strong>What this could feel like:</strong> A few candies or a small treat to share, then one more short walk through Old Town before heading back to the car.</p>
+        </div>
+        <div class="backup-box">
+          <h5>Backup Plan</h5>
+          <p>If dessert doesn't sound necessary, this could simply become a longer post-dinner walk. Sometimes the best ending is just the conversation carrying the date the rest of the way.</p>
+        </div>
+      </div>
+
+      <!-- Budget -->
+      <div class="budget">
+        <h3 class="budget-title">&#128176; Budget for Two</h3>
+        <div class="budget-items">
+          <div class="budget-item">
+            <div class="budget-label">Wandering &amp; Browsing</div>
+            <div class="budget-value">$0 &#8211; $20</div>
+          </div>
+          <div class="budget-item">
+            <div class="budget-label">Harney Sushi Dinner</div>
+            <div class="budget-value">$60 &#8211; $110</div>
+          </div>
+          <div class="budget-item">
+            <div class="budget-label">Sweet Finish</div>
+            <div class="budget-value">$10 &#8211; $20</div>
+          </div>
+        </div>
+        <div class="budget-total budget-item">
+          <div class="budget-label">Estimated Total</div>
+          <div class="budget-value">$70 &#8211; $150</div>
+        </div>
+      </div>
+
+      <!-- Weather -->
+      <div class="weather-note">
+        <h4>Weather Heads-Up</h4>
+        <p>A light layer would probably help once the sun drops. Old Town is easy to walk, but the evening can feel cooler after dinner.</p>
+      </div>
+
+      <!-- Parking -->
+      <div class="parking-section">
+        <h3>Parking</h3>
+        <div class="parking-option">
+          <h4>&#127383; Street Parking (Free)</h4>
+          <p>OpenTable notes that Harney Sushi has general street parking, so this is the easiest free option to try first if you want to stay closest to dinner.</p>
+          <div class="parking-links">
+            <a href="https://www.google.com/maps/search/?api=1&query=Harney+St+and+San+Diego+Ave%2C+San+Diego%2C+CA+92110" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Search Area on Google</a>
+            <a href="https://maps.apple.com/?q=Harney%20St%20and%20San%20Diego%20Ave%2C%20San%20Diego%2C%20CA%2092110" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Search on Apple Maps</a>
+          </div>
+        </div>
+        <div class="parking-option">
+          <h4>&#127359;&#65039; Paid Parking (Easiest)</h4>
+          <p>If you'd rather skip the street-parking guesswork, Harney offers <strong>valet</strong> and also has a <strong>small lot in the back</strong>, which keeps the end of the date very close to the car.</p>
+          <div class="parking-links">
+            <a href="https://www.google.com/maps/search/?api=1&query=3964+Harney+St%2C+San+Diego%2C+CA+92110" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Valet Location on Google</a>
+            <a href="https://maps.apple.com/?q=3964%20Harney%20St%2C%20San%20Diego%2C%20CA%2092110" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Valet on Apple Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== OPTION 2: LA JOLLA + ROPPONGI ========== -->
+    <div class="option-section">
+      <div class="option-header">
+        <div class="option-badge">&#127754; Option 2</div>
+        <h2 class="option-title">Matcha + La Jolla Village + Roppongi + Gelato</h2>
+        <p class="option-subtitle">New but still easy &#8212; polished, scenic, and coastal</p>
+      </div>
+
+      <div class="meta">
+        <div class="meta-item">
+          <div class="meta-label">Date</div>
+          <div class="meta-value">Sunday, March 8, 2026</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Time</div>
+          <div class="meta-value">11:00 AM &#8211; 6:00 PM</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Duration</div>
+          <div class="meta-value">6&#8211;7 hours</div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h3 class="summary-title">The Vibe</h3>
+        <p>This option feels a little more "new but still easy." It starts with matcha, moves into a walk through La Jolla Village and the cove area, then turns into an early dinner at Roppongi with a gelato finish that stays friendly to the lactose issue. The whole plan stays in one compact La Jolla cluster so the end of the date stays close to the car.</p>
+      </div>
+
+      <!-- Stop 1: Blue Whale -->
+      <div class="stop" data-number="1">
+        <div class="stop-number">1</div>
+        <div class="stop-header">
+          <h3 class="stop-title">Matcha Start at Blue Whale</h3>
+          <p class="stop-location">834 Kline St, La Jolla, CA 92037</p>
+          <p class="stop-phone">(858) 352-6580</p>
+        </div>
+        <div class="stop-buttons">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=834+Kline+St+La+Jolla+CA+92037" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=834%20Kline%20St%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="tel:8583526580" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
+          <a href="https://www.bluewhalesd.com/menu" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
+        </div>
+        <div class="vibe-box">polished &#8226; calm &#8226; cozy</div>
+        <div class="description">
+          <p>Since you both like matcha, this feels like a natural opening move. Blue Whale is polished and cozy &#8212; a great way to ease into the date with something warm and intentional.</p>
+          <p><strong>Hours:</strong> Daily 8:00 AM &#8211; 6:00 PM</p>
+        </div>
+        <div class="menu-recommendations">
+          <h4>&#127861; What to Order</h4>
+          <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Two lanes &#8212; matcha-forward or something more lunch-like</p>
+          <div class="menu-lanes">
+            <div class="menu-lane">
+              <h5>&#127861; Lane 1: Matcha-Forward</h5>
+              <ul>
+                <li>Magic Matcha</li>
+                <li>Kyoto Matcha Latte (oat, almond, or coconut)</li>
+                <li>A second matcha special if you want this stop to feel like the ritual part of the date</li>
+              </ul>
+              <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Let this be the calm, cozy opening moment.</p>
+            </div>
+            <div class="menu-lane">
+              <h5>&#129385; Lane 2: More Lunch-Like</h5>
+              <ul>
+                <li>Avo Toast</li>
+                <li>Lox Toast</li>
+                <li>Breakfast Bowl</li>
+              </ul>
+              <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">If you want this stop to double as a light lunch.</p>
+            </div>
+          </div>
+        </div>
+        <div class="backup-box">
+          <h5>Backup Plan</h5>
+          <p>If Blue Whale feels unexpectedly packed, the rest of the village plan still works, and the date can shift into more walking time before dinner. The start stays easy and not line-heavy.</p>
+        </div>
+      </div>
+
+      <!-- Stop 2: La Jolla Walk -->
+      <div class="stop" data-number="2">
+        <div class="stop-number">2</div>
+        <div class="stop-header">
+          <h3 class="stop-title">La Jolla Village &amp; Cove Walk</h3>
+          <p class="stop-location">Ellen Browning Scripps Park / La Jolla Cove</p>
+        </div>
+        <div class="stop-buttons">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Ellen+Browning+Scripps+Park+La+Jolla" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=Ellen%20Browning%20Scripps%20Park%20La%20Jolla" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+        </div>
+        <div class="vibe-box">scenic &#8226; browse-y &#8226; romantic</div>
+        <div class="description">
+          <p>This is the part that gives the date that "walk somewhere pretty after trying something new" feeling. The cove area is a public shoreline park, and the village is central to walking between dining, shopping, and the coast.</p>
+          <p><strong>What this could feel like:</strong> A village stroll, a stop or two to browse, then a water-view walk before dinner. This keeps the date from feeling like it's only about food, but it still stays soft and conversation-friendly.</p>
+        </div>
+        <div class="description-highlight">
+          <h4>&#10024; You might like:</h4>
+          <ul>
+            <li>Browse the village shops along Prospect St and Girard Ave</li>
+            <li>Walk down to the cove for ocean views and sea lions</li>
+            <li>Ellen Browning Scripps Park for a grassy, scenic pause</li>
+          </ul>
+        </div>
+        <div class="backup-box">
+          <h5>Backup Plan</h5>
+          <p>If the coastline feels busier than you want, the village streets can still carry this middle section nicely. The date can stay calm without losing the scenic part of the plan.</p>
+        </div>
+      </div>
+
+      <!-- Stop 3: Roppongi -->
+      <div class="stop" data-number="3">
+        <div class="stop-number">3</div>
+        <div class="stop-header">
+          <h3 class="stop-title">Early Dinner at Roppongi</h3>
+          <p class="stop-location">875 Prospect St, La Jolla, CA 92037</p>
+          <p class="stop-phone">(858) 551-5252</p>
+        </div>
+        <div class="stop-buttons">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=875+Prospect+St+La+Jolla+CA+92037" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=875%20Prospect%20St%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="tel:8585515252" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
+          <a href="https://roppongiusa.net/menu/" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
+          <a href="https://www.opentable.com/r/roppongi-restaurant-and-lounge-san-diego" target="_blank" class="btn btn-reserve"><i data-lucide="calendar"></i> Reserve on OpenTable</a>
+        </div>
+        <div class="vibe-box">polished &#8226; lively &#8226; Asian-fusion date-night</div>
+        <div class="description">
+          <p>Roppongi fits your food profile really well because it gives you Asian flavors, seafood, tapas-style sharing, and a stronger date-night atmosphere. A lot of the dishes naturally sit outside the heavy-dairy zone, which makes the lactose issue easier to work around than at a more butter-heavy restaurant.</p>
+          <p><strong>Happy Hour:</strong> Daily 3:00 PM &#8211; 5:30 PM</p>
+          <p><strong>Dinner Hours:</strong> Sunday 5:00 PM &#8211; 9:00 PM</p>
+        </div>
+        <div class="menu-recommendations">
+          <h4>&#127869; What to Order</h4>
+          <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Two lanes &#8212; fresher/brighter or bolder/spicier</p>
+          <div class="menu-lanes">
+            <div class="menu-lane">
+              <h5>&#10024; Lane 1: Fresher, Brighter, Seafood-Forward</h5>
+              <ul>
+                <li>Hamachi Tacos</li>
+                <li>Ahi Poke</li>
+                <li>Marinated Cucumber</li>
+              </ul>
+              <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Clean, bright, and seafood-focused.</p>
+            </div>
+            <div class="menu-lane">
+              <h5>&#128293; Lane 2: Bolder, Spicier, More Playful</h5>
+              <ul>
+                <li>Spicy Edamame</li>
+                <li>Kung Pao Calamari</li>
+                <li>Salmon Karaage or Indonesian Satay</li>
+              </ul>
+              <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">The "fun and flavorful" route.</p>
+            </div>
+          </div>
+        </div>
+        <div class="description-highlight">
+          <h4>&#128161; Pro Tip</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7;">An early reservation would probably be the sweet spot here because it keeps you closer to budget, helps with noise, and lines up with the better-value happy-hour window (3:00&#8211;5:30 PM).</p>
+        </div>
+        <div class="backup-box">
+          <h5>Backup Plan</h5>
+          <p>If you wanted to keep the same La Jolla flow but pivot the meal, the village has enough density that the structure of the date still works. The day stays flexible without losing its shape.</p>
+        </div>
+      </div>
+
+      <!-- Stop 4: Bobboi Gelato -->
+      <div class="stop" data-number="4">
+        <div class="stop-number">4</div>
+        <div class="stop-header">
+          <h3 class="stop-title">Gelato Finish at Bobboi</h3>
+          <p class="stop-location">8008 Girard Ave, Suite 150, La Jolla, CA 92037</p>
+          <p class="stop-phone">(858) 255-8693</p>
+        </div>
+        <div class="stop-buttons">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=8008+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
+          <a href="https://maps.apple.com/?q=8008%20Girard%20Ave%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="tel:8582558693" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
+          <a href="https://www.bobboi.com/la-jolla" target="_blank" class="btn btn-menu"><i data-lucide="external-link"></i> Flavors</a>
+        </div>
+        <div class="vibe-box">sweet &#8226; coastal &#8226; easy ending</div>
+        <div class="description">
+          <p>Bobboi works especially well here because they have vegan options that are part of the shop's appeal. It's a sweet, low-pressure ending that keeps you in the village close to where you parked.</p>
+        </div>
+        <div class="menu-recommendations">
+          <h4>&#127846; What to Order</h4>
+          <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Two lanes &#8212; lighter/fruit-forward or classic gelato</p>
+          <div class="menu-lanes">
+            <div class="menu-lane">
+              <h5>&#127827; Lane 1: Lighter, Fruit-Forward</h5>
+              <ul>
+                <li>A vegan fruit-forward flavor</li>
+                <li>A citrusy or sorbet-style vegan option</li>
+                <li>A brighter seasonal flavor</li>
+              </ul>
+              <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Fresh, dairy-free, and perfect for a coastal walk.</p>
+            </div>
+            <div class="menu-lane">
+              <h5>&#127851; Lane 2: Classic Gelato Finish</h5>
+              <ul>
+                <li>One richer gelato flavor</li>
+                <li>One dairy-free option alongside it</li>
+                <li>Ask for staff recommendation &#8212; keep it playful!</li>
+              </ul>
+              <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">The best of both worlds.</p>
+            </div>
+          </div>
+        </div>
+        <div class="backup-box">
+          <h5>Backup Plan</h5>
+          <p>If dessert feels unnecessary by the end, a short village walk back toward the car would still close this option really nicely. Sometimes the best ending is just the atmosphere doing the work.</p>
+        </div>
+      </div>
+
+      <!-- Budget Option 2 -->
+      <div class="budget">
+        <h3 class="budget-title">&#128176; Budget for Two</h3>
+        <div class="budget-items">
+          <div class="budget-item">
+            <div class="budget-label">Matcha &amp; Light Start</div>
+            <div class="budget-value">$20 &#8211; $40</div>
+          </div>
+          <div class="budget-item">
+            <div class="budget-label">Roppongi Dinner</div>
+            <div class="budget-value">$60 &#8211; $110</div>
+          </div>
+          <div class="budget-item">
+            <div class="budget-label">Gelato Finish</div>
+            <div class="budget-value">$10 &#8211; $20</div>
+          </div>
+        </div>
+        <div class="budget-total budget-item">
+          <div class="budget-label">Estimated Total</div>
+          <div class="budget-value">$90 &#8211; $170</div>
+        </div>
+      </div>
+
+      <!-- Weather Option 2 -->
+      <div class="weather-note">
+        <h4>Weather Heads-Up</h4>
+        <p>A light extra layer would probably make this option more comfortable because it spends more time near the water. La Jolla can get breezy in the late afternoon.</p>
+      </div>
+
+      <!-- Parking Option 2 -->
+      <div class="parking-section">
+        <h3>Parking in La Jolla Village</h3>
+        <div class="parking-option">
+          <h4>&#127383; Street Parking (Free, Limited)</h4>
+          <p>La Jolla Village has over 2,000 street spots, but free street parking is limited and strictly monitored. Look for curb options near Wall Street, which is close to the village core.</p>
+          <div class="parking-links">
+            <a href="https://www.google.com/maps/search/?api=1&query=1032+Wall+Street%2C+La+Jolla%2C+CA+92037" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Wall St Area on Google</a>
+            <a href="https://maps.apple.com/?q=1032%20Wall%20Street%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Wall St on Apple Maps</a>
+          </div>
+        </div>
+        <div class="parking-option">
+          <h4>&#127359;&#65039; Wall St Garage (Recommended)</h4>
+          <p><strong>7855 Ivanhoe Ave, La Jolla</strong> &#8212; Available Saturday and Sunday all day. Keeps the end of the date close to Roppongi, the village core, and Bobboi.</p>
+          <div class="parking-links">
+            <a href="https://www.google.com/maps/search/?api=1&query=7855+Ivanhoe+Ave%2C+La+Jolla%2C+CA+92037" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Wall St Garage on Google</a>
+            <a href="https://maps.apple.com/?q=7855%20Ivanhoe%20Ave%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Garage on Apple Maps</a>
+          </div>
+        </div>
+        <div class="parking-option">
+          <h4>&#127359;&#65039; Fay Ave Garage (24/7)</h4>
+          <p><strong>7825 Fay Ave, La Jolla</strong> &#8212; Another solid option that's open 24/7 and central to the village.</p>
+          <div class="parking-links">
+            <a href="https://www.google.com/maps/search/?api=1&query=7825+Fay+Ave%2C+La+Jolla%2C+CA+92037" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Fay Ave Garage on Google</a>
+            <a href="https://maps.apple.com/?q=7825%20Fay%20Ave%2C%20La%20Jolla%2C%20CA%2092037" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Garage on Apple Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="footer-tagline">"Let us make date planning feel fun."</p>
+      <div class="footer-links">
+        <a href="https://instagram.com/dateflo" class="footer-link" target="_blank">
+          <i data-lucide="instagram"></i> @dateflo
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
