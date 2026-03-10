@@ -198,7 +198,8 @@
       font-weight:700;font-size:1rem;
       box-shadow:0 4px 14px rgba(224,87,128,.4);
     }
-    .stop-header{margin-bottom:16px}
+    .stop-header{margin-bottom:16px;padding-right:135px}
+    @media(max-width:420px){.stop-header{padding-right:0}}
     .stop-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.8vw,1.6rem);font-weight:700;margin-bottom:6px;color:var(--text-dark)}
     .stop-location{color:var(--rose-deep);font-size:clamp(.82rem,1.4vw,.9rem);font-weight:500;margin-bottom:4px}
     .stop-time{
@@ -219,15 +220,40 @@
     .btn-phone:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(61,36,53,.3)}
     .btn-menu{background:white;color:var(--rose-deep);border:2px solid var(--rose);box-shadow:0 2px 10px rgba(224,87,128,.1)}
     .btn-menu:hover{background:var(--rose);color:white}
-    .btn-uber{background:#000;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.2)}
-    .btn-uber:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-    .btn-lyft{background:#ff00bf;color:#fff;box-shadow:0 4px 14px rgba(255,0,191,.25)}
-    .btn-lyft:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,0,191,.35)}
-    .btn-park-free{background:#27ae60;color:#fff;box-shadow:0 4px 14px rgba(39,174,96,.25)}
-    .btn-park-free:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(39,174,96,.35)}
-    .btn-park-paid{background:#e67e22;color:#fff;box-shadow:0 4px 14px rgba(230,126,34,.25)}
-    .btn-park-paid:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,126,34,.35)}
-    .ride-park-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    /* ── Transport Corner Widget ── */
+    .transport-corner{
+      position:absolute;top:14px;right:14px;
+      display:flex;flex-direction:column;gap:6px;
+      background:linear-gradient(135deg,#fdf6f9,#fff0f5);
+      border:1.5px solid #ffe4f1;border-radius:14px;
+      padding:10px;min-width:120px;z-index:2;
+    }
+    .tc-group{display:flex;flex-direction:column;gap:4px}
+    .tc-group+.tc-group{border-top:1px solid #ffe4f1;padding-top:6px}
+    .tc-label{
+      font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+      color:var(--rose);margin-bottom:2px;
+    }
+    .tc-btns{display:flex;gap:4px}
+    .tc-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:3px;
+      padding:5px 10px;border-radius:8px;text-decoration:none;
+      font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:600;
+      transition:all .25s ease;white-space:nowrap;
+    }
+    .tc-btn:hover{transform:translateY(-1px)}
+    .tc-uber{background:#000;color:#fff}
+    .tc-uber:hover{box-shadow:0 3px 10px rgba(0,0,0,.25)}
+    .tc-lyft{background:#ff00bf;color:#fff}
+    .tc-lyft:hover{box-shadow:0 3px 10px rgba(255,0,191,.3)}
+    .tc-free{background:#27ae60;color:#fff}
+    .tc-free:hover{box-shadow:0 3px 10px rgba(39,174,96,.3)}
+    .tc-paid{background:#e67e22;color:#fff}
+    .tc-paid:hover{box-shadow:0 3px 10px rgba(230,126,34,.3)}
+    @media(max-width:420px){
+      .transport-corner{position:relative;top:auto;right:auto;margin-bottom:14px;flex-direction:row;flex-wrap:wrap;gap:8px;align-items:flex-start}
+      .tc-group+.tc-group{border-top:none;padding-top:0;border-left:1px solid #ffe4f1;padding-left:8px}
+    }
     .btn svg,.btn i{width:14px;height:14px}
     .vibe-box{background:#fff8fa;border-left:4px solid var(--rose);padding:clamp(10px,1.8vw,13px) clamp(14px,2.2vw,18px);margin:16px 0;border-radius:0 12px 12px 0;font-style:italic;color:var(--rose-deep);font-size:clamp(.82rem,1.4vw,.88rem);font-weight:500}
     .description{margin:20px 0}
@@ -239,6 +265,15 @@
       padding:8px 16px;font-size:clamp(.76rem,1.2vw,.82rem);color:#5b6faa;font-weight:500;
       margin:8px 0 0;
     }
+
+    /* ── Food Recs (Partner Split) ── */
+    .food-recs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+    .food-rec{background:linear-gradient(135deg,#fff8fa,#fff0f5);border:2px solid #ffe4f1;border-radius:14px;padding:14px 16px}
+    .food-rec-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--rose);margin-bottom:8px;display:flex;align-items:center;gap:5px}
+    .food-rec-label span{font-size:.9rem}
+    .food-rec-item{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--text-dark);font-weight:600;margin-bottom:2px}
+    .food-rec-note{font-size:clamp(.74rem,1.2vw,.8rem);color:var(--text-muted);line-height:1.55;font-style:italic}
+    @media(max-width:480px){.food-recs{grid-template-columns:1fr}}
 
     /* ── Stop Comments ── */
     .stop-comment{margin-top:18px;padding-top:18px;border-top:2px solid #ffe4f1}
@@ -431,6 +466,10 @@
       <!-- Stop 1 -->
       <div class="stop">
         <div class="stop-number">1</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-uber">Uber</a><a href="#" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-free">Free</a><a href="#" target="_blank" class="tc-btn tc-paid">Paid</a></div></div>
+        </div>
         <div class="stop-header">
           <h3 class="stop-title">Late Lunch at OB Noodle House</h3>
           <p class="stop-location">2218 Cable St, Ocean Beach</p>
@@ -441,17 +480,22 @@
           <a href="tel:6194506868" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
           <a href="https://obnoodlehouse.com/menu-ob-noodle-house/" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
         </div>
-        <div class="ride-park-row">
-          <a href="#" target="_blank" class="btn btn-uber"><i data-lucide="car"></i> Uber</a>
-          <a href="#" target="_blank" class="btn btn-lyft"><i data-lucide="car"></i> Lyft</a>
-          <a href="#" target="_blank" class="btn btn-park-free"><i data-lucide="circle-parking"></i> Free Parking</a>
-          <a href="#" target="_blank" class="btn btn-park-paid"><i data-lucide="circle-parking"></i> Paid Parking</a>
-        </div>
         <div class="vibe-box">local legend &bull; bold flavors &bull; happy hour</div>
         <div class="description">
           <p>A genuine OB institution featured on Diners, Drive-Ins and Dives. The pho, fried rice, and crispy egg noodles are all boldly flavored and shareable. Arrive at 3 PM when happy hour kicks in &mdash; half-off select beers, $4 premium wells until 6 PM. Walk-in friendly.</p>
-          <p><strong>Good move:</strong> Split an appetizer, get two entrees, and try each other's. Pho and Saigon fried rice are standouts.</p>
           <p><strong>Monday hours:</strong> 12 PM &ndash; 11 PM.</p>
+        </div>
+        <div class="food-recs">
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127812;</span> Partner A</div>
+            <div class="food-rec-item">Placeholder dish name</div>
+            <div class="food-rec-note">Placeholder notes about this pick.</div>
+          </div>
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127817;</span> Partner B</div>
+            <div class="food-rec-item">Placeholder dish name</div>
+            <div class="food-rec-note">Placeholder notes about this pick.</div>
+          </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~10 min walk to next stop</div>
         <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A1" placeholder="e.g. I love pho! or I'm vegetarian..."></textarea><button class="stop-comment-btn" onclick="sendSC('A',1,'OB Noodle House')">Send</button></div><div class="stop-comment-sent" id="sc-A1-ok">&#10003; Sent &mdash; thanks!</div></div>
@@ -460,6 +504,10 @@
       <!-- Stop 2 -->
       <div class="stop">
         <div class="stop-number">2</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-uber">Uber</a><a href="#" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-free">Free</a><a href="#" target="_blank" class="tc-btn tc-paid">Paid</a></div></div>
+        </div>
         <div class="stop-header">
           <h3 class="stop-title">Dessert at An's Dry Cleaning</h3>
           <p class="stop-location">1861 Bacon St, Ocean Beach</p>
@@ -469,16 +517,22 @@
           <a href="https://www.google.com/maps/dir/?api=1&destination=An's+Dry+Cleaning+1861+Bacon+St+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a>
           <a href="tel:6193105028" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
         </div>
-        <div class="ride-park-row">
-          <a href="#" target="_blank" class="btn btn-uber"><i data-lucide="car"></i> Uber</a>
-          <a href="#" target="_blank" class="btn btn-lyft"><i data-lucide="car"></i> Lyft</a>
-          <a href="#" target="_blank" class="btn btn-park-free"><i data-lucide="circle-parking"></i> Free Parking</a>
-          <a href="#" target="_blank" class="btn btn-park-paid"><i data-lucide="circle-parking"></i> Paid Parking</a>
-        </div>
         <div class="vibe-box">quirky &bull; award-winning &bull; unforgettable</div>
         <div class="description">
           <p>Voted the #1 Ice Cream Shop in America by USA Today. Every flavor has a techy name like Walkman, Bluetooth, and Motherboard. The kind of spot that makes a date feel like a discovery.</p>
           <p><strong>Monday hours:</strong> 12 PM &ndash; 10 PM.</p>
+        </div>
+        <div class="food-recs">
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127812;</span> Partner A</div>
+            <div class="food-rec-item">Placeholder flavor</div>
+            <div class="food-rec-note">Placeholder notes about this pick.</div>
+          </div>
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127817;</span> Partner B</div>
+            <div class="food-rec-item">Placeholder flavor</div>
+            <div class="food-rec-note">Placeholder notes about this pick.</div>
+          </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~5 min walk to next stop</div>
         <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A2" placeholder="e.g. I love ice cream! or Any dairy-free options?"></textarea><button class="stop-comment-btn" onclick="sendSC('A',2,'Ans Dry Cleaning')">Send</button></div><div class="stop-comment-sent" id="sc-A2-ok">&#10003; Sent &mdash; thanks!</div></div>
@@ -487,6 +541,10 @@
       <!-- Stop 3 -->
       <div class="stop">
         <div class="stop-number">3</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-uber">Uber</a><a href="#" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-free">Free</a><a href="#" target="_blank" class="tc-btn tc-paid">Paid</a></div></div>
+        </div>
         <div class="stop-header">
           <h3 class="stop-title">Walk the OB Pier</h3>
           <p class="stop-location">Niagara Ave &amp; Abbott St, Ocean Beach</p>
@@ -494,12 +552,6 @@
         <div class="stop-time">5:05 &ndash; 5:30 PM</div>
         <div class="stop-buttons">
           <a href="https://www.google.com/maps/dir/?api=1&destination=Ocean+Beach+Pier+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a>
-        </div>
-        <div class="ride-park-row">
-          <a href="#" target="_blank" class="btn btn-uber"><i data-lucide="car"></i> Uber</a>
-          <a href="#" target="_blank" class="btn btn-lyft"><i data-lucide="car"></i> Lyft</a>
-          <a href="#" target="_blank" class="btn btn-park-free"><i data-lucide="circle-parking"></i> Free Parking</a>
-          <a href="#" target="_blank" class="btn btn-park-paid"><i data-lucide="circle-parking"></i> Paid Parking</a>
         </div>
         <div class="vibe-box">breezy &bull; scenic &bull; easy transition</div>
         <div class="description">
@@ -513,6 +565,10 @@
       <!-- Stop 4 -->
       <div class="stop">
         <div class="stop-number">4</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-uber">Uber</a><a href="#" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-free">Free</a><a href="#" target="_blank" class="tc-btn tc-paid">Paid</a></div></div>
+        </div>
         <div class="stop-header">
           <h3 class="stop-title">Sunset at Sunset Cliffs</h3>
           <p class="stop-location">Ladera St &amp; Cornish Dr, Ocean Beach</p>
@@ -520,12 +576,6 @@
         <div class="stop-time">5:45 &ndash; 6:45 PM</div>
         <div class="stop-buttons">
           <a href="https://www.google.com/maps/dir/?api=1&destination=Sunset+Cliffs+Natural+Park+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a>
-        </div>
-        <div class="ride-park-row">
-          <a href="#" target="_blank" class="btn btn-uber"><i data-lucide="car"></i> Uber</a>
-          <a href="#" target="_blank" class="btn btn-lyft"><i data-lucide="car"></i> Lyft</a>
-          <a href="#" target="_blank" class="btn btn-park-free"><i data-lucide="circle-parking"></i> Free Parking</a>
-          <a href="#" target="_blank" class="btn btn-park-paid"><i data-lucide="circle-parking"></i> Paid Parking</a>
         </div>
         <div class="vibe-box">golden hour &bull; cliffside &bull; unforgettable</div>
         <div class="description">
@@ -571,15 +621,13 @@
       <!-- Stop 1 -->
       <div class="stop">
         <div class="stop-number">1</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-uber">Uber</a><a href="#" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-free">Free</a><a href="#" target="_blank" class="tc-btn tc-paid">Paid</a></div></div>
+        </div>
         <div class="stop-header"><h3 class="stop-title">Coast Walk Trail</h3><p class="stop-location">Coast Walk Trail, La Jolla</p></div>
         <div class="stop-time">2:30 &ndash; 3:15 PM</div>
         <div class="stop-buttons"><a href="https://www.google.com/maps/dir/?api=1&destination=Coast+Walk+Trail+La+Jolla+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a></div>
-        <div class="ride-park-row">
-          <a href="#" target="_blank" class="btn btn-uber"><i data-lucide="car"></i> Uber</a>
-          <a href="#" target="_blank" class="btn btn-lyft"><i data-lucide="car"></i> Lyft</a>
-          <a href="#" target="_blank" class="btn btn-park-free"><i data-lucide="circle-parking"></i> Free Parking</a>
-          <a href="#" target="_blank" class="btn btn-park-paid"><i data-lucide="circle-parking"></i> Paid Parking</a>
-        </div>
         <div class="vibe-box">hidden gem &bull; ocean views &bull; easy walk</div>
         <div class="description"><p>A short, scenic trail tucked behind the La Jolla caves that most tourists miss. Ocean views, sea cave overlooks, and enough variety to keep the conversation going.</p><p><strong>Free.</strong> Open sunrise to sunset.</p></div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~8 min walk</div>
@@ -589,15 +637,13 @@
       <!-- Stop 2 -->
       <div class="stop">
         <div class="stop-number">2</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-uber">Uber</a><a href="#" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-free">Free</a><a href="#" target="_blank" class="tc-btn tc-paid">Paid</a></div></div>
+        </div>
         <div class="stop-header"><h3 class="stop-title">Seal Watching at Seal Rock</h3><p class="stop-location">Coast Blvd, La Jolla</p></div>
         <div class="stop-time">3:20 &ndash; 3:45 PM</div>
         <div class="stop-buttons"><a href="https://www.google.com/maps/dir/?api=1&destination=Seal+Rock+La+Jolla+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a></div>
-        <div class="ride-park-row">
-          <a href="#" target="_blank" class="btn btn-uber"><i data-lucide="car"></i> Uber</a>
-          <a href="#" target="_blank" class="btn btn-lyft"><i data-lucide="car"></i> Lyft</a>
-          <a href="#" target="_blank" class="btn btn-park-free"><i data-lucide="circle-parking"></i> Free Parking</a>
-          <a href="#" target="_blank" class="btn btn-park-paid"><i data-lucide="circle-parking"></i> Paid Parking</a>
-        </div>
         <div class="vibe-box">adorable &bull; easy &bull; great photos</div>
         <div class="description"><p>Sea lions lounging on the rocks, waves crashing &mdash; low effort, high reward. Hang at the railing, take some photos, enjoy the view.</p></div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~5 min walk</div>
@@ -607,17 +653,27 @@
       <!-- Stop 3 -->
       <div class="stop">
         <div class="stop-number">3</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-uber">Uber</a><a href="#" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-free">Free</a><a href="#" target="_blank" class="tc-btn tc-paid">Paid</a></div></div>
+        </div>
         <div class="stop-header"><h3 class="stop-title">Late Lunch at Amarin Thai</h3><p class="stop-location">1264 Prospect St, La Jolla</p></div>
         <div class="stop-time">3:50 &ndash; 5:00 PM</div>
         <div class="stop-buttons"><a href="https://www.google.com/maps/dir/?api=1&destination=Amarin+Thai+1264+Prospect+St+La+Jolla+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a><a href="tel:8584540525" class="btn btn-phone"><i data-lucide="phone"></i> Call</a></div>
-        <div class="ride-park-row">
-          <a href="#" target="_blank" class="btn btn-uber"><i data-lucide="car"></i> Uber</a>
-          <a href="#" target="_blank" class="btn btn-lyft"><i data-lucide="car"></i> Lyft</a>
-          <a href="#" target="_blank" class="btn btn-park-free"><i data-lucide="circle-parking"></i> Free Parking</a>
-          <a href="#" target="_blank" class="btn btn-park-paid"><i data-lucide="circle-parking"></i> Paid Parking</a>
-        </div>
         <div class="vibe-box">cozy &bull; flavorful &bull; walk-in friendly</div>
         <div class="description"><p>A well-loved Thai spot on Prospect Street. Pad thai, green curry, and mango sticky rice are all excellent. Monday late lunch means no wait.</p><p><strong>Monday hours:</strong> 11 AM &ndash; 9 PM.</p></div>
+        <div class="food-recs">
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127812;</span> Partner A</div>
+            <div class="food-rec-item">Placeholder dish name</div>
+            <div class="food-rec-note">Placeholder notes about this pick.</div>
+          </div>
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127817;</span> Partner B</div>
+            <div class="food-rec-item">Placeholder dish name</div>
+            <div class="food-rec-note">Placeholder notes about this pick.</div>
+          </div>
+        </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~3 min walk</div>
         <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B3" placeholder="e.g. Love Thai food! or I'm not a fan of spicy..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',3,'Amarin Thai')">Send</button></div><div class="stop-comment-sent" id="sc-B3-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
@@ -625,17 +681,27 @@
       <!-- Stop 4 -->
       <div class="stop">
         <div class="stop-number">4</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-uber">Uber</a><a href="#" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-free">Free</a><a href="#" target="_blank" class="tc-btn tc-paid">Paid</a></div></div>
+        </div>
         <div class="stop-header"><h3 class="stop-title">Gelato at Bobboi</h3><p class="stop-location">8008 Girard Ave, La Jolla</p></div>
         <div class="stop-time">5:05 &ndash; 5:30 PM</div>
         <div class="stop-buttons"><a href="https://www.google.com/maps/dir/?api=1&destination=Bobboi+Natural+Gelato+8008+Girard+Ave+La+Jolla+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a></div>
-        <div class="ride-park-row">
-          <a href="#" target="_blank" class="btn btn-uber"><i data-lucide="car"></i> Uber</a>
-          <a href="#" target="_blank" class="btn btn-lyft"><i data-lucide="car"></i> Lyft</a>
-          <a href="#" target="_blank" class="btn btn-park-free"><i data-lucide="circle-parking"></i> Free Parking</a>
-          <a href="#" target="_blank" class="btn btn-park-paid"><i data-lucide="circle-parking"></i> Paid Parking</a>
-        </div>
         <div class="vibe-box">authentic Italian &bull; best in SD</div>
         <div class="description"><p>Widely considered the best gelato in San Diego. Made with Italian techniques and real ingredients. Get a cup and walk toward the cove.</p></div>
+        <div class="food-recs">
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127812;</span> Partner A</div>
+            <div class="food-rec-item">Placeholder flavor</div>
+            <div class="food-rec-note">Placeholder notes about this pick.</div>
+          </div>
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127817;</span> Partner B</div>
+            <div class="food-rec-item">Placeholder flavor</div>
+            <div class="food-rec-note">Placeholder notes about this pick.</div>
+          </div>
+        </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~7 min walk</div>
         <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B4" placeholder="e.g. Gelato is a must! or I'm lactose intolerant..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',4,'Bobboi Gelato')">Send</button></div><div class="stop-comment-sent" id="sc-B4-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
@@ -643,15 +709,13 @@
       <!-- Stop 5 -->
       <div class="stop">
         <div class="stop-number">5</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-uber">Uber</a><a href="#" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="#" target="_blank" class="tc-btn tc-free">Free</a><a href="#" target="_blank" class="tc-btn tc-paid">Paid</a></div></div>
+        </div>
         <div class="stop-header"><h3 class="stop-title">Sunset at La Jolla Cove</h3><p class="stop-location">1100 Coast Blvd, La Jolla</p></div>
         <div class="stop-time">5:45 &ndash; 7:00 PM</div>
         <div class="stop-buttons"><a href="https://www.google.com/maps/dir/?api=1&destination=La+Jolla+Cove+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a></div>
-        <div class="ride-park-row">
-          <a href="#" target="_blank" class="btn btn-uber"><i data-lucide="car"></i> Uber</a>
-          <a href="#" target="_blank" class="btn btn-lyft"><i data-lucide="car"></i> Lyft</a>
-          <a href="#" target="_blank" class="btn btn-park-free"><i data-lucide="circle-parking"></i> Free Parking</a>
-          <a href="#" target="_blank" class="btn btn-park-paid"><i data-lucide="circle-parking"></i> Paid Parking</a>
-        </div>
         <div class="vibe-box">iconic &bull; golden hour &bull; perfect ending</div>
         <div class="description"><p>La Jolla Cove at sunset &mdash; one of the most beautiful spots in San Diego. Find a bench or spot on the grass overlooking the water.</p><p><strong>Sunset on March 30:</strong> ~7:10 PM. Arrive by 6:30 PM for golden hour.</p></div>
         <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B5" placeholder="e.g. Perfect ending! or I'd love to stay longer here..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',5,'La Jolla Cove')">Send</button></div><div class="stop-comment-sent" id="sc-B5-ok">&#10003; Sent &mdash; thanks!</div></div>
