@@ -3,29 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kavindi's Monday Date Plan</title>
+  <title>Kavindi's Monday Date Plan — DateFlo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
       --rose:#e05780;--rose-deep:#c44569;--rose-glow:#ff6b9d;
-      --blush:#fff0f5;--cream:#fffaf5;--gold:#d4a574;
+      --blush:#fff0f5;--cream:#fffaf5;
       --text-dark:#3d2435;--text-muted:#6b4a5e;
     }
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     body{
       font-family:'Montserrat',sans-serif;
-      background:var(--blush);
-      color:var(--text-dark);
-      min-height:100vh;
-      line-height:1.7;
-      overflow-x:hidden;
+      background:var(--blush);color:var(--text-dark);
+      min-height:100vh;line-height:1.7;overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
     }
 
-    /* ── Floating Hearts Background ── */
+    /* ── Floating Hearts ── */
     .hearts-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
     .heart-float{
       position:absolute;bottom:-80px;
@@ -39,157 +37,151 @@
       100%{opacity:0;transform:translateY(-110vh) rotate(45deg) scale(1)}
     }
 
-    /* ── Hero / Landing ── */
+    /* ── Hero ── */
     .hero{
       position:relative;z-index:1;
-      min-height:100vh;display:flex;flex-direction:column;
+      min-height:100svh;display:flex;flex-direction:column;
       align-items:center;justify-content:center;
-      text-align:center;padding:40px 20px;
+      text-align:center;padding:clamp(40px,8vh,80px) clamp(16px,4vw,32px);
       background:linear-gradient(160deg,#fce4ec 0%,#fff0f5 30%,#ffeef8 60%,#fce4ec 100%);
     }
-    .cupid-icon{font-size:4.5rem;margin-bottom:10px;animation:pulse 2s ease-in-out infinite}
+    .cupid-icon{font-size:clamp(3.2rem,7vw,4.5rem);margin-bottom:10px;animation:pulse 2s ease-in-out infinite}
     @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
     .hero-brand{
-      font-family:'Playfair Display',serif;font-size:1.1rem;
+      font-family:'Playfair Display',serif;font-size:clamp(.9rem,1.8vw,1.1rem);
       color:var(--rose);letter-spacing:.15em;text-transform:uppercase;
       margin-bottom:8px;font-weight:500;
     }
     .hero h1{
-      font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:800;
-      color:var(--text-dark);margin-bottom:12px;line-height:1.15;
+      font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,3.6rem);
+      font-weight:800;color:var(--text-dark);margin-bottom:12px;line-height:1.15;
     }
     .hero h1 span{
       background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
       background-clip:text;
     }
-    .hero-sub{font-size:1.05rem;color:var(--text-muted);margin-bottom:14px;max-width:480px}
+    .hero-sub{font-size:clamp(.92rem,1.8vw,1.05rem);color:var(--text-muted);margin-bottom:8px;max-width:480px}
     .hero-sub strong{color:var(--rose-deep)}
-    .hero-note{font-size:.88rem;color:var(--text-muted);max-width:520px;margin-bottom:40px;line-height:1.65;font-style:italic;opacity:.8}
+    .hero-note{font-size:clamp(.82rem,1.5vw,.9rem);color:var(--text-muted);max-width:520px;margin-bottom:12px;line-height:1.65;font-style:italic;opacity:.8}
 
-    /* ── Option Chooser Cards ── */
-    .chooser{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;max-width:700px}
+    /* ── Countdown ── */
+    .cd-wrap{margin:clamp(20px,4vh,36px) 0 clamp(12px,2vh,18px)}
+    .cd-label{font-size:clamp(.64rem,1.1vw,.72rem);letter-spacing:.25em;text-transform:uppercase;color:var(--rose);margin-bottom:12px;font-weight:600}
+    .cd{display:flex;gap:clamp(10px,2.5vw,16px);justify-content:center;align-items:center}
+    .cd-block{text-align:center}
+    .cd-num{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:800;
+      color:var(--text-dark);line-height:1;
+      background:white;
+      border:2px solid #ffe4f1;
+      border-radius:clamp(12px,2vw,16px);
+      padding:clamp(10px,2vw,16px) clamp(14px,2.8vw,22px);
+      box-shadow:0 6px 24px rgba(196,69,105,.1);
+      min-width:clamp(62px,15vw,84px);
+    }
+    .cd-unit{font-size:clamp(.58rem,1vw,.66rem);letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-top:8px;font-weight:600}
+    .cd-sep{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--rose-deep);padding-bottom:22px;font-weight:300}
+
+    /* ── Hero Calendar Buttons ── */
+    .hero-cal{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:clamp(28px,5vh,44px)}
+    .cal-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:clamp(12px,2vw,14px) clamp(20px,3.5vw,28px);
+      border-radius:14px;text-decoration:none;
+      font-family:'Montserrat',sans-serif;font-size:clamp(.82rem,1.4vw,.9rem);font-weight:600;
+      transition:all .3s ease;cursor:pointer;border:none;min-height:48px;
+    }
+    .cal-btn:hover{transform:translateY(-3px)}
+    .cal-btn-google{background:linear-gradient(135deg,#4285f4,#34a853);color:white;box-shadow:0 6px 20px rgba(66,133,244,.3)}
+    .cal-btn-google:hover{box-shadow:0 10px 30px rgba(66,133,244,.45)}
+    .cal-btn-apple{background:linear-gradient(135deg,#333,#555);color:white;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+    .cal-btn-apple:hover{box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .cal-btn svg{width:16px;height:16px}
+
+    /* ── Plan Selector Cards ── */
+    .chooser{display:flex;gap:clamp(16px,3vw,24px);flex-wrap:wrap;justify-content:center;max-width:700px}
     .choose-card{
       flex:1;min-width:260px;max-width:320px;
-      background:white;border-radius:24px;padding:40px 30px;
-      text-align:center;cursor:pointer;position:relative;
+      background:white;border-radius:24px;padding:clamp(28px,4vw,40px) clamp(22px,3vw,30px);
+      text-align:center;cursor:pointer;
       border:3px solid transparent;
       box-shadow:0 8px 40px rgba(196,69,105,.1);
       transition:all .35s cubic-bezier(.4,0,.2,1);
     }
-    .choose-card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 16px 50px rgba(196,69,105,.2);
-      border-color:var(--rose-glow);
-    }
+    .choose-card:hover{transform:translateY(-6px);box-shadow:0 16px 50px rgba(196,69,105,.2);border-color:var(--rose-glow)}
     .choose-card:active{transform:translateY(-2px)}
-    .card-emoji{font-size:3rem;margin-bottom:16px;display:block}
-    .card-label{
-      font-family:'Playfair Display',serif;font-size:.85rem;font-weight:600;
-      color:var(--rose);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;
-    }
-    .card-title{
-      font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;
-      color:var(--text-dark);margin-bottom:12px;line-height:1.3;
-    }
-    .card-desc{font-size:.9rem;color:var(--text-muted);line-height:1.6;margin-bottom:20px}
+    .card-emoji{font-size:clamp(2.2rem,5vw,3rem);margin-bottom:16px;display:block}
+    .card-label{font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--rose);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
+    .card-title{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.5vw,1.45rem);font-weight:700;color:var(--text-dark);margin-bottom:12px;line-height:1.3}
+    .card-desc{font-size:clamp(.82rem,1.4vw,.9rem);color:var(--text-muted);line-height:1.6;margin-bottom:20px}
     .card-cta{
       display:inline-block;
       background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));
       color:white;padding:12px 32px;border-radius:50px;
-      font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:600;
+      font-family:'Montserrat',sans-serif;font-size:clamp(.82rem,1.4vw,.9rem);font-weight:600;
       letter-spacing:.03em;transition:all .3s ease;
     }
     .choose-card:hover .card-cta{box-shadow:0 6px 25px rgba(224,87,128,.45);transform:scale(1.03)}
-    .arrow-hint{
-      margin-top:40px;font-size:.85rem;color:var(--text-muted);opacity:.6;
-      animation:bounce 2s ease-in-out infinite;
-    }
+    .arrow-hint{margin-top:clamp(24px,4vh,40px);font-size:.85rem;color:var(--text-muted);opacity:.6;animation:bounce 2s ease-in-out infinite}
     @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
-    /* ── Date Content Container ── */
-    .date-wrap{
-      position:relative;z-index:1;
-      max-width:900px;margin:0 auto;padding:0 20px 60px;
-      display:none;
-    }
+    /* ── Date Content ── */
+    .date-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 clamp(16px,4vw,24px) 60px;display:none}
     .date-wrap.visible{display:block;animation:fadeSlide .5s ease-out}
     @keyframes fadeSlide{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
     /* ── Back Button ── */
     .back-btn{
       display:inline-flex;align-items:center;gap:8px;
-      margin:30px 0 20px;padding:12px 24px;border-radius:50px;
+      margin:clamp(24px,4vh,36px) 0 20px;padding:12px 24px;border-radius:50px;
       background:white;color:var(--rose-deep);
-      font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:600;
+      font-family:'Montserrat',sans-serif;font-size:clamp(.82rem,1.4vw,.9rem);font-weight:600;
       border:2px solid #ffd6e7;cursor:pointer;
-      transition:all .3s ease;text-decoration:none;
+      transition:all .3s ease;min-height:48px;
     }
     .back-btn:hover{background:var(--rose-glow);color:white;border-color:var(--rose-glow);transform:translateY(-2px)}
 
     /* ── Section Header ── */
     .section-header{
       background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));
-      color:white;padding:50px 40px;border-radius:24px 24px 0 0;
-      text-align:center;position:relative;overflow:hidden;
+      color:white;padding:clamp(36px,6vw,50px) clamp(24px,4vw,40px);
+      border-radius:24px 24px 0 0;text-align:center;position:relative;overflow:hidden;
     }
-    .section-header::before{
-      content:'';position:absolute;top:-50%;right:-20%;
-      width:300px;height:300px;border-radius:50%;
-      background:rgba(255,255,255,.06);
-    }
-    .section-header::after{
-      content:'';position:absolute;bottom:-40%;left:-10%;
-      width:250px;height:250px;border-radius:50%;
-      background:rgba(255,255,255,.04);
-    }
-    .section-badge{
-      display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(10px);
-      padding:8px 22px;border-radius:30px;font-size:.8rem;font-weight:600;
-      text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;
-    }
-    .section-header h2{
-      font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;
-      margin-bottom:10px;position:relative;
-    }
-    .section-header p{opacity:.85;font-size:1rem;position:relative}
+    .section-header::before{content:'';position:absolute;top:-50%;right:-20%;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.06)}
+    .section-header::after{content:'';position:absolute;bottom:-40%;left:-10%;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.04)}
+    .section-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(10px);padding:8px 22px;border-radius:30px;font-size:clamp(.72rem,1.2vw,.8rem);font-weight:600;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px}
+    .section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;margin-bottom:10px;position:relative}
+    .section-header p{opacity:.85;font-size:clamp(.88rem,1.6vw,1rem);position:relative}
 
     /* ── Content Card ── */
-    .content-card{
-      background:white;border-radius:0 0 24px 24px;padding:40px;
-      box-shadow:0 20px 60px rgba(196,69,105,.1);margin-bottom:40px;
-    }
+    .content-card{background:white;border-radius:0 0 24px 24px;padding:clamp(24px,4vw,40px);box-shadow:0 20px 60px rgba(196,69,105,.1);margin-bottom:40px}
 
-    /* ── Meta Row ── */
-    .meta{
-      display:flex;gap:20px;flex-wrap:wrap;margin-bottom:30px;
-      background:linear-gradient(135deg,#fff8fa,#fff0f5);
-      padding:20px 24px;border-radius:16px;
-      border-left:4px solid var(--rose);
-    }
+    /* ── Meta ── */
+    .meta{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:30px;background:linear-gradient(135deg,#fff8fa,#fff0f5);padding:clamp(16px,2.5vw,20px) clamp(20px,3vw,24px);border-radius:16px;border-left:4px solid var(--rose)}
     .meta-item{flex:1;min-width:110px}
-    .meta-label{font-size:.72rem;color:var(--rose);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-    .meta-value{font-size:1rem;font-weight:600;color:var(--text-dark)}
+    .meta-label{font-size:clamp(.66rem,1.1vw,.72rem);color:var(--rose);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+    .meta-value{font-size:clamp(.88rem,1.5vw,1rem);font-weight:600;color:var(--text-dark)}
 
-    /* ── Summary ── */
-    .summary{
-      background:linear-gradient(135deg,#fff8fa,#fff0f5);border-radius:20px;
-      padding:28px;margin-bottom:35px;border:2px solid #ffe4f1;
-    }
-    .summary-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;margin-bottom:12px;color:var(--text-dark)}
-    .summary p{color:var(--text-muted);font-size:.93rem;line-height:1.85}
+    /* ── Vibe Summary ── */
+    .summary{background:linear-gradient(135deg,#fff8fa,#fff0f5);border-radius:20px;padding:clamp(22px,3.5vw,28px);margin-bottom:30px;border:2px solid #ffe4f1}
+    .summary-title{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2vw,1.3rem);font-weight:600;margin-bottom:12px;color:var(--text-dark)}
+    .summary p{color:var(--text-muted);font-size:clamp(.86rem,1.5vw,.93rem);line-height:1.85}
 
-    /* ── Route Tag ── */
-    .route-tag{
-      background:linear-gradient(135deg,#fff0f5,#ffe4f1);border:2px solid #ffd6e7;
-      border-radius:14px;padding:16px 20px;margin-bottom:30px;text-align:center;
-    }
-    .route-tag p{font-size:.88rem;color:var(--rose-deep);font-weight:500;margin:0}
+    /* ── Route ── */
+    .route-tag{background:linear-gradient(135deg,#fff0f5,#ffe4f1);border:2px solid #ffd6e7;border-radius:14px;padding:clamp(12px,2vw,16px) clamp(16px,3vw,20px);margin-bottom:30px;text-align:center}
+    .route-tag p{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--rose-deep);font-weight:500;margin:0}
+
+    /* ── Weather ── */
+    .weather-note{background:linear-gradient(135deg,#e8f4fd,#d1ecf1);border:2px solid #c4e1f5;border-radius:14px;padding:clamp(16px,2.5vw,22px);margin-bottom:30px}
+    .weather-note h4{color:#2c5f8d;font-size:clamp(.82rem,1.4vw,.9rem);margin-bottom:8px;font-weight:600}
+    .weather-note p{color:#3d6a8f;font-size:clamp(.82rem,1.4vw,.88rem);line-height:1.7}
 
     /* ── Stops ── */
     .stop{
       background:white;border:2px solid #ffe4f1;border-radius:20px;
-      padding:32px;margin-bottom:28px;position:relative;
+      padding:clamp(24px,3.5vw,32px);margin-bottom:28px;position:relative;
       box-shadow:0 6px 25px rgba(219,112,147,.08);
       transition:box-shadow .3s ease;
     }
@@ -202,49 +194,105 @@
       font-weight:700;font-size:1rem;
       box-shadow:0 4px 14px rgba(224,87,128,.4);
     }
-    .stop-header{margin-bottom:16px}
-    .stop-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:6px;color:var(--text-dark)}
-    .stop-location{color:var(--rose-deep);font-size:.9rem;font-weight:500;margin-bottom:4px}
-    .stop-phone{color:#999;font-size:.82rem;margin-bottom:12px}
+    .stop-header{margin-bottom:16px;padding-right:135px}
+    @media(max-width:420px){.stop-header{padding-right:0}}
+    .stop-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.8vw,1.6rem);font-weight:700;margin-bottom:6px;color:var(--text-dark)}
+    .stop-location{color:var(--rose-deep);font-size:clamp(.82rem,1.4vw,.9rem);font-weight:500;margin-bottom:4px}
     .stop-time{
       display:inline-block;background:linear-gradient(135deg,#fff0f5,#ffe4f1);
-      padding:5px 14px;border-radius:8px;font-size:.82rem;font-weight:600;
-      color:var(--rose-deep);margin-bottom:12px;
+      padding:5px 14px;border-radius:8px;font-size:clamp(.76rem,1.2vw,.82rem);font-weight:600;
+      color:var(--rose-deep);margin-bottom:14px;
     }
     .stop-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:5px;
-      padding:9px 16px;border-radius:10px;text-decoration:none;
-      font-size:.82rem;font-weight:500;transition:all .3s ease;
-      font-family:'Montserrat',sans-serif;
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      padding:clamp(10px,1.5vw,12px) clamp(14px,2.2vw,18px);border-radius:10px;text-decoration:none;
+      font-size:clamp(.78rem,1.3vw,.85rem);font-weight:600;transition:all .3s ease;
+      font-family:'Montserrat',sans-serif;min-height:44px;
     }
-    .btn-dir{background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));color:white}
-    .btn-dir:hover{transform:translateY(-2px);box-shadow:0 5px 18px rgba(224,87,128,.4)}
-    .btn-phone{background:var(--text-dark);color:white}
-    .btn-phone:hover{transform:translateY(-2px);box-shadow:0 5px 18px rgba(61,36,53,.3)}
-    .btn-menu{background:#fff5f7;color:var(--rose-deep);border:2px solid var(--rose)}
+    .btn-dir{background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));color:white;box-shadow:0 4px 14px rgba(224,87,128,.25)}
+    .btn-dir:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,87,128,.4)}
+    .btn-phone{background:var(--text-dark);color:white;box-shadow:0 4px 14px rgba(61,36,53,.2)}
+    .btn-phone:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(61,36,53,.3)}
+    .btn-menu{background:white;color:var(--rose-deep);border:2px solid var(--rose);box-shadow:0 2px 10px rgba(224,87,128,.1)}
     .btn-menu:hover{background:var(--rose);color:white}
-    .btn-reserve{background:linear-gradient(135deg,#4285f4,#34a853);color:white}
-    .btn-reserve:hover{transform:translateY(-2px);box-shadow:0 5px 18px rgba(66,133,244,.4)}
-    .vibe-box{
-      background:#fff8fa;border-left:4px solid var(--rose);
-      padding:13px 18px;margin:16px 0;border-radius:0 12px 12px 0;
-      font-style:italic;color:var(--rose-deep);font-size:.88rem;font-weight:500;
+
+    /* ── Transport Corner Widget ── */
+    .transport-corner{
+      position:absolute;top:14px;right:14px;
+      display:flex;flex-direction:column;gap:6px;
+      background:linear-gradient(135deg,#fdf6f9,#fff0f5);
+      border:1.5px solid #ffe4f1;border-radius:14px;
+      padding:10px;min-width:120px;z-index:2;
     }
-    .walk-tag{
-      display:inline-flex;align-items:center;gap:6px;
-      background:#f0f4ff;border:1px solid #d4dffa;border-radius:10px;
-      padding:8px 16px;font-size:.8rem;color:#5b6faa;font-weight:500;
-      margin:18px 0 0;
+    .tc-group{display:flex;flex-direction:column;gap:4px}
+    .tc-group+.tc-group{border-top:1px solid #ffe4f1;padding-top:6px}
+    .tc-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--rose);margin-bottom:2px}
+    .tc-btns{display:flex;gap:4px}
+    .tc-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:3px;
+      padding:5px 10px;border-radius:8px;text-decoration:none;
+      font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:600;
+      transition:all .25s ease;white-space:nowrap;
     }
-    .drive-tag{
-      display:inline-flex;align-items:center;gap:6px;
-      background:#f5f0ff;border:1px solid #d4c8fa;border-radius:10px;
-      padding:8px 16px;font-size:.8rem;color:#6b5aaa;font-weight:500;
-      margin:18px 0 0;
+    .tc-btn:hover{transform:translateY(-1px)}
+    .tc-uber{background:#000;color:#fff}
+    .tc-uber:hover{box-shadow:0 3px 10px rgba(0,0,0,.25)}
+    .tc-lyft{background:#ff00bf;color:#fff}
+    .tc-lyft:hover{box-shadow:0 3px 10px rgba(255,0,191,.3)}
+    .tc-free{background:#27ae60;color:#fff}
+    .tc-free:hover{box-shadow:0 3px 10px rgba(39,174,96,.3)}
+    .tc-paid{background:#e67e22;color:#fff}
+    .tc-paid:hover{box-shadow:0 3px 10px rgba(230,126,34,.3)}
+    @media(max-width:420px){
+      .transport-corner{position:relative;top:auto;right:auto;margin-bottom:14px;flex-direction:row;flex-wrap:wrap;gap:8px;align-items:flex-start}
+      .tc-group+.tc-group{border-top:none;padding-top:0;border-left:1px solid #ffe4f1;padding-left:8px}
     }
+    .btn svg,.btn i{width:14px;height:14px}
+    .vibe-box{background:#fff8fa;border-left:4px solid var(--rose);padding:clamp(10px,1.8vw,13px) clamp(14px,2.2vw,18px);margin:16px 0;border-radius:0 12px 12px 0;font-style:italic;color:var(--rose-deep);font-size:clamp(.82rem,1.4vw,.88rem);font-weight:500}
     .description{margin:20px 0}
-    .description p{color:var(--text-muted);font-size:.93rem;line-height:1.85;margin-bottom:12px}
+    .description p{color:var(--text-muted);font-size:clamp(.86rem,1.5vw,.93rem);line-height:1.85;margin-bottom:12px}
+    .description strong{color:var(--text-dark);font-weight:600}
+    .transit-tag{
+      display:inline-flex;align-items:center;gap:7px;
+      background:#f0f4ff;border:1px solid #d4dffa;border-radius:10px;
+      padding:8px 16px;font-size:clamp(.76rem,1.2vw,.82rem);color:#5b6faa;font-weight:500;
+      margin:8px 0 0;
+    }
+
+    /* ── Food Recs (Partner Split) ── */
+    .food-recs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+    .food-rec{background:linear-gradient(135deg,#fff8fa,#fff0f5);border:2px solid #ffe4f1;border-radius:14px;padding:14px 16px}
+    .food-rec-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--rose);margin-bottom:8px;display:flex;align-items:center;gap:5px}
+    .food-rec-label span{font-size:.9rem}
+    .food-rec-item{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--text-dark);font-weight:600;margin-bottom:2px}
+    .food-rec-note{font-size:clamp(.74rem,1.2vw,.8rem);color:var(--text-muted);line-height:1.55;font-style:italic}
+    @media(max-width:480px){.food-recs{grid-template-columns:1fr}}
+
+    /* ── Stop Comments ── */
+    .stop-comment{margin-top:18px;padding-top:18px;border-top:2px solid #ffe4f1}
+    .stop-comment-label{font-size:clamp(.76rem,1.2vw,.82rem);color:var(--text-muted);margin-bottom:8px;font-weight:500}
+    .stop-comment-wrap{display:flex;gap:8px;align-items:flex-start}
+    .stop-comment-ta{
+      flex:1;padding:10px 14px;
+      background:#fff8fa;border:2px solid #ffe4f1;
+      border-radius:12px;color:var(--text-dark);font-family:inherit;
+      font-size:clamp(.82rem,1.4vw,.88rem);resize:vertical;
+      min-height:48px;max-height:120px;outline:none;line-height:1.5;
+    }
+    .stop-comment-ta::placeholder{color:#c4a0b2}
+    .stop-comment-ta:focus{border-color:var(--rose)}
+    .stop-comment-btn{
+      padding:10px 20px;white-space:nowrap;
+      background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));
+      color:white;border:none;border-radius:12px;font-family:inherit;
+      font-size:clamp(.76rem,1.2vw,.82rem);font-weight:600;letter-spacing:.06em;
+      text-transform:uppercase;cursor:pointer;transition:all .3s ease;
+      min-height:44px;box-shadow:0 4px 14px rgba(224,87,128,.3);
+    }
+    .stop-comment-btn:hover{box-shadow:0 6px 22px rgba(224,87,128,.45);transform:translateY(-2px)}
+    .stop-comment-btn:disabled{opacity:.4;cursor:default;transform:none!important;box-shadow:none!important}
+    .stop-comment-sent{font-size:clamp(.78rem,1.3vw,.85rem);color:var(--rose);font-weight:600;padding:8px 0;display:none}
 
     /* ── Swap Box ── */
     .swap-box{background:linear-gradient(135deg,#f0f4ff,#e8ecfa);border:2px solid #c4d0f5;border-radius:14px;padding:18px 22px;margin-top:30px}
@@ -254,118 +302,87 @@
     /* ── Budget ── */
     .budget{
       background:linear-gradient(135deg,var(--rose-deep),var(--rose-glow));
-      color:white;padding:32px;border-radius:20px;margin-top:35px;text-align:center;
+      color:white;padding:clamp(24px,4vw,32px);border-radius:20px;margin-top:30px;text-align:center;
     }
-    .budget-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:22px}
-    .budget-items{display:flex;justify-content:center;gap:35px;flex-wrap:wrap}
+    .budget-title{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.4vw,1.4rem);margin-bottom:22px}
+    .budget-items{display:flex;justify-content:center;gap:clamp(20px,4vw,35px);flex-wrap:wrap}
     .budget-item{text-align:center}
-    .budget-label{font-size:.78rem;opacity:.85;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
-    .budget-value{font-size:1.15rem;font-weight:600}
+    .budget-label{font-size:clamp(.7rem,1.1vw,.78rem);opacity:.85;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+    .budget-value{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:600}
     .budget-total{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.3)}
-    .budget-total .budget-value{font-size:1.4rem}
-    .budget-tip{font-size:.8rem;opacity:.8;margin-top:12px}
+    .budget-total .budget-value{font-size:clamp(1.2rem,2.5vw,1.4rem);font-weight:700}
+    .budget-tip{font-size:clamp(.76rem,1.2vw,.82rem);opacity:.8;margin-top:12px;font-style:italic}
 
-    /* ── Interactive Checklist ── */
-    .checklist-section{background:linear-gradient(135deg,#f8f9fa,#f0f2f5);border:2px solid #e0e4ea;border-radius:18px;padding:28px;margin-top:28px}
-    .checklist-section h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:6px;color:var(--text-dark)}
-    .checklist-subtitle{font-size:.82rem;color:var(--text-muted);margin-bottom:20px;font-style:italic}
-    .checklist-item{
-      display:flex;align-items:flex-start;gap:14px;
-      padding:14px 16px;margin-bottom:8px;
+    /* ── Checklist ── */
+    .checklist-section{background:linear-gradient(135deg,#f8f9fa,#f0f2f5);border:2px solid #e0e4ea;border-radius:18px;padding:clamp(22px,3.5vw,28px);margin-top:28px}
+    .checklist-section h3{font-family:'Playfair Display',serif;font-size:clamp(1.05rem,2vw,1.2rem);margin-bottom:6px;color:var(--text-dark)}
+    .checklist-subtitle{font-size:clamp(.76rem,1.2vw,.82rem);color:var(--text-muted);margin-bottom:20px;font-style:italic}
+    .cl-item{
+      display:flex;align-items:flex-start;gap:clamp(10px,2vw,14px);
+      padding:clamp(12px,2vw,14px) clamp(14px,2vw,16px);margin-bottom:8px;
       background:white;border:2px solid #e8ecf2;border-radius:14px;
-      cursor:pointer;transition:all .25s ease;position:relative;
+      cursor:pointer;transition:all .25s ease;min-height:48px;
     }
-    .checklist-item:hover{border-color:var(--rose);background:#fff8fa}
-    .checklist-item.priority-high{border-left:4px solid var(--rose)}
-    .checklist-item input[type="checkbox"]{display:none}
-    .checkmark{
+    .cl-item:hover{border-color:var(--rose);background:#fff8fa}
+    .cl-item.pri{border-left:4px solid var(--rose)}
+    .cl-item input[type="checkbox"]{display:none}
+    .cl-box{
       width:24px;height:24px;min-width:24px;border-radius:8px;
       border:2px solid #ccc;display:flex;align-items:center;justify-content:center;
       transition:all .25s ease;margin-top:1px;
     }
-    .checkmark::after{
-      content:"\2713";font-size:.85rem;color:white;opacity:0;transition:opacity .2s ease;
-    }
-    .checklist-item input:checked ~ .checkmark{
-      background:var(--rose);border-color:var(--rose);
-    }
-    .checklist-item input:checked ~ .checkmark::after{opacity:1}
-    .checklist-item input:checked ~ .checklist-text{
-      text-decoration:line-through;opacity:.55;
-    }
-    .checklist-text{font-size:.9rem;color:var(--text-muted);line-height:1.6;flex:1}
-    .checklist-text strong{color:var(--text-dark);font-weight:600}
-    .checklist-text a{color:var(--rose-deep);font-weight:500}
+    .cl-box::after{content:"\2713";font-size:.85rem;color:white;opacity:0;transition:opacity .2s ease}
+    .cl-item input:checked ~ .cl-box{background:var(--rose);border-color:var(--rose)}
+    .cl-item input:checked ~ .cl-box::after{opacity:1}
+    .cl-item input:checked ~ .cl-text{text-decoration:line-through;opacity:.5}
+    .cl-text{font-size:clamp(.84rem,1.5vw,.9rem);color:var(--text-muted);line-height:1.6;flex:1}
+    .cl-text strong{color:var(--text-dark);font-weight:600}
+    .cl-text a{color:var(--rose-deep);font-weight:500;text-decoration:none}
 
-    /* ── Weather ── */
-    .weather-note{background:linear-gradient(135deg,#e8f4fd,#d1ecf1);border:2px solid #c4e1f5;border-radius:14px;padding:18px 22px;margin-top:28px}
-    .weather-note h4{color:#2c5f8d;font-size:.9rem;margin-bottom:8px}
-    .weather-note p{color:#3d6a8f;font-size:.88rem;line-height:1.6}
-
-    /* ── Parking ── */
-    .parking-section{background:#f8f9fa;border:2px solid #e9ecef;border-radius:18px;padding:28px;margin-top:35px}
-    .parking-section h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:18px;color:var(--text-dark)}
-    .parking-option{margin-bottom:22px;padding-bottom:18px;border-bottom:1px dashed #dee2e6}
-    .parking-option:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-    .parking-option h4{font-size:1rem;color:var(--text-dark);margin-bottom:8px;font-weight:600}
-    .parking-option p{font-size:.88rem;color:var(--text-muted);margin-bottom:10px;line-height:1.6}
-    .parking-links{display:flex;gap:8px;flex-wrap:wrap}
+    /* ── Feedback ── */
+    .feedback{text-align:center;margin-top:28px;padding:clamp(24px,3.5vw,32px);background:linear-gradient(135deg,#fff8fa,#fff0f5);border:2px solid #ffe4f1;border-radius:20px}
+    .feedback p{font-size:clamp(.88rem,1.5vw,.95rem);color:var(--text-muted);margin-bottom:16px}
+    .stars{display:flex;justify-content:center;gap:6px;margin-bottom:14px}
+    .star{
+      font-size:clamp(1.6rem,3.5vw,2rem);cursor:pointer;opacity:.25;
+      transition:all .2s ease;color:var(--rose);
+      min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;
+    }
+    .star:hover,.star.on{opacity:1;transform:scale(1.12)}
+    .fb-ta{
+      width:100%;max-width:400px;padding:12px 16px;margin:0 auto 14px;
+      background:white;border:2px solid #ffe4f1;
+      border-radius:12px;color:var(--text-dark);font-family:inherit;
+      font-size:clamp(.84rem,1.5vw,.9rem);resize:vertical;min-height:56px;outline:none;display:block;
+    }
+    .fb-ta::placeholder{color:#c4a0b2}
+    .fb-ta:focus{border-color:var(--rose)}
+    .fb-btn{
+      padding:14px 32px;
+      background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));
+      color:white;border:none;border-radius:50px;font-family:inherit;
+      font-size:clamp(.82rem,1.4vw,.88rem);font-weight:600;letter-spacing:.08em;
+      text-transform:uppercase;cursor:pointer;transition:all .3s ease;
+      min-height:48px;box-shadow:0 6px 22px rgba(224,87,128,.3);
+    }
+    .fb-btn:hover{box-shadow:0 10px 30px rgba(224,87,128,.45);transform:translateY(-2px)}
 
     /* ── Footer ── */
-    .footer{
-      text-align:center;padding:35px;margin-top:30px;
-      border-radius:20px;
-      background:linear-gradient(135deg,#fff8fa,#fff0f5);
-      border:2px solid #ffe4f1;
-    }
-    .footer-tagline{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--rose-deep);font-style:italic}
-
-    /* ── Calendar Section ── */
-    .calendar-section{
-      background:linear-gradient(135deg,#fff8fa,#fff0f5);
-      border:2px solid #ffe4f1;border-radius:20px;
-      padding:32px;margin-top:35px;text-align:center;
-    }
-    .calendar-section h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px;color:var(--text-dark)}
-    .calendar-section p{font-size:.9rem;color:var(--text-muted);margin-bottom:22px}
-    .calendar-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-    .cal-btn{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:14px 28px;border-radius:14px;text-decoration:none;
-      font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:600;
-      transition:all .3s ease;cursor:pointer;border:none;
-    }
-    .cal-btn:hover{transform:translateY(-3px)}
-    .cal-btn-google{
-      background:linear-gradient(135deg,#4285f4,#34a853);color:white;
-      box-shadow:0 6px 20px rgba(66,133,244,.3);
-    }
-    .cal-btn-google:hover{box-shadow:0 10px 30px rgba(66,133,244,.45)}
-    .cal-btn-apple{
-      background:linear-gradient(135deg,#333,#555);color:white;
-      box-shadow:0 6px 20px rgba(0,0,0,.2);
-    }
-    .cal-btn-apple:hover{box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    .cal-btn svg,.cal-btn i{width:18px;height:18px}
+    .footer{text-align:center;padding:clamp(28px,5vh,40px) 24px;margin-top:30px;border-radius:20px;background:linear-gradient(135deg,#fff8fa,#fff0f5);border:2px solid #ffe4f1}
+    .footer-tagline{font-family:'Playfair Display',serif;font-size:clamp(1rem,1.8vw,1.1rem);color:var(--rose-deep);font-style:italic;margin-bottom:4px}
+    .footer-brand{font-family:'Playfair Display',serif;font-size:clamp(.82rem,1.4vw,.9rem);color:var(--text-muted);font-weight:400;margin-top:4px}
 
     /* ── Responsive ── */
-    @media(max-width:768px){
-      .hero h1{font-size:2.4rem}
-      .chooser{gap:16px}
-      .choose-card{padding:30px 22px;min-width:220px}
-      .card-title{font-size:1.25rem}
-      .section-header{padding:35px 25px;border-radius:20px 20px 0 0}
-      .section-header h2{font-size:1.7rem}
-      .content-card{padding:28px 22px;border-radius:0 0 20px 20px}
+    @media(max-width:600px){
+      .chooser{gap:14px}
+      .choose-card{min-width:100%;max-width:360px}
       .meta{flex-direction:column;gap:12px}
-      .stop{padding:24px}
-      .stop-title{font-size:1.4rem}
-      .budget-items{gap:20px}
+      .stop{padding:clamp(20px,3vw,24px)}
+      .budget-items{flex-direction:column;gap:14px}
+      .hero-cal{flex-direction:column;align-items:center;width:100%;max-width:280px}
+      .cal-btn{width:100%;justify-content:center}
     }
-    @media(max-width:400px){
-      .hero h1{font-size:2rem}
-      .choose-card{min-width:100%}
-    }
+    @media(min-width:901px){.date-wrap{max-width:920px}}
   </style>
 </head>
 <body>
@@ -373,37 +390,58 @@
   <!-- Floating Hearts -->
   <div class="hearts-bg" id="heartsBg"></div>
 
-  <!-- ══════════ HERO / LANDING ══════════ -->
+  <!-- ══════════ HERO ══════════ -->
   <div class="hero" id="hero">
     <div class="cupid-icon">&#128152;</div>
     <div class="hero-brand">DateFlo</div>
-    <h1>Kavindi's <span>Monday Date</span></h1>
-    <p class="hero-sub">Two date plans for <strong>Monday, March 30, 2026</strong>. Pick the one that feels right.</p>
-    <p class="hero-note">Both plans take you out of Mira Mesa to somewhere special &mdash; great food, beautiful views, and quality time together. Pickup at 2 PM, home by sunset.</p>
+    <h1>Kavindi&rsquo;s <span>Monday Date</span></h1>
+    <p class="hero-sub">Two curated plans for <strong>Monday, March 30, 2026</strong>. Pick the one that feels right.</p>
+    <p class="hero-note">Both plans take you out of Mira Mesa to somewhere special &mdash; great food, beautiful views, and quality time together.</p>
+
+    <div class="cd-wrap">
+      <div class="cd-label">Counting down</div>
+      <div class="cd">
+        <div class="cd-block"><div class="cd-num" id="cd-d">--</div><div class="cd-unit">Days</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-h">--</div><div class="cd-unit">Hours</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-m">--</div><div class="cd-unit">Min</div></div>
+      </div>
+    </div>
+
+    <div class="hero-cal">
+      <a class="cal-btn cal-btn-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kavindi%27s+Date+%E2%80%93+DateFlo&dates=20260330T210000Z/20260331T021500Z&details=Your+DateFlo+date+plan.+See+dateflo.com%2Fkavindi+for+full+details.&location=San+Diego%2C+CA" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Google Calendar
+      </a>
+      <a class="cal-btn cal-btn-apple" id="icalHero" href="#" download="kavindi-date.ics">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Apple Calendar
+      </a>
+    </div>
 
     <div class="chooser">
       <div class="choose-card" onclick="showOption('A')">
         <span class="card-emoji">&#127749;</span>
         <div class="card-label">Plan 1</div>
         <div class="card-title">Golden Hour</div>
-        <p class="card-desc">Vietnamese food at a local legend &rarr; #1 ice cream in America &rarr; OB Pier &rarr; sunset on the cliffs. Laid-back and golden.</p>
+        <p class="card-desc">Vietnamese food at a local legend &rarr; #1 ice cream in America &rarr; beach stroll &rarr; sunset on the cliffs.</p>
         <span class="card-cta">View This Date &rarr;</span>
       </div>
       <div class="choose-card" onclick="showOption('B')">
         <span class="card-emoji">&#127754;</span>
         <div class="card-label">Plan 2</div>
         <div class="card-title">Coastal Charm</div>
-        <p class="card-desc">Coastal trail &rarr; seal watching &rarr; Thai on the main drag &rarr; best gelato in SD &rarr; sunset at the cove. Scenic and calm.</p>
+        <p class="card-desc">Coastal trail &rarr; seal watching &rarr; Thai on the main drag &rarr; best gelato in SD &rarr; sunset at the cove.</p>
         <span class="card-cta">View This Date &rarr;</span>
       </div>
     </div>
     <p class="arrow-hint">&darr; tap a card to see the full plan</p>
   </div>
 
-  <!-- ══════════ PLAN 1: GOLDEN HOUR ══════════ -->
+  <!-- ══════════ PLAN A: GOLDEN HOUR ══════════ -->
   <div class="date-wrap" id="optionA">
     <button class="back-btn" onclick="goBack()">&larr; Back to Options</button>
-
     <div class="section-header">
       <div class="section-badge">&#127749; Plan 1</div>
       <h2>Golden Hour</h2>
@@ -411,211 +449,188 @@
     </div>
     <div class="content-card">
       <div class="meta">
-        <div class="meta-item"><div class="meta-label">Date</div><div class="meta-value">Monday, March 30, 2026</div></div>
+        <div class="meta-item"><div class="meta-label">Date</div><div class="meta-value">Mon, March 30</div></div>
         <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">~5 hours</div></div>
-        <div class="meta-item"><div class="meta-label">Area</div><div class="meta-value">Ocean Beach + Sunset Cliffs</div></div>
+        <div class="meta-item"><div class="meta-label">Area</div><div class="meta-value">Ocean Beach</div></div>
       </div>
       <div class="summary">
         <h3 class="summary-title">&#127801; The Vibe</h3>
-        <p>This one takes you to one of San Diego&rsquo;s most laid-back neighborhoods for bold Vietnamese food at a local institution, the #1 ranked ice cream spot in the country, a walk along the OB Pier, and then a golden-hour sunset on the cliffs. It feels thoughtful and well-timed without being overproduced &mdash; and you end the night watching the sun drop into the Pacific together.</p>
+        <p>Bold Vietnamese food at a local institution, the #1 ranked ice cream in the country, a beach stroll along the OB shoreline, and a golden-hour sunset on the cliffs. Thoughtful and well-timed without feeling overproduced &mdash; you end the night watching the sun drop into the Pacific together.</p>
       </div>
-      <div class="route-tag">
-        <p>&#128663; <strong>Route:</strong> Mira Mesa &rarr; OB Noodle House &rarr; An&rsquo;s Gelato &rarr; OB Pier &rarr; Sunset Cliffs &rarr; Home</p>
-      </div>
+      <div class="route-tag"><p>&#128663; Mira Mesa &rarr; <strong>OB Noodle House</strong> &rarr; <strong>An&rsquo;s Gelato</strong> &rarr; <strong>OB Beach</strong> &rarr; <strong>Sunset Cliffs</strong> &rarr; Home</p></div>
 
-      <!-- Weather (top) -->
+      <!-- Weather -->
       <div class="weather-note">
-        <h4>&#9748;&#65039; Weather &mdash; Monday, March 30</h4>
-        <p>Expect a pleasant mid-60s afternoon cooling to upper 50s by sunset. Ocean breezes pick up at the coast in the evening &mdash; bring a light jacket or hoodie. Rain is unlikely in late March, but check the forecast a few days before.</p>
+        <h4>&#9748;&#65039; Weather &mdash; March 30</h4>
+        <p><strong>67&deg;F high / 52&deg;F low</strong> &mdash; sunny with 5% chance of rain. Ocean breezes pick up at the coast by evening. Bring a light jacket or hoodie for Sunset Cliffs. Sunset at <strong>7:07 PM</strong>.</p>
       </div>
 
       <!-- Stop 1: OB Noodle House -->
       <div class="stop">
         <div class="stop-number">1</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="https://m.uber.com/ul/?action=setPickup&dropoff[latitude]=32.7477&dropoff[longitude]=-117.2494&dropoff[nickname]=OB+Noodle+House" target="_blank" class="tc-btn tc-uber">Uber</a><a href="https://lyft.com/ride?id=lyft&destination[latitude]=32.7477&destination[longitude]=-117.2494" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="https://www.google.com/maps/dir/?api=1&destination=Newport+Ave+Ocean+Beach+San+Diego+CA" target="_blank" class="tc-btn tc-free">Free</a></div></div>
+        </div>
         <div class="stop-header">
           <h3 class="stop-title">Late Lunch at OB Noodle House</h3>
           <p class="stop-location">2218 Cable St, Ocean Beach</p>
-          <p class="stop-phone">(619) 450-6868</p>
         </div>
         <div class="stop-time">3:00 &ndash; 4:15 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=OB+Noodle+House+2218+Cable+St+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=OB%20Noodle%20House%202218%20Cable%20St%20San%20Diego%20CA%2092107" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=OB+Noodle+House+2218+Cable+St+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a>
           <a href="tel:6194506868" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
           <a href="https://obnoodlehouse.com/menu-ob-noodle-house/" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
         </div>
         <div class="vibe-box">local legend &bull; bold flavors &bull; happy hour</div>
         <div class="description">
-          <p>This is the real deal &mdash; a genuine OB institution featured on Diners, Drive-Ins and Dives. The pho, fried rice, and crispy egg noodles are all boldly flavored and shareable. You arrive right at 3 PM when happy hour kicks in (half-off select beers, $4 premium wells until 6 PM). Walk-in friendly, no reservation needed.</p>
-          <p><strong>Good move:</strong> Split an appetizer, get two different entrees, and try each other&rsquo;s. Pho and the Saigon fried rice are standouts. Avoid the papaya salad items (pork belly tacos, chicken satay, summer shrimp) &mdash; everything else is safe.</p>
+          <p>A genuine OB institution featured on Diners, Drive-Ins and Dives. The pho, fried rice, and crispy egg noodles are all boldly flavored and shareable. Arrive at 3 PM when happy hour kicks in &mdash; half-off select beers, $4 premium wells until 6 PM. Walk-in friendly.</p>
           <p><strong>Monday hours:</strong> 12 PM &ndash; 11 PM.</p>
         </div>
-        <div class="walk-tag"><i data-lucide="footprints" style="width:16px;height:16px"></i> ~10 min walk to next stop</div>
+        <div class="food-recs">
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127826;</span> Kavindi</div>
+            <div class="food-rec-item">Saigon Fried Rice</div>
+            <div class="food-rec-note">Bold, aromatic, shareable. Asian comfort at its best &mdash; no avocado or papaya anywhere near it.</div>
+          </div>
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127843;</span> Partner</div>
+            <div class="food-rec-item">Crispy Egg Noodles</div>
+            <div class="food-rec-note">Crunchy + saucy, not cheesy or fishy. A fan favorite that pairs perfectly with the fried rice.</div>
+          </div>
+        </div>
+        <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~10 min walk to next stop</div>
+        <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A1" placeholder="e.g. I love pho! or I'm vegetarian..."></textarea><button class="stop-comment-btn" onclick="sendSC('A',1,'OB Noodle House')">Send</button></div><div class="stop-comment-sent" id="sc-A1-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
 
       <!-- Stop 2: An's Dry Cleaning -->
       <div class="stop">
         <div class="stop-number">2</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="https://www.google.com/maps/dir/?api=1&destination=1861+Bacon+St+Ocean+Beach+San+Diego+CA" target="_blank" class="tc-btn tc-free">Free</a></div></div>
+        </div>
         <div class="stop-header">
-          <h3 class="stop-title">Dessert at An&rsquo;s Dry Cleaning</h3>
+          <h3 class="stop-title">Gelato at An&rsquo;s Dry Cleaning</h3>
           <p class="stop-location">1861 Bacon St, Ocean Beach</p>
-          <p class="stop-phone">(619) 310-5028</p>
         </div>
         <div class="stop-time">4:30 &ndash; 5:00 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=An's+Dry+Cleaning+1861+Bacon+St+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=An's%20Dry%20Cleaning%201861%20Bacon%20St%20San%20Diego%20CA%2092107" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=An's+Dry+Cleaning+1861+Bacon+St+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a>
           <a href="tel:6193105028" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
         </div>
         <div class="vibe-box">quirky &bull; award-winning &bull; unforgettable</div>
         <div class="description">
-          <p>Voted the #1 Ice Cream Shop in America by USA Today. This place is named after the business it replaced (a cell phone repair shop &mdash; the original location was literally called &ldquo;An&rsquo;s Dry Cleaning&rdquo;). Every flavor has a techy name like Walkman, Bluetooth, and Motherboard. It is genuinely one-of-a-kind, and it is the kind of spot that makes a date feel like a discovery, not just a plan.</p>
+          <p>Voted the #1 Ice Cream Shop in America by USA Today. Every flavor has a techy name like Walkman, Bluetooth, and Motherboard. The kind of spot that makes a date feel like a discovery.</p>
           <p><strong>Monday hours:</strong> 12 PM &ndash; 10 PM.</p>
         </div>
-        <div class="walk-tag"><i data-lucide="footprints" style="width:16px;height:16px"></i> ~5 min walk to next stop</div>
+        <div class="food-recs">
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127826;</span> Kavindi</div>
+            <div class="food-rec-item">Ask for the seasonal special</div>
+            <div class="food-rec-note">They rotate flavors weekly. Ask what&rsquo;s new &mdash; that&rsquo;s half the fun of this place.</div>
+          </div>
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127843;</span> Partner</div>
+            <div class="food-rec-item">Motherboard</div>
+            <div class="food-rec-note">Rich chocolate base, crowd favorite. Safe bet for someone who likes bold but not wild flavors.</div>
+          </div>
+        </div>
+        <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~5 min walk to next stop</div>
+        <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A2" placeholder="e.g. I love ice cream! or Any dairy-free options?"></textarea><button class="stop-comment-btn" onclick="sendSC('A',2,'Ans Dry Cleaning')">Send</button></div><div class="stop-comment-sent" id="sc-A2-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
 
-      <!-- Stop 3: OB Pier -->
+      <!-- Stop 3: OB Beach & Seawall -->
       <div class="stop">
         <div class="stop-number">3</div>
-        <div class="stop-header">
-          <h3 class="stop-title">Walk the OB Pier</h3>
-          <p class="stop-location">Niagara Ave &amp; Abbott St, Ocean Beach</p>
+        <div class="stop-header" style="padding-right:0">
+          <h3 class="stop-title">Stroll Along OB Beach</h3>
+          <p class="stop-location">Newport Ave &amp; Abbott St, Ocean Beach</p>
         </div>
         <div class="stop-time">5:05 &ndash; 5:30 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Ocean+Beach+Pier+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Ocean%20Beach%20Pier%20San%20Diego%20CA" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Ocean+Beach+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a>
         </div>
         <div class="vibe-box">breezy &bull; scenic &bull; easy transition</div>
         <div class="description">
-          <p>The longest concrete pier on the West Coast. Walk out, feel the ocean breeze, watch the surfers. This is an easy, no-pressure transition between dessert and the sunset spot. It gives you a few quiet minutes to just be together before the main event.</p>
+          <p>Walk along the OB seawall and shoreline with gelato in hand. Watch the surfers, feel the ocean breeze, and enjoy one of San Diego&rsquo;s most iconic beach neighborhoods. This is an easy, no-pressure transition between dessert and the sunset spot.</p>
           <p><strong>Free.</strong> No time limit. Just stroll.</p>
         </div>
-        <div class="drive-tag"><i data-lucide="car" style="width:16px;height:16px"></i> ~3 min drive to Sunset Cliffs (or ~15 min walk along the coast)</div>
+        <div class="transit-tag"><i data-lucide="car" style="width:14px;height:14px"></i> ~5 min drive to Sunset Cliffs (or ~15 min walk along the coast)</div>
+        <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A3" placeholder="e.g. Love beach walks! or Would rather skip this..."></textarea><button class="stop-comment-btn" onclick="sendSC('A',3,'OB Beach')">Send</button></div><div class="stop-comment-sent" id="sc-A3-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
 
       <!-- Stop 4: Sunset Cliffs -->
       <div class="stop">
         <div class="stop-number">4</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="https://www.google.com/maps/dir/?api=1&destination=Ladera+St+San+Diego+CA+92107" target="_blank" class="tc-btn tc-free">Free</a></div></div>
+        </div>
         <div class="stop-header">
           <h3 class="stop-title">Sunset at Sunset Cliffs</h3>
-          <p class="stop-location">Sunset Cliffs Blvd, San Diego</p>
+          <p class="stop-location">Ladera St &amp; Cornish Dr, Ocean Beach</p>
         </div>
-        <div class="stop-time">5:45 &ndash; 7:15 PM</div>
+        <div class="stop-time">Sunset at 7:07 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Sunset+Cliffs+Natural+Park+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Sunset%20Cliffs%20Natural%20Park%20San%20Diego%20CA" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Sunset+Cliffs+Natural+Park+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Directions</a>
         </div>
         <div class="vibe-box">golden hour &bull; dramatic cliffs &bull; the whole reason you came</div>
         <div class="description">
-          <p>This is the closer. Dramatic cliff formations, coastal arches, and unobstructed Pacific views. The trail is easy and mostly flat &mdash; no strenuous hiking, just a calm walk along the bluffs. Arrive around 5:45 to explore, find a spot to sit, and settle in for golden hour. Sunset is at <strong>7:07 PM</strong>.</p>
-          <p><strong>Bring:</strong> A blanket or towel to sit on. A light jacket for the ocean breeze. Snacks if you want them.</p>
-          <p><strong>Parking:</strong> Free dirt lots off Ladera St and Cornish Dr. Also free street parking along Sunset Cliffs Blvd. Arrive before 6 PM on a nice day &mdash; spots fill up closer to sunset.</p>
-          <p><strong>Note:</strong> No restrooms (only portable toilets near parking). Plan accordingly before driving over.</p>
+          <p>Dramatic cliff formations, coastal arches, and unobstructed Pacific views. The trail is easy and mostly flat &mdash; no strenuous hiking, just a calm walk along the bluffs. Arrive around 5:45 to explore, find a spot to sit, and settle in for golden hour.</p>
+          <p><strong>Bring:</strong> A blanket or towel to sit on. A light jacket for the ocean breeze.</p>
+          <p><strong>Parking:</strong> Free dirt lots off Ladera St and Cornish Dr. Also free street parking along Sunset Cliffs Blvd. Arrive before 6 PM &mdash; spots fill up closer to sunset.</p>
         </div>
+        <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A4" placeholder="e.g. Can't wait for the sunset! or I get cold easily..."></textarea><button class="stop-comment-btn" onclick="sendSC('A',4,'Sunset Cliffs')">Send</button></div><div class="stop-comment-sent" id="sc-A4-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
 
-      <!-- Smooth Swap -->
+      <!-- Swap -->
       <div class="swap-box">
         <h4>&#128260; Smooth Swaps</h4>
         <p><strong>If OB Noodle House is packed:</strong> Walk to <strong>The Joint OB</strong> at 4902 Newport Ave &mdash; great sushi and tapas, happy hour daily 12&ndash;6 PM. Same OB vibe, still within budget.</p>
         <p style="margin-top:8px"><strong>If An&rsquo;s Gelato has a long line:</strong> Hit <strong>Lighthouse Ice Cream</strong> at 5059 Newport Ave &mdash; family-owned, gourmet scoops, open Mon 12&ndash;8 PM.</p>
-        <p style="margin-top:8px"><strong>If weather turns cloudy:</strong> Skip the pier, drive straight to Sunset Cliffs and cozy up for a moody sunset instead. Still beautiful.</p>
+        <p style="margin-top:8px"><strong>If weather turns cloudy:</strong> Skip the beach stroll, drive straight to Sunset Cliffs and cozy up for a moody sunset instead.</p>
       </div>
 
       <!-- Budget -->
       <div class="budget">
         <h3 class="budget-title">&#128176; Budget for Two</h3>
         <div class="budget-items">
-          <div class="budget-item"><div class="budget-label">OB Noodle House</div><div class="budget-value">$40 &ndash; $55</div></div>
-          <div class="budget-item"><div class="budget-label">An&rsquo;s Gelato</div><div class="budget-value">$10 &ndash; $15</div></div>
-          <div class="budget-item"><div class="budget-label">OB Pier</div><div class="budget-value">Free</div></div>
-          <div class="budget-item"><div class="budget-label">Sunset Cliffs</div><div class="budget-value">Free</div></div>
+          <div class="budget-item"><div class="budget-label">OB Noodle House</div><div class="budget-value">$40&ndash;$55</div></div>
+          <div class="budget-item"><div class="budget-label">An&rsquo;s Gelato</div><div class="budget-value">$10&ndash;$15</div></div>
+          <div class="budget-item"><div class="budget-label">Beach + Cliffs</div><div class="budget-value">Free</div></div>
         </div>
-        <div class="budget-total budget-item"><div class="budget-label">Estimated Total</div><div class="budget-value">$50 &ndash; $70</div></div>
-        <p class="budget-tip">Well under the $100&ndash;$150 budget. Put the savings toward a nice night out next time.</p>
+        <div class="budget-total budget-item"><div class="budget-label">Estimated Total</div><div class="budget-value">$50&ndash;$70</div></div>
+        <p class="budget-tip">Well under the $100&ndash;$150 budget. Happy hour helps a lot here.</p>
       </div>
 
       <!-- Checklist -->
       <div class="checklist-section">
-        <h3>&#9989; Date Prep Checklist</h3>
-        <p class="checklist-subtitle">Most important first &mdash; your progress is saved automatically.</p>
-        <label class="checklist-item priority-high" data-key="p1-cliffs-parking">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>&#128308; Arrive at Sunset Cliffs before 6 PM</strong> &mdash; parking fills up fast near sunset. The dirt lots off Ladera St are your best bet.</span>
-        </label>
-        <label class="checklist-item priority-high" data-key="p1-hours">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>&#128308; Confirm OB Noodle House hours</strong> &mdash; typically open Mon 12&ndash;11 PM, but verify a day or two before at <a href="https://obnoodlehouse.com" target="_blank">obnoodlehouse.com</a>.</span>
-        </label>
-        <label class="checklist-item" data-key="p1-blanket">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>Pack a blanket or towel</strong> &mdash; for sitting on the cliffs during sunset.</span>
-        </label>
-        <label class="checklist-item" data-key="p1-jacket">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>Bring a light jacket</strong> &mdash; mid-60s drops to upper 50s by sunset with ocean breeze.</span>
-        </label>
-        <label class="checklist-item" data-key="p1-shoes">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>Wear comfy shoes</strong> &mdash; exploring OB + walking on cliffside trails. Sneakers, not flip-flops.</span>
-        </label>
-        <label class="checklist-item" data-key="p1-phone">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>Charge phones</strong> &mdash; you will absolutely want sunset photos.</span>
-        </label>
+        <h3>&#9745; Before You Go</h3>
+        <p class="checklist-subtitle">Tap to check off &mdash; saves automatically.</p>
+        <label class="cl-item pri"><input type="checkbox" data-key="A-cliffs"><span class="cl-box"></span><span class="cl-text"><strong>Arrive at Sunset Cliffs before 6 PM</strong> &mdash; free dirt lots off Ladera St fill up fast near sunset.</span></label>
+        <label class="cl-item pri"><input type="checkbox" data-key="A-hours"><span class="cl-box"></span><span class="cl-text"><strong>Confirm OB Noodle House hours</strong> &mdash; typically open Mon 12&ndash;11 PM. Verify at <a href="https://obnoodlehouse.com" target="_blank">obnoodlehouse.com</a>.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="A-blanket"><span class="cl-box"></span><span class="cl-text"><strong>Pack a blanket or towel</strong> &mdash; for sitting on the cliffs during sunset.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="A-jacket"><span class="cl-box"></span><span class="cl-text"><strong>Bring a light jacket</strong> &mdash; 67&deg;F drops to 52&deg;F by sunset with ocean breeze.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="A-shoes"><span class="cl-box"></span><span class="cl-text"><strong>Wear comfy shoes</strong> &mdash; exploring OB + walking on cliffside trails. Sneakers, not flip-flops.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="A-phone"><span class="cl-box"></span><span class="cl-text"><strong>Charge phones</strong> &mdash; you will absolutely want sunset photos.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="A-gas"><span class="cl-box"></span><span class="cl-text"><strong>Gas up the car</strong> &mdash; Mira Mesa to OB is about 20 min each way.</span></label>
       </div>
 
-      <!-- Parking -->
-      <div class="parking-section">
-        <h3>&#127359;&#65039; Parking</h3>
-        <div class="parking-option">
-          <h4>&#127359;&#65039; Ocean Beach &mdash; Free Street Parking</h4>
-          <p>Free parking along <strong>Newport Ave</strong>, <strong>Cable St</strong>, and nearby side streets. The lot at the end of Newport near the pier is free but fills up on nice afternoons. Monday is less crowded than weekends.</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Newport+Ave+and+Cable+St+Ocean+Beach+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-            <a href="https://maps.apple.com/?q=Newport%20Ave%20and%20Cable%20St%20Ocean%20Beach%20San%20Diego%20CA" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
-          </div>
-        </div>
-        <div class="parking-option">
-          <h4>&#127749; Sunset Cliffs &mdash; Free Lots</h4>
-          <p>Free dirt lots off <strong>Ladera St &amp; Cornish Dr</strong>. Also free street parking along Sunset Cliffs Blvd. Arrive before 6 PM for the best spots.</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Ladera+St+and+Cornish+Dr+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-            <a href="https://maps.apple.com/?q=Ladera%20St%20and%20Cornish%20Dr%20San%20Diego%20CA%2092107" target="_blank" class="btn btn-dir"><i data-lucide="navigation"></i> Apple Maps</a>
-          </div>
-        </div>
+      <!-- Feedback -->
+      <div class="feedback" id="fbA">
+        <p>How did this plan feel?</p>
+        <div class="stars" id="starsA"><span class="star" data-val="1">&#9733;</span><span class="star" data-val="2">&#9733;</span><span class="star" data-val="3">&#9733;</span><span class="star" data-val="4">&#9733;</span><span class="star" data-val="5">&#9733;</span></div>
+        <textarea class="fb-ta" id="notesA" placeholder="Any thoughts? (optional)"></textarea>
+        <button class="fb-btn" onclick="sendFB('A')">Submit</button>
       </div>
 
-    </div>
-
-    <!-- Add to Calendar -->
-    <div class="calendar-section">
-      <h3>&#128197; Add Plan 1 to Your Calendar</h3>
-      <p>Save all the details so you don&rsquo;t have to check back.</p>
-      <div class="calendar-btns">
-        <button class="cal-btn cal-btn-google" onclick="openGoogleCal('plan1')"><i data-lucide="calendar"></i> Add to Google Calendar</button>
-        <button class="cal-btn cal-btn-apple" onclick="downloadICS('plan1')"><i data-lucide="calendar"></i> Add to Apple Calendar</button>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p class="footer-tagline">&ldquo;Let us make date planning feel fun.&rdquo;</p>
+      <!-- Footer -->
+      <div class="footer"><div class="footer-tagline">We plan it. You live it.</div><div class="footer-brand">DateFlo</div></div>
     </div>
   </div>
 
-  <!-- ══════════ PLAN 2: COASTAL CHARM ══════════ -->
+  <!-- ══════════ PLAN B: COASTAL CHARM ══════════ -->
   <div class="date-wrap" id="optionB">
     <button class="back-btn" onclick="goBack()">&larr; Back to Options</button>
-
     <div class="section-header" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">
       <div class="section-badge">&#127754; Plan 2</div>
       <h2>Coastal Charm</h2>
@@ -623,113 +638,141 @@
     </div>
     <div class="content-card">
       <div class="meta" style="border-left-color:#5b86e5">
-        <div class="meta-item"><div class="meta-label" style="color:#5b86e5">Date</div><div class="meta-value">Monday, March 30, 2026</div></div>
+        <div class="meta-item"><div class="meta-label" style="color:#5b86e5">Date</div><div class="meta-value">Mon, March 30</div></div>
         <div class="meta-item"><div class="meta-label" style="color:#5b86e5">Duration</div><div class="meta-value">~5 hours</div></div>
-        <div class="meta-item"><div class="meta-label" style="color:#5b86e5">Area</div><div class="meta-value">La Jolla Village</div></div>
+        <div class="meta-item"><div class="meta-label" style="color:#5b86e5">Area</div><div class="meta-value">La Jolla</div></div>
       </div>
       <div class="summary">
         <h3 class="summary-title">&#127801; The Vibe</h3>
-        <p>This one is all about the coast. You start with a scenic cliffside trail and seal watching, then stroll through one of San Diego&rsquo;s most charming villages for authentic Thai food and the best gelato in the city. The whole evening builds toward sunset at Scripps Park overlooking La Jolla Cove. Everything is walkable once you park &mdash; no car needed until it is time to go home.</p>
+        <p>A scenic coastal walk with real ocean views, sea lions lounging below, authentic Thai food on La Jolla&rsquo;s main strip, the best gelato in San Diego, and a sunset at the cove. Calmer and more scenic &mdash; perfect if you want the date to feel like an escape. Everything is walkable once you park.</p>
       </div>
-      <div class="route-tag" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);border-color:#c4d0f5">
-        <p style="color:#4a5a99">&#128694; <strong>Route:</strong> Mira Mesa &rarr; Coast Walk &rarr; Seals &rarr; Thai Lunch &rarr; Gelato &rarr; Sunset at the Cove &rarr; Home</p>
-      </div>
+      <div class="route-tag" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);border-color:#c4d0f5"><p style="color:#4a5a99">&#128694; Mira Mesa &rarr; <strong>Coast Walk Trail</strong> &rarr; <strong>Seal Watching</strong> &rarr; <strong>King of Thai</strong> &rarr; <strong>Bobboi Gelato</strong> &rarr; <strong>Scripps Park</strong> &rarr; Home</p></div>
 
-      <!-- Weather (top) -->
+      <!-- Weather -->
       <div class="weather-note">
-        <h4>&#9748;&#65039; Weather &mdash; Monday, March 30</h4>
-        <p>Mid-60s and pleasant through the afternoon, cooling to upper 50s by sunset. La Jolla gets a steady ocean breeze &mdash; a light layer will feel great by evening. Sunscreen recommended for the Coast Walk.</p>
+        <h4>&#9748;&#65039; Weather &mdash; March 30</h4>
+        <p><strong>67&deg;F high / 52&deg;F low</strong> &mdash; sunny with 5% chance of rain. La Jolla gets a steady ocean breeze &mdash; a light layer will feel great by evening. Sunscreen recommended for the Coast Walk. Sunset at <strong>7:07 PM</strong>.</p>
       </div>
 
-      <!-- Stop 1: Coast Walk + Seals -->
+      <!-- Stop 1: Coast Walk Trail + Seals -->
       <div class="stop">
         <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">1</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="https://m.uber.com/ul/?action=setPickup&dropoff[latitude]=32.8491&dropoff[longitude]=-117.2715&dropoff[nickname]=Coast+Walk+Trail" target="_blank" class="tc-btn tc-uber">Uber</a><a href="https://lyft.com/ride?id=lyft&destination[latitude]=32.8491&destination[longitude]=-117.2715" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="https://www.google.com/maps/dir/?api=1&destination=Silverado+St+La+Jolla+CA" target="_blank" class="tc-btn tc-free">Free</a><a href="https://www.google.com/maps/dir/?api=1&destination=Coast+Blvd+La+Jolla+CA" target="_blank" class="tc-btn tc-paid">Metered</a></div></div>
+        </div>
         <div class="stop-header">
           <h3 class="stop-title">Coast Walk Trail &amp; Seal Watching</h3>
           <p class="stop-location">La Jolla Cove &amp; Children&rsquo;s Pool</p>
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);color:#4a5a99">2:30 &ndash; 3:30 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=La+Jolla+Coast+Walk+Trail+San+Diego+CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=La%20Jolla%20Coast%20Walk%20Trail%20San%20Diego%20CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=La+Jolla+Coast+Walk+Trail+San+Diego+CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Directions</a>
         </div>
         <div class="vibe-box" style="border-left-color:#5b86e5;color:#4a70c7">scenic &bull; easy &bull; opens the date with awe</div>
         <div class="description">
-          <p>The Coast Walk Trail is a 0.6-mile cliffside path with nonstop ocean views, sea lion sounds, and kayakers below. It is flat, easy, and the opposite of strenuous. After the trail, walk over to Children&rsquo;s Pool to watch harbor seals sunbathing on the beach from the seawall above.</p>
+          <p>The Coast Walk Trail is a 0.6-mile cliffside path with nonstop ocean views, sea lion sounds, and kayakers below. Flat, easy, and the opposite of strenuous. After the trail, walk over to Children&rsquo;s Pool to watch harbor seals sunbathing on the beach from the seawall above.</p>
           <p><strong>Free.</strong> No ticket, no time limit. Just show up and walk.</p>
         </div>
-        <div class="walk-tag"><i data-lucide="footprints" style="width:16px;height:16px"></i> ~10 min stroll through La Jolla Village to the restaurant</div>
+        <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~10 min stroll through La Jolla Village to the restaurant</div>
+        <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B1" placeholder="e.g. Love coastal walks! or How long is the trail?"></textarea><button class="stop-comment-btn" onclick="sendSC('B',1,'Coast Walk Trail')">Send</button></div><div class="stop-comment-sent" id="sc-B1-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
 
       <!-- Stop 2: King of Thai -->
       <div class="stop">
         <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">2</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns"><a href="https://www.google.com/maps/dir/?api=1&destination=Silverado+St+La+Jolla+CA" target="_blank" class="tc-btn tc-free">Free</a></div></div>
+        </div>
         <div class="stop-header">
           <h3 class="stop-title">Late Lunch at King of Thai Cuisine</h3>
           <p class="stop-location">7734 Girard Ave, La Jolla</p>
-          <p class="stop-phone">(858) 456-9044</p>
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);color:#4a5a99">4:00 &ndash; 5:00 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=King+of+Thai+Cuisine+7734+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=King%20of%20Thai%20Cuisine%207734%20Girard%20Ave%20La%20Jolla%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=King+of+Thai+Cuisine+7734+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Directions</a>
           <a href="tel:8584569044" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
           <a href="https://kingofthai-sd.com/" target="_blank" class="btn btn-menu" style="color:#5b86e5;border-color:#5b86e5"><i data-lucide="utensils"></i> Menu</a>
         </div>
         <div class="vibe-box" style="border-left-color:#5b86e5;color:#4a70c7">authentic Thai &bull; bold flavors &bull; Girard Ave charm</div>
         <div class="description">
-          <p>Authentic Thai right on La Jolla&rsquo;s main street. The Pad Thai, Thai Mango Chicken, and curries are all boldly flavored &mdash; nothing bland here. Dog-friendly, fresh ingredients, and the kind of local spot you would not find on your own.</p>
-          <p><strong>Timing note:</strong> They close for a break 3&ndash;4 PM on Mondays, then reopen at 4 PM. That is why you stroll the village after the Coast Walk and arrive right when they reopen. The walk from the cove through Prospect St and Girard Ave is beautiful &mdash; browse the shops, take photos, enjoy the village.</p>
+          <p>Authentic Thai right on La Jolla&rsquo;s main street. The Pad Thai, Thai Mango Chicken, and curries are all boldly flavored &mdash; nothing bland here. Fresh ingredients, and the kind of local spot you wouldn&rsquo;t find on your own.</p>
+          <p><strong>Timing note:</strong> They close for a break 3&ndash;4 PM on Mondays, then reopen at 4 PM. That&rsquo;s why you stroll the village after the Coast Walk and arrive right when they reopen.</p>
           <p><strong>Monday hours:</strong> 11 AM &ndash; 3 PM, 4 PM &ndash; 9 PM.</p>
         </div>
-        <div class="walk-tag"><i data-lucide="footprints" style="width:16px;height:16px"></i> ~2 min walk to next stop (same street)</div>
+        <div class="food-recs">
+          <div class="food-rec" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
+            <div class="food-rec-label" style="color:#5b86e5"><span>&#127826;</span> Kavindi</div>
+            <div class="food-rec-item">Green Curry</div>
+            <div class="food-rec-note">Rich coconut curry, bold spice. No peas or avocado in this dish. Asian comfort food she loves.</div>
+          </div>
+          <div class="food-rec" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
+            <div class="food-rec-label" style="color:#5b86e5"><span>&#127843;</span> Partner</div>
+            <div class="food-rec-item">Pad Thai</div>
+            <div class="food-rec-note">Classic, flavorful, not cheesy or overly fishy. The safest crowd-pleaser on the menu.</div>
+          </div>
+        </div>
+        <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~2 min walk to next stop (same street)</div>
+        <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B2" placeholder="e.g. Love Thai food! or I'm not a fan of spicy..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',2,'King of Thai')">Send</button></div><div class="stop-comment-sent" id="sc-B2-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
 
       <!-- Stop 3: Bobboi Gelato -->
       <div class="stop">
         <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">3</div>
-        <div class="stop-header">
+        <div class="stop-header" style="padding-right:0">
           <h3 class="stop-title">Gelato at Bobboi Natural Gelato</h3>
           <p class="stop-location">8008 Girard Ave, La Jolla</p>
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);color:#4a5a99">5:05 &ndash; 5:25 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Bobboi+Natural+Gelato+8008+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Bobboi%20Natural%20Gelato%208008%20Girard%20Ave%20La%20Jolla%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Bobboi+Natural+Gelato+8008+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Directions</a>
         </div>
         <div class="vibe-box" style="border-left-color:#5b86e5;color:#4a70c7">best gelato in SD &bull; ocean-view patio &bull; sweet transition</div>
         <div class="description">
-          <p>Voted best gelato in San Diego. Handcrafted daily on-site from local, seasonal, organic ingredients. The patio has views overlooking La Jolla Cove &mdash; so you are eating world-class gelato while looking at the Pacific. That is a pretty good moment.</p>
+          <p>Voted best gelato in San Diego. Handcrafted daily on-site from local, seasonal, organic ingredients. The patio has views overlooking La Jolla Cove &mdash; world-class gelato while looking at the Pacific.</p>
           <p><strong>Monday hours:</strong> 11 AM &ndash; 9:30 PM.</p>
         </div>
-        <div class="walk-tag"><i data-lucide="footprints" style="width:16px;height:16px"></i> ~8 min walk to sunset spot</div>
+        <div class="food-recs">
+          <div class="food-rec" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
+            <div class="food-rec-label" style="color:#5b86e5"><span>&#127826;</span> Kavindi</div>
+            <div class="food-rec-item">Pistachio or Stracciatella</div>
+            <div class="food-rec-note">Both are signature flavors. Rich, nutty, no papaya or peas in sight.</div>
+          </div>
+          <div class="food-rec" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
+            <div class="food-rec-label" style="color:#5b86e5"><span>&#127843;</span> Partner</div>
+            <div class="food-rec-item">Salted Caramel or Dark Chocolate</div>
+            <div class="food-rec-note">Bold, classic flavors. Neither cheesy nor fishy &mdash; just really good gelato.</div>
+          </div>
+        </div>
+        <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~8 min walk to sunset spot</div>
+        <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B3" placeholder="e.g. Gelato is a must! or I'm lactose intolerant..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',3,'Bobboi Gelato')">Send</button></div><div class="stop-comment-sent" id="sc-B3-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
 
       <!-- Stop 4: Scripps Park Sunset -->
       <div class="stop">
         <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">4</div>
-        <div class="stop-header">
+        <div class="stop-header" style="padding-right:0">
           <h3 class="stop-title">Sunset at Scripps Park</h3>
           <p class="stop-location">1100 Coast Blvd, La Jolla</p>
         </div>
-        <div class="stop-time" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);color:#4a5a99">5:30 &ndash; 7:15 PM</div>
+        <div class="stop-time" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);color:#4a5a99">Sunset at 7:07 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Ellen+Browning+Scripps+Park+La+Jolla+CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Ellen%20Browning%20Scripps%20Park%20La%20Jolla%20CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Ellen+Browning+Scripps+Park+La+Jolla+CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Directions</a>
         </div>
         <div class="vibe-box" style="border-left-color:#5b86e5;color:#4a70c7">grassy bluffs &bull; cove views &bull; golden light</div>
         <div class="description">
-          <p>A 5.6-acre park on rocky bluffs right next to La Jolla Cove. Find a spot on the grass, sit together, and watch the sky light up. The green belvedere huts are great for photos. Sunset is at <strong>7:07 PM</strong> &mdash; you have almost two hours to just be here, no rush, no agenda. This is the kind of quality time that makes a date stick.</p>
+          <p>A 5.6-acre park on rocky bluffs right next to La Jolla Cove. Find a spot on the grass, sit together, and watch the sky light up. The green belvedere huts are great for photos. You have almost two hours here &mdash; no rush, no agenda. This is the kind of quality time that makes a date stick.</p>
           <p><strong>Free.</strong> Open space, ocean sounds, and nowhere you need to be.</p>
         </div>
+        <div class="stop-comment"><div class="stop-comment-label">Have a thought about this stop?</div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B4" placeholder="e.g. Perfect ending! or I'd love to stay longer here..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',4,'Scripps Park')">Send</button></div><div class="stop-comment-sent" id="sc-B4-ok">&#10003; Sent &mdash; thanks!</div></div>
       </div>
 
-      <!-- Smooth Swap -->
+      <!-- Swap -->
       <div class="swap-box">
         <h4>&#128260; Smooth Swaps</h4>
-        <p><strong>If King of Thai has a wait:</strong> Walk to <strong>Pho La Jolla</strong> at 3211 Holiday Ct &mdash; about a 10 min drive toward UTC. Great Vietnamese pho, open straight through (no break), very affordable.</p>
+        <p><strong>If King of Thai has a wait:</strong> Walk to <strong>Pho La Jolla</strong> at 3211 Holiday Ct &mdash; about a 10 min drive toward UTC. Great Vietnamese pho, open straight through, very affordable.</p>
         <p style="margin-top:8px"><strong>If Bobboi is closed or packed:</strong> Grab boba at <strong>Happy Lemon</strong> in Westfield UTC &mdash; about a 10 min drive. Or keep strolling Girard Ave and grab coffee instead.</p>
-        <p style="margin-top:8px"><strong>If Coast Walk feels short:</strong> Add the <strong>Scripps Coastal Meander Trail</strong> near Birch Aquarium for more cliffside ocean views. Same easy, flat walking.</p>
+        <p style="margin-top:8px"><strong>If Coast Walk feels short:</strong> Add the <strong>Scripps Coastal Meander Trail</strong> near Birch Aquarium for more cliffside ocean views.</p>
       </div>
 
       <!-- Budget -->
@@ -737,268 +780,87 @@
         <h3 class="budget-title">&#128176; Budget for Two</h3>
         <div class="budget-items">
           <div class="budget-item"><div class="budget-label">Coast Walk &amp; Seals</div><div class="budget-value">Free</div></div>
-          <div class="budget-item"><div class="budget-label">King of Thai</div><div class="budget-value">$35 &ndash; $50</div></div>
-          <div class="budget-item"><div class="budget-label">Bobboi Gelato</div><div class="budget-value">$12 &ndash; $18</div></div>
+          <div class="budget-item"><div class="budget-label">King of Thai</div><div class="budget-value">$35&ndash;$50</div></div>
+          <div class="budget-item"><div class="budget-label">Bobboi Gelato</div><div class="budget-value">$12&ndash;$18</div></div>
           <div class="budget-item"><div class="budget-label">Scripps Park</div><div class="budget-value">Free</div></div>
         </div>
-        <div class="budget-total budget-item"><div class="budget-label">Estimated Total</div><div class="budget-value">$47 &ndash; $78</div></div>
+        <div class="budget-total budget-item"><div class="budget-label">Estimated Total</div><div class="budget-value">$47&ndash;$78</div></div>
         <p class="budget-tip">Add ~$10 for metered parking. Still well under the $100&ndash;$150 budget.</p>
       </div>
 
       <!-- Checklist -->
       <div class="checklist-section">
-        <h3>&#9989; Date Prep Checklist</h3>
-        <p class="checklist-subtitle">Most important first &mdash; your progress is saved automatically.</p>
-        <label class="checklist-item priority-high" data-key="p2-parking">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>&#128308; Figure out La Jolla parking</strong> &mdash; metered spots along Coast Blvd (~$1.50/hr, 2hr max) or pay lot near the Cove (~$10/day). Free spots on side streets are possible on a Monday.</span>
-        </label>
-        <label class="checklist-item priority-high" data-key="p2-hours">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>&#128308; Confirm King of Thai hours</strong> &mdash; they close 3&ndash;4 PM on Mondays. Plan to arrive at 4 PM when they reopen. Check at <a href="https://kingofthai-sd.com/" target="_blank">kingofthai-sd.com</a>.</span>
-        </label>
-        <label class="checklist-item" data-key="p2-shoes">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>Wear comfortable walking shoes</strong> &mdash; Coast Walk Trail + village streets. Sneakers or flats.</span>
-        </label>
-        <label class="checklist-item" data-key="p2-jacket">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>Bring a light jacket</strong> &mdash; ocean breeze picks up through the afternoon.</span>
-        </label>
-        <label class="checklist-item" data-key="p2-sunscreen">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>Pack sunscreen</strong> &mdash; afternoon sun on the Coast Walk is direct.</span>
-        </label>
-        <label class="checklist-item" data-key="p2-phone">
-          <input type="checkbox" onchange="saveCheck(this)">
-          <span class="checkmark"></span>
-          <span class="checklist-text"><strong>Charge phones</strong> &mdash; seals, cliffs, sunset. Lots of photo ops.</span>
-        </label>
+        <h3>&#9745; Before You Go</h3>
+        <p class="checklist-subtitle">Tap to check off &mdash; saves automatically.</p>
+        <label class="cl-item pri"><input type="checkbox" data-key="B-parking"><span class="cl-box"></span><span class="cl-text"><strong>Figure out La Jolla parking</strong> &mdash; metered on Coast Blvd (~$1.50/hr) or free side streets off Silverado St / Fay Ave. Less crowded on a Monday.</span></label>
+        <label class="cl-item pri"><input type="checkbox" data-key="B-hours"><span class="cl-box"></span><span class="cl-text"><strong>Confirm King of Thai hours</strong> &mdash; they close 3&ndash;4 PM. Plan to arrive at 4 PM. Check at <a href="https://kingofthai-sd.com/" target="_blank">kingofthai-sd.com</a>.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="B-shoes"><span class="cl-box"></span><span class="cl-text"><strong>Wear comfortable walking shoes</strong> &mdash; Coast Walk Trail + village streets. Sneakers or flats.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="B-jacket"><span class="cl-box"></span><span class="cl-text"><strong>Bring a light jacket</strong> &mdash; 67&deg;F drops to 52&deg;F with ocean breeze by evening.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="B-sunscreen"><span class="cl-box"></span><span class="cl-text"><strong>Pack sunscreen</strong> &mdash; afternoon sun on the Coast Walk is direct.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="B-phone"><span class="cl-box"></span><span class="cl-text"><strong>Charge phones</strong> &mdash; seals, cliffs, sunset. Lots of photo ops.</span></label>
       </div>
 
-      <!-- Parking -->
-      <div class="parking-section">
-        <h3>&#127359;&#65039; Parking</h3>
-        <div class="parking-option">
-          <h4>&#127359;&#65039; Metered &mdash; Coast Blvd / Prospect St</h4>
-          <p>Metered spots along <strong>Coast Blvd</strong> and <strong>Prospect St</strong> near La Jolla Cove. ~$1.50/hr, 2-hour max. Good for the Coast Walk, then move the car later or walk to the village.</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Coast+Blvd+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-            <a href="https://maps.apple.com/?q=Coast%20Blvd%20La%20Jolla%20CA%2092037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-          </div>
-        </div>
-        <div class="parking-option">
-          <h4>&#127383; Free Street Parking</h4>
-          <p>Try side streets like <strong>Silverado St</strong>, <strong>Eads Ave</strong>, or <strong>Fay Ave</strong> for free 2-hour spots. Less competitive on a Monday than weekends.</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Silverado+St+and+Girard+Ave+La+Jolla+CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-            <a href="https://maps.apple.com/?q=Silverado%20St%20and%20Girard%20Ave%20La%20Jolla%20CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="navigation"></i> Apple Maps</a>
-          </div>
-        </div>
+      <!-- Feedback -->
+      <div class="feedback" id="fbB">
+        <p>How did this plan feel?</p>
+        <div class="stars" id="starsB"><span class="star" data-val="1">&#9733;</span><span class="star" data-val="2">&#9733;</span><span class="star" data-val="3">&#9733;</span><span class="star" data-val="4">&#9733;</span><span class="star" data-val="5">&#9733;</span></div>
+        <textarea class="fb-ta" id="notesB" placeholder="Any thoughts? (optional)"></textarea>
+        <button class="fb-btn" onclick="sendFB('B')">Submit</button>
       </div>
 
-    </div>
-
-    <!-- Add to Calendar -->
-    <div class="calendar-section">
-      <h3>&#128197; Add Plan 2 to Your Calendar</h3>
-      <p>Save all the details so you don&rsquo;t have to check back.</p>
-      <div class="calendar-btns">
-        <button class="cal-btn cal-btn-google" onclick="openGoogleCal('plan2')"><i data-lucide="calendar"></i> Add to Google Calendar</button>
-        <button class="cal-btn cal-btn-apple" onclick="downloadICS('plan2')"><i data-lucide="calendar"></i> Add to Apple Calendar</button>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p class="footer-tagline">&ldquo;Let us make date planning feel fun.&rdquo;</p>
+      <!-- Footer -->
+      <div class="footer"><div class="footer-tagline">We plan it. You live it.</div><div class="footer-brand">DateFlo</div></div>
     </div>
   </div>
 
   <script>
-    // Floating hearts
-    (function(){
-      var c=document.getElementById('heartsBg');
-      var h=['&#128152;','&#10084;&#65039;','&#128149;','&#128151;','&#127801;','&#10024;'];
-      for(var i=0;i<18;i++){
-        var s=document.createElement('span');
-        s.className='heart-float';
-        s.innerHTML=h[i%h.length];
-        s.style.left=Math.random()*100+'%';
-        s.style.animationDuration=(8+Math.random()*12)+'s';
-        s.style.animationDelay=(Math.random()*15)+'s';
-        s.style.fontSize=(.9+Math.random()*.8)+'rem';
-        c.appendChild(s);
-      }
-    })();
+    // ── Floating Hearts ──
+    (function(){const c=document.getElementById('heartsBg');const h=['\u{1F495}','\u{1F497}','\u{1F496}','\u{1FA77}','\u2661','\u2764\uFE0F','\u{1F498}'];for(let i=0;i<18;i++){const s=document.createElement('span');s.className='heart-float';s.textContent=h[i%h.length];s.style.left=Math.random()*100+'%';s.style.animationDuration=(10+Math.random()*14)+'s';s.style.animationDelay=Math.random()*12+'s';s.style.fontSize=(.9+Math.random()*.8)+'rem';c.appendChild(s)}})();
 
-    // Show/hide options
-    function showOption(opt){
-      document.getElementById('hero').style.display='none';
-      document.getElementById('optionA').classList.remove('visible');
-      document.getElementById('optionB').classList.remove('visible');
-      document.getElementById('option'+opt).classList.add('visible');
-      window.scrollTo({top:0,behavior:'smooth'});
-      lucide.createIcons();
-    }
-    function goBack(){
-      document.getElementById('optionA').classList.remove('visible');
-      document.getElementById('optionB').classList.remove('visible');
-      document.getElementById('hero').style.display='flex';
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
+    // ── Countdown ──
+    const T=new Date('2026-03-30T14:00:00-07:00').getTime();
+    function tick(){const d=T-Date.now();if(d<=0){document.getElementById('cd-d').textContent='00';document.getElementById('cd-h').textContent='00';document.getElementById('cd-m').textContent='00';return}document.getElementById('cd-d').textContent=String(Math.floor(d/864e5)).padStart(2,'0');document.getElementById('cd-h').textContent=String(Math.floor(d%864e5/36e5)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(d%36e5/6e4)).padStart(2,'0')}
+    tick();setInterval(tick,60000);
 
-    // Open Google Calendar
-    function openGoogleCal(plan){
-      var title, start, end, details, location;
-      if(plan==='plan1'){
-        title="Kavindi's Date \u2013 Plan 1: Golden Hour";
-        start='20260330T210000Z';
-        end='20260331T021500Z';
-        location='Ocean Beach & Sunset Cliffs, San Diego, CA';
-        details='PLAN 1: GOLDEN HOUR\n\n'+
-          'SCHEDULE:\n'+
-          '3:00-4:15 PM \u2014 Late Lunch at OB Noodle House\n'+
-          '2218 Cable St, San Diego\n'+
-          'Phone: (619) 450-6868\n'+
-          'Happy Hour 3-6 PM!\n\n'+
-          '4:30-5:00 PM \u2014 Dessert at An\'s Dry Cleaning\n'+
-          '1861 Bacon St, San Diego\n'+
-          'Phone: (619) 310-5028\n'+
-          '#1 Ice Cream in America\n\n'+
-          '5:05-5:30 PM \u2014 Walk the OB Pier\n\n'+
-          '5:45-7:15 PM \u2014 Sunset at Sunset Cliffs\n'+
-          'Sunset: 7:07 PM\n'+
-          'Bring a blanket!\n\n'+
-          'PARKING: Free street parking in OB. Free lots at Sunset Cliffs off Ladera St.\n\n'+
-          'BUDGET: ~$50-$70 for two\n\n'+
-          'BACKUP: If OB Noodle House is packed, try The Joint OB. If An\'s has a line, hit Lighthouse Ice Cream.';
-      } else {
-        title="Kavindi's Date \u2013 Plan 2: Coastal Charm";
-        start='20260330T210000Z';
-        end='20260331T021500Z';
-        location='La Jolla, San Diego, CA';
-        details='PLAN 2: COASTAL CHARM\n\n'+
-          'SCHEDULE:\n'+
-          '2:30-3:30 PM \u2014 Coast Walk Trail & Seal Watching\n'+
-          'La Jolla Cove & Children\'s Pool\n\n'+
-          '4:00-5:00 PM \u2014 Late Lunch at King of Thai Cuisine\n'+
-          '7734 Girard Ave, La Jolla\n'+
-          'Phone: (858) 456-9044\n'+
-          'Opens at 4 PM (closed 3-4 PM)\n\n'+
-          '5:05-5:25 PM \u2014 Gelato at Bobboi Natural Gelato\n'+
-          '8008 Girard Ave, La Jolla\n\n'+
-          '5:30-7:15 PM \u2014 Sunset at Scripps Park\n'+
-          'Sunset: 7:07 PM\n\n'+
-          'PARKING: Metered spots on Coast Blvd or free side streets.\n\n'+
-          'BUDGET: ~$47-$78 for two\n\n'+
-          'BACKUP: If King of Thai has a wait, try Pho La Jolla. If Bobboi is packed, grab boba at Happy Lemon in UTC.';
-      }
-      var url='https://calendar.google.com/calendar/render?action=TEMPLATE'+
-        '&text='+encodeURIComponent(title)+
-        '&dates='+start+'/'+end+
-        '&details='+encodeURIComponent(details)+
-        '&location='+encodeURIComponent(location);
-      window.open(url,'_blank');
-    }
+    // ── Apple Calendar ICS (Hero) ──
+    document.getElementById('icalHero').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DateFlo//EN','BEGIN:VEVENT','UID:kavindi-date-20260330@dateflo.com','DTSTART;TZID=America/Los_Angeles:20260330T140000','DTEND;TZID=America/Los_Angeles:20260330T193000','SUMMARY:Kavindi\'s Date \u2013 DateFlo','LOCATION:San Diego\\, CA','DESCRIPTION:Your DateFlo date plan. See dateflo.com/kavindi for full details.','STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'].join('\r\n'));
 
-    // Download ICS for Apple Calendar
-    function downloadICS(plan){
-      var title, dtStart, dtEnd, desc, loc;
-      if(plan==='plan1'){
-        title="Kavindi's Date \u2013 Plan 1: Golden Hour";
-        dtStart='20260330T210000Z';
-        dtEnd='20260331T021500Z';
-        loc='Ocean Beach & Sunset Cliffs, San Diego, CA';
-        desc='PLAN 1: GOLDEN HOUR\\n\\n'+
-          'SCHEDULE:\\n'+
-          '3:00-4:15 PM - Late Lunch at OB Noodle House\\n'+
-          '2218 Cable St, San Diego\\n'+
-          'Phone: (619) 450-6868\\n'+
-          'Happy Hour 3-6 PM!\\n\\n'+
-          '4:30-5:00 PM - Dessert at An\'s Dry Cleaning\\n'+
-          '1861 Bacon St, San Diego\\n'+
-          'Phone: (619) 310-5028\\n'+
-          '#1 Ice Cream in America\\n\\n'+
-          '5:05-5:30 PM - Walk the OB Pier\\n\\n'+
-          '5:45-7:15 PM - Sunset at Sunset Cliffs\\n'+
-          'Sunset: 7:07 PM\\n'+
-          'Bring a blanket!\\n\\n'+
-          'PARKING: Free in OB + free lots at Sunset Cliffs\\n\\n'+
-          'BUDGET: ~$50-$70 for two\\n\\n'+
-          'BACKUP: The Joint OB or Lighthouse Ice Cream';
-      } else {
-        title="Kavindi's Date \u2013 Plan 2: Coastal Charm";
-        dtStart='20260330T210000Z';
-        dtEnd='20260331T021500Z';
-        loc='La Jolla, San Diego, CA';
-        desc='PLAN 2: COASTAL CHARM\\n\\n'+
-          'SCHEDULE:\\n'+
-          '2:30-3:30 PM - Coast Walk Trail & Seal Watching\\n'+
-          'La Jolla Cove & Children\'s Pool\\n\\n'+
-          '4:00-5:00 PM - Late Lunch at King of Thai Cuisine\\n'+
-          '7734 Girard Ave, La Jolla\\n'+
-          'Phone: (858) 456-9044\\n'+
-          'Opens at 4 PM (closed 3-4)\\n\\n'+
-          '5:05-5:25 PM - Gelato at Bobboi Natural Gelato\\n'+
-          '8008 Girard Ave, La Jolla\\n\\n'+
-          '5:30-7:15 PM - Sunset at Scripps Park\\n'+
-          'Sunset: 7:07 PM\\n\\n'+
-          'PARKING: Metered on Coast Blvd or free side streets\\n\\n'+
-          'BUDGET: ~$47-$78 for two\\n\\n'+
-          'BACKUP: Pho La Jolla or Happy Lemon boba';
-      }
-      var ics=[
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//DateFlo//Date Plan//EN',
-        'CALSCALE:GREGORIAN',
-        'METHOD:PUBLISH',
-        'BEGIN:VEVENT',
-        'DTSTART:'+dtStart,
-        'DTEND:'+dtEnd,
-        'SUMMARY:'+title.replace(/,/g,'\\,'),
-        'DESCRIPTION:'+desc,
-        'LOCATION:'+loc,
-        'STATUS:CONFIRMED',
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\r\n');
-      var blob=new Blob([ics],{type:'text/calendar;charset=utf-8'});
-      var url=URL.createObjectURL(blob);
-      var a=document.createElement('a');
-      a.href=url;
-      a.download=plan==='plan1'?'Kavindi-Plan1-Golden-Hour.ics':'Kavindi-Plan2-Coastal-Charm.ics';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
+    // ── Navigation ──
+    function showOption(o){document.getElementById('hero').style.display='none';document.getElementById('option'+o).classList.add('visible');window.scrollTo({top:0,behavior:'smooth'});lucide.createIcons()}
+    function goBack(){document.querySelectorAll('.date-wrap').forEach(e=>{e.classList.remove('visible');e.style.display='none'});document.getElementById('hero').style.display='flex';document.querySelectorAll('.date-wrap').forEach(e=>e.style.display='');window.scrollTo({top:0,behavior:'smooth'})}
 
-    // ── Checklist persistence via localStorage ──
-    function saveCheck(cb){
-      var key=cb.closest('.checklist-item').getAttribute('data-key');
-      if(cb.checked){
-        localStorage.setItem('datecheck_'+key,'1');
-      } else {
-        localStorage.removeItem('datecheck_'+key);
-      }
-    }
-    function loadChecks(){
-      document.querySelectorAll('.checklist-item').forEach(function(item){
-        var key=item.getAttribute('data-key');
-        var saved=localStorage.getItem('datecheck_'+key);
-        if(saved==='1'){
-          item.querySelector('input[type="checkbox"]').checked=true;
-        }
+    // ── Cookie Checklist ──
+    function gC(n){const v=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');return v?v.pop():''}
+    function sC(n,v){const d=new Date();d.setTime(d.getTime()+365*864e5);document.cookie=n+'='+v+';expires='+d.toUTCString()+';path=/;SameSite=Lax'}
+    document.querySelectorAll('.cl-item input[type="checkbox"]').forEach(c=>{if(gC(c.dataset.key)==='1')c.checked=true;c.addEventListener('change',()=>sC(c.dataset.key,c.checked?'1':'0'))});
+
+    // ── Star Ratings ──
+    let R={A:0,B:0};
+    document.querySelectorAll('.stars').forEach(c=>{const p=c.id.replace('stars','');c.querySelectorAll('.star').forEach(s=>{s.addEventListener('click',()=>{const v=+s.dataset.val;R[p]=v;c.querySelectorAll('.star').forEach((x,i)=>x.classList.toggle('on',i<v))})})});
+
+    // ── Per-Stop Comments ──
+    function sendSC(plan,stopNum,stopName){
+      const ta=document.getElementById('sc-'+plan+stopNum);
+      const ok=document.getElementById('sc-'+plan+stopNum+'-ok');
+      const btn=ta.parentElement.querySelector('.stop-comment-btn');
+      if(!ta.value.trim()){ta.focus();ta.style.borderColor='var(--rose)';setTimeout(()=>ta.style.borderColor='',1500);return}
+      btn.disabled=true;btn.textContent='Sending...';
+      fetch('https://script.google.com/macros/s/AKfycbwiGNNYHQn9DmQ5BCThFw_CY_Ur8k9A4-F2nhmJiMHKVIMhnzXmmThFwuW1_VkDL1k9/exec',{
+        method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({couple:'kavindi',venue:(plan==='A'?'Golden Hour':'Coastal Charm')+' \u2014 Stop '+stopNum+': '+stopName,rating:0,notes:ta.value.trim(),planUrl:location.href})
       });
+      ta.style.display='none';btn.style.display='none';ok.style.display='block';
     }
-    loadChecks();
+
+    // ── Overall Feedback ──
+    function sendFB(p){
+      if(!R[p]){alert('Please select a rating.');return}
+      fetch('https://script.google.com/macros/s/AKfycbwiGNNYHQn9DmQ5BCThFw_CY_Ur8k9A4-F2nhmJiMHKVIMhnzXmmThFwuW1_VkDL1k9/exec',{
+        method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({couple:'kavindi',venue:p==='A'?'Golden Hour':'Coastal Charm',rating:R[p],notes:document.getElementById('notes'+p).value,planUrl:location.href})
+      });
+      document.getElementById('fb'+p).innerHTML='<p style="color:var(--rose);font-size:1.1rem;font-weight:600;font-family:Playfair Display,serif">Thanks for the feedback \u{1F495}</p>';
+    }
 
     lucide.createIcons();
   </script>
