@@ -250,10 +250,21 @@
     .tc-free:hover{box-shadow:0 3px 10px rgba(39,174,96,.3)}
     .tc-paid{background:#e67e22;color:#fff}
     .tc-paid:hover{box-shadow:0 3px 10px rgba(230,126,34,.3)}
+    .tc-none{background:#95a5a6;color:#fff;cursor:default;opacity:.75;font-size:.6rem}
+    .tc-none:hover{transform:none;box-shadow:none}
     @media(max-width:420px){
       .transport-corner{position:relative;top:auto;right:auto;margin-bottom:14px;flex-direction:row;flex-wrap:wrap;gap:8px;align-items:flex-start}
       .tc-group+.tc-group{border-top:none;padding-top:0;border-left:1px solid #ffe4f1;padding-left:8px}
     }
+    /* ── Event Note (conditional — only rendered when parking_impact_note is non-empty) ── */
+    .event-note{
+      background:linear-gradient(135deg,#fff8e1,#fff3cd);
+      border:1.5px solid #ffe082;border-radius:10px;
+      padding:8px 12px;margin-top:8px;
+      font-size:clamp(.68rem,1.05vw,.74rem);color:#8d6e00;
+      line-height:1.5;font-weight:500;
+    }
+    .event-note::before{content:'⚠️ ';font-size:.72rem}
     .btn svg,.btn i{width:14px;height:14px}
     .vibe-box{background:#fff8fa;border-left:4px solid var(--rose);padding:clamp(10px,1.8vw,13px) clamp(14px,2.2vw,18px);margin:16px 0;border-radius:0 12px 12px 0;font-style:italic;color:var(--rose-deep);font-size:clamp(.82rem,1.4vw,.88rem);font-weight:500}
     .description{margin:20px 0}
@@ -461,7 +472,37 @@
         <p>Bold Vietnamese food at a local institution, the #1 ranked ice cream in the country, a walk along the OB Pier, and a golden-hour sunset on the cliffs. Thoughtful and well-timed without feeling overproduced &mdash; you end the night watching the sun drop into the Pacific together.</p>
       </div>
       <div class="route-tag"><p>&#128663; Mira Mesa &rarr; <strong>OB Noodle House</strong> &rarr; <strong>An's Gelato</strong> &rarr; <strong>OB Pier</strong> &rarr; <strong>Sunset Cliffs</strong> &rarr; Home</p></div>
-      <div class="weather-note"><h4>&#9748;&#65039; Weather &mdash; March 30</h4><p>Mid-60s afternoon cooling to upper 50s by sunset. Ocean breezes pick up at the coast &mdash; bring a light jacket. Rain unlikely, but check forecast a few days before.</p></div>
+      <!-- Weather: set data-lat, data-lon to stop's coordinates, data-date to YYYY-MM-DD -->
+      <div class="weather-note" data-lat="32.7175" data-lon="-117.2557" data-date="2026-03-30"><h4>&#9748;&#65039; Weather &mdash; March 30</h4><p>Loading forecast&hellip;</p></div>
+
+      <!--
+        ═══ TRANSPORT CORNER PATTERNS ═══
+
+        STANDARD (both free + paid parking exist):
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns">
+            <a href="UBER_DEEP_LINK" target="_blank" class="tc-btn tc-uber">Uber</a>
+            <a href="LYFT_DEEP_LINK" target="_blank" class="tc-btn tc-lyft">Lyft</a>
+          </div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns">
+            <a href="FREE_MAPS_LINK" target="_blank" class="tc-btn tc-free">Free</a>
+            <a href="PAID_MAPS_LINK" target="_blank" class="tc-btn tc-paid">Paid</a>
+          </div></div>
+        </div>
+
+        NO PAID PARKING (paid_parking.available = false):
+        Use <span> not <a>. Class tc-none (gray, non-clickable). Label: "No Paid Parking Available"
+        <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-btns">
+          <a href="FREE_MAPS_LINK" target="_blank" class="tc-btn tc-free">Free</a>
+          <span class="tc-btn tc-none">No Paid Parking Available</span>
+        </div></div>
+
+        EVENT WARNING (ONLY when parking_impact_note is non-empty):
+        Place INSIDE .transport-corner, AFTER the last tc-group.
+        <div class="event-note">Padres game tonight — parking fills early. Arrive by 5:30 PM.</div>
+
+        ⛔ NO EVENT = DO NOT render the event-note div at all. Not even empty.
+      -->
 
       <!-- Stop 1 -->
       <div class="stop">
@@ -616,7 +657,8 @@
         <p>A scenic coastal walk with real ocean views, sea lions lounging below, Thai food on La Jolla's main strip, the best gelato in San Diego, and a sunset at the cove. Calmer and more scenic &mdash; perfect if you want the date to feel like an escape.</p>
       </div>
       <div class="route-tag"><p>&#128663; Mira Mesa &rarr; <strong>Coast Walk Trail</strong> &rarr; <strong>Seal Rock</strong> &rarr; <strong>Amarin Thai</strong> &rarr; <strong>Bobboi Gelato</strong> &rarr; <strong>La Jolla Cove</strong> &rarr; Home</p></div>
-      <div class="weather-note"><h4>&#9748;&#65039; Weather &mdash; March 30</h4><p>Mid-60s along the coast, slight breeze near the water. Comfortable for walking. Layers recommended for the evening.</p></div>
+      <!-- Weather: set data-lat, data-lon to stop's coordinates, data-date to YYYY-MM-DD -->
+      <div class="weather-note" data-lat="32.8328" data-lon="-117.2713" data-date="2026-03-30"><h4>&#9748;&#65039; Weather &mdash; March 30</h4><p>Loading forecast&hellip;</p></div>
 
       <!-- Stop 1 -->
       <div class="stop">
@@ -783,6 +825,64 @@
     }
 
     lucide.createIcons();
+
+    /* ── Live Weather via Open-Meteo ── */
+    (function(){
+      var WMO={0:'Sunny',1:'Mostly sunny',2:'Partly cloudy',3:'Overcast',
+        45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',
+        56:'Freezing drizzle',57:'Freezing drizzle',61:'Light rain',63:'Rain',
+        65:'Heavy rain',66:'Freezing rain',67:'Freezing rain',71:'Light snow',
+        73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Light showers',
+        81:'Showers',82:'Heavy showers',85:'Snow showers',86:'Heavy snow showers',
+        95:'Thunderstorm',96:'Thunderstorm w/ hail',99:'Thunderstorm w/ heavy hail'};
+
+      function clothingTip(hi,lo,wind,code){
+        if(code>=61&&code<=67||code>=80&&code<=82||code>=95) return 'Bring an umbrella or rain jacket.';
+        if(hi<55) return 'Bundle up \u2014 it\u2019ll be chilly.';
+        if(hi<65||wind>15) return 'Bring a jacket or hoodie for the breeze.';
+        if(hi<75) return 'A light layer will feel great by evening.';
+        return 'Light clothes are perfect. Don\u2019t forget sunscreen!';
+      }
+
+      function fmtSunset(iso){
+        var d=new Date(iso);
+        var h=d.getHours(), m=d.getMinutes(), ampm=h>=12?'PM':'AM';
+        h=h%12||12;
+        return h+':'+(m<10?'0':'')+m+' '+ampm;
+      }
+
+      document.querySelectorAll('.weather-note[data-lat]').forEach(function(el){
+        var lat=el.dataset.lat, lon=el.dataset.lon, date=el.dataset.date;
+        var url='https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon
+          +'&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code,sunset,wind_speed_10m_max'
+          +'&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=auto'
+          +'&start_date='+date+'&end_date='+date;
+
+        fetch(url).then(function(r){return r.json()}).then(function(d){
+          var day=d.daily;
+          if(!day||!day.temperature_2m_max||!day.temperature_2m_max.length){
+            el.querySelector('p').textContent='Forecast not yet available for this date. Check back closer to the day!';
+            return;
+          }
+          var hi=Math.round(day.temperature_2m_max[0]);
+          var lo=Math.round(day.temperature_2m_min[0]);
+          var rain=day.precipitation_probability_max[0];
+          var code=day.weather_code[0];
+          var wind=Math.round(day.wind_speed_10m_max[0]);
+          var sunset=fmtSunset(day.sunset[0]);
+          var cond=WMO[code]||'Partly cloudy';
+          var tip=clothingTip(hi,lo,wind,code);
+
+          el.querySelector('p').innerHTML=
+            '<strong>'+hi+'\u00B0F high / '+lo+'\u00B0F low</strong> \u2014 '
+            +cond.toLowerCase()+' with '+rain+'% chance of rain. '
+            +'Wind up to '+wind+' mph. '+tip
+            +' Sunset at <strong>'+sunset+'</strong>.';
+        }).catch(function(){
+          el.querySelector('p').textContent='Could not load forecast \u2014 check weather.com closer to the date.';
+        });
+      });
+    })();
   </script>
 </body>
 </html>
