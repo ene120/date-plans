@@ -250,7 +250,7 @@
     .tc-none:hover{transform:none;box-shadow:none}
     @media(max-width:420px){
       .transport-corner{position:relative;top:auto;right:auto;margin-bottom:14px;flex-direction:row;flex-wrap:wrap;gap:8px;align-items:flex-start}
-      .tc-group+.tc-group{border-top:none;padding-top:0;border-left:1px solid #ffe4f1;padding-left:8px}
+      .tc-group+.tc-group{border-top:none;padding-top:0;border-left:none;padding-left:0}
     }
     .btn svg,.btn i{width:14px;height:14px}
     .vibe-box{background:#fff8fa;border-left:4px solid var(--rose);padding:clamp(10px,1.8vw,13px) clamp(14px,2.2vw,18px);margin:16px 0;border-radius:0 12px 12px 0;font-style:italic;color:var(--rose-deep);font-size:clamp(.82rem,1.4vw,.88rem);font-weight:500}
@@ -264,14 +264,18 @@
       margin:8px 0 0;
     }
 
-    /* ── Food Recs (Partner Split) ── */
+    /* ── Food Recs (Partner Split + Shared) ── */
     .food-recs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
     .food-rec{background:linear-gradient(135deg,#fff8fa,#fff0f5);border:2px solid #ffe4f1;border-radius:14px;padding:14px 16px}
-    .food-rec-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--rose);margin-bottom:8px;display:flex;align-items:center;gap:5px}
+    .food-rec-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--rose);margin-bottom:10px;display:flex;align-items:center;gap:5px}
     .food-rec-label span{font-size:.9rem}
+    .food-rec-dish{margin-bottom:10px}
+    .food-rec-dish:last-child{margin-bottom:0}
     .food-rec-item{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--text-dark);font-weight:600;margin-bottom:2px}
     .food-rec-note{font-size:clamp(.74rem,1.2vw,.8rem);color:var(--text-muted);line-height:1.55;font-style:italic}
-    @media(max-width:480px){.food-recs{grid-template-columns:1fr}}
+    .food-rec-shared{background:linear-gradient(135deg,#fff8fa,#fff0f5);border:2px solid #ffe4f1;border-radius:14px;padding:14px 16px;margin-top:0;grid-column:1/-1}
+    .food-rec-shared .food-rec-dishes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:480px){.food-recs{grid-template-columns:1fr}.food-rec-shared .food-rec-dishes{grid-template-columns:1fr}}
 
     /* ── Stop Comments ── */
     .stop-comment{margin-top:18px;padding-top:18px;border-top:2px solid #ffe4f1}
@@ -504,13 +508,22 @@
         <div class="food-recs">
           <div class="food-rec">
             <div class="food-rec-label"><span>&#127826;</span> Kavindi</div>
-            <div class="food-rec-item">Saigon Fried Rice</div>
-            <div class="food-rec-note">Bold, aromatic, shareable. Asian comfort at its best &mdash; no avocado or papaya anywhere near it.</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Saigon Fried Rice</div><div class="food-rec-note">Bold, aromatic &mdash; beef, shrimp, Chinese sausage. Asian comfort at its best.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Pho Tai</div><div class="food-rec-note">Rare steak pho &mdash; rich broth, fresh herbs. The kind of warm, bold flavor she gravitates toward.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Lemongrass Beef Teriyaki</div><div class="food-rec-note">Chargrilled, aromatic, served over rice. Nothing bland about this one.</div></div>
           </div>
           <div class="food-rec">
             <div class="food-rec-label"><span>&#127843;</span> Partner</div>
-            <div class="food-rec-item">Crispy Egg Noodles</div>
-            <div class="food-rec-note">Crunchy + saucy, not cheesy or fishy. A fan favorite that pairs perfectly with the fried rice.</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Crispy Egg Noodles</div><div class="food-rec-note">Crunchy + saucy with veggies. Not cheesy or fishy &mdash; a fan favorite.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Chicken Vermicelli Bowl</div><div class="food-rec-note">Cold noodles, chargrilled chicken, fresh veggies. Light and flavorful.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Hong Kong Chow Fun</div><div class="food-rec-note">Wide rice noodles stir-fried with chicken. Savory, filling, safe bet.</div></div>
+          </div>
+          <div class="food-rec-shared">
+            <div class="food-rec-label"><span>&#127860;</span> Share Together</div>
+            <div class="food-rec-dishes">
+              <div class="food-rec-dish"><div class="food-rec-item">Fresh Spring Rolls</div><div class="food-rec-note">Shrimp &amp; pork, light and fresh. Perfect starter to split.</div></div>
+              <div class="food-rec-dish"><div class="food-rec-item">Chicken Lettuce Wraps</div><div class="food-rec-note">Interactive, fun to eat together. Great happy hour appetizer.</div></div>
+            </div>
           </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~10 min walk to next stop</div>
@@ -541,13 +554,22 @@
         <div class="food-recs">
           <div class="food-rec">
             <div class="food-rec-label"><span>&#127826;</span> Kavindi</div>
-            <div class="food-rec-item">Ask for the seasonal special</div>
-            <div class="food-rec-note">They rotate flavors weekly. Ask what&rsquo;s new &mdash; that&rsquo;s half the fun of this place.</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Seasonal Special</div><div class="food-rec-note">They rotate flavors weekly. Ask what&rsquo;s new &mdash; half the fun of this place.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Walkman (Cookies &amp; Cream)</div><div class="food-rec-note">Bold, chunky, sweet. A crowd favorite with a fun name.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Bluetooth (Lavender)</div><div class="food-rec-note">Floral and unique &mdash; the kind of flavor you can&rsquo;t get anywhere else.</div></div>
           </div>
           <div class="food-rec">
             <div class="food-rec-label"><span>&#127843;</span> Partner</div>
-            <div class="food-rec-item">Motherboard</div>
-            <div class="food-rec-note">Rich chocolate base, crowd favorite. Safe bet for someone who likes bold but not wild flavors.</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Motherboard (Chocolate)</div><div class="food-rec-note">Rich chocolate base, crowd favorite. Bold but not wild.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Hard Drive (Vanilla Bean)</div><div class="food-rec-note">Classic done right. Creamy, clean, no surprises.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">WiFi (Salted Caramel)</div><div class="food-rec-note">Sweet + salty balance. Safe, delicious, universally loved.</div></div>
+          </div>
+          <div class="food-rec-shared">
+            <div class="food-rec-label"><span>&#127860;</span> Share Together</div>
+            <div class="food-rec-dishes">
+              <div class="food-rec-dish"><div class="food-rec-item">Flight of 4 Scoops</div><div class="food-rec-note">Ask for a tasting flight &mdash; try a bunch of flavors together.</div></div>
+              <div class="food-rec-dish"><div class="food-rec-item">Waffle Cone Upgrade</div><div class="food-rec-note">Get one waffle cone to share &mdash; fresh-made and worth it.</div></div>
+            </div>
           </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~5 min walk to next stop</div>
@@ -722,13 +744,22 @@
         <div class="food-recs">
           <div class="food-rec" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
             <div class="food-rec-label" style="color:#5b86e5"><span>&#127826;</span> Kavindi</div>
-            <div class="food-rec-item">Green Curry</div>
-            <div class="food-rec-note">Rich coconut curry, bold spice. No peas or avocado in this dish. Asian comfort food she loves.</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Green Curry</div><div class="food-rec-note">Coconut milk, bamboo shoots, Thai basil. Bold spice, no peas in this version.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Panang Curry</div><div class="food-rec-note">Creamy peanut curry with green beans &amp; bell peppers. Rich and aromatic.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Thai Mango Chicken</div><div class="food-rec-note">Sweet mango + savory chicken. A unique dish she won&rsquo;t find at most Thai spots.</div></div>
           </div>
           <div class="food-rec" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
             <div class="food-rec-label" style="color:#5b86e5"><span>&#127843;</span> Partner</div>
-            <div class="food-rec-item">Pad Thai</div>
-            <div class="food-rec-note">Classic, flavorful, not cheesy or overly fishy. The safest crowd-pleaser on the menu.</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Pad Thai</div><div class="food-rec-note">Classic, flavorful, not cheesy or overly fishy. The safest crowd-pleaser.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Pad See-Ew</div><div class="food-rec-note">Wide noodles, soy sauce, Chinese broccoli. Savory and filling.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Pineapple Fried Rice</div><div class="food-rec-note">Shrimp, chicken, cashews, curry powder. Sweet + savory, no heavy cheese.</div></div>
+          </div>
+          <div class="food-rec-shared" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
+            <div class="food-rec-label" style="color:#5b86e5"><span>&#127860;</span> Share Together</div>
+            <div class="food-rec-dishes">
+              <div class="food-rec-dish"><div class="food-rec-item">Crab Rangoon</div><div class="food-rec-note">Crispy, creamy, perfect starter to split while you browse the menu.</div></div>
+              <div class="food-rec-dish"><div class="food-rec-item">Mango Sticky Rice</div><div class="food-rec-note">Sweet coconut rice + fresh mango. The perfect shared dessert to end the meal.</div></div>
+            </div>
           </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~2 min walk to next stop (same street)</div>
@@ -755,13 +786,22 @@
         <div class="food-recs">
           <div class="food-rec" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
             <div class="food-rec-label" style="color:#5b86e5"><span>&#127826;</span> Kavindi</div>
-            <div class="food-rec-item">Pistachio or Stracciatella</div>
-            <div class="food-rec-note">Both are signature flavors. Rich, nutty, no papaya or peas in sight.</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Pistachio</div><div class="food-rec-note">Their signature &mdash; rich, nutty, handcrafted daily. A must-try.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Stracciatella</div><div class="food-rec-note">Creamy vanilla base with chocolate shards. Bold and indulgent.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Passion Fruit Sorbet</div><div class="food-rec-note">Bright, tangy, dairy-free option. Tropical and refreshing.</div></div>
           </div>
           <div class="food-rec" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
             <div class="food-rec-label" style="color:#5b86e5"><span>&#127843;</span> Partner</div>
-            <div class="food-rec-item">Salted Caramel or Dark Chocolate</div>
-            <div class="food-rec-note">Bold, classic flavors. Neither cheesy nor fishy &mdash; just really good gelato.</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Salted Caramel</div><div class="food-rec-note">Sweet + salty. Bold, classic, universally loved.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Dark Chocolate</div><div class="food-rec-note">Rich and intense. Nothing overly sweet or cheesy.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Hazelnut</div><div class="food-rec-note">Nutty, smooth, pairs perfectly with chocolate in a cup.</div></div>
+          </div>
+          <div class="food-rec-shared" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
+            <div class="food-rec-label" style="color:#5b86e5"><span>&#127860;</span> Share Together</div>
+            <div class="food-rec-dishes">
+              <div class="food-rec-dish"><div class="food-rec-item">Coppa (Medium Cup)</div><div class="food-rec-note">Get a medium with 3 flavors &mdash; sample each other&rsquo;s picks.</div></div>
+              <div class="food-rec-dish"><div class="food-rec-item">Affogato</div><div class="food-rec-note">Espresso poured over gelato. Split one on the ocean-view patio.</div></div>
+            </div>
           </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~8 min walk to sunset spot</div>
@@ -860,7 +900,7 @@
     document.querySelectorAll('.stars').forEach(c=>{const p=c.id.replace('stars','');c.querySelectorAll('.star').forEach(s=>{s.addEventListener('click',()=>{const v=+s.dataset.val;R[p]=v;c.querySelectorAll('.star').forEach((x,i)=>x.classList.toggle('on',i<v))})})});
 
     // ── Couple Config ──
-    const COUPLE={id:'kavindi-2026',partner1:'Kavindi',partner2:'Partner',dateEvent:'2026-03-30'};
+    const COUPLE={id:'kavindi-2026',partner1:'Kavindi',partner2:'Partner',dateEvent:'2026-03-30',city:'San Diego'};
 
     // ── Partner Selector ──
     const whoState={};
@@ -892,7 +932,7 @@
       if(!R[p]){alert('Please select a rating.');return}
       fetch('https://script.google.com/macros/s/AKfycbw5GJ2LLzgISeGlgxD25pbxwno6WEdspfl79NGNGlWJahqMPy7FjrntgjlGemdejGOQbw/exec',{
         method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({coupleId:COUPLE.id,couple:COUPLE.partner1+' & '+COUPLE.partner2,dateEvent:COUPLE.dateEvent,type:'overall-feedback',plan:p==='A'?'Golden Hour':'Coastal Charm',stop:'',partnerComment:'',rating:R[p],notes:document.getElementById('notes'+p).value,planUrl:location.href})
+        body:JSON.stringify({coupleId:COUPLE.id,couple:COUPLE.partner1+' & '+COUPLE.partner2,dateEvent:COUPLE.dateEvent,city:COUPLE.city,type:'overall-feedback',plan:p==='A'?'Golden Hour':'Coastal Charm',stop:'',partnerComment:'',rating:R[p],notes:document.getElementById('notes'+p).value,planUrl:location.href})
       });
       document.getElementById('fb'+p).innerHTML='<p style="color:var(--rose);font-size:1.1rem;font-weight:600;font-family:Playfair Display,serif">Thanks for the feedback \u{1F495}</p>';
     }
