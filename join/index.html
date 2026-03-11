@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DateFlo — Early Access</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #1a0a10 0%, #2d1320 30%, #1a0a10 100%);
+      color: #fff;
+    }
+
+    /* Floating hearts background */
+    .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .floating-hearts span {
+      position: absolute;
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: floatUp 12s ease-in infinite;
+    }
+    @keyframes floatUp {
+      0%   { opacity: 0; transform: translateY(100vh) rotate(0deg); }
+      10%  { opacity: 0.3; }
+      90%  { opacity: 0.1; }
+      100% { opacity: 0; transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    /* Slides */
+    .slide {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      padding: 2rem;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .slide.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.95);
+    }
+
+    /* Slide 1 — Intro */
+    .logo {
+      width: 180px;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 0 30px rgba(200, 80, 120, 0.3));
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #e8a0b8, #f0c0d0, #e8a0b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      line-height: 1.7;
+      letter-spacing: 0.3px;
+    }
+
+    /* Slide 2 — QR */
+    .qr-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #e8a0b8, #f0c0d0, #e8a0b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .qr-subtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 2rem;
+    }
+
+    .qr-box {
+      background: #fff;
+      border-radius: 20px;
+      padding: 24px;
+      display: inline-block;
+      box-shadow: 0 0 60px rgba(200, 80, 120, 0.25);
+    }
+    .qr-box img {
+      width: 280px;
+      height: 280px;
+      display: block;
+    }
+
+    .scan-hint {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 400;
+    }
+
+    .url-hint {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: rgba(232, 160, 184, 0.7);
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    /* Navigation dots */
+    .nav-dots {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 12px;
+    }
+    .nav-dots button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid rgba(232, 160, 184, 0.5);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      padding: 0;
+    }
+    .nav-dots button.active {
+      background: #e8a0b8;
+      border-color: #e8a0b8;
+      transform: scale(1.2);
+    }
+
+    /* Click anywhere hint */
+    .click-hint {
+      position: fixed;
+      bottom: 4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <div class="floating-hearts" id="hearts"></div>
+
+  <!-- Slide 1: Intro -->
+  <div class="slide" id="slide1">
+    <img src="/dateflo-logo-light.svg" alt="DateFlo" class="logo">
+    <h1>DateFlo</h1>
+    <p class="tagline">
+      We plan your perfect date — so all you have to do is show up.
+    </p>
+  </div>
+
+  <!-- Slide 2: QR Code -->
+  <div class="slide hidden" id="slide2">
+    <p class="qr-title">Get Early Access</p>
+    <p class="qr-subtitle">Be the first to try DateFlo</p>
+    <div class="qr-box">
+      <img id="qrImg" alt="Scan to sign up">
+    </div>
+    <p class="scan-hint">Scan with your phone camera</p>
+    <p class="url-hint">dateflo.com/join/signup</p>
+  </div>
+
+  <!-- Navigation -->
+  <div class="click-hint" id="clickHint">Click anywhere or press arrow keys</div>
+  <div class="nav-dots">
+    <button class="active" onclick="goToSlide(0)"></button>
+    <button onclick="goToSlide(1)"></button>
+  </div>
+
+  <!-- QR Code library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+  <script>
+    // Generate QR code
+    const signupUrl = 'https://dateflo.com/join/signup';
+    QRCode.toDataURL(signupUrl, {
+      width: 280,
+      margin: 0,
+      color: { dark: '#2d1320', light: '#ffffff' }
+    }).then(url => {
+      document.getElementById('qrImg').src = url;
+    });
+
+    // Slide navigation
+    let current = 0;
+    const slides = [document.getElementById('slide1'), document.getElementById('slide2')];
+    const dots = document.querySelectorAll('.nav-dots button');
+
+    function goToSlide(index) {
+      slides[current].classList.add('hidden');
+      dots[current].classList.remove('active');
+      current = index;
+      slides[current].classList.remove('hidden');
+      dots[current].classList.add('active');
+      // Hide hint after first interaction
+      document.getElementById('clickHint').style.display = 'none';
+    }
+
+    function nextSlide() {
+      goToSlide(current === 0 ? 1 : 0);
+    }
+
+    // Click anywhere to advance
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.nav-dots')) return;
+      nextSlide();
+    });
+
+    // Arrow keys
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
+        goToSlide(Math.min(current + 1, 1));
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        goToSlide(Math.max(current - 1, 0));
+      }
+    });
+
+    // Floating hearts
+    const heartsContainer = document.getElementById('hearts');
+    const heartChars = ['♥', '♡', '❤'];
+    for (let i = 0; i < 15; i++) {
+      const span = document.createElement('span');
+      span.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+      span.style.left = Math.random() * 100 + '%';
+      span.style.animationDelay = Math.random() * 12 + 's';
+      span.style.fontSize = (0.8 + Math.random() * 0.8) + 'rem';
+      heartsContainer.appendChild(span);
+    }
+  </script>
+</body>
+</html>
