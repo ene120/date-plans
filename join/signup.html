@@ -157,14 +157,14 @@
     .success {
       display: none;
       text-align: center;
-      padding: 2rem 0;
+      padding: 1.5rem 0;
     }
     .success.show {
       display: block;
     }
     .success-icon {
       font-size: 3rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
     .success h2 {
       font-family: 'Playfair Display', serif;
@@ -181,6 +181,71 @@
       font-weight: 300;
       color: rgba(255,255,255,0.7);
       line-height: 1.6;
+    }
+
+    /* Event section */
+    .event-divider {
+      width: 60px;
+      height: 1px;
+      background: rgba(232, 160, 184, 0.3);
+      margin: 1.5rem auto;
+    }
+    .event-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #e8a0b8;
+      margin-bottom: 0.5rem;
+    }
+    .event-desc {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .event-flyer {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 12px;
+      margin: 0 auto 1.2rem;
+      display: block;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .cal-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .cal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cal-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .cal-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    .cal-btn.apple {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .cal-btn.google {
+      background: rgba(232, 160, 184, 0.15);
+      color: #e8a0b8;
+      border: 1px solid rgba(232, 160, 184, 0.25);
     }
 
     .error-msg {
@@ -241,8 +306,34 @@
 
     <div class="success" id="successMsg">
       <div class="success-icon">&#10084;&#65039;</div>
-      <h2>You're In!</h2>
-      <p>We'll text you when DateFlo is ready.<br>Get excited for your next date.</p>
+      <h2>You're on the Waitlist!</h2>
+      <p>We'll reach out soon when DateFlo is ready for you.</p>
+
+      <div class="event-divider"></div>
+
+      <p class="event-heading">Come See DateFlo Live</p>
+      <p class="event-desc">
+        We're hosting the SDSU Blind Date Show &amp; Mixer. Watch our pre-selected contestants go on a blind date live on stage. Whether you're single or taken, this one's for you.
+      </p>
+
+      <img src="event-flyer.png" alt="SDSU Blind Date Show and Mixer hosted by DateFlo" class="event-flyer">
+
+      <p class="event-desc" style="margin-bottom: 0.5rem;">
+        <strong style="color: rgba(255,255,255,0.85);">Saturday, March 21</strong><br>
+        Doors 5:30 PM &bull; Show 6:15 PM<br>
+        5360 West Falls View Dr. &bull; $6 entry
+      </p>
+
+      <div class="cal-buttons">
+        <a class="cal-btn apple" id="appleCal" href="#" download="dateflo-blind-date.ics">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Apple Calendar
+        </a>
+        <a class="cal-btn google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SDSU+Blind+Date+Show+%26+Mixer+%7C+DateFlo&dates=20260321T173000/20260321T213000&details=SDSU+Blind+Date+Show+%26+Mixer+hosted+by+DateFlo%0A%0A%F0%9F%93%8D+5360+West+Falls+View+Dr%2C+San+Diego%2C+CA%0A%F0%9F%95%90+Doors+open+at+5%3A30+PM+%7C+Show+starts+at+6%3A15+PM%0A%F0%9F%92%B0+%246+entry+%28cash+or+Venmo%29%0A%F0%9F%91%94+Dress+Code%3A+Date+Night+Chic%0A%0AWatch+live+blind+dates+happen+on+stage%2C+then+stay+for+the+mixer.+Bring+your+date+or+find+one.+Singles+and+couples+welcome.%0A%0AMocktail+drinks+included.+Hosted+by+SDSU+students%2C+for+SDSU+students.%0A%0AHosted+by+DateFlo&location=5360+West+Falls+View+Dr%2C+San+Diego%2C+CA" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Google Calendar
+        </a>
+      </div>
     </div>
   </div>
 
@@ -299,6 +390,39 @@
         btn.textContent = 'Join the Waitlist';
       }
     });
+
+    // Apple Calendar ICS
+    const icsLines = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'PRODID:-//DateFlo//Event//EN',
+      'BEGIN:VEVENT',
+      'UID:dateflo-blinddate-20260321@dateflo.com',
+      'DTSTART;TZID=America/Los_Angeles:20260321T173000',
+      'DTEND;TZID=America/Los_Angeles:20260321T213000',
+      'SUMMARY:SDSU Blind Date Show & Mixer | DateFlo',
+      'DESCRIPTION:SDSU Blind Date Show & Mixer hosted by DateFlo\\n\\n' +
+        '5360 West Falls View Dr\\, San Diego\\, CA\\n' +
+        'Doors open at 5:30 PM | Show starts at 6:15 PM\\n' +
+        '$6 entry (cash or Venmo)\\n' +
+        'Dress Code: Date Night Chic\\n\\n' +
+        'Watch live blind dates happen on stage\\, then stay for the mixer. ' +
+        'Bring your date or find one. Singles and couples welcome.\\n\\n' +
+        'Mocktail drinks included.\\n\\nHosted by DateFlo',
+      'LOCATION:5360 West Falls View Dr\\, San Diego\\, CA',
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ];
+    const icsContent = icsLines.join('\r\n');
+    const icsUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+    const appleBtn = document.getElementById('appleCal');
+    if (appleBtn) {
+      appleBtn.href = icsUri;
+      appleBtn.setAttribute('download', 'dateflo-blind-date.ics');
+    }
 
     // Floating hearts
     const heartsContainer = document.getElementById('hearts');
