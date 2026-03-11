@@ -84,8 +84,9 @@
     .cd-unit{font-size:clamp(.58rem,1vw,.66rem);letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-top:8px;font-weight:600}
     .cd-sep{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--rose-deep);padding-bottom:22px;font-weight:300}
 
-    /* ── Hero Calendar Buttons ── */
-    .hero-cal{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:clamp(28px,5vh,44px)}
+    /* ── Calendar Buttons ── */
+    .hero-cal{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .option-cal{background:white;border-radius:24px;padding:clamp(24px,4vw,36px);margin-top:clamp(28px,4vw,40px);text-align:center;box-shadow:0 4px 20px rgba(196,69,105,.08)}
     .cal-btn{
       display:inline-flex;align-items:center;gap:8px;
       padding:clamp(12px,2vw,14px) clamp(20px,3.5vw,28px);
@@ -440,16 +441,6 @@
       </div>
     </div>
 
-    <div class="hero-cal">
-      <a class="cal-btn cal-btn-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kavindi%27s+Date+%E2%80%93+DateFlo&dates=20260330T210000Z/20260331T021500Z&details=Your+DateFlo+date+plan.+See+dateflo.com%2Fkavindi+for+full+details.&location=San+Diego%2C+CA" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        Google Calendar
-      </a>
-      <a class="cal-btn cal-btn-apple" id="icalHero" href="#" download="kavindi-date.ics">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Apple Calendar
-      </a>
-    </div>
 
     <div class="chooser">
       <div class="choose-card" onclick="showOption('A')">
@@ -681,6 +672,22 @@
         <label class="cl-item"><input type="checkbox" data-key="A-gas"><span class="cl-box"></span><span class="cl-text"><strong>Gas up the car</strong>. Mira Mesa to OB is about 20 min each way.</span></label>
       </div>
 
+      <!-- Calendar Links -->
+      <div class="option-cal">
+        <h3 class="summary-title">&#128197; Add Plan A to Your Calendar</h3>
+        <p style="text-align:center;color:#999;font-size:.88rem;margin-bottom:14px">Save the Golden Hour plan so you don't forget a thing.</p>
+        <div class="hero-cal">
+          <a class="cal-btn cal-btn-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=DateFlo%3A+Golden+Hour+(OB)&dates=20260330T220000Z/20260331T020700Z&details=Plan+A%3A+Golden+Hour%0A%0A3%3A00+PM+Late+Lunch+at+OB+Noodle+House%0A4%3A30+PM+Gelato+at+An%27s+Dry+Cleaning%0A5%3A05+PM+Stroll+Along+OB+Beach%0A7%3A07+PM+Sunset+at+Sunset+Cliffs%0A%0AFull+details%3A+dateflo.com%2Fkavindi&location=OB+Noodle+House%2C+2218+Cable+St%2C+San+Diego%2C+CA" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Google Calendar
+          </a>
+          <a class="cal-btn cal-btn-apple" id="icalA" href="#" download="kavindi-golden-hour.ics">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Apple Calendar
+          </a>
+        </div>
+      </div>
+
       <!-- Feedback -->
       <div class="feedback" id="fbA">
         <p>How did this plan feel?</p>
@@ -888,6 +895,22 @@
         <label class="cl-item"><input type="checkbox" data-key="B-phone"><span class="cl-box"></span><span class="cl-text"><strong>Charge phones</strong>. Seals, cliffs, sunset. Lots of photo ops.</span></label>
       </div>
 
+      <!-- Calendar Links -->
+      <div class="option-cal">
+        <h3 class="summary-title">&#128197; Add Plan B to Your Calendar</h3>
+        <p style="text-align:center;color:#999;font-size:.88rem;margin-bottom:14px">Save the Coastal Charm plan so you don't forget a thing.</p>
+        <div class="hero-cal">
+          <a class="cal-btn cal-btn-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=DateFlo%3A+Coastal+Charm+(La+Jolla)&dates=20260330T213000Z/20260331T020700Z&details=Plan+B%3A+Coastal+Charm%0A%0A2%3A30+PM+Coast+Walk+Trail+%26+Seal+Watching%0A4%3A00+PM+Late+Lunch+at+King+of+Thai+Cuisine%0A5%3A05+PM+Gelato+at+Bobboi+Natural+Gelato%0A7%3A07+PM+Sunset+at+Scripps+Park%0A%0AFull+details%3A+dateflo.com%2Fkavindi&location=Coast+Walk+Trail%2C+La+Jolla%2C+CA" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Google Calendar
+          </a>
+          <a class="cal-btn cal-btn-apple" id="icalB" href="#" download="kavindi-coastal-charm.ics">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Apple Calendar
+          </a>
+        </div>
+      </div>
+
       <!-- Feedback -->
       <div class="feedback" id="fbB">
         <p>How did this plan feel?</p>
@@ -910,8 +933,9 @@
     function tick(){const d=T-Date.now();if(d<=0){document.getElementById('cd-d').textContent='00';document.getElementById('cd-h').textContent='00';document.getElementById('cd-m').textContent='00';return}document.getElementById('cd-d').textContent=String(Math.floor(d/864e5)).padStart(2,'0');document.getElementById('cd-h').textContent=String(Math.floor(d%864e5/36e5)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(d%36e5/6e4)).padStart(2,'0')}
     tick();setInterval(tick,60000);
 
-    // ── Apple Calendar ICS (Hero) ──
-    document.getElementById('icalHero').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DateFlo//EN','BEGIN:VEVENT','UID:kavindi-date-20260330@dateflo.com','DTSTART;TZID=America/Los_Angeles:20260330T140000','DTEND;TZID=America/Los_Angeles:20260330T193000','SUMMARY:Kavindi\'s Date \u2013 DateFlo','LOCATION:San Diego\\, CA','DESCRIPTION:Your DateFlo date plan. See dateflo.com/kavindi for full details.','STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'].join('\r\n'));
+    // ── Apple Calendar ICS (per option) ──
+    document.getElementById('icalA').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DateFlo//EN','BEGIN:VEVENT','UID:kavindi-planA-20260330@dateflo.com','DTSTART;TZID=America/Los_Angeles:20260330T150000','DTEND;TZID=America/Los_Angeles:20260330T190700','SUMMARY:DateFlo: Golden Hour (OB)','LOCATION:OB Noodle House\\, 2218 Cable St\\, San Diego\\, CA','DESCRIPTION:Plan A: Golden Hour\\n\\n3:00 PM Late Lunch at OB Noodle House\\n4:30 PM Gelato at An\'s Dry Cleaning\\n5:05 PM Stroll Along OB Beach\\n7:07 PM Sunset at Sunset Cliffs\\n\\nFull details: dateflo.com/kavindi','STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'].join('\r\n'));
+    document.getElementById('icalB').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DateFlo//EN','BEGIN:VEVENT','UID:kavindi-planB-20260330@dateflo.com','DTSTART;TZID=America/Los_Angeles:20260330T143000','DTEND;TZID=America/Los_Angeles:20260330T190700','SUMMARY:DateFlo: Coastal Charm (La Jolla)','LOCATION:Coast Walk Trail\\, La Jolla\\, CA','DESCRIPTION:Plan B: Coastal Charm\\n\\n2:30 PM Coast Walk Trail & Seal Watching\\n4:00 PM Late Lunch at King of Thai Cuisine\\n5:05 PM Gelato at Bobboi Natural Gelato\\n7:07 PM Sunset at Scripps Park\\n\\nFull details: dateflo.com/kavindi','STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'].join('\r\n'));
 
     // ── Navigation ──
     function showOption(o){document.getElementById('hero').style.display='none';document.getElementById('option'+o).classList.add('visible');window.scrollTo({top:0,behavior:'smooth'});lucide.createIcons()}
