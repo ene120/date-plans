@@ -356,9 +356,9 @@
     @media(max-width:480px){.food-recs{grid-template-columns:1fr}.food-rec-shared .food-rec-dishes{grid-template-columns:1fr}}
 
     /* ── Stop Comments ── */
-    .stop-comment{margin-top:18px;padding-top:18px;border-top:2px solid #ffe4f1}
-    .stop-comment-label{font-size:clamp(.76rem,1.2vw,.82rem);color:var(--text-muted);margin-bottom:8px;font-weight:500}
-    .sc-who{display:flex;gap:6px;margin-bottom:10px}
+    .stop-fb{margin-top:18px;padding-top:18px;border-top:2px solid #ffe4f1}
+    .stop-fb-label{font-size:clamp(.82rem,1.4vw,.9rem);color:var(--text-dark);margin-bottom:10px;font-weight:600;font-family:'Playfair Display',serif}
+    .sc-who{display:flex;gap:6px;margin-bottom:12px}
     .sc-who-btn{
       padding:6px 14px;border-radius:20px;border:2px solid #ffe4f1;
       background:#fff8fa;color:var(--text-muted);cursor:pointer;
@@ -367,17 +367,40 @@
     }
     .sc-who-btn:hover{border-color:var(--rose);color:var(--rose)}
     .sc-who-btn.active{background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));color:#fff;border-color:transparent}
-    .stop-comment-wrap{display:flex;gap:8px;align-items:flex-start}
-    .stop-comment-ta{
+    /* Quick taps */
+    .qt-row{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+    .qt-item{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .qt-label{font-size:clamp(.74rem,1.2vw,.8rem);color:var(--text-muted);font-weight:600;min-width:110px;display:flex;align-items:center;gap:5px}
+    .qt-opts{display:flex;gap:5px;flex-wrap:wrap}
+    .qt-opt{
+      padding:5px 13px;border-radius:20px;border:2px solid #ffe4f1;
+      background:#fff8fa;color:var(--text-muted);cursor:pointer;
+      font-family:inherit;font-size:clamp(.7rem,1.1vw,.76rem);font-weight:600;
+      transition:all .2s ease;
+    }
+    .qt-opt:hover{border-color:var(--rose);color:var(--rose)}
+    .qt-opt.sel{background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));color:#fff;border-color:transparent}
+    /* Highlight star */
+    .qt-star{
+      padding:5px 14px;border-radius:20px;border:2px solid #fde68a;
+      background:#fffef7;color:#b8860b;cursor:pointer;
+      font-family:inherit;font-size:clamp(.7rem,1.1vw,.76rem);font-weight:600;
+      transition:all .2s ease;display:inline-flex;align-items:center;gap:4px;
+    }
+    .qt-star:hover{border-color:#f59e0b;background:#fef3c7}
+    .qt-star.sel{background:linear-gradient(135deg,#f59e0b,#eab308);color:#fff;border-color:transparent}
+    /* Text + send */
+    .stop-fb-wrap{display:flex;gap:8px;align-items:flex-start}
+    .stop-fb-ta{
       flex:1;padding:10px 14px;
       background:#fff8fa;border:2px solid #ffe4f1;
       border-radius:12px;color:var(--text-dark);font-family:inherit;
       font-size:clamp(.82rem,1.4vw,.88rem);resize:vertical;
       min-height:48px;max-height:120px;outline:none;line-height:1.5;
     }
-    .stop-comment-ta::placeholder{color:#c4a0b2}
-    .stop-comment-ta:focus{border-color:var(--rose)}
-    .stop-comment-btn{
+    .stop-fb-ta::placeholder{color:#c4a0b2}
+    .stop-fb-ta:focus{border-color:var(--rose)}
+    .stop-fb-btn{
       padding:10px 20px;white-space:nowrap;
       background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));
       color:white;border:none;border-radius:12px;font-family:inherit;
@@ -385,9 +408,9 @@
       text-transform:uppercase;cursor:pointer;transition:all .3s ease;
       min-height:44px;box-shadow:0 4px 14px rgba(224,87,128,.3);
     }
-    .stop-comment-btn:hover{box-shadow:0 6px 22px rgba(224,87,128,.45);transform:translateY(-2px)}
-    .stop-comment-btn:disabled{opacity:.4;cursor:default;transform:none!important;box-shadow:none!important}
-    .stop-comment-sent{font-size:clamp(.78rem,1.3vw,.85rem);color:var(--rose);font-weight:600;padding:8px 0;display:none}
+    .stop-fb-btn:hover{box-shadow:0 6px 22px rgba(224,87,128,.45);transform:translateY(-2px)}
+    .stop-fb-btn:disabled{opacity:.4;cursor:default;transform:none!important;box-shadow:none!important}
+    .stop-fb-sent{font-size:clamp(.78rem,1.3vw,.85rem);color:var(--rose);font-weight:600;padding:8px 0;display:none}
 
     /* ── Swap Box ── */
     .swap-box{background:linear-gradient(135deg,#f0f4ff,#e8ecfa);border:2px solid #c4d0f5;border-radius:14px;padding:18px 22px;margin-top:30px}
@@ -623,7 +646,18 @@
           </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~10 min walk to next stop</div>
-        <div class="stop-comment"><div class="stop-comment-label">Yay or nay? Your next date depends on it.</div><div class="sc-who" id="who-A1"><button class="sc-who-btn active" onclick="pickWho('A1','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A1','Partner')">Partner</button></div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A1" placeholder="e.g. More pho forever / Never again..."></textarea><button class="stop-comment-btn" onclick="sendSC('A',1,'OB Noodle House')">Send</button></div><div class="stop-comment-sent" id="sc-A1-ok">&#10003; Sent Thanks!</div></div>
+        <div class="stop-fb" id="sfb-A1">
+          <div class="stop-fb-label">How was this stop?</div>
+          <div class="sc-who" id="who-A1"><button class="sc-who-btn active" onclick="pickWho('A1','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A1','Partner')">Partner</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="A1-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="A1-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A1-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="A1-highlight" onclick="qtStar(this)">This was a highlight</button></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A1" placeholder="Anything else? e.g. The pho was incredible, wish it was less loud..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',1,'OB Noodle House')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-A1-ok">&#10003; Sent, thank you!</div>
+        </div>
       </div>
 
       <!-- Stop 2: An's Dry Cleaning -->
@@ -685,7 +719,18 @@
           </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~5 min walk to next stop</div>
-        <div class="stop-comment"><div class="stop-comment-label">Yay or nay? Your next date depends on it.</div><div class="sc-who" id="who-A2"><button class="sc-who-btn active" onclick="pickWho('A2','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A2','Partner')">Partner</button></div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A2" placeholder="e.g. Obsessed with Bluetooth flavor / Too quirky for us..."></textarea><button class="stop-comment-btn" onclick="sendSC('A',2,'Ans Dry Cleaning')">Send</button></div><div class="stop-comment-sent" id="sc-A2-ok">&#10003; Sent Thanks!</div></div>
+        <div class="stop-fb" id="sfb-A2">
+          <div class="stop-fb-label">How was this stop?</div>
+          <div class="sc-who" id="who-A2"><button class="sc-who-btn active" onclick="pickWho('A2','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A2','Partner')">Partner</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="A2-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="A2-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A2-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="A2-highlight" onclick="qtStar(this)">This was a highlight</button></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A2" placeholder="Anything else? e.g. Obsessed with Bluetooth flavor, or too quirky for us..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',2,'Ans Dry Cleaning')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-A2-ok">&#10003; Sent, thank you!</div>
+        </div>
       </div>
 
       <!-- Stop 3: OB Beach & Seawall -->
@@ -704,7 +749,18 @@
           <p><strong>Free.</strong> No time limit. Just be together.</p>
         </div>
         <div class="transit-tag"><i data-lucide="car" style="width:14px;height:14px"></i> ~5 min drive to Sunset Cliffs (or ~15 min walk along the coast)</div>
-        <div class="stop-comment"><div class="stop-comment-label">Yay or nay? Your next date depends on it.</div><div class="sc-who" id="who-A3"><button class="sc-who-btn active" onclick="pickWho('A3','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A3','Partner')">Partner</button></div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A3" placeholder="e.g. Perfect wind-down / We'd rather just sit somewhere..."></textarea><button class="stop-comment-btn" onclick="sendSC('A',3,'OB Beach')">Send</button></div><div class="stop-comment-sent" id="sc-A3-ok">&#10003; Sent Thanks!</div></div>
+        <div class="stop-fb" id="sfb-A3">
+          <div class="stop-fb-label">How was this stop?</div>
+          <div class="sc-who" id="who-A3"><button class="sc-who-btn active" onclick="pickWho('A3','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A3','Partner')">Partner</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="A3-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="A3-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A3-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="A3-highlight" onclick="qtStar(this)">This was a highlight</button></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A3" placeholder="Anything else? e.g. Perfect wind-down, or we'd rather just sit somewhere..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',3,'OB Beach')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-A3-ok">&#10003; Sent, thank you!</div>
+        </div>
       </div>
 
       <!-- Stop 4: Sunset Cliffs -->
@@ -726,7 +782,18 @@
           <p><strong>You might want:</strong> A blanket or towel to sit on, and a jacket for the ocean breeze.</p>
           <p><strong>Parking:</strong> Free dirt lots off Ladera St and Cornish Dr. Also free street parking along Sunset Cliffs Blvd. Spots tend to fill up closer to sunset, so arriving before 6 PM is a good idea.</p>
         </div>
-        <div class="stop-comment"><div class="stop-comment-label">Yay or nay? Your next date depends on it.</div><div class="sc-who" id="who-A4"><button class="sc-who-btn active" onclick="pickWho('A4','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A4','Partner')">Partner</button></div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-A4" placeholder="e.g. We cried it was so pretty / Too windy, need a rooftop..."></textarea><button class="stop-comment-btn" onclick="sendSC('A',4,'Sunset Cliffs')">Send</button></div><div class="stop-comment-sent" id="sc-A4-ok">&#10003; Sent Thanks!</div></div>
+        <div class="stop-fb" id="sfb-A4">
+          <div class="stop-fb-label">How was this stop?</div>
+          <div class="sc-who" id="who-A4"><button class="sc-who-btn active" onclick="pickWho('A4','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A4','Partner')">Partner</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="A4-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="A4-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A4-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="A4-highlight" onclick="qtStar(this)">This was a highlight</button></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A4" placeholder="Anything else? e.g. We cried it was so pretty, or too windy next time..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',4,'Sunset Cliffs')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-A4-ok">&#10003; Sent, thank you!</div>
+        </div>
       </div>
 
       <!-- Swap -->
@@ -836,7 +903,18 @@
           <p><strong>Free.</strong> No ticket, no time limit. Just show up and enjoy it together.</p>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~10 min stroll through La Jolla Village to the restaurant</div>
-        <div class="stop-comment"><div class="stop-comment-label">Yay or nay? Your next date depends on it.</div><div class="sc-who" id="who-B1"><button class="sc-who-btn active" onclick="pickWho('B1','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B1','Partner')">Partner</button></div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B1" placeholder="e.g. The sea lions stole the show / Too much walking..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',1,'Coast Walk Trail')">Send</button></div><div class="stop-comment-sent" id="sc-B1-ok">&#10003; Sent Thanks!</div></div>
+        <div class="stop-fb" id="sfb-B1">
+          <div class="stop-fb-label">How was this stop?</div>
+          <div class="sc-who" id="who-B1"><button class="sc-who-btn active" onclick="pickWho('B1','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B1','Partner')">Partner</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="B1-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="B1-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="B1-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="B1-highlight" onclick="qtStar(this)">This was a highlight</button></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-B1" placeholder="Anything else? e.g. The sea lions stole the show, or too much walking..."></textarea><button class="stop-fb-btn" onclick="sendSC('B',1,'Coast Walk Trail')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-B1-ok">&#10003; Sent, thank you!</div>
+        </div>
       </div>
 
       <!-- Stop 2: King of Thai -->
@@ -900,7 +978,18 @@
           </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~2 min walk to next stop (same street)</div>
-        <div class="stop-comment"><div class="stop-comment-label">Yay or nay? Your next date depends on it.</div><div class="sc-who" id="who-B2"><button class="sc-who-btn active" onclick="pickWho('B2','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B2','Partner')">Partner</button></div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B2" placeholder="e.g. Curry was unreal / We'd prefer sushi next time..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',2,'King of Thai')">Send</button></div><div class="stop-comment-sent" id="sc-B2-ok">&#10003; Sent Thanks!</div></div>
+        <div class="stop-fb" id="sfb-B2">
+          <div class="stop-fb-label">How was this stop?</div>
+          <div class="sc-who" id="who-B2"><button class="sc-who-btn active" onclick="pickWho('B2','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B2','Partner')">Partner</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="B2-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="B2-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="B2-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="B2-highlight" onclick="qtStar(this)">This was a highlight</button></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-B2" placeholder="Anything else? e.g. The curry was unreal, or we'd prefer sushi next time..."></textarea><button class="stop-fb-btn" onclick="sendSC('B',2,'King of Thai')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-B2-ok">&#10003; Sent, thank you!</div>
+        </div>
       </div>
 
       <!-- Stop 3: Bobboi Gelato -->
@@ -958,7 +1047,18 @@
           </div>
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~8 min walk to sunset spot</div>
-        <div class="stop-comment"><div class="stop-comment-label">Yay or nay? Your next date depends on it.</div><div class="sc-who" id="who-B3"><button class="sc-who-btn active" onclick="pickWho('B3','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B3','Partner')">Partner</button></div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B3" placeholder="e.g. Life-changing pistachio / We're more of a coffee couple..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',3,'Bobboi Gelato')">Send</button></div><div class="stop-comment-sent" id="sc-B3-ok">&#10003; Sent Thanks!</div></div>
+        <div class="stop-fb" id="sfb-B3">
+          <div class="stop-fb-label">How was this stop?</div>
+          <div class="sc-who" id="who-B3"><button class="sc-who-btn active" onclick="pickWho('B3','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B3','Partner')">Partner</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="B3-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="B3-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="B3-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="B3-highlight" onclick="qtStar(this)">This was a highlight</button></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-B3" placeholder="Anything else? e.g. Life-changing pistachio, or we're more of a coffee couple..."></textarea><button class="stop-fb-btn" onclick="sendSC('B',3,'Bobboi Gelato')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-B3-ok">&#10003; Sent, thank you!</div>
+        </div>
       </div>
 
       <!-- Stop 4: Scripps Park Sunset -->
@@ -976,7 +1076,18 @@
           <p>Everything before this was building to this moment. A 5.6-acre park on rocky bluffs right next to La Jolla Cove. The grass is perfect for settling in with gelato and watching the sky light up together. The green belvedere huts are great for photos. You have almost two hours here with no rush and no agenda.</p>
           <p><strong>Free.</strong> Ocean sounds, open space, and nowhere you need to be.</p>
         </div>
-        <div class="stop-comment"><div class="stop-comment-label">Yay or nay? Your next date depends on it.</div><div class="sc-who" id="who-B4"><button class="sc-who-btn active" onclick="pickWho('B4','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B4','Partner')">Partner</button></div><div class="stop-comment-wrap"><textarea class="stop-comment-ta" id="sc-B4" placeholder="e.g. Never wanted to leave / We'd love live music next time..."></textarea><button class="stop-comment-btn" onclick="sendSC('B',4,'Scripps Park')">Send</button></div><div class="stop-comment-sent" id="sc-B4-ok">&#10003; Sent Thanks!</div></div>
+        <div class="stop-fb" id="sfb-B4">
+          <div class="stop-fb-label">How was this stop?</div>
+          <div class="sc-who" id="who-B4"><button class="sc-who-btn active" onclick="pickWho('B4','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B4','Partner')">Partner</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="B4-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="B4-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="B4-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="B4-highlight" onclick="qtStar(this)">This was a highlight</button></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-B4" placeholder="Anything else? e.g. Never wanted to leave, or we'd love live music next time..."></textarea><button class="stop-fb-btn" onclick="sendSC('B',4,'Scripps Park')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-B4-ok">&#10003; Sent, thank you!</div>
+        </div>
       </div>
 
       <!-- Swap -->
@@ -1110,20 +1221,52 @@
       });
     }
 
-    // ── Per-Stop Comments ──
+    // ── Quick Tap Picks ──
+    const qtState={};
+    function qtPick(btn){
+      const row=btn.parentElement;
+      const key=row.dataset.key;
+      row.querySelectorAll('.qt-opt').forEach(b=>b.classList.remove('sel'));
+      btn.classList.add('sel');
+      qtState[key]=btn.textContent;
+    }
+    function qtStar(btn){
+      const key=btn.dataset.key;
+      btn.classList.toggle('sel');
+      qtState[key]=btn.classList.contains('sel')?'Yes':'';
+    }
+
+    // ── Per-Stop Feedback ──
     function sendSC(plan,stopNum,stopName){
       const key=plan+stopNum;
       const who=whoState[key]||COUPLE.partner1;
       const ta=document.getElementById('sc-'+key);
       const ok=document.getElementById('sc-'+key+'-ok');
-      const btn=ta.parentElement.querySelector('.stop-comment-btn');
-      if(!ta.value.trim()){ta.focus();ta.style.borderColor='var(--rose)';setTimeout(()=>ta.style.borderColor='',1500);return}
+      const btn=ta.parentElement.querySelector('.stop-fb-btn');
+      // Collect quick taps for this stop
+      var taps=[];
+      document.querySelectorAll('#sfb-'+key+' [data-key]').forEach(function(el){
+        var k=el.dataset.key;
+        if(qtState[k]){
+          var label=k.split('-')[1];
+          taps.push(label+':'+qtState[k]);
+        }
+      });
+      var tapStr=taps.join(' | ');
+      var comment=ta.value.trim();
+      // Need at least one tap or a comment
+      if(!tapStr&&!comment){ta.focus();ta.style.borderColor='var(--rose)';setTimeout(()=>ta.style.borderColor='',1500);return}
       btn.disabled=true;btn.textContent='Sending...';
+      var partnerComment=who+': '+(comment||'(quick taps only)');
       fetch('https://script.google.com/macros/s/AKfycbw5GJ2LLzgISeGlgxD25pbxwno6WEdspfl79NGNGlWJahqMPy7FjrntgjlGemdejGOQbw/exec',{
         method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({coupleId:COUPLE.id,couple:COUPLE.partner1+' & '+COUPLE.partner2,dateEvent:COUPLE.dateEvent,type:'stop-comment',plan:plan==='A'?'Golden Hour':'Coastal Charm',stop:stopNum+'. '+stopName,partnerComment:who+': '+ta.value.trim(),rating:'',notes:'',planUrl:location.href})
+        body:JSON.stringify({coupleId:COUPLE.id,couple:COUPLE.partner1+' & '+COUPLE.partner2,dateEvent:COUPLE.dateEvent,type:'stop-feedback',plan:plan==='A'?'Golden Hour':'Coastal Charm',stop:stopNum+'. '+stopName,partnerComment:partnerComment,rating:'',notes:tapStr,planUrl:location.href})
       });
-      ta.style.display='none';btn.style.display='none';ok.style.display='block';
+      // Hide form, show confirmation
+      var fb=document.getElementById('sfb-'+key);
+      fb.querySelector('.qt-row').style.display='none';
+      fb.querySelector('.stop-fb-wrap').style.display='none';
+      ok.style.display='block';
     }
 
     // ── Overall Feedback ──
