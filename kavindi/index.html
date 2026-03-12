@@ -319,7 +319,15 @@
     /* Photos panel */
     .info-panel-photos{background:#fafafa;border:1px solid #f0e8ec;padding:8px}
     .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-    .photo-grid img{width:100%;border-radius:12px;display:block;object-fit:cover;aspect-ratio:4/3}
+    .photo-grid img{width:100%;border-radius:12px;display:block;object-fit:cover;aspect-ratio:4/3;cursor:pointer;transition:transform .2s ease}
+    .photo-grid img:hover{transform:scale(1.02)}
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+    .lightbox.active{opacity:1;visibility:visible}
+    .lightbox img{max-width:92vw;max-height:88vh;border-radius:14px;object-fit:contain;transform:scale(.92);transition:transform .3s ease;box-shadow:0 12px 48px rgba(0,0,0,.4)}
+    .lightbox.active img{transform:scale(1)}
+    .lightbox-close{position:absolute;top:16px;right:20px;color:#fff;font-size:32px;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.12);transition:background .2s}
+    .lightbox-close:hover{background:rgba(255,255,255,.25)}
 
     /* HH panel */
     .info-panel-hh{background:linear-gradient(135deg,#fef9ee,#fef3c7);border:2px solid #fde68a;padding:clamp(14px,2.5vw,18px) clamp(16px,3vw,22px)}
@@ -1033,7 +1041,30 @@
     </div>
   </div>
 
+  <!-- Lightbox overlay -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
   <script>
+    // ── Lightbox ──
+    function openLightbox(img){
+      var lb=document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src=img.src;
+      document.getElementById('lightbox-img').alt=img.alt;
+      lb.classList.add('active');
+      document.body.style.overflow='hidden';
+    }
+    function closeLightbox(){
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow='';
+    }
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox()});
+    document.querySelectorAll('.photo-grid img').forEach(function(img){
+      img.addEventListener('click',function(){openLightbox(this)});
+    });
+
     // ── Floating Hearts ──
     (function(){const c=document.getElementById('heartsBg');const h=['\u{1F495}','\u{1F497}','\u{1F496}','\u{1FA77}','\u2661','\u2764\uFE0F','\u{1F498}'];for(let i=0;i<18;i++){const s=document.createElement('span');s.className='heart-float';s.textContent=h[i%h.length];s.style.left=Math.random()*100+'%';s.style.animationDuration=(10+Math.random()*14)+'s';s.style.animationDelay=Math.random()*12+'s';s.style.fontSize=(.9+Math.random()*.8)+'rem';c.appendChild(s)}})();
 
