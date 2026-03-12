@@ -380,15 +380,6 @@
     }
     .qt-opt:hover{border-color:var(--rose);color:var(--rose)}
     .qt-opt.sel{background:linear-gradient(135deg,var(--rose-glow),var(--rose-deep));color:#fff;border-color:transparent}
-    /* Highlight star */
-    .qt-star{
-      padding:5px 14px;border-radius:20px;border:2px solid #fde68a;
-      background:#fffef7;color:#b8860b;cursor:pointer;
-      font-family:inherit;font-size:clamp(.7rem,1.1vw,.76rem);font-weight:600;
-      transition:all .2s ease;display:inline-flex;align-items:center;gap:4px;
-    }
-    .qt-star:hover{border-color:#f59e0b;background:#fef3c7}
-    .qt-star.sel{background:linear-gradient(135deg,#f59e0b,#eab308);color:#fff;border-color:transparent}
     /* Text + send */
     .stop-fb-wrap{display:flex;gap:8px;align-items:flex-start}
     .stop-fb-ta{
@@ -651,9 +642,7 @@
           <div class="sc-who" id="who-A1"><button class="sc-who-btn active" onclick="pickWho('A1','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A1','Partner')">Partner</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="A1-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="A1-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
             <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A1-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="A1-highlight" onclick="qtStar(this)">This was a highlight</button></div>
           </div>
           <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A1" placeholder="Anything else? e.g. The pho was incredible, wish it was less loud..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',1,'OB Noodle House')">Send</button></div>
           <div class="stop-fb-sent" id="sc-A1-ok">&#10003; Sent, thank you!</div>
@@ -724,9 +713,7 @@
           <div class="sc-who" id="who-A2"><button class="sc-who-btn active" onclick="pickWho('A2','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A2','Partner')">Partner</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="A2-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="A2-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
             <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A2-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="A2-highlight" onclick="qtStar(this)">This was a highlight</button></div>
           </div>
           <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A2" placeholder="Anything else? e.g. Obsessed with Bluetooth flavor, or too quirky for us..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',2,'Ans Dry Cleaning')">Send</button></div>
           <div class="stop-fb-sent" id="sc-A2-ok">&#10003; Sent, thank you!</div>
@@ -754,9 +741,7 @@
           <div class="sc-who" id="who-A3"><button class="sc-who-btn active" onclick="pickWho('A3','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A3','Partner')">Partner</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="A3-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="A3-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
             <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A3-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="A3-highlight" onclick="qtStar(this)">This was a highlight</button></div>
           </div>
           <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A3" placeholder="Anything else? e.g. Perfect wind-down, or we'd rather just sit somewhere..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',3,'OB Beach')">Send</button></div>
           <div class="stop-fb-sent" id="sc-A3-ok">&#10003; Sent, thank you!</div>
@@ -787,9 +772,7 @@
           <div class="sc-who" id="who-A4"><button class="sc-who-btn active" onclick="pickWho('A4','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('A4','Partner')">Partner</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="A4-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="A4-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
             <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A4-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="A4-highlight" onclick="qtStar(this)">This was a highlight</button></div>
           </div>
           <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A4" placeholder="Anything else? e.g. We cried it was so pretty, or too windy next time..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',4,'Sunset Cliffs')">Send</button></div>
           <div class="stop-fb-sent" id="sc-A4-ok">&#10003; Sent, thank you!</div>
@@ -908,9 +891,7 @@
           <div class="sc-who" id="who-B1"><button class="sc-who-btn active" onclick="pickWho('B1','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B1','Partner')">Partner</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="B1-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="B1-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
             <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="B1-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="B1-highlight" onclick="qtStar(this)">This was a highlight</button></div>
           </div>
           <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-B1" placeholder="Anything else? e.g. The sea lions stole the show, or too much walking..."></textarea><button class="stop-fb-btn" onclick="sendSC('B',1,'Coast Walk Trail')">Send</button></div>
           <div class="stop-fb-sent" id="sc-B1-ok">&#10003; Sent, thank you!</div>
@@ -983,9 +964,7 @@
           <div class="sc-who" id="who-B2"><button class="sc-who-btn active" onclick="pickWho('B2','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B2','Partner')">Partner</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="B2-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="B2-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
             <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="B2-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="B2-highlight" onclick="qtStar(this)">This was a highlight</button></div>
           </div>
           <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-B2" placeholder="Anything else? e.g. The curry was unreal, or we'd prefer sushi next time..."></textarea><button class="stop-fb-btn" onclick="sendSC('B',2,'King of Thai')">Send</button></div>
           <div class="stop-fb-sent" id="sc-B2-ok">&#10003; Sent, thank you!</div>
@@ -1052,9 +1031,7 @@
           <div class="sc-who" id="who-B3"><button class="sc-who-btn active" onclick="pickWho('B3','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B3','Partner')">Partner</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="B3-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="B3-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
             <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="B3-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="B3-highlight" onclick="qtStar(this)">This was a highlight</button></div>
           </div>
           <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-B3" placeholder="Anything else? e.g. Life-changing pistachio, or we're more of a coffee couple..."></textarea><button class="stop-fb-btn" onclick="sendSC('B',3,'Bobboi Gelato')">Send</button></div>
           <div class="stop-fb-sent" id="sc-B3-ok">&#10003; Sent, thank you!</div>
@@ -1081,9 +1058,7 @@
           <div class="sc-who" id="who-B4"><button class="sc-who-btn active" onclick="pickWho('B4','Kavindi')">Kavindi</button><button class="sc-who-btn" onclick="pickWho('B4','Partner')">Partner</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="B4-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#10024; Vibe</span><div class="qt-opts" data-key="B4-vibe"><button class="qt-opt" onclick="qtPick(this)">Too chill</button><button class="qt-opt" onclick="qtPick(this)">Just right</button><button class="qt-opt" onclick="qtPick(this)">Too much</button></div></div>
             <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="B4-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
-            <div class="qt-item"><span class="qt-label">&#11088; Highlight</span><button class="qt-star" data-key="B4-highlight" onclick="qtStar(this)">This was a highlight</button></div>
           </div>
           <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-B4" placeholder="Anything else? e.g. Never wanted to leave, or we'd love live music next time..."></textarea><button class="stop-fb-btn" onclick="sendSC('B',4,'Scripps Park')">Send</button></div>
           <div class="stop-fb-sent" id="sc-B4-ok">&#10003; Sent, thank you!</div>
@@ -1230,11 +1205,7 @@
       btn.classList.add('sel');
       qtState[key]=btn.textContent;
     }
-    function qtStar(btn){
-      const key=btn.dataset.key;
-      btn.classList.toggle('sel');
-      qtState[key]=btn.classList.contains('sel')?'Yes':'';
-    }
+
 
     // ── Per-Stop Feedback ──
     function sendSC(plan,stopNum,stopName){
