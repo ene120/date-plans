@@ -258,13 +258,28 @@
       .transport-corner{position:relative;top:auto;right:auto;margin-bottom:14px;flex-direction:row;flex-wrap:wrap;gap:8px;align-items:flex-start}
       .tc-group+.tc-group{border-top:none;padding-top:0;border-left:1px solid #ffe4f1;padding-left:8px}
     }
+    .tc-headsup{
+      display:flex;align-items:center;gap:4px;
+      background:linear-gradient(135deg,#fff8e1,#fff3cd);
+      border:1.5px solid #ffe082;border-radius:8px;
+      padding:5px 10px;margin-top:4px;cursor:pointer;
+      font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;
+      color:#8d6e00;text-transform:uppercase;letter-spacing:.06em;
+      transition:all .25s ease;
+    }
+    .tc-headsup:hover{background:#fff3cd}
+    .tc-headsup .arrow{transition:transform .25s ease;font-size:.55rem}
+    .tc-headsup.open .arrow{transform:rotate(180deg)}
     .event-note{
       background:linear-gradient(135deg,#fff8e1,#fff3cd);
       border:1.5px solid #ffe082;border-radius:10px;
-      padding:8px 12px;margin-top:8px;
+      padding:0;margin-top:8px;max-height:0;overflow:hidden;
       font-size:clamp(.68rem,1.05vw,.74rem);color:#8d6e00;
       line-height:1.5;font-weight:500;
+      transition:max-height .35s ease,padding .35s ease;
+      position:relative;z-index:3;clear:both;
     }
+    .event-note.open{max-height:200px;padding:8px 12px}
     .event-note::before{content:'\26A0\FE0F ';font-size:.72rem}
     .btn svg,.btn i{width:14px;height:14px}
     .vibe-box{background:#fff8fa;border-left:4px solid var(--rose);padding:clamp(10px,1.8vw,13px) clamp(14px,2.2vw,18px);margin:16px 0;border-radius:0 12px 12px 0;font-style:italic;color:var(--rose-deep);font-size:clamp(.82rem,1.4vw,.88rem);font-weight:500}
@@ -496,8 +511,9 @@
             <a href="https://www.google.com/maps/place/Inspiration+Point+Parking+Lot,+San+Diego,+CA+92101" target="_blank" class="tc-btn tc-free">Free</a>
             <a href="https://www.google.com/maps/place/Alcazar+Parking+Lot,+San+Diego,+CA+92101" target="_blank" class="tc-btn tc-paid">Paid $10</a>
           </div></div>
-          <div class="event-note">St. Patrick&rsquo;s Day Festival is in the park today &mdash; the gardens you&rsquo;re visiting are away from the festival zone, but parking fills faster. Arrive by 3:45 PM or use the Alcazar Lot ($10/4hrs) for a guaranteed spot.</div>
+          <div class="tc-headsup" onclick="this.classList.toggle('open');this.closest('.stop').querySelector('.event-note').classList.toggle('open')">&#9888;&#65039; Heads Up <span class="arrow">&#9660;</span></div>
         </div>
+        <div class="event-note">St. Patrick&rsquo;s Day Festival is in the park today &mdash; the gardens you&rsquo;re visiting are away from the festival zone, but parking fills faster. Arrive by 3:45 PM or use the Alcazar Lot ($10/4hrs) for a guaranteed spot.</div>
         <div class="stop-header">
           <h3 class="stop-title">Romantic Stroll at Balboa Park</h3>
         </div>
