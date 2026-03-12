@@ -270,13 +270,36 @@
     @media(max-width:480px){.hh-deals{grid-template-columns:1fr}}
 
     /* ── Review Ratings Dropdown ── */
-    .review-dropdown{margin:16px 0;border-radius:14px;background:linear-gradient(135deg,#fffef7,#fdf8e8);border:2px solid #f0e6c0;box-shadow:0 2px 10px rgba(180,160,80,.08);overflow:hidden}
-    .review-dropdown summary{display:flex;align-items:center;gap:8px;padding:clamp(12px,2vw,16px) clamp(16px,3vw,22px);cursor:pointer;list-style:none;font-size:clamp(.78rem,1.3vw,.84rem);font-weight:600;color:var(--text-dark)}
-    .review-dropdown summary::-webkit-details-marker{display:none}
-    .review-dropdown summary::before{content:'';display:inline-block;width:8px;height:8px;border-right:2px solid #b8a060;border-bottom:2px solid #b8a060;transform:rotate(-45deg);transition:transform .2s ease;flex-shrink:0}
-    .review-dropdown[open] summary::before{transform:rotate(45deg)}
-    .review-dropdown .hh-box{padding:0 clamp(16px,3vw,22px) clamp(14px,2.5vw,18px);border-top:1px solid #f0e6c0}
-    .review-box{display:flex;gap:clamp(12px,2.5vw,20px);flex-wrap:wrap;padding:0 clamp(16px,3vw,22px) clamp(14px,2.5vw,18px)}
+    /* ── Info Buttons Row ── */
+    .info-btns{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .info-btn{
+      display:inline-flex;align-items:center;gap:7px;
+      border:2px solid;border-radius:12px;padding:9px 18px;cursor:pointer;
+      font-family:'Montserrat',sans-serif;font-size:clamp(.78rem,1.3vw,.84rem);
+      font-weight:600;transition:all .25s ease;background:transparent;
+    }
+    .info-btn .chev{transition:transform .3s ease;display:inline-block;font-size:.6em}
+    .info-btn.open .chev{transform:rotate(180deg)}
+    .info-btn:hover{transform:translateY(-1px)}
+    /* Reviews (gold) */
+    .info-btn-reviews{color:#b8860b;border-color:#f0e6c0;background:linear-gradient(135deg,#fffef7,#fdf8e8)}
+    .info-btn-reviews:hover{box-shadow:0 4px 14px rgba(184,134,11,.12)}
+    /* Photos (rose for A, blue for B) */
+    .info-btn-photos{color:var(--rose-deep);border-color:#ffe4f1;background:linear-gradient(135deg,#fff8fa,#fff0f5)}
+    .info-btn-photos:hover{box-shadow:0 4px 14px rgba(224,87,128,.12)}
+    .info-btn-photos-b{color:#4a70c7;border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)}
+    .info-btn-photos-b:hover{box-shadow:0 4px 14px rgba(91,134,229,.12)}
+    /* Happy Hour (amber) */
+    .info-btn-hh{color:#b45309;border-color:#fde68a;background:linear-gradient(135deg,#fef9ee,#fef3c7)}
+    .info-btn-hh:hover{box-shadow:0 4px 14px rgba(245,158,11,.12)}
+
+    /* ── Dropdown Panels ── */
+    .info-panel{display:none;border-radius:14px;overflow:hidden;margin-top:8px}
+    .info-panel.show{display:block}
+
+    /* Reviews panel */
+    .info-panel-reviews{background:linear-gradient(135deg,#fffef7,#fdf8e8);border:2px solid #f0e6c0;padding:clamp(14px,2.5vw,18px) clamp(16px,3vw,22px)}
+    .review-box{display:flex;gap:clamp(12px,2.5vw,20px);flex-wrap:wrap}
     .review-badge{display:flex;align-items:center;gap:10px;flex:1;min-width:140px}
     .review-logo{width:22px;height:22px;border-radius:4px}
     .review-stars{color:#f59e0b;font-size:clamp(.8rem,1.3vw,.88rem);letter-spacing:1px}
@@ -286,32 +309,13 @@
     a.review-badge{text-decoration:none;color:inherit;transition:transform .2s ease,box-shadow .2s ease;border-radius:10px;padding:6px 10px;margin:-6px -10px}
     a.review-badge:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(180,160,80,.15);background:rgba(255,255,240,.5)}
 
-    /* ── Photo Dropdown ── */
-    .photo-section{margin:16px 0}
-    .photo-toggle{
-      display:inline-flex;align-items:center;gap:8px;
-      background:linear-gradient(135deg,#fff8fa,#fff0f5);border:2px solid #ffe4f1;
-      border-radius:12px;padding:10px 20px;cursor:pointer;
-      font-family:'Montserrat',sans-serif;font-size:clamp(.82rem,1.4vw,.88rem);
-      font-weight:600;color:var(--rose-deep);transition:all .25s ease;
-    }
-    .photo-toggle:hover{background:#fff0f5;box-shadow:0 4px 14px rgba(224,87,128,.12)}
-    .photo-toggle .chev{transition:transform .3s ease;display:inline-block;font-size:.7em}
-    .photo-toggle.open .chev{transform:rotate(180deg)}
-    .photo-content{margin-top:12px;border-radius:16px;overflow:hidden;background:#fafafa;border:1px solid #f0e8ec}
-    .photo-tabs{display:flex;border-bottom:2px solid #ffe4f1;background:#fff8fa}
-    .photo-tab{
-      flex:1;padding:10px;text-align:center;cursor:pointer;
-      font-family:'Montserrat',sans-serif;font-size:clamp(.74rem,1.2vw,.82rem);
-      font-weight:600;color:var(--text-muted);background:transparent;border:none;
-      transition:all .2s ease;border-bottom:3px solid transparent;
-    }
-    .photo-tab.active{color:var(--rose-deep);border-bottom-color:var(--rose);background:#fff0f5}
-    .photo-tab:hover:not(.active){background:#fff0f5;color:var(--rose)}
-    .photo-tab-b{border-bottom-color:#5b86e5!important;color:#4a70c7!important;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)!important}
-    .photo-tab-bh:hover:not(.active){background:#f0f4ff!important;color:#5b86e5!important}
-    .photo-img{padding:8px}
-    .photo-img img{width:100%;border-radius:12px;display:block;object-fit:cover;max-height:400px}
+    /* Photos panel */
+    .info-panel-photos{background:#fafafa;border:1px solid #f0e8ec;padding:8px}
+    .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .photo-grid img{width:100%;border-radius:12px;display:block;object-fit:cover;aspect-ratio:4/3}
+
+    /* HH panel */
+    .info-panel-hh{background:linear-gradient(135deg,#fef9ee,#fef3c7);border:2px solid #fde68a;padding:clamp(14px,2.5vw,18px) clamp(16px,3vw,22px)}
 
     .description{margin:20px 0}
     .description p{color:var(--text-muted);font-size:clamp(.86rem,1.5vw,.93rem);line-height:1.85;margin-bottom:12px}
@@ -547,37 +551,35 @@
           <a href="tel:6194506868" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
           <a href="https://obnoodlehouse.com/menu-ob-noodle-house/" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
         </div>
-        <details class="review-dropdown">
-          <summary>Reviews &amp; Happy Hour</summary>
+        <div class="info-btns">
+          <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelA1r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-photos" onclick="togglePanel(this,'panelA1p')"><i data-lucide="camera" style="width:14px;height:14px"></i> Photos <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-hh" onclick="togglePanel(this,'panelA1h')"><i data-lucide="beer" style="width:14px;height:14px"></i> Happy Hour <span class="chev">&#9660;</span></button>
+        </div>
+        <div class="info-panel info-panel-reviews" id="panelA1r">
           <div class="review-box">
             <a class="review-badge" href="https://www.google.com/maps/search/OB+Noodle+House+2218+Cable+St+San+Diego+CA+92107" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="Google"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="review-rating">4.6</span></div><div class="review-count">607 reviews</div></div></a>
             <a class="review-badge" href="https://www.yelp.com/biz/ob-noodle-house-bar-san-diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="review-rating">4.1</span></div><div class="review-count">4,474 reviews</div></div></a>
           </div>
-          <div class="hh-box">
-            <div class="hh-header"><span class="hh-icon">&#127866;</span><span class="hh-label">Happy Hour</span></div>
-            <div class="hh-window">3:00 to 6:00 PM</div>
-            <div class="hh-note" style="font-size:clamp(.74rem,1.2vw,.8rem);color:#92400e;margin-bottom:12px;font-style:italic">No food specials on Mondays, but we made sure the drink deals are worth it.</div>
-            <div class="hh-deals">
-              <div class="hh-deal"><span class="hh-deal-tag">50% off</span><span class="hh-deal-text">Most beers</span></div>
-              <div class="hh-deal"><span class="hh-deal-tag">50% off</span><span class="hh-deal-text">Most whiskeys</span></div>
-              <div class="hh-deal"><span class="hh-deal-tag">50% off</span><span class="hh-deal-text">Hot sake</span></div>
-              <div class="hh-deal"><span class="hh-deal-tag">$4</span><span class="hh-deal-text">Well drinks</span></div>
-              <div class="hh-deal"><span class="hh-deal-tag">$8</span><span class="hh-deal-text">House-infused sake carafe</span></div>
-              <div class="hh-deal"><span class="hh-deal-tag">$1</span><span class="hh-deal-text">Beers (2 to 5 PM with food)</span></div>
-            </div>
+        </div>
+        <div class="info-panel info-panel-photos" id="panelA1p">
+          <div class="photo-grid">
+            <img src="img/ob-noodle-food.jpg" alt="OB Noodle House" loading="lazy">
+            <img src="img/ob-noodle-interior.jpg" alt="OB Noodle House" loading="lazy">
+            <img src="img/ob-noodle-exterior.jpg" alt="OB Noodle House" loading="lazy">
           </div>
-        </details>
-        <div class="photo-section">
-          <button class="photo-toggle" onclick="togglePhotos(this)"><i data-lucide="camera" style="width:16px;height:16px"></i> See Photos <span class="chev">&#9660;</span></button>
-          <div class="photo-content" style="display:none">
-            <div class="photo-tabs">
-              <button class="photo-tab active" onclick="showTab(this,'food')">Food</button>
-              <button class="photo-tab" onclick="showTab(this,'interior')">Interior</button>
-              <button class="photo-tab" onclick="showTab(this,'exterior')">Exterior</button>
-            </div>
-            <div class="photo-img" data-cat="food"><img src="img/ob-noodle-food.jpg" alt="Food at OB Noodle House" loading="lazy"></div>
-            <div class="photo-img" data-cat="interior" style="display:none"><img src="img/ob-noodle-interior.jpg" alt="Inside OB Noodle House" loading="lazy"></div>
-            <div class="photo-img" data-cat="exterior" style="display:none"><img src="img/ob-noodle-exterior.jpg" alt="OB Noodle House exterior" loading="lazy"></div>
+        </div>
+        <div class="info-panel info-panel-hh" id="panelA1h">
+          <div class="hh-header"><span class="hh-icon">&#127866;</span><span class="hh-label">Happy Hour</span></div>
+          <div class="hh-window">3:00 to 6:00 PM</div>
+          <div class="hh-note" style="font-size:clamp(.74rem,1.2vw,.8rem);color:#92400e;margin-bottom:12px;font-style:italic">No food specials on Mondays, but we made sure the drink deals are worth it.</div>
+          <div class="hh-deals">
+            <div class="hh-deal"><span class="hh-deal-tag">50% off</span><span class="hh-deal-text">Most beers</span></div>
+            <div class="hh-deal"><span class="hh-deal-tag">50% off</span><span class="hh-deal-text">Most whiskeys</span></div>
+            <div class="hh-deal"><span class="hh-deal-tag">50% off</span><span class="hh-deal-text">Hot sake</span></div>
+            <div class="hh-deal"><span class="hh-deal-tag">$4</span><span class="hh-deal-text">Well drinks</span></div>
+            <div class="hh-deal"><span class="hh-deal-tag">$8</span><span class="hh-deal-text">House-infused sake carafe</span></div>
+            <div class="hh-deal"><span class="hh-deal-tag">$1</span><span class="hh-deal-text">Beers (2 to 5 PM with food)</span></div>
           </div>
         </div>
         <div class="description">
@@ -624,24 +626,21 @@
           <a href="https://maps.apple.com/?q=An's+Dry+Cleaning&address=1861+Bacon+St,+San+Diego,+CA+92107" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
           <a href="tel:6193105028" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
         </div>
-        <details class="review-dropdown">
-          <summary>Reviews</summary>
+        <div class="info-btns">
+          <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelA2r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-photos" onclick="togglePanel(this,'panelA2p')"><i data-lucide="camera" style="width:14px;height:14px"></i> Photos <span class="chev">&#9660;</span></button>
+        </div>
+        <div class="info-panel info-panel-reviews" id="panelA2r">
           <div class="review-box">
             <a class="review-badge" href="https://www.google.com/maps/search/An's+Electronics+Repair+1861+Bacon+St+Ocean+Beach+San+Diego+CA" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="Google"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">4.8</span></div><div class="review-count">204 reviews</div></div></a>
             <a class="review-badge" href="https://www.yelp.com/biz/ans-electronics-repair-san-diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="review-rating">4.6</span></div><div class="review-count">236 reviews</div></div></a>
           </div>
-        </details>
-        <div class="photo-section">
-          <button class="photo-toggle" onclick="togglePhotos(this)"><i data-lucide="camera" style="width:16px;height:16px"></i> See Photos <span class="chev">&#9660;</span></button>
-          <div class="photo-content" style="display:none">
-            <div class="photo-tabs">
-              <button class="photo-tab active" onclick="showTab(this,'food')">Food</button>
-              <button class="photo-tab" onclick="showTab(this,'interior')">Interior</button>
-              <button class="photo-tab" onclick="showTab(this,'exterior')">Exterior</button>
-            </div>
-            <div class="photo-img" data-cat="food"><img src="img/ans-food.jpg" alt="Gelato at An's Dry Cleaning" loading="lazy"></div>
-            <div class="photo-img" data-cat="interior" style="display:none"><img src="img/ans-interior.jpg" alt="Inside An's Dry Cleaning" loading="lazy"></div>
-            <div class="photo-img" data-cat="exterior" style="display:none"><img src="img/ans-exterior.jpg" alt="An's Dry Cleaning storefront" loading="lazy"></div>
+        </div>
+        <div class="info-panel info-panel-photos" id="panelA2p">
+          <div class="photo-grid">
+            <img src="img/ans-food.jpg" alt="An's Dry Cleaning" loading="lazy">
+            <img src="img/ans-interior.jpg" alt="An's Dry Cleaning" loading="lazy">
+            <img src="img/ans-exterior.jpg" alt="An's Dry Cleaning" loading="lazy">
           </div>
         </div>
         <div class="description">
@@ -840,24 +839,21 @@
           <a href="tel:8584569044" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
           <a href="https://kingofthai-sd.com/" target="_blank" class="btn btn-menu" style="color:#5b86e5;border-color:#5b86e5"><i data-lucide="utensils"></i> Menu</a>
         </div>
-        <details class="review-dropdown">
-          <summary>Reviews</summary>
+        <div class="info-btns">
+          <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelB2r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-photos-b" onclick="togglePanel(this,'panelB2p')"><i data-lucide="camera" style="width:14px;height:14px"></i> Photos <span class="chev">&#9660;</span></button>
+        </div>
+        <div class="info-panel info-panel-reviews" id="panelB2r">
           <div class="review-box">
             <a class="review-badge" href="https://www.google.com/maps/search/King+of+Thai+Cuisine+7734+Girard+Ave+La+Jolla+CA+92037" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="Google"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="review-rating">4.5</span></div><div class="review-count">252 reviews</div></div></a>
             <a class="review-badge" href="https://www.yelp.com/biz/king-of-thai-cuisine-la-jolla" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="review-rating">4.5</span></div><div class="review-count">56 reviews</div></div></a>
           </div>
-        </details>
-        <div class="photo-section">
-          <button class="photo-toggle" onclick="togglePhotos(this)" style="border-color:#c4d0f5;color:#4a70c7;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)"><i data-lucide="camera" style="width:16px;height:16px"></i> See Photos <span class="chev">&#9660;</span></button>
-          <div class="photo-content" style="display:none">
-            <div class="photo-tabs">
-              <button class="photo-tab photo-tab-b active" onclick="showTab(this,'food')">Food</button>
-              <button class="photo-tab photo-tab-bh" onclick="showTab(this,'interior')">Interior</button>
-              <button class="photo-tab photo-tab-bh" onclick="showTab(this,'exterior')">Exterior</button>
-            </div>
-            <div class="photo-img" data-cat="food"><img src="img/king-thai-food.jpg" alt="Food at King of Thai Cuisine" loading="lazy"></div>
-            <div class="photo-img" data-cat="interior" style="display:none"><img src="img/king-thai-interior.jpg" alt="Inside King of Thai Cuisine" loading="lazy"></div>
-            <div class="photo-img" data-cat="exterior" style="display:none"><img src="img/king-thai-exterior.jpg" alt="King of Thai Cuisine exterior" loading="lazy"></div>
+        </div>
+        <div class="info-panel info-panel-photos" id="panelB2p">
+          <div class="photo-grid">
+            <img src="img/king-thai-food.jpg" alt="King of Thai Cuisine" loading="lazy">
+            <img src="img/king-thai-interior.jpg" alt="King of Thai Cuisine" loading="lazy">
+            <img src="img/king-thai-exterior.jpg" alt="King of Thai Cuisine" loading="lazy">
           </div>
         </div>
         <div class="description">
@@ -901,24 +897,21 @@
           <a href="https://www.google.com/maps/dir/?api=1&destination=Bobboi+Natural+Gelato+8008+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
           <a href="https://maps.apple.com/?q=Bobboi+Natural+Gelato&address=8008+Girard+Ave,+La+Jolla,+CA+92037" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
         </div>
-        <details class="review-dropdown">
-          <summary>Reviews</summary>
+        <div class="info-btns">
+          <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelB3r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-photos-b" onclick="togglePanel(this,'panelB3p')"><i data-lucide="camera" style="width:14px;height:14px"></i> Photos <span class="chev">&#9660;</span></button>
+        </div>
+        <div class="info-panel info-panel-reviews" id="panelB3r">
           <div class="review-box">
             <a class="review-badge" href="https://www.google.com/maps/place/Bobboi+Natural+Gelato/@32.8480556,-117.2744444,17z/" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="Google"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">4.8</span></div><div class="review-count">2,319 reviews</div></div></a>
             <a class="review-badge" href="https://www.yelp.com/biz/bobboi-natural-gelato-la-jolla" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">5.0</span></div><div class="review-count">2,629 reviews</div></div></a>
           </div>
-        </details>
-        <div class="photo-section">
-          <button class="photo-toggle" onclick="togglePhotos(this)" style="border-color:#c4d0f5;color:#4a70c7;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)"><i data-lucide="camera" style="width:16px;height:16px"></i> See Photos <span class="chev">&#9660;</span></button>
-          <div class="photo-content" style="display:none">
-            <div class="photo-tabs">
-              <button class="photo-tab photo-tab-b active" onclick="showTab(this,'food')">Food</button>
-              <button class="photo-tab photo-tab-bh" onclick="showTab(this,'interior')">Interior</button>
-              <button class="photo-tab photo-tab-bh" onclick="showTab(this,'exterior')">Exterior</button>
-            </div>
-            <div class="photo-img" data-cat="food"><img src="img/bobboi-food.jpg" alt="Gelato at Bobboi Natural Gelato" loading="lazy"></div>
-            <div class="photo-img" data-cat="interior" style="display:none"><img src="img/bobboi-interior.jpg" alt="Inside Bobboi Natural Gelato" loading="lazy"></div>
-            <div class="photo-img" data-cat="exterior" style="display:none"><img src="img/bobboi-exterior.jpg" alt="Bobboi Natural Gelato storefront" loading="lazy"></div>
+        </div>
+        <div class="info-panel info-panel-photos" id="panelB3p">
+          <div class="photo-grid">
+            <img src="img/bobboi-food.jpg" alt="Bobboi Natural Gelato" loading="lazy">
+            <img src="img/bobboi-interior.jpg" alt="Bobboi Natural Gelato" loading="lazy">
+            <img src="img/bobboi-exterior.jpg" alt="Bobboi Natural Gelato" loading="lazy">
           </div>
         </div>
         <div class="description">
@@ -1043,18 +1036,12 @@
     document.getElementById('icalA').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DateFlo//EN','BEGIN:VEVENT','UID:kavindi-planA-20260330@dateflo.com','DTSTART;TZID=America/Los_Angeles:20260330T150000','DTEND;TZID=America/Los_Angeles:20260330T190700','SUMMARY:DateFlo: Golden Hour (OB)','LOCATION:OB Noodle House\\, 2218 Cable St\\, San Diego\\, CA','DESCRIPTION:Plan A: Golden Hour\\n\\n3:00 PM Late Lunch at OB Noodle House\\n4:30 PM Gelato at An\'s Dry Cleaning\\n5:05 PM Stroll Along OB Beach\\n7:07 PM Sunset at Sunset Cliffs\\n\\nFull details: dateflo.com/kavindi','STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'].join('\r\n'));
     document.getElementById('icalB').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DateFlo//EN','BEGIN:VEVENT','UID:kavindi-planB-20260330@dateflo.com','DTSTART;TZID=America/Los_Angeles:20260330T143000','DTEND;TZID=America/Los_Angeles:20260330T190700','SUMMARY:DateFlo: Coastal Charm (La Jolla)','LOCATION:Coast Walk Trail\\, La Jolla\\, CA','DESCRIPTION:Plan B: Coastal Charm\\n\\n2:30 PM Coast Walk Trail & Seal Watching\\n4:00 PM Late Lunch at King of Thai Cuisine\\n5:05 PM Gelato at Bobboi Natural Gelato\\n7:07 PM Sunset at Scripps Park\\n\\nFull details: dateflo.com/kavindi','STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'].join('\r\n'));
 
-    // ── Photo Dropdown ──
-    function togglePhotos(btn){
-      var content=btn.nextElementSibling;
-      var isOpen=content.style.display!=='none';
-      content.style.display=isOpen?'none':'block';
+    // ── Info Panel Toggle ──
+    function togglePanel(btn,id){
+      var panel=document.getElementById(id);
+      var isOpen=panel.classList.contains('show');
+      panel.classList.toggle('show',!isOpen);
       btn.classList.toggle('open',!isOpen);
-    }
-    function showTab(btn,cat){
-      var section=btn.closest('.photo-section');
-      section.querySelectorAll('.photo-tab').forEach(t=>t.classList.remove('active'));
-      btn.classList.add('active');
-      section.querySelectorAll('.photo-img').forEach(d=>{d.style.display=d.getAttribute('data-cat')===cat?'block':'none'});
     }
 
     // ── Navigation ──
