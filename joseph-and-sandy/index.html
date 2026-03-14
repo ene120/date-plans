@@ -613,8 +613,8 @@
     <p class="hero-note">Two cuisines, two vibes &mdash; pick the one that matches your mood on Saturday.</p>
 
     <div class="hero-buttons">
-      <a class="hero-btn hero-btn-primary" href="#" onclick="showOption('A');return false;">🌶️ View Spice Road</a>
-      <a class="hero-btn hero-btn-secondary" href="#" onclick="showOption('B');return false;">🌊 View Golden Coast</a>
+      <a class="hero-btn hero-btn-primary" href="#" onclick="showOption('A');return false;">🌶️ Plan A: Spice Road</a>
+      <a class="hero-btn hero-btn-secondary" href="#" onclick="showOption('B');return false;">🌊 Plan B: Golden Coast</a>
     </div>
 
     <div class="cd-wrap">
@@ -628,28 +628,17 @@
       </div>
     </div>
 
-    <div class="hero-cal">
-      <a class="cal-btn cal-btn-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Date+Night+%E2%80%93+DateFlo&dates=20260314T160000/20260314T190000&details=Your+DateFlo+date+plan.+View+it+at+dateflo.com/joseph-and-sandy/&location=San+Diego,+CA" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        Google Calendar
-      </a>
-      <a class="cal-btn cal-btn-apple" id="icalHero" href="#" download="dateflo-date.ics">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Apple Calendar
-      </a>
-    </div>
-
     <div class="chooser">
       <div class="choose-card" onclick="showOption('A')">
         <span class="card-emoji">&#127798;</span>
-        <div class="card-label">Plan 1</div>
+        <div class="card-label">Plan A</div>
         <div class="card-title">Spice Road</div>
         <p class="card-desc">Balboa Park gardens, Chinese fusion at Steamy Piggy, boba at Yun Tea House.</p>
         <span class="card-cta">View This Date &rarr;</span>
       </div>
       <div class="choose-card" onclick="showOption('B')">
         <span class="card-emoji">&#127754;</span>
-        <div class="card-label">Plan 2</div>
+        <div class="card-label">Plan B</div>
         <div class="card-title">Golden Coast</div>
         <p class="card-desc">La Jolla coastal trail, Italian dinner at Catania with ocean views, artisan gelato.</p>
         <span class="card-cta">View This Date &rarr;</span>
@@ -878,6 +867,22 @@
         <label class="cl-item"><input type="checkbox" data-key="A-5"><span class="cl-box"></span><span class="cl-text"><strong>Wear comfy walking shoes</strong> &mdash; Balboa Park has some uneven paths.</span></label>
       </div>
 
+      <!-- Calendar Links -->
+      <div class="option-cal">
+        <h3 class="summary-title">&#128197; Add Plan A to Your Calendar</h3>
+        <p style="text-align:center;color:#999;font-size:.88rem;margin-bottom:14px">Save this plan to your calendar so you&rsquo;re all set when the day comes.</p>
+        <div class="hero-cal">
+          <a class="cal-btn cal-btn-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=DateFlo%3A+Spice+Road+(Balboa+Park+%2B+Convoy)&dates=20260314T230000Z/20260315T030000Z&details=Plan+A%3A+Spice+Road%0A%0A4%3A00+PM+Balboa+Park+Gardens%0A5%3A00+PM+Dinner+at+Steamy+Piggy%0A6%3A30+PM+Boba+at+Yun+Tea+House%0A%0AFull+details%3A+dateflo.com%2Fjoseph-and-sandy&location=Balboa+Park%2C+San+Diego%2C+CA" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Google Calendar
+          </a>
+          <a class="cal-btn cal-btn-apple" id="icalA" href="#" download="joseph-sandy-spice-road.ics">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Apple Calendar
+          </a>
+        </div>
+      </div>
+
       <div class="feedback" id="fbA">
         <p>We&rsquo;d love to know how your date went. Your feedback helps us plan something even better next time.</p>
         <div class="stars" id="starsA"><span class="star" data-val="1">&#9733;</span><span class="star" data-val="2">&#9733;</span><span class="star" data-val="3">&#9733;</span><span class="star" data-val="4">&#9733;</span><span class="star" data-val="5">&#9733;</span></div>
@@ -1075,6 +1080,22 @@
         <label class="cl-item"><input type="checkbox" data-key="B-4"><span class="cl-box"></span><span class="cl-text"><strong>Light jacket</strong> &mdash; 80&deg;F but ocean breeze picks up after sunset.</span></label>
         <label class="cl-item"><input type="checkbox" data-key="B-5"><span class="cl-box"></span><span class="cl-text"><strong>Comfy walking shoes</strong> &mdash; the coastal trail + walk to the village is about 20 min total.</span></label>
         <label class="cl-item"><input type="checkbox" data-key="B-6"><span class="cl-box"></span><span class="cl-text"><strong>Call Catania</strong> day-of to confirm current red meat options on the menu.</span></label>
+      </div>
+
+      <!-- Calendar Links -->
+      <div class="option-cal">
+        <h3 class="summary-title">&#128197; Add Plan B to Your Calendar</h3>
+        <p style="text-align:center;color:#999;font-size:.88rem;margin-bottom:14px">Save this plan to your calendar so you&rsquo;re all set when the day comes.</p>
+        <div class="hero-cal">
+          <a class="cal-btn cal-btn-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=DateFlo%3A+Golden+Coast+(La+Jolla)&dates=20260314T230000Z/20260315T030000Z&details=Plan+B%3A+Golden+Coast%0A%0A4%3A00+PM+La+Jolla+Coastal+Trail%0A5%3A00+PM+Dinner+at+Catania%0A6%3A30+PM+Gelato+%26+Village+Stroll%0A%0AFull+details%3A+dateflo.com%2Fjoseph-and-sandy&location=La+Jolla%2C+San+Diego%2C+CA" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Google Calendar
+          </a>
+          <a class="cal-btn cal-btn-apple" id="icalB" href="#" download="joseph-sandy-golden-coast.ics">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Apple Calendar
+          </a>
+        </div>
       </div>
 
       <div class="feedback" id="fbB">
