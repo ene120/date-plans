@@ -1380,7 +1380,7 @@
       if(!tapStr&&!comment){ta.focus();ta.style.borderColor='var(--rose)';setTimeout(()=>ta.style.borderColor='',1500);return}
       btn.disabled=true;btn.textContent='Sending...';
       var partnerComment=who+': '+(comment||'(quick taps only)');
-      fetch('https://script.google.com/macros/s/AKfycbyoNp_c4Fi-vJf-0sTDz7HeOWsY2fjnrWN1Rcc_d1nnAoVWMXWu19ot1MuhPHQ9Yt4myw/exec',{
+      fetch('https://script.google.com/macros/s/AKfycbxemKf2cEgQQf2Ra5-WdwGn-0HyY3p-JkIGGMJ_euDVYFXYsg9NETYLMJBTdGo2kP2WqQ/exec',{
         method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({coupleId:COUPLE.id,couple:COUPLE.partner1+' & '+COUPLE.partner2,dateEvent:COUPLE.dateEvent,type:'stop-feedback',plan:plan==='A'?'Golden Hour':'Coastal Charm',stop:stopNum+'. '+stopName,partnerComment:partnerComment,rating:'',notes:tapStr,planUrl:location.href})
       });
@@ -1394,7 +1394,7 @@
     // ── Overall Feedback ──
     function sendFB(p){
       if(!R[p]){alert('Please select a rating.');return}
-      fetch('https://script.google.com/macros/s/AKfycbyoNp_c4Fi-vJf-0sTDz7HeOWsY2fjnrWN1Rcc_d1nnAoVWMXWu19ot1MuhPHQ9Yt4myw/exec',{
+      fetch('https://script.google.com/macros/s/AKfycbxemKf2cEgQQf2Ra5-WdwGn-0HyY3p-JkIGGMJ_euDVYFXYsg9NETYLMJBTdGo2kP2WqQ/exec',{
         method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({coupleId:COUPLE.id,couple:COUPLE.partner1+' & '+COUPLE.partner2,dateEvent:COUPLE.dateEvent,city:COUPLE.city,type:'overall-feedback',plan:p==='A'?'Golden Hour':'Coastal Charm',stop:'',partnerComment:'',rating:R[p],notes:document.getElementById('notes'+p).value,planUrl:location.href})
       });
