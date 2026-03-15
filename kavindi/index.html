@@ -1158,7 +1158,7 @@
         <div class="food-recs">
           <div class="food-rec" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
             <div class="food-rec-label" style="color:#5b86e5"><span>&#127826;</span> Kavindi</div>
-            <div class="food-rec-dish"><div class="food-rec-item">Pistachio</div><div class="food-rec-note">Their signature flavor. Rich, nutty, handcrafted daily — one of the best things on the menu.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Pistachio</div><div class="food-rec-note">Their signature flavor. Rich, nutty, handcrafted daily. One of the best things on the menu.</div></div>
             <div class="food-rec-dish"><div class="food-rec-item">Stracciatella</div><div class="food-rec-note">Creamy vanilla base with chocolate shards. Bold and indulgent.</div></div>
             <div class="food-rec-dish"><div class="food-rec-item">Passion Fruit Sorbet</div><div class="food-rec-note">Bright, tangy, dairy-free option. Tropical and refreshing.</div></div>
           </div>
@@ -1171,7 +1171,7 @@
           <div class="food-rec-shared" style="border-color:#c4d0f5;background:linear-gradient(135deg,#f0f4ff,#e8ecfa)">
             <div class="food-rec-label" style="color:#5b86e5"><span>&#127860;</span> Share Together</div>
             <div class="food-rec-dishes">
-              <div class="food-rec-dish"><div class="food-rec-item">Coppa (Medium Cup)</div><div class="food-rec-note">A medium lets you try 3 flavors — great for sampling each other&rsquo;s picks.</div></div>
+              <div class="food-rec-dish"><div class="food-rec-item">Coppa (Medium Cup)</div><div class="food-rec-note">A medium lets you try 3 flavors, great for sampling each other&rsquo;s picks.</div></div>
               <div class="food-rec-dish"><div class="food-rec-item">Affogato</div><div class="food-rec-note">Espresso poured over gelato. Lovely to share on the ocean-view patio.</div></div>
             </div>
           </div>
@@ -1512,23 +1512,23 @@
         // AFTER the date
         emoji.innerHTML='\u2728';
         title.innerHTML='Hope Last Night Was <span>Magical</span>';
-        sub.innerHTML='Tell us how it went — your feedback helps us plan something even better next time.';
+        sub.innerHTML='Tell us how it went. Your feedback helps us plan something even better next time.';
         note.innerHTML='We loved putting this together for you. Can\'t wait to hear about your favorite moments.';
         cdWrap.style.display='none';
       } else if(diff<0&&diffEnd>=0){
         // DURING the date
         emoji.innerHTML='\uD83D\uDC96';
         title.innerHTML='Your Date is <span>Happening Now</span>';
-        sub.innerHTML='Have an amazing time — every moment was planned just for you.';
+        sub.innerHTML='Have an amazing time. Every moment was planned just for you.';
         note.innerHTML='Put the phone away and enjoy each other. We\'ve got everything covered.';
         cdWrap.style.display='none';
       } else if(hoursUntil<=3&&hoursUntil>0){
-        // 3 hours or less — time to get ready!
+        // 3 hours or less, time to get ready!
         var hrs=Math.floor(hoursUntil);
         var mins=Math.round((hoursUntil-hrs)*60);
         var timeStr=hrs>0?(hrs+' hour'+(hrs>1?'s':'')+(mins>0?' '+mins+' min':'')):(mins+' minutes');
         emoji.innerHTML='\uD83D\uDC85';
-        title.innerHTML=timeStr+' to Go — <span>Time to Get Ready!</span>';
+        title.innerHTML=timeStr+' to Go: <span>Time to Get Ready!</span>';
         sub.innerHTML='Two curated plans for <strong>Monday, March 30, 2026</strong>. Pick the one that feels right.';
         note.innerHTML='Almost time! Make sure you\'ve checked the list, picked your outfit, and charged your phone.';
         cdLabel.textContent='Almost there';
@@ -1536,9 +1536,9 @@
         // Same day, more than 3 hours away
         var isAM=sdHour<12;
         emoji.innerHTML=isAM?'\u2615':'✨';
-        title.innerHTML=isAM?'Good Morning — <span>Your Date is Tonight!</span>':'Your Date is <span>Tonight</span>';
+        title.innerHTML=isAM?'Good Morning: <span>Your Date is Tonight!</span>':'Your Date is <span>Tonight</span>';
         sub.innerHTML='Two curated plans for <strong>Monday, March 30, 2026</strong>. Pick the one that feels right.';
-        note.innerHTML=isAM?'Take your time this morning. Everything is planned and ready for you tonight.':'A few hours to go. Both plans take you somewhere special — great food, beautiful views, and quality time together.';
+        note.innerHTML=isAM?'Take your time this morning. Everything is planned and ready for you tonight.':'A few hours to go. Both plans take you somewhere special. Great food, beautiful views, and quality time together.';
         cdLabel.textContent='Tonight\'s the night';
       } else {
         // Default: more than a day away
