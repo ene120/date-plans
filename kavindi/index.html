@@ -307,6 +307,7 @@
     .btn-dir:hover{transform:translateY(-2px);box-shadow:4px 4px 0px var(--deep-rose)}
     .btn-apple{background:var(--text-dark);color:white;box-shadow:3px 3px 0px #1a0a18}
     .btn-apple:hover{transform:translateY(-2px);box-shadow:4px 4px 0px #1a0a18}
+    .btn-logo{height:16px;display:block}
     .btn-phone{background:var(--deep-rose);color:white;box-shadow:3px 3px 0px #5c1a30}
     .btn-phone:hover{transform:translateY(-2px);box-shadow:4px 4px 0px #5c1a30}
     .btn-menu{background:var(--card-bg);color:var(--cupid);border:3px solid var(--cupid);box-shadow:2px 2px 0px var(--deep-rose)}
@@ -346,10 +347,12 @@
     .tc-none{background:#a08090;color:#fff;cursor:default;opacity:.75;font-size:.6rem;border-radius:20px}
     .tc-none:hover{transform:none;box-shadow:none}
     .tc-park-stack{display:flex;flex-direction:column;gap:4px;width:100%}
+    .tc-park-label{font-size:.6rem;font-weight:700;color:var(--deep-rose);letter-spacing:.5px;padding:0 4px}
     .tc-park-row{display:flex;gap:4px}
-    .tc-park-row .tc-btn{flex:1;text-align:center;border-radius:20px;padding:6px 10px}
-    .tc-park-row .tc-btn-apple{flex:1;background:var(--text-dark);color:#fff;box-shadow:2px 2px 0px #1a0a18;border-radius:20px;padding:6px 10px;font-size:.65rem;text-align:center;text-decoration:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px}
+    .tc-park-row .tc-btn{flex:1;text-align:center;border-radius:20px;padding:6px 10px;display:flex;align-items:center;justify-content:center}
+    .tc-park-row .tc-btn-apple{flex:1;background:var(--text-dark);color:#fff;box-shadow:2px 2px 0px #1a0a18;border-radius:20px;padding:6px 10px;text-align:center;text-decoration:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
     .tc-park-row .tc-btn-apple:hover{transform:translateY(-1px);box-shadow:3px 3px 0px #1a0a18}
+    .tc-logo{height:16px;display:block}
     @media(max-width:420px){
       .transport-corner{position:relative;top:auto;right:auto;margin-bottom:14px;flex-direction:row;flex-wrap:wrap;gap:8px;align-items:flex-start}
       .tc-group+.tc-group{border-top:none;padding-top:0;border-left:2px solid var(--wing-pink);padding-left:8px}
@@ -690,15 +693,15 @@
         <div class="stop-number">1</div>
         <div class="transport-corner">
           <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="https://m.uber.com/ul/?action=setPickup&dropoff[latitude]=32.7477&dropoff[longitude]=-117.2494&dropoff[nickname]=OB+Noodle+House" target="_blank" class="tc-btn tc-uber">Uber</a><a href="https://lyft.com/ride?id=lyft&destination[latitude]=32.7477&destination[longitude]=-117.2494" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
-          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7492,-117.2526" target="_blank" class="tc-btn tc-free">Free: OB Pier Lot</a><a href="https://maps.apple.com/?daddr=32.7492,-117.2526&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7486,-117.2502" target="_blank" class="tc-btn tc-paid">Paid: Newport Lot</a><a href="https://maps.apple.com/?daddr=32.7486,-117.2502&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-label">Free: OB Pier Lot</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7492,-117.2526" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7492,-117.2526&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div><div class="tc-park-label">Paid: Newport Lot</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7486,-117.2502" target="_blank" class="tc-btn tc-paid"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7486,-117.2502&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div></div></div>
         </div>
         <div class="stop-header">
           <h3 class="stop-title">Late Lunch at OB Noodle House</h3>
         </div>
         <div class="stop-time">3:00  to  4:15 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=OB+Noodle+House+2218+Cable+St+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=OB+Noodle+House&address=2218+Cable+St,+San+Diego,+CA+92107" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=OB+Noodle+House+2218+Cable+St+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://maps.apple.com/?q=OB+Noodle+House&address=2218+Cable+St,+San+Diego,+CA+92107" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
           <a href="tel:6194506868" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
           <a href="https://obnoodlehouse.com/menu-ob-noodle-house/" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
         </div>
@@ -780,15 +783,15 @@
       <div class="stop">
         <div class="stop-number">2</div>
         <div class="transport-corner">
-          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7478,-117.2494" target="_blank" class="tc-btn tc-free">Free: Cape May St</a><a href="https://maps.apple.com/?daddr=32.7478,-117.2494&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7475,-117.2510" target="_blank" class="tc-btn tc-paid">Paid: Bacon/SM Lot</a><a href="https://maps.apple.com/?daddr=32.7475,-117.2510&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-label">Free: Cape May St</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7478,-117.2494" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7478,-117.2494&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div><div class="tc-park-label">Paid: Bacon/SM Lot</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7475,-117.2510" target="_blank" class="tc-btn tc-paid"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7475,-117.2510&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div></div></div>
         </div>
         <div class="stop-header">
           <h3 class="stop-title">Gelato at An&rsquo;s Dry Cleaning</h3>
         </div>
         <div class="stop-time">4:30  to  5:00 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=An's+Dry+Cleaning+1861+Bacon+St+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=An's+Dry+Cleaning&address=1861+Bacon+St,+San+Diego,+CA+92107" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=An's+Dry+Cleaning+1861+Bacon+St+San+Diego+CA+92107" target="_blank" class="btn btn-dir"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://maps.apple.com/?q=An's+Dry+Cleaning&address=1861+Bacon+St,+San+Diego,+CA+92107" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
           <a href="tel:6193105028" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
         </div>
         <div class="info-btns">
@@ -860,8 +863,8 @@
         </div>
         <div class="stop-time">5:05  to  5:30 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Ocean+Beach+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Ocean+Beach&address=Ocean+Beach,+San+Diego,+CA+92107" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Ocean+Beach+San+Diego+CA" target="_blank" class="btn btn-dir"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://maps.apple.com/?q=Ocean+Beach&address=Ocean+Beach,+San+Diego,+CA+92107" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
         </div>
         <div class="description">
           <p>Now that you&rsquo;re full and have gelato in hand, this is your time to just be together. Walk along the OB seawall and shoreline, watch the surfers, and feel the ocean breeze. We placed this here intentionally as an easy, no-pressure cooldown before the big finale.</p>
@@ -884,15 +887,15 @@
       <div class="stop">
         <div class="stop-number">4</div>
         <div class="transport-corner">
-          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7190,-117.2563" target="_blank" class="tc-btn tc-free">Free: Ladera Dirt Lot</a><a href="https://maps.apple.com/?daddr=32.7190,-117.2563&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7196,-117.2555" target="_blank" class="tc-btn tc-free">Free: Sunset Cliffs Blvd</a><a href="https://maps.apple.com/?daddr=32.7196,-117.2555&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-label">Free: Ladera Dirt Lot</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7190,-117.2563" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7190,-117.2563&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div><div class="tc-park-label">Free: Sunset Cliffs Blvd</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7196,-117.2555" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7196,-117.2555&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div></div></div>
         </div>
         <div class="stop-header">
           <h3 class="stop-title">Sunset at Sunset Cliffs</h3>
         </div>
         <div class="stop-time">Sunset at 7:07 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Sunset+Cliffs+Natural+Park+San+Diego+CA" target="_blank" class="btn btn-dir"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Sunset+Cliffs+Natural+Park&address=Ladera+St,+San+Diego,+CA+92107" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Sunset+Cliffs+Natural+Park+San+Diego+CA" target="_blank" class="btn btn-dir"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://maps.apple.com/?q=Sunset+Cliffs+Natural+Park&address=Ladera+St,+San+Diego,+CA+92107" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
         </div>
         <div class="description">
           <p>This is the reason we built the whole evening around this time of day. Every stop before this was timed so you&rsquo;d arrive here right as the light turns golden. Dramatic cliff formations, coastal arches, and unobstructed Pacific views. The trail is easy and mostly flat so you can just take it all in. If you can, arriving around 5:45 gives you time to explore, find a cozy spot, and settle in together.</p>
@@ -1008,15 +1011,15 @@
         <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">1</div>
         <div class="transport-corner">
           <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns"><a href="https://m.uber.com/ul/?action=setPickup&dropoff[latitude]=32.8491&dropoff[longitude]=-117.2715&dropoff[nickname]=Coast+Walk+Trail" target="_blank" class="tc-btn tc-uber">Uber</a><a href="https://lyft.com/ride?id=lyft&destination[latitude]=32.8491&destination[longitude]=-117.2715" target="_blank" class="tc-btn tc-lyft">Lyft</a></div></div>
-          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8440,-117.2795" target="_blank" class="tc-btn tc-free">Free: Coast Blvd S</a><a href="https://maps.apple.com/?daddr=32.8440,-117.2795&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8503,-117.2727" target="_blank" class="tc-btn tc-paid">Paid: Coast Walk Garage</a><a href="https://maps.apple.com/?daddr=32.8503,-117.2727&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-label">Free: Coast Blvd S</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8440,-117.2795" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8440,-117.2795&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div><div class="tc-park-label">Paid: Coast Walk Garage</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8503,-117.2727" target="_blank" class="tc-btn tc-paid"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8503,-117.2727&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div></div></div>
         </div>
         <div class="stop-header">
           <h3 class="stop-title">Coast Walk Trail &amp; Seal Watching</h3>
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);color:#4a5a99">2:30  to  3:30 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=La+Jolla+Coast+Walk+Trail+San+Diego+CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Coast+Walk+Trail&address=Coast+Walk+Trail,+La+Jolla,+CA+92037" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=La+Jolla+Coast+Walk+Trail+San+Diego+CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://maps.apple.com/?q=Coast+Walk+Trail&address=Coast+Walk+Trail,+La+Jolla,+CA+92037" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
         </div>
         <div class="description">
           <p>We open with this on purpose. Starting active builds natural energy between you two before you sit down to eat. This 0.6-mile cliffside path has nonstop ocean views, sea lion sounds, and kayakers below. It&rsquo;s flat, easy, and the opposite of strenuous. After the trail, walk over to Children&rsquo;s Pool to watch harbor seals sunbathing from the seawall above.</p>
@@ -1039,15 +1042,15 @@
       <div class="stop">
         <div class="stop-number" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)">2</div>
         <div class="transport-corner">
-          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8440,-117.2795" target="_blank" class="tc-btn tc-free">Free: Coast Blvd S</a><a href="https://maps.apple.com/?daddr=32.8440,-117.2795&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8503,-117.2727" target="_blank" class="tc-btn tc-paid">Paid: Coast Walk Garage</a><a href="https://maps.apple.com/?daddr=32.8503,-117.2727&dirflg=d" target="_blank" class="tc-btn-apple">Apple Maps</a></div></div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack"><div class="tc-park-label">Free: Coast Blvd S</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8440,-117.2795" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8440,-117.2795&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div><div class="tc-park-label">Paid: Coast Walk Garage</div><div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8503,-117.2727" target="_blank" class="tc-btn tc-paid"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8503,-117.2727&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div></div></div>
         </div>
         <div class="stop-header">
           <h3 class="stop-title">Late Lunch at King of Thai Cuisine</h3>
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);color:#4a5a99">4:00  to  5:00 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=King+of+Thai+Cuisine+7734+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=King+of+Thai+Cuisine&address=7734+Girard+Ave,+La+Jolla,+CA+92037" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=King+of+Thai+Cuisine+7734+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://maps.apple.com/?q=King+of+Thai+Cuisine&address=7734+Girard+Ave,+La+Jolla,+CA+92037" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
           <a href="tel:8584569044" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
           <a href="https://kingofthai-sd.com/" target="_blank" class="btn btn-menu" style="color:#5b86e5;border-color:#5b86e5"><i data-lucide="utensils"></i> Menu</a>
         </div>
@@ -1121,8 +1124,8 @@
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);color:#4a5a99">5:05  to  5:25 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Bobboi+Natural+Gelato+8008+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Bobboi+Natural+Gelato&address=8008+Girard+Ave,+La+Jolla,+CA+92037" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Bobboi+Natural+Gelato+8008+Girard+Ave+La+Jolla+CA+92037" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://maps.apple.com/?q=Bobboi+Natural+Gelato&address=8008+Girard+Ave,+La+Jolla,+CA+92037" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
         </div>
         <div class="info-btns">
           <button class="info-btn info-btn-photos-b" onclick="togglePanel(this,'panelB3p')"><i data-lucide="camera" style="width:14px;height:14px"></i> Photos <span class="chev">&#9660;</span></button>
@@ -1193,8 +1196,8 @@
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,#f0f4ff,#e8ecfa);color:#4a5a99">Sunset at 7:07 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Ellen+Browning+Scripps+Park+La+Jolla+CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><i data-lucide="map"></i> Google Maps</a>
-          <a href="https://maps.apple.com/?q=Ellen+Browning+Scripps+Park&address=1100+Coast+Blvd,+La+Jolla,+CA+92037" target="_blank" class="btn btn-apple"><i data-lucide="map-pin"></i> Apple Maps</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Ellen+Browning+Scripps+Park+La+Jolla+CA" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://maps.apple.com/?q=Ellen+Browning+Scripps+Park&address=1100+Coast+Blvd,+La+Jolla,+CA+92037" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
         </div>
         <div class="description">
           <p>Everything before this was building to this moment. A 5.6-acre park on rocky bluffs right next to La Jolla Cove. The grass is perfect for settling in with gelato and watching the sky light up together. The green belvedere huts are great for photos. You have almost two hours here with no rush and no agenda.</p>
