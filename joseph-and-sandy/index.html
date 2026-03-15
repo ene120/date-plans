@@ -356,6 +356,10 @@
     .tc-park-row .tc-btn-apple{flex:1;background:var(--text-dark);color:#fff;box-shadow:2px 2px 0px #1a0a18;border-radius:20px;padding:6px 10px;text-align:center;text-decoration:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
     .tc-park-row .tc-btn-apple:hover{transform:translateY(-1px);box-shadow:3px 3px 0px #1a0a18}
     .tc-logo{height:16px;display:block}
+    .tc-google{background:#fff !important;box-shadow:2px 2px 0px #ddd !important}
+    .tc-google:hover{box-shadow:3px 3px 0px #ccc !important}
+    .btn-google{background:#fff !important;box-shadow:3px 3px 0px #ddd !important}
+    .btn-google:hover{box-shadow:4px 4px 0px #ccc !important}
     @media(max-width:420px){
       .transport-corner{position:relative;top:auto;right:auto;margin-bottom:14px;flex-direction:row;flex-wrap:wrap;gap:8px;align-items:flex-start}
       .tc-group+.tc-group{border-top:none;padding-top:0;border-left:2px solid var(--wing-pink);padding-left:8px}
@@ -722,9 +726,9 @@
           </div></div>
           <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack">
             <div class="tc-park-label">Free: Inspiration Pt</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7302,-117.1468" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7302,-117.1468&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7302,-117.1468" target="_blank" class="tc-btn tc-free tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7302,-117.1468&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
             <div class="tc-park-label">Paid: Organ Pavilion $10</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7284,-117.1512" target="_blank" class="tc-btn tc-paid"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7284,-117.1512&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.7284,-117.1512" target="_blank" class="tc-btn tc-paid tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.7284,-117.1512&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
           </div></div>
           <div class="tc-headsup" onclick="this.classList.toggle('open');this.closest('.stop').querySelector('.event-note').classList.toggle('open')">&#9888;&#65039; Heads Up <span class="arrow">&#9660;</span></div>
         </div>
@@ -734,7 +738,7 @@
         </div>
         <div class="stop-time">4:00 &ndash; 4:45 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=32.7311,-117.1495" target="_blank" class="btn btn-dir"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=32.7311,-117.1495" target="_blank" class="btn btn-dir btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
           <a href="https://maps.apple.com/?daddr=32.7311,-117.1495&dirflg=d" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
         </div>
         <div class="info-btns">
@@ -798,9 +802,9 @@
           </div></div>
           <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack">
             <div class="tc-park-label">Free: Plaza Lot</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8177,-117.1539" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8177,-117.1539&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8177,-117.1539" target="_blank" class="tc-btn tc-free tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8177,-117.1539&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
             <div class="tc-park-label">Paid: Diamond Lot</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8215,-117.1540" target="_blank" class="tc-btn tc-paid"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8215,-117.1540&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8215,-117.1540" target="_blank" class="tc-btn tc-paid tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8215,-117.1540&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
           </div></div>
         </div>
         <div class="stop-header">
@@ -808,7 +812,7 @@
         </div>
         <div class="stop-time">5:00 &ndash; 6:30 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8198,-117.1538" target="_blank" class="btn btn-dir"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8198,-117.1538" target="_blank" class="btn btn-dir btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
           <a href="https://maps.apple.com/?daddr=32.8198,-117.1538&dirflg=d" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
           <a href="tel:8584920401" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
           <a href="https://www.steamypiggy.com/menu" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
@@ -900,9 +904,9 @@
         <div class="transport-corner">
           <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack">
             <div class="tc-park-label">Free: Village Lot</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8192,-117.1557" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8192,-117.1557&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8192,-117.1557" target="_blank" class="tc-btn tc-free tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8192,-117.1557&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
             <div class="tc-park-label">Paid: Diamond Lot</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8215,-117.1540" target="_blank" class="tc-btn tc-paid"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8215,-117.1540&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8215,-117.1540" target="_blank" class="tc-btn tc-paid tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8215,-117.1540&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
           </div></div>
         </div>
         <div class="stop-header">
@@ -910,7 +914,7 @@
         </div>
         <div class="stop-time">6:30 &ndash; 7:00+ PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8194,-117.1557" target="_blank" class="btn btn-dir"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8194,-117.1557" target="_blank" class="btn btn-dir btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
           <a href="https://maps.apple.com/?daddr=32.8194,-117.1557&dirflg=d" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
           <a href="tel:8584920402" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
         </div>
@@ -1046,9 +1050,9 @@
           </div></div>
           <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack">
             <div class="tc-park-label">Free: Coast Blvd</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8497,-117.2731" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8497,-117.2731&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8497,-117.2731" target="_blank" class="tc-btn tc-free tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8497,-117.2731&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
             <div class="tc-park-label">Paid: Coast Walk Garage</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8486,-117.2705" target="_blank" class="tc-btn tc-paid"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8486,-117.2705&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8486,-117.2705" target="_blank" class="tc-btn tc-paid tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8486,-117.2705&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
           </div></div>
         </div>
         <div class="stop-header">
@@ -1056,7 +1060,7 @@
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,rgba(91,134,229,0.1),rgba(91,134,229,0.05));color:#8fa4d4">4:00 &ndash; 4:50 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8503,-117.2700" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8503,-117.2700" target="_blank" class="btn btn-dir btn-google" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
           <a href="https://maps.apple.com/?daddr=32.8503,-117.2700&dirflg=d" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
         </div>
         <div class="info-btns">
@@ -1108,9 +1112,9 @@
         <div class="transport-corner">
           <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack">
             <div class="tc-park-label">Keep Spot</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8497,-117.2731" target="_blank" class="tc-btn tc-free"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8497,-117.2731&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8497,-117.2731" target="_blank" class="tc-btn tc-free tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8497,-117.2731&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
             <div class="tc-park-label">875 Prospect Garage</div>
-            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8488,-117.2733" target="_blank" class="tc-btn tc-paid"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8488,-117.2733&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=32.8488,-117.2733" target="_blank" class="tc-btn tc-paid tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=32.8488,-117.2733&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
           </div></div>
         </div>
         <div class="stop-header">
@@ -1118,7 +1122,7 @@
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,rgba(91,134,229,0.1),rgba(91,134,229,0.05));color:#8fa4d4">5:00 &ndash; 6:45 PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8488,-117.2741" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8488,-117.2741" target="_blank" class="btn btn-dir btn-google" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
           <a href="https://maps.apple.com/?daddr=32.8488,-117.2741&dirflg=d" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
           <a href="tel:8585515105" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
           <a href="https://www.cataniasd.com/dinner" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
@@ -1198,7 +1202,7 @@
         </div>
         <div class="stop-time" style="background:linear-gradient(135deg,rgba(91,134,229,0.1),rgba(91,134,229,0.05));color:#8fa4d4">6:50 &ndash; 7:15+ PM</div>
         <div class="stop-buttons">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8482,-117.2745" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=32.8482,-117.2745" target="_blank" class="btn btn-dir btn-google" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
           <a href="https://maps.apple.com/?daddr=32.8482,-117.2745&dirflg=d" target="_blank" class="btn btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
           <a href="tel:8582558693" class="btn btn-phone"><i data-lucide="phone"></i> Call</a>
         </div>
