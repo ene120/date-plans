@@ -128,7 +128,7 @@
     }
     .btn-ghost:hover{background:var(--glass);color:white;border-color:rgba(255,255,255,.2)}
     .hero-trust{margin-top:clamp(36px,6vh,56px);display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
-    .trust-item{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text-muted)}
+    .trust-item{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text-muted)}
     .trust-item svg{width:16px;height:16px;stroke:var(--rose);fill:none;stroke-width:2}
 
     /* ═══════════ SOCIAL PROOF BAR ═══════════ */
@@ -139,7 +139,7 @@
     }
     .proof-grid{display:flex;justify-content:center;gap:clamp(28px,6vw,64px);flex-wrap:wrap;text-align:center}
     .proof-stat .num{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--rose)}
-    .proof-stat .label{font-size:.85rem;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+    .proof-stat .label{font-size:.9rem;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
 
     /* ═══════════ HOW IT WORKS ═══════════ */
     .how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,3vw,32px);margin-top:clamp(40px,6vh,60px)}
@@ -151,12 +151,12 @@
     .how-card:hover{transform:translateY(-6px);border-color:rgba(224,87,128,.3)}
     .how-num{
       font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:800;
-      background:linear-gradient(135deg,var(--rose),var(--rose-deep));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:absolute;top:12px;right:20px;line-height:1;
+      color:var(--rose);-webkit-text-fill-color:var(--rose);position:absolute;top:12px;right:20px;line-height:1;
     }
     .how-icon{font-size:2rem;margin-bottom:16px}
     .how-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;margin-bottom:10px}
-    .how-card p{font-size:.9rem;color:var(--text-soft);line-height:1.7}
-    .how-time{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.85rem;color:var(--gold);font-weight:600;letter-spacing:.04em}
+    .how-card p{font-size:.95rem;color:var(--text-soft);line-height:1.7}
+    .how-time{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.9rem;color:var(--gold);font-weight:600;letter-spacing:.04em}
 
     /* ═══════════ WHAT'S INCLUDED ═══════════ */
     .includes-section{background:linear-gradient(180deg,var(--bg-dark),#22101a,var(--bg-dark))}
@@ -171,7 +171,7 @@
     .inc-item:hover{background:rgba(255,255,255,.07)}
     .inc-icon{font-size:1.6rem;margin-bottom:12px}
     .inc-item h4{font-size:1rem;font-weight:600;margin-bottom:8px}
-    .inc-item p{font-size:.85rem;color:var(--text-soft);line-height:1.7}
+    .inc-item p{font-size:.9rem;color:var(--text-soft);line-height:1.7}
 
     /* ═══════════ THE RESEARCH ═══════════ */
     .research-section{overflow:hidden}
@@ -180,7 +180,7 @@
       position:relative;background:var(--glass);border:1px solid var(--glass-border);
       border-radius:24px;padding:clamp(28px,4vw,44px);backdrop-filter:blur(12px);
     }
-    .rv-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);font-weight:700;margin-bottom:20px}
+    .rv-label{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);font-weight:700;margin-bottom:20px}
     .rv-list{list-style:none}
     .rv-list li{
       display:flex;align-items:flex-start;gap:12px;padding:12px 0;
@@ -230,7 +230,7 @@
     .del-card:hover{border-color:rgba(224,87,128,.3)}
     .del-card .del-icon{font-size:2rem;margin-bottom:12px}
     .del-card h4{font-size:1.1rem;font-weight:600;margin-bottom:8px}
-    .del-card p{font-size:.88rem;color:var(--text-soft);line-height:1.7}
+    .del-card p{font-size:.92rem;color:var(--text-soft);line-height:1.7}
     .del-card .del-tag{
       display:inline-block;margin-top:14px;padding:6px 16px;border-radius:50px;
       font-size:.82rem;font-weight:600;letter-spacing:.06em;
@@ -328,7 +328,7 @@
     .choice.selected{border-color:var(--rose);background:rgba(224,87,128,.1);box-shadow:0 0 0 3px rgba(224,87,128,.15)}
     .choice-icon{font-size:1.8rem;margin-bottom:8px}
     .choice-label{font-size:.88rem;font-weight:600;margin-bottom:4px}
-    .choice-desc{font-size:.82rem;color:var(--text-muted);line-height:1.5}
+    .choice-desc{font-size:.88rem;color:var(--text-muted);line-height:1.5}
 
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     @media(max-width:480px){.form-row{grid-template-columns:1fr}}
@@ -390,9 +390,9 @@
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-badge"><span class="dot"></span> Now taking date plans across the United States</div>
+      <div class="hero-badge"><span class="dot"></span> Accepting new date plan requests</div>
       <h1>We plan the date.<br>You make the <em>memories.</em></h1>
-      <p class="hero-desc">Every restaurant researched. Every detail covered. Every moment crafted around you and your partner, so all you have to do is show up.</p>
+      <p class="hero-desc">Every restaurant researched. Every detail covered. Every moment crafted around you and your partner so all you have to do is show up.</p>
       <div class="hero-btns">
         <a class="btn-primary" onclick="openForm()">Plan Your Date &rarr;</a>
         <a class="btn-ghost" href="#how">See How It Works</a>
@@ -401,6 +401,7 @@
         <span class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Hand-crafted plans</span>
         <span class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Delivered in 24 hours</span>
         <span class="trust-item"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Personalized to both partners</span>
+        <span class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Serving couples across the United States</span>
       </div>
     </div>
   </section>
@@ -410,8 +411,8 @@
     <div class="container">
       <div class="proof-grid">
         <div class="proof-stat"><div class="num">50+</div><div class="label">Hours of venue research</div></div>
-        <div class="proof-stat"><div class="num">6</div><div class="label">Data sources per plan</div></div>
-        <div class="proof-stat"><div class="num">100%</div><div class="label">Personalized to you</div></div>
+        <div class="proof-stat"><div class="num">6</div><div class="label">Team members per plan</div></div>
+        <div class="proof-stat"><div class="num">9</div><div class="label">Details checked per stop</div></div>
         <div class="proof-stat"><div class="num">24hr</div><div class="label">Turnaround time</div></div>
       </div>
     </div>
@@ -497,27 +498,6 @@
           <div class="big-quote">"We don't just pick a restaurant and call it a date. We build an <span>experience</span> around who you are as a couple."</div>
           <p class="section-sub">Every plan goes through a multi-step research process. We verify hours, scout parking, read through menus, check reviews, calculate drive times, and factor in everything from the weather to nearby events so nothing is left to chance.</p>
           <p class="section-sub" style="margin-top:16px">The result? A date plan that feels like it was designed by someone who knows you. Because it was.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ OUR TEAM ═══════════ -->
-  <section class="team-section section-pad" id="team">
-    <div class="container">
-      <div class="reveal" style="text-align:center">
-        <div class="section-label">Our Team</div>
-        <div class="section-title">A dedicated team behind every date.</div>
-      </div>
-      <div class="team-content reveal">
-        <p>When you submit your date plan request, it doesn't go into a queue. It goes to a real team of planners who specialize in crafting memorable date experiences in your city.</p>
-        <p>We cross-reference multiple data sources, verify every detail in real time, and tailor every recommendation to you and your partner individually. Not just as a couple, but as two people with different tastes, different comfort zones, and different ideas of what makes a night special.</p>
-        <p>This isn't a template. It's not a list of "top 10 restaurants." It's a fully personalized, research-backed plan that you can trust from the first stop to the last.</p>
-        <div class="team-stats">
-          <div class="ts-item"><div class="ts-num">6+</div><div class="ts-label">Sources researched</div></div>
-          <div class="ts-item"><div class="ts-num">3-4</div><div class="ts-label">Stops per plan</div></div>
-          <div class="ts-item"><div class="ts-num">2</div><div class="ts-label">Plan options included</div></div>
-          <div class="ts-item"><div class="ts-num">24h</div><div class="ts-label">Or less delivery</div></div>
         </div>
       </div>
     </div>
