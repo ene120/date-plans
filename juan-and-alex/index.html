@@ -285,6 +285,12 @@
     .btn-logo{height:16px;display:block}
     .btn-google{background:#fff !important;box-shadow:3px 3px 0px #ddd !important;border:1px solid #ccc !important}
     .btn-google:hover{box-shadow:4px 4px 0px #ccc !important}
+    .park-box{display:flex;align-items:center;gap:6px;background:var(--blush);border:1.5px solid var(--wing-pink);border-radius:14px;padding:5px 10px;margin-bottom:6px}
+    .park-name{flex:1;font-size:.7rem;font-weight:700;color:var(--deep-rose);letter-spacing:.3px}
+    .park-btn{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;flex-shrink:0}
+    .park-btn:hover{transform:translateY(-1px)}
+    .park-btn-google{background:#fff;border:1px solid #ccc;box-shadow:1px 1px 0px #ddd}
+    .park-btn-apple{background:var(--text-dark);box-shadow:1px 1px 0px #1a0a18}
     .btn-dir{background:var(--cupid);color:white;box-shadow:3px 3px 0px var(--deep-rose)}
     .btn-dir:hover{transform:translateY(-2px);box-shadow:4px 4px 0px var(--deep-rose)}
     .btn-apple{background:var(--text-dark);color:white;box-shadow:3px 3px 0px #1a0a18}
@@ -797,22 +803,8 @@
       <!-- Parking -->
       <div class="parking-section">
         <h3>&#127359;&#65039; Parking (Both Plans)</h3>
-        <div class="parking-option">
-          <h4>&#127359;&#65039; Paid &mdash; North Park Garage (Recommended)</h4>
-          <p><strong>3829 29th St</strong> &mdash; Open 24 hours. $1/hr, $5 daytime max (6 AM&ndash;6 PM), $5 flat evening (6 PM&ndash;6 AM).</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=32.7477683,-117.1306930" target="_blank" class="btn btn-dir btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
-            <a href="https://maps.apple.com/?daddr=32.7477683,-117.1306930&dirflg=d" target="_blank" class="btn btn-dir"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
-          </div>
-        </div>
-        <div class="parking-option">
-          <h4>&#127383; Free Street Parking</h4>
-          <p>Best free curb options around <strong>Ray Street</strong> and nearby blocks like 31st St / Gunn St. No meters in this area. Check every sign &mdash; San Diego prohibits parking within 20 feet of marked or unmarked crosswalks.</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=32.7473,-117.1294" target="_blank" class="btn btn-dir btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
-            <a href="https://maps.apple.com/?daddr=32.7473,-117.1294&dirflg=d" target="_blank" class="btn btn-dir"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
-          </div>
-        </div>
+        <div class="park-box"><span class="park-name">North Park Garage (Paid, Recommended)</span><a href="https://www.google.com/maps/dir/?api=1&destination=32.7477683,-117.1306930" target="_blank" class="park-btn park-btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a><a href="https://maps.apple.com/?daddr=32.7477683,-117.1306930&dirflg=d" target="_blank" class="park-btn park-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a></div>
+        <div class="park-box"><span class="park-name">Ray St Area (Free Street Parking)</span><a href="https://www.google.com/maps/dir/?api=1&destination=32.7473,-117.1294" target="_blank" class="park-btn park-btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a><a href="https://maps.apple.com/?daddr=32.7473,-117.1294&dirflg=d" target="_blank" class="park-btn park-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a></div>
       </div>
 
     </div>
@@ -1005,22 +997,8 @@
       <!-- Parking -->
       <div class="parking-section">
         <h3>&#127359;&#65039; Parking (Both Plans)</h3>
-        <div class="parking-option">
-          <h4>&#127359;&#65039; Paid &mdash; North Park Garage (Recommended)</h4>
-          <p><strong>3829 29th St</strong> &mdash; Open 24 hours. $1/hr, $5 daytime max (6 AM&ndash;6 PM), $5 flat evening (6 PM&ndash;6 AM).</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=32.7477683,-117.1306930" target="_blank" class="btn btn-dir btn-google" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
-            <a href="https://maps.apple.com/?daddr=32.7477683,-117.1306930&dirflg=d" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
-          </div>
-        </div>
-        <div class="parking-option">
-          <h4>&#127383; Free Street Parking</h4>
-          <p>Best free curb options around <strong>Ray Street</strong> and nearby blocks like 31st St / Gunn St. No meters in this area. Check every sign &mdash; San Diego prohibits parking within 20 feet of marked or unmarked crosswalks.</p>
-          <div class="parking-links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=32.7473,-117.1294" target="_blank" class="btn btn-dir btn-google" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a>
-            <a href="https://maps.apple.com/?daddr=32.7473,-117.1294&dirflg=d" target="_blank" class="btn btn-dir" style="background:linear-gradient(135deg,#5b86e5,#36d1dc)"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a>
-          </div>
-        </div>
+        <div class="park-box"><span class="park-name">North Park Garage (Paid, Recommended)</span><a href="https://www.google.com/maps/dir/?api=1&destination=32.7477683,-117.1306930" target="_blank" class="park-btn park-btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a><a href="https://maps.apple.com/?daddr=32.7477683,-117.1306930&dirflg=d" target="_blank" class="park-btn park-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a></div>
+        <div class="park-box"><span class="park-name">Ray St Area (Free Street Parking)</span><a href="https://www.google.com/maps/dir/?api=1&destination=32.7473,-117.1294" target="_blank" class="park-btn park-btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a><a href="https://maps.apple.com/?daddr=32.7473,-117.1294&dirflg=d" target="_blank" class="park-btn park-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a></div>
       </div>
 
     </div>
