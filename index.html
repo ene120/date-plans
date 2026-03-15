@@ -3,123 +3,1066 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DateFlo — Curated Date Plans</title>
+  <title>DateFlo — Personalized Date Plans, Crafted by Experts</title>
+  <meta name="description" content="DateFlo creates personalized, multi-stop date plans tailored to you and your partner. Every detail researched, every moment planned.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #1a0a10 0%, #2d1320 30%, #1a0a10 100%);
-      color: #fff;
-      overflow: hidden;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --rose:#e05780;--rose-deep:#c0406a;--rose-light:#ff6b9d;
+      --gold:#f9ca24;--gold-dark:#d4a810;
+      --bg-dark:#1a0a10;--bg-mid:#2d1320;--bg-card:rgba(255,255,255,.04);
+      --text:#fff;--text-soft:rgba(255,255,255,.7);--text-muted:rgba(255,255,255,.45);
+      --glass:rgba(255,255,255,.06);--glass-border:rgba(255,255,255,.1);
+      --cupid:#e84393;--deep-rose:#8e3a59;
+    }
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      background:var(--bg-dark);color:var(--text);
+      line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;
     }
 
-    .floating-hearts {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    /* ── Floating Hearts ── */
+    .hearts-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+    .hf{position:absolute;bottom:-60px;font-size:1.2rem;opacity:0;animation:hFloat linear infinite}
+    @keyframes hFloat{0%{opacity:0;transform:translateY(0) rotate(0deg)}10%{opacity:.15}90%{opacity:.05}100%{opacity:0;transform:translateY(-110vh) rotate(40deg)}}
+
+    /* ── Nav ── */
+    .nav{
+      position:fixed;top:0;left:0;width:100%;z-index:100;
+      padding:18px clamp(20px,4vw,48px);
+      display:flex;align-items:center;justify-content:space-between;
+      transition:background .4s,backdrop-filter .4s;
     }
-    .floating-hearts span {
-      position: absolute;
-      font-size: 1.2rem;
-      opacity: 0;
-      animation: floatUp 12s ease-in infinite;
+    .nav.scrolled{background:rgba(26,10,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border)}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--rose);text-decoration:none}
+    .nav-links{display:flex;gap:clamp(16px,3vw,32px);align-items:center}
+    .nav-links a{color:var(--text-soft);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.02em;transition:color .3s}
+    .nav-links a:hover{color:var(--rose)}
+    .nav-cta{
+      background:var(--rose);color:white;padding:10px 24px;border-radius:50px;
+      font-weight:600;font-size:.85rem;border:none;cursor:pointer;
+      transition:all .3s;text-decoration:none;
     }
-    @keyframes floatUp {
-      0%   { opacity: 0; transform: translateY(100vh) rotate(0deg); }
-      10%  { opacity: 0.3; }
-      90%  { opacity: 0.1; }
-      100% { opacity: 0; transform: translateY(-10vh) rotate(360deg); }
+    .nav-cta:hover{background:var(--rose-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(224,87,128,.3)}
+
+    /* ── Section Utility ── */
+    section{position:relative;z-index:1}
+    .container{max-width:1100px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+    .section-pad{padding:clamp(80px,12vh,140px) 0}
+    .section-label{
+      font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--rose);font-weight:700;margin-bottom:12px;
+    }
+    .section-title{
+      font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.2rem);
+      font-weight:700;line-height:1.2;margin-bottom:20px;
+    }
+    .section-sub{font-size:clamp(.95rem,1.6vw,1.1rem);color:var(--text-soft);max-width:600px;line-height:1.8}
+
+    /* ── Reveal Animation ── */
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* ═══════════ HERO ═══════════ */
+    .hero{
+      min-height:100svh;display:flex;align-items:center;justify-content:center;
+      text-align:center;padding:clamp(100px,14vh,160px) clamp(20px,4vw,40px);
+      background:linear-gradient(160deg,#1a0a10 0%,#2d1320 40%,#3a1428 60%,#1a0a10 100%);
+      position:relative;overflow:hidden;
+    }
+    .hero::before{
+      content:'';position:absolute;top:-50%;right:-30%;width:700px;height:700px;
+      background:radial-gradient(circle,rgba(224,87,128,.12) 0%,transparent 70%);
+      pointer-events:none;animation:heroPulse 8s ease-in-out infinite;
+    }
+    .hero::after{
+      content:'';position:absolute;bottom:-40%;left:-20%;width:600px;height:600px;
+      background:radial-gradient(circle,rgba(249,202,36,.06) 0%,transparent 70%);
+      pointer-events:none;animation:heroPulse 10s ease-in-out infinite reverse;
+    }
+    @keyframes heroPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:1}}
+    .hero-inner{max-width:720px;position:relative;z-index:2}
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--glass);border:1px solid var(--glass-border);
+      padding:8px 20px;border-radius:50px;font-size:.8rem;color:var(--text-soft);
+      margin-bottom:clamp(24px,4vh,40px);backdrop-filter:blur(12px);
+    }
+    .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:blink 2s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    .hero h1{
+      font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,4.8rem);
+      font-weight:800;line-height:1.1;margin-bottom:clamp(16px,3vh,28px);
+      letter-spacing:-.02em;
+    }
+    .hero h1 em{
+      font-style:italic;
+      background:linear-gradient(135deg,var(--rose),var(--rose-light));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero-desc{
+      font-size:clamp(1rem,1.8vw,1.2rem);color:var(--text-soft);
+      max-width:560px;margin:0 auto clamp(28px,5vh,44px);line-height:1.8;font-weight:300;
+    }
+    .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:clamp(16px,2.5vw,20px) clamp(32px,5vw,48px);
+      background:linear-gradient(135deg,var(--rose),var(--rose-deep));
+      color:white;border:none;border-radius:50px;cursor:pointer;
+      font-family:'Inter',system-ui,sans-serif;font-size:clamp(.95rem,1.5vw,1.1rem);font-weight:600;
+      letter-spacing:.03em;transition:all .4s;text-decoration:none;
+      box-shadow:0 4px 20px rgba(224,87,128,.3);
+    }
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(224,87,128,.45)}
+    .btn-ghost{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:clamp(16px,2.5vw,20px) clamp(28px,4vw,40px);
+      background:transparent;color:var(--text-soft);border:1px solid var(--glass-border);
+      border-radius:50px;cursor:pointer;font-family:'Inter',system-ui,sans-serif;
+      font-size:clamp(.9rem,1.4vw,1rem);font-weight:500;transition:all .3s;text-decoration:none;
+    }
+    .btn-ghost:hover{background:var(--glass);color:white;border-color:rgba(255,255,255,.2)}
+    .hero-trust{margin-top:clamp(36px,6vh,56px);display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+    .trust-item{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text-muted)}
+    .trust-item svg{width:16px;height:16px;stroke:var(--rose);fill:none;stroke-width:2}
+
+    /* ═══════════ SOCIAL PROOF BAR ═══════════ */
+    .proof-bar{
+      padding:clamp(24px,4vh,40px) 0;
+      background:linear-gradient(180deg,rgba(45,19,32,.6),transparent);
+      border-top:1px solid var(--glass-border);
+    }
+    .proof-grid{display:flex;justify-content:center;gap:clamp(28px,6vw,64px);flex-wrap:wrap;text-align:center}
+    .proof-stat .num{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--rose)}
+    .proof-stat .label{font-size:.78rem;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+
+    /* ═══════════ HOW IT WORKS ═══════════ */
+    .how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,3vw,32px);margin-top:clamp(40px,6vh,60px)}
+    .how-card{
+      background:var(--glass);border:1px solid var(--glass-border);
+      border-radius:20px;padding:clamp(28px,4vw,40px);
+      backdrop-filter:blur(12px);transition:transform .4s,border-color .4s;position:relative;overflow:hidden;
+    }
+    .how-card:hover{transform:translateY(-6px);border-color:rgba(224,87,128,.3)}
+    .how-num{
+      font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:800;
+      color:rgba(224,87,128,.1);position:absolute;top:12px;right:20px;line-height:1;
+    }
+    .how-icon{font-size:2rem;margin-bottom:16px}
+    .how-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;margin-bottom:10px}
+    .how-card p{font-size:.9rem;color:var(--text-soft);line-height:1.7}
+    .how-time{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.78rem;color:var(--gold);font-weight:600;letter-spacing:.04em}
+
+    /* ═══════════ WHAT'S INCLUDED ═══════════ */
+    .includes-section{background:linear-gradient(180deg,var(--bg-dark),#22101a,var(--bg-dark))}
+    .includes-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:2px;margin-top:clamp(40px,6vh,60px);border-radius:20px;overflow:hidden;
+    }
+    .inc-item{
+      background:var(--bg-card);padding:clamp(24px,3vw,36px);
+      transition:background .3s;
+    }
+    .inc-item:hover{background:rgba(255,255,255,.07)}
+    .inc-icon{font-size:1.6rem;margin-bottom:12px}
+    .inc-item h4{font-size:1rem;font-weight:600;margin-bottom:8px}
+    .inc-item p{font-size:.85rem;color:var(--text-soft);line-height:1.7}
+
+    /* ═══════════ THE RESEARCH ═══════════ */
+    .research-section{overflow:hidden}
+    .research-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:center;margin-top:clamp(40px,6vh,60px)}
+    .research-visual{
+      position:relative;background:var(--glass);border:1px solid var(--glass-border);
+      border-radius:24px;padding:clamp(28px,4vw,44px);backdrop-filter:blur(12px);
+    }
+    .rv-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);font-weight:700;margin-bottom:20px}
+    .rv-list{list-style:none}
+    .rv-list li{
+      display:flex;align-items:flex-start;gap:12px;padding:12px 0;
+      border-bottom:1px solid rgba(255,255,255,.06);font-size:.9rem;color:var(--text-soft);
+    }
+    .rv-list li:last-child{border:none}
+    .rv-list .rv-check{color:var(--rose);font-size:1rem;flex-shrink:0;margin-top:2px}
+    .research-text .big-quote{
+      font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.5vw,1.7rem);
+      font-weight:600;line-height:1.5;margin-bottom:24px;font-style:italic;
+      color:var(--text);
+    }
+    .research-text .big-quote span{color:var(--rose)}
+
+    /* ═══════════ TEAM ═══════════ */
+    .team-section{background:linear-gradient(180deg,var(--bg-dark),#1e0d15)}
+    .team-content{
+      background:var(--glass);border:1px solid var(--glass-border);
+      border-radius:24px;padding:clamp(36px,6vw,64px);backdrop-filter:blur(12px);
+      margin-top:clamp(32px,5vh,48px);text-align:center;
+    }
+    .team-content p{font-size:clamp(.95rem,1.6vw,1.1rem);color:var(--text-soft);line-height:1.9;max-width:680px;margin:0 auto}
+    .team-content p+p{margin-top:20px}
+    .team-stats{display:flex;justify-content:center;gap:clamp(24px,5vw,56px);margin-top:clamp(28px,4vh,44px);flex-wrap:wrap}
+    .ts-item{text-align:center}
+    .ts-item .ts-num{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--gold)}
+    .ts-item .ts-label{font-size:.75rem;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+
+    /* ═══════════ PRICING PLACEHOLDER ═══════════ */
+    .pricing-section{background:linear-gradient(180deg,#1e0d15,var(--bg-dark))}
+    .pricing-placeholder{
+      background:var(--glass);border:1px dashed var(--glass-border);
+      border-radius:24px;padding:clamp(48px,8vh,80px) clamp(24px,4vw,48px);
+      text-align:center;margin-top:clamp(32px,5vh,48px);
+    }
+    .pricing-placeholder .pp-icon{font-size:2.4rem;margin-bottom:16px}
+    .pricing-placeholder h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:12px}
+    .pricing-placeholder p{color:var(--text-muted);font-size:.95rem;max-width:440px;margin:0 auto}
+
+    /* ═══════════ DELIVERY ═══════════ */
+    .delivery-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:clamp(32px,5vh,48px)}
+    .del-card{
+      background:var(--glass);border:1px solid var(--glass-border);
+      border-radius:20px;padding:clamp(28px,4vw,40px);backdrop-filter:blur(12px);
+      text-align:center;transition:border-color .3s;
+    }
+    .del-card:hover{border-color:rgba(224,87,128,.3)}
+    .del-card .del-icon{font-size:2rem;margin-bottom:12px}
+    .del-card h4{font-size:1.1rem;font-weight:600;margin-bottom:8px}
+    .del-card p{font-size:.88rem;color:var(--text-soft);line-height:1.7}
+    .del-card .del-tag{
+      display:inline-block;margin-top:14px;padding:6px 16px;border-radius:50px;
+      font-size:.75rem;font-weight:600;letter-spacing:.06em;
+    }
+    .del-tag.standard{background:rgba(224,87,128,.12);color:var(--rose)}
+    .del-tag.rush{background:rgba(249,202,36,.12);color:var(--gold)}
+
+    /* ═══════════ FAQ ═══════════ */
+    .faq-list{margin-top:clamp(32px,5vh,48px);max-width:720px;margin-left:auto;margin-right:auto}
+    .faq-item{border-bottom:1px solid var(--glass-border)}
+    .faq-q{
+      width:100%;text-align:left;background:none;border:none;color:var(--text);
+      font-family:'Inter',system-ui,sans-serif;font-size:clamp(.95rem,1.5vw,1.05rem);
+      font-weight:600;padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;
+      align-items:center;gap:16px;transition:color .3s;
+    }
+    .faq-q:hover{color:var(--rose)}
+    .faq-q .faq-arrow{transition:transform .3s;font-size:.85rem;color:var(--text-muted);flex-shrink:0}
+    .faq-item.open .faq-arrow{transform:rotate(180deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+    .faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
+    .faq-a p{font-size:.9rem;color:var(--text-soft);line-height:1.8}
+
+    /* ═══════════ FINAL CTA ═══════════ */
+    .final-cta{
+      text-align:center;
+      background:linear-gradient(180deg,var(--bg-dark),#2d1320 50%,var(--bg-dark));
+    }
+    .final-cta h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;margin-bottom:16px}
+    .final-cta h2 em{font-style:italic;color:var(--rose)}
+    .final-cta p{color:var(--text-soft);font-size:clamp(.95rem,1.5vw,1.1rem);margin-bottom:clamp(28px,4vh,40px);max-width:500px;margin-left:auto;margin-right:auto}
+
+    /* ═══════════ FOOTER ═══════════ */
+    footer{
+      padding:clamp(32px,5vh,48px) clamp(20px,4vw,40px);
+      border-top:1px solid var(--glass-border);text-align:center;
+    }
+    .footer-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--rose);margin-bottom:8px}
+    footer p{font-size:.78rem;color:var(--text-muted)}
+    footer a{color:var(--text-muted);text-decoration:none}
+    footer a:hover{color:var(--rose)}
+
+    /* ═══════════ RESPONSIVE ═══════════ */
+    @media(max-width:768px){
+      .nav-links a:not(.nav-cta){display:none}
+      .research-grid{grid-template-columns:1fr}
+      .delivery-grid{grid-template-columns:1fr}
+      .hero-trust{flex-direction:column;align-items:center;gap:16px}
     }
 
-    .container {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 2rem;
-      max-width: 600px;
+    /* ═══════════ FORM OVERLAY ═══════════ */
+    .form-overlay{
+      position:fixed;top:0;left:0;width:100%;height:100%;z-index:200;
+      background:var(--bg-dark);display:none;overflow-y:auto;
     }
+    .form-overlay.open{display:block;animation:fadeIn .4s ease}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .form-wrap{max-width:580px;margin:0 auto;padding:clamp(24px,4vw,48px) clamp(20px,4vw,32px);min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+    .form-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(24px,4vh,40px)}
+    .form-close{background:none;border:1px solid var(--glass-border);color:var(--text-soft);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .3s}
+    .form-close:hover{background:var(--glass);color:white}
+    .form-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--rose)}
+    .form-progress{height:3px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:clamp(32px,5vh,48px);overflow:hidden}
+    .form-progress-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--gold));border-radius:4px;transition:width .5s ease}
+    .form-page{display:none}
+    .form-page.active{display:block;animation:slideUp .4s ease}
+    @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .fp-icon{font-size:2.6rem;margin-bottom:16px}
+    .fp-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;margin-bottom:8px}
+    .fp-sub{color:var(--text-muted);font-size:.9rem;margin-bottom:clamp(28px,4vh,40px);line-height:1.7}
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--text-soft);margin-bottom:8px;letter-spacing:.03em}
+    .form-group label .req{color:var(--rose);margin-left:2px}
+    .form-input{
+      width:100%;padding:14px 18px;background:var(--glass);
+      border:1px solid var(--glass-border);border-radius:14px;
+      color:white;font-family:'Inter',system-ui,sans-serif;font-size:.95rem;
+      transition:border-color .3s,box-shadow .3s;outline:none;
+    }
+    .form-input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(224,87,128,.15)}
+    .form-input::placeholder{color:var(--text-muted)}
+    textarea.form-input{resize:vertical;min-height:100px}
+    select.form-input{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+    select.form-input option{background:#2d1320;color:white}
 
-    .logo-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #e05780, #ff6b9d, #f8a4c0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
-      letter-spacing: -1px;
+    /* Choice cards */
+    .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+    .choice{
+      background:var(--glass);border:2px solid var(--glass-border);
+      border-radius:16px;padding:clamp(16px,2.5vw,24px);text-align:center;
+      cursor:pointer;transition:all .3s;
     }
+    .choice:hover{border-color:rgba(224,87,128,.4);background:rgba(224,87,128,.06)}
+    .choice.selected{border-color:var(--rose);background:rgba(224,87,128,.1);box-shadow:0 0 0 3px rgba(224,87,128,.15)}
+    .choice-icon{font-size:1.8rem;margin-bottom:8px}
+    .choice-label{font-size:.88rem;font-weight:600;margin-bottom:4px}
+    .choice-desc{font-size:.75rem;color:var(--text-muted);line-height:1.5}
 
-    .tagline {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.6);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 2.5rem;
-    }
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:480px){.form-row{grid-template-columns:1fr}}
 
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #e05780, transparent);
-      margin: 0 auto 2.5rem;
+    .form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:clamp(28px,4vh,40px);gap:14px}
+    .btn-back{
+      background:none;border:1px solid var(--glass-border);color:var(--text-soft);
+      padding:12px 24px;border-radius:50px;cursor:pointer;font-family:'Inter',system-ui,sans-serif;
+      font-size:.9rem;font-weight:500;transition:all .3s;
     }
+    .btn-back:hover{background:var(--glass);color:white}
+    .btn-next{
+      background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:white;
+      padding:14px 32px;border-radius:50px;border:none;cursor:pointer;
+      font-family:'Inter',system-ui,sans-serif;font-size:.95rem;font-weight:600;
+      transition:all .3s;margin-left:auto;
+    }
+    .btn-next:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,87,128,.3)}
+    .btn-next:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
 
-    .message {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, 0.5);
-      font-weight: 300;
+    .form-hint{font-size:.78rem;color:var(--text-muted);font-style:italic;margin-top:8px}
+    .partner-tab{
+      display:flex;gap:8px;margin-bottom:20px;
     }
+    .ptab{
+      flex:1;padding:10px;text-align:center;border-radius:12px;
+      background:var(--glass);border:2px solid var(--glass-border);
+      cursor:pointer;font-size:.85rem;font-weight:600;color:var(--text-soft);transition:all .3s;
+    }
+    .ptab.active{border-color:var(--rose);color:var(--rose);background:rgba(224,87,128,.08)}
+    .partner-section{display:none}
+    .partner-section.active{display:block;animation:slideUp .3s ease}
 
-    .message a {
-      color: #e05780;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .message a:hover { color: #ff6b9d; }
-
-    @media (max-width: 480px) {
-      .logo-mark { font-size: 2.8rem; }
-      .tagline { font-size: 0.85rem; letter-spacing: 2px; }
-    }
+    /* Success page */
+    .success-page{text-align:center;padding:40px 0}
+    .success-icon{font-size:4rem;margin-bottom:20px;animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    .success-page h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:12px}
+    .success-page p{color:var(--text-soft);font-size:1rem;line-height:1.8;max-width:420px;margin:0 auto}
   </style>
 </head>
 <body>
 
-  <div class="floating-hearts">
-    <span style="left:5%;animation-delay:0s;animation-duration:10s">♥</span>
-    <span style="left:15%;animation-delay:2s;animation-duration:14s">♥</span>
-    <span style="left:25%;animation-delay:4s;animation-duration:11s">♥</span>
-    <span style="left:40%;animation-delay:1s;animation-duration:13s">♥</span>
-    <span style="left:55%;animation-delay:3s;animation-duration:10s">♥</span>
-    <span style="left:65%;animation-delay:5s;animation-duration:15s">♥</span>
-    <span style="left:75%;animation-delay:0.5s;animation-duration:12s">♥</span>
-    <span style="left:85%;animation-delay:2.5s;animation-duration:11s">♥</span>
-    <span style="left:95%;animation-delay:4.5s;animation-duration:14s">♥</span>
+  <!-- Floating Hearts -->
+  <div class="hearts-bg" id="hearts"></div>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">DateFlo</a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#included">What's Included</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" onclick="openForm()">Plan Your Date</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge"><span class="dot"></span> Now taking date plans for San Diego</div>
+      <h1>We plan the date.<br>You make the <em>memories.</em></h1>
+      <p class="hero-desc">Every restaurant researched. Every detail covered. Every moment crafted around you and your partner — so all you have to do is show up.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" onclick="openForm()">Plan Your Date &rarr;</a>
+        <a class="btn-ghost" href="#how">See How It Works</a>
+      </div>
+      <div class="hero-trust">
+        <span class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Hand-crafted plans</span>
+        <span class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Delivered in 24 hours</span>
+        <span class="trust-item"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Personalized to both partners</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SOCIAL PROOF ═══════════ -->
+  <div class="proof-bar reveal">
+    <div class="container">
+      <div class="proof-grid">
+        <div class="proof-stat"><div class="num">50+</div><div class="label">Hours of venue research</div></div>
+        <div class="proof-stat"><div class="num">6</div><div class="label">Data sources per plan</div></div>
+        <div class="proof-stat"><div class="num">100%</div><div class="label">Personalized to you</div></div>
+        <div class="proof-stat"><div class="num">24hr</div><div class="label">Turnaround time</div></div>
+      </div>
+    </div>
   </div>
 
-  <div class="container">
-    <div class="logo-mark">DateFlo</div>
-    <div class="tagline">Curated Date Plans</div>
-    <div class="divider"></div>
-    <p class="message">
-      Your personalized date plan has been shared with you via a direct link.<br><br>
-      If you need a new plan, reach out to your DateFlo planner.
-    </p>
+  <!-- ═══════════ HOW IT WORKS ═══════════ -->
+  <section class="section-pad" id="how">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">How It Works</div>
+        <div class="section-title">Three steps to an <em>unforgettable</em> date.</div>
+        <p class="section-sub">No apps to download. No subscriptions. Just a date plan built around the two of you.</p>
+      </div>
+      <div class="how-grid">
+        <div class="how-card reveal">
+          <div class="how-num">01</div>
+          <div class="how-icon">💬</div>
+          <h3>Tell Us About You Two</h3>
+          <p>Answer a few fun questions about your tastes, your partner's favorites, and what kind of date you're in the mood for. Takes about 5 minutes.</p>
+        </div>
+        <div class="how-card reveal">
+          <div class="how-num">02</div>
+          <div class="how-icon">🔍</div>
+          <h3>Our Team Gets to Work</h3>
+          <p>Our planning team researches venues, checks reviews, verifies hours, scouts menus, and builds a multi-stop itinerary tailored to your preferences.</p>
+          <div class="how-time">&#9201; Delivered within 24 hours</div>
+        </div>
+        <div class="how-card reveal">
+          <div class="how-num">03</div>
+          <div class="how-icon">✨</div>
+          <h3>Open & Go</h3>
+          <p>You get a beautiful, interactive date plan on your phone with directions, parking, food picks for each of you, and everything you need. Just show up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ WHAT'S INCLUDED ═══════════ -->
+  <section class="includes-section section-pad" id="included">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">What's Included</div>
+        <div class="section-title">More than a recommendation.<br>A <em>complete</em> plan.</div>
+        <p class="section-sub" style="margin:0 auto">Every plan is packed with details so you never have to Google anything during your date.</p>
+      </div>
+      <div class="includes-grid reveal">
+        <div class="inc-item"><div class="inc-icon">📍</div><h4>Multi-Stop Itinerary</h4><p>3-4 curated stops with perfect timing and flow, from the first activity to the final dessert spot.</p></div>
+        <div class="inc-item"><div class="inc-icon">🍽️</div><h4>Personalized Food Picks</h4><p>Specific dish recommendations for each partner based on your individual tastes, plus shared items to try together.</p></div>
+        <div class="inc-item"><div class="inc-icon">⭐</div><h4>Reviews & Ratings</h4><p>Google and Yelp ratings for every single stop, so you know exactly what to expect before you arrive.</p></div>
+        <div class="inc-item"><div class="inc-icon">🗺️</div><h4>One-Tap Directions</h4><p>Google Maps and Apple Maps links for every stop. Uber and Lyft deep links that drop you at the front door.</p></div>
+        <div class="inc-item"><div class="inc-icon">🅿️</div><h4>Parking Research</h4><p>Free and paid parking options with exact locations and costs. No circling the block.</p></div>
+        <div class="inc-item"><div class="inc-icon">🌤️</div><h4>Weather & Outfit Guide</h4><p>Hyper-local weather forecast for your exact date window, with practical outfit suggestions.</p></div>
+        <div class="inc-item"><div class="inc-icon">🔄</div><h4>Backup Venues</h4><p>Alternative options for key stops in case plans change, a place is too crowded, or you're just feeling something different.</p></div>
+        <div class="inc-item"><div class="inc-icon">⏰</div><h4>Live Countdown</h4><p>An interactive countdown timer on your plan page that builds anticipation as your date approaches.</p></div>
+        <div class="inc-item"><div class="inc-icon">📋</div><h4>Pre-Date Checklist</h4><p>A handy checklist so you don't forget reservations, outfit prep, or that thing your partner mentioned wanting to try.</p></div>
+        <div class="inc-item"><div class="inc-icon">🎉</div><h4>Happy Hour Intel</h4><p>If any of your stops have happy hour deals during your date window, we'll flag the savings.</p></div>
+        <div class="inc-item"><div class="inc-icon">⚠️</div><h4>Event & Conflict Alerts</h4><p>Heads up on nearby events, parking impacts, closures, or anything that could affect your night.</p></div>
+        <div class="inc-item"><div class="inc-icon">💬</div><h4>Post-Date Feedback</h4><p>Rate each stop and share notes. We use your feedback to make your next date even better.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ THE RESEARCH ═══════════ -->
+  <section class="section-pad research-section" id="research">
+    <div class="container">
+      <div class="research-grid">
+        <div class="research-visual reveal">
+          <div class="rv-label">What our team checks for every plan</div>
+          <ul class="rv-list">
+            <li><span class="rv-check">&#10003;</span> Venue hours verified for your specific date</li>
+            <li><span class="rv-check">&#10003;</span> Menu items confirmed available and priced</li>
+            <li><span class="rv-check">&#10003;</span> Allergy and dietary restrictions cross-checked</li>
+            <li><span class="rv-check">&#10003;</span> Drive times calculated for your time window</li>
+            <li><span class="rv-check">&#10003;</span> Parking scouted — free lots, paid garages, street spots</li>
+            <li><span class="rv-check">&#10003;</span> Nearby events checked for conflicts or crowds</li>
+            <li><span class="rv-check">&#10003;</span> Reviews analyzed across Google, Yelp, and more</li>
+            <li><span class="rv-check">&#10003;</span> Weather forecasted for your exact date and time</li>
+            <li><span class="rv-check">&#10003;</span> Backup venues pre-selected just in case</li>
+          </ul>
+        </div>
+        <div class="research-text reveal">
+          <div class="section-label">The Research Behind Every Plan</div>
+          <div class="big-quote">"We don't just pick a restaurant and call it a date. We build an <span>experience</span> around who you are as a couple."</div>
+          <p class="section-sub">Every plan goes through a multi-step research process. We verify hours, scout parking, read through menus, check reviews, calculate drive times, and factor in everything from the weather to nearby events — so nothing is left to chance.</p>
+          <p class="section-sub" style="margin-top:16px">The result? A date plan that feels like it was designed by someone who knows you — because it was.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ OUR TEAM ═══════════ -->
+  <section class="team-section section-pad" id="team">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Our Team</div>
+        <div class="section-title">A dedicated team behind every date.</div>
+      </div>
+      <div class="team-content reveal">
+        <p>When you submit your date plan request, it doesn't go into a queue — it goes to a real team of planners who specialize in crafting memorable date experiences in San Diego.</p>
+        <p>We cross-reference multiple data sources, verify every detail in real time, and tailor every recommendation to you and your partner individually — not just as a couple, but as two people with different tastes, different comfort zones, and different ideas of what makes a night special.</p>
+        <p>This isn't a template. It's not a list of "top 10 restaurants." It's a fully personalized, research-backed plan that you can trust from the first stop to the last.</p>
+        <div class="team-stats">
+          <div class="ts-item"><div class="ts-num">6+</div><div class="ts-label">Sources researched</div></div>
+          <div class="ts-item"><div class="ts-num">3-4</div><div class="ts-label">Stops per plan</div></div>
+          <div class="ts-item"><div class="ts-num">2</div><div class="ts-label">Plan options included</div></div>
+          <div class="ts-item"><div class="ts-num">24h</div><div class="ts-label">Or less delivery</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ DELIVERY ═══════════ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Delivery</div>
+        <div class="section-title">Your plan, on your timeline.</div>
+        <p class="section-sub" style="margin:0 auto">Every plan is delivered as a beautiful, interactive page you can pull up right on your phone.</p>
+      </div>
+      <div class="delivery-grid reveal">
+        <div class="del-card">
+          <div class="del-icon">📬</div>
+          <h4>Standard Delivery</h4>
+          <p>Our team researches, verifies, and crafts your plan. Delivered to your inbox within 24 hours of your submission.</p>
+          <span class="del-tag standard">Within 24 Hours</span>
+        </div>
+        <div class="del-card">
+          <div class="del-icon">⚡</div>
+          <h4>Rush Delivery</h4>
+          <p>Need it sooner? Skip the line and get your fully researched plan in just 4-6 hours. Perfect for spontaneous dates.</p>
+          <span class="del-tag rush">4-6 Hours &middot; Small Fee</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ PRICING ═══════════ -->
+  <section class="pricing-section section-pad" id="pricing">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Pricing</div>
+        <div class="section-title">Simple, per-date pricing.</div>
+        <p class="section-sub" style="margin:0 auto">No subscriptions. No hidden fees. Just pay per date plan.</p>
+      </div>
+      <div class="pricing-placeholder reveal">
+        <div class="pp-icon">💎</div>
+        <h3>Pricing Coming Soon</h3>
+        <p>We're finalizing our tier options to make sure every couple gets the best value. Check back soon — or plan your date now and we'll reach out with details.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FAQ ═══════════ -->
+  <section class="section-pad" id="faq">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">FAQ</div>
+        <div class="section-title">Questions? We've got answers.</div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q">What exactly do I get?<span class="faq-arrow">&#9660;</span></button>
+          <div class="faq-a"><p>You receive a personalized, interactive date plan page with a multi-stop itinerary, food recommendations for each partner, directions, parking, weather, reviews, a countdown timer, and more — all accessible from your phone.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How long does it take to get my plan?<span class="faq-arrow">&#9660;</span></button>
+          <div class="faq-a"><p>Standard delivery is within 24 hours. If you need it faster, rush delivery gets it to you in 4-6 hours for a small additional fee.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is this a subscription?<span class="faq-arrow">&#9660;</span></button>
+          <div class="faq-a"><p>No. DateFlo is pay-per-date. You only pay when you want a plan — no recurring charges, no commitments.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What cities do you cover?<span class="faq-arrow">&#9660;</span></button>
+          <div class="faq-a"><p>We're currently focused on San Diego. We're expanding to more cities soon — let us know where you'd love to see us next!</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I request specific restaurants?<span class="faq-arrow">&#9660;</span></button>
+          <div class="faq-a"><p>Absolutely. If there's a spot you've been wanting to try, let us know in the form and we'll work it into your plan with complementary stops around it.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What if my partner has allergies or dietary restrictions?<span class="faq-arrow">&#9660;</span></button>
+          <div class="faq-a"><p>We take allergies and dietary needs very seriously. Every food recommendation is cross-checked against both partners' restrictions, and we flag safe menu items specifically.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do I need a car?<span class="faq-arrow">&#9660;</span></button>
+          <div class="faq-a"><p>Nope. Every plan includes Uber and Lyft deep links that take you straight to each stop. If you do drive, we include free and paid parking options with exact locations.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FINAL CTA ═══════════ -->
+  <section class="final-cta section-pad">
+    <div class="container reveal">
+      <h2>Ready for a date you'll <em>actually</em> remember?</h2>
+      <p>Tell us about you two and let our team handle the rest. Your personalized plan will be ready before you know it.</p>
+      <a class="btn-primary" onclick="openForm()" style="font-size:1.1rem;padding:20px 52px">Plan Your Date &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">DateFlo</div>
+    <p>&copy; 2026 DateFlo. Crafted with care in San Diego.</p>
+  </footer>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- ═══════════ MULTI-PAGE FORM ═══════════ -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="form-overlay" id="formOverlay">
+    <div class="form-wrap">
+      <div class="form-header">
+        <div class="form-logo">DateFlo</div>
+        <button class="form-close" onclick="closeForm()">&times;</button>
+      </div>
+      <div class="form-progress"><div class="form-progress-fill" id="progressFill" style="width:12.5%"></div></div>
+
+      <!-- PAGE 1: Welcome + Names -->
+      <div class="form-page active" id="fp1">
+        <div class="fp-icon">💕</div>
+        <div class="fp-title">Let's plan your perfect date.</div>
+        <p class="fp-sub">First, tell us who we're planning for. This helps us personalize everything.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Partner 1's Name <span class="req">*</span></label>
+            <input type="text" class="form-input" id="name1" placeholder="First name" required>
+          </div>
+          <div class="form-group">
+            <label>Partner 2's Name <span class="req">*</span></label>
+            <input type="text" class="form-input" id="name2" placeholder="First name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your Email <span class="req">*</span></label>
+          <input type="email" class="form-input" id="email" placeholder="We'll send your plan here" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" class="form-input" id="phone" placeholder="Optional — for quick questions">
+          <div class="form-hint">We'll only text if we need to clarify something about your plan.</div>
+        </div>
+        <div class="form-nav">
+          <div></div>
+          <button class="btn-next" onclick="nextPage(1)">Next &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PAGE 2: Relationship Stage + Occasion -->
+      <div class="form-page" id="fp2">
+        <div class="fp-icon">💫</div>
+        <div class="fp-title">Where are you two at?</div>
+        <p class="fp-sub">This helps us set the right vibe — a first date plan looks very different from a 5-year anniversary.</p>
+        <div class="form-group">
+          <label>Relationship Stage <span class="req">*</span></label>
+          <div class="choices" id="stageChoices">
+            <div class="choice" data-val="new" onclick="selectChoice(this,'stageChoices')">
+              <div class="choice-icon">🌱</div>
+              <div class="choice-label">Just Starting Out</div>
+              <div class="choice-desc">First few dates — still getting to know each other</div>
+            </div>
+            <div class="choice" data-val="growing" onclick="selectChoice(this,'stageChoices')">
+              <div class="choice-icon">🌸</div>
+              <div class="choice-label">Going Strong</div>
+              <div class="choice-desc">A few months to a couple years together</div>
+            </div>
+            <div class="choice" data-val="committed" onclick="selectChoice(this,'stageChoices')">
+              <div class="choice-icon">💍</div>
+              <div class="choice-label">Long-Term</div>
+              <div class="choice-desc">Years together, married, or deeply committed</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>What's the Occasion?</label>
+          <select class="form-input" id="occasion">
+            <option value="">Just because — no special reason needed</option>
+            <option value="anniversary">Anniversary</option>
+            <option value="birthday">Birthday</option>
+            <option value="first-date">First Date</option>
+            <option value="valentines">Valentine's Day</option>
+            <option value="proposal">Proposal</option>
+            <option value="celebration">Celebration</option>
+            <option value="reconnect">Reconnecting / Date Night Reset</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="prevPage(2)">&larr; Back</button>
+          <button class="btn-next" onclick="nextPage(2)">Next &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PAGE 3: Date Details -->
+      <div class="form-page" id="fp3">
+        <div class="fp-icon">📅</div>
+        <div class="fp-title">When's the big date?</div>
+        <p class="fp-sub">We'll research everything specific to your day — weather, hours, events, the whole picture.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date <span class="req">*</span></label>
+            <input type="date" class="form-input" id="dateDay" required>
+          </div>
+          <div class="form-group">
+            <label>Preferred Start Time <span class="req">*</span></label>
+            <select class="form-input" id="startTime" required>
+              <option value="">Select a time</option>
+              <option value="11:00">11:00 AM (Brunch vibes)</option>
+              <option value="12:00">12:00 PM</option>
+              <option value="13:00">1:00 PM</option>
+              <option value="14:00">2:00 PM</option>
+              <option value="15:00">3:00 PM</option>
+              <option value="16:00">4:00 PM</option>
+              <option value="17:00">5:00 PM (Golden hour)</option>
+              <option value="18:00">6:00 PM</option>
+              <option value="19:00">7:00 PM (Evening date)</option>
+              <option value="20:00">8:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Need to be done by a certain time?</label>
+          <input type="text" class="form-input" id="endTime" placeholder="e.g. 10 PM, no hard cutoff, etc.">
+        </div>
+        <div class="form-group">
+          <label>City / Area <span class="req">*</span></label>
+          <select class="form-input" id="city" required>
+            <option value="san-diego">San Diego</option>
+          </select>
+          <div class="form-hint">We're currently in San Diego — more cities coming soon!</div>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="prevPage(3)">&larr; Back</button>
+          <button class="btn-next" onclick="nextPage(3)">Next &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PAGE 4: Budget + Activity Level -->
+      <div class="form-page" id="fp4">
+        <div class="fp-icon">💰</div>
+        <div class="fp-title">Budget & energy level.</div>
+        <p class="fp-sub">No judgment — we'll make any budget feel special. And some dates are about adventure, others about relaxing. You pick.</p>
+        <div class="form-group">
+          <label>Total Budget for the Date <span class="req">*</span></label>
+          <select class="form-input" id="budget" required>
+            <option value="">Select your range</option>
+            <option value="under-50">Under $50 — Keep it simple</option>
+            <option value="50-100">$50 - $100 — Sweet spot</option>
+            <option value="100-150">$100 - $150 — Treat yourselves</option>
+            <option value="150-200">$150 - $200 — Go all out</option>
+            <option value="200+">$200+ — No limits</option>
+          </select>
+          <div class="form-hint">This covers food, drinks, and any activities. Not including parking or rideshare.</div>
+        </div>
+        <div class="form-group">
+          <label>How active do you want the date to be? <span class="req">*</span></label>
+          <div class="choices" id="activityChoices">
+            <div class="choice" data-val="chill" onclick="selectChoice(this,'activityChoices')">
+              <div class="choice-icon">🛋️</div>
+              <div class="choice-label">Low-Key</div>
+              <div class="choice-desc">Dinner and maybe one other thing. Keep it relaxed.</div>
+            </div>
+            <div class="choice" data-val="moderate" onclick="selectChoice(this,'activityChoices')">
+              <div class="choice-icon">🚶</div>
+              <div class="choice-label">Balanced</div>
+              <div class="choice-desc">A nice mix of activity and eating. 2-3 stops.</div>
+            </div>
+            <div class="choice" data-val="adventure" onclick="selectChoice(this,'activityChoices')">
+              <div class="choice-icon">🎢</div>
+              <div class="choice-label">Full Adventure</div>
+              <div class="choice-desc">Pack the night with stops. 3-4 places, let's go.</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Do you have a car, or will you need rides?</label>
+          <div class="choices" id="transportChoices">
+            <div class="choice" data-val="car" onclick="selectChoice(this,'transportChoices')">
+              <div class="choice-icon">🚗</div>
+              <div class="choice-label">We'll Drive</div>
+            </div>
+            <div class="choice" data-val="rideshare" onclick="selectChoice(this,'transportChoices')">
+              <div class="choice-icon">📱</div>
+              <div class="choice-label">Uber / Lyft</div>
+            </div>
+            <div class="choice" data-val="both" onclick="selectChoice(this,'transportChoices')">
+              <div class="choice-icon">🤷</div>
+              <div class="choice-label">Either Works</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="prevPage(4)">&larr; Back</button>
+          <button class="btn-next" onclick="nextPage(4)">Next &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PAGE 5: Food Preferences -->
+      <div class="form-page" id="fp5">
+        <div class="fp-icon">🍽️</div>
+        <div class="fp-title">Let's talk food.</div>
+        <p class="fp-sub">We pick specific dishes for each of you — so the more we know, the better your recommendations.</p>
+        <div class="partner-tab">
+          <div class="ptab active" onclick="switchPartner(0)"><span id="pt1Label">Partner 1</span></div>
+          <div class="ptab" onclick="switchPartner(1)"><span id="pt2Label">Partner 2</span></div>
+        </div>
+
+        <!-- Partner 1 Food -->
+        <div class="partner-section active" id="food1">
+          <div class="form-group">
+            <label>Favorite cuisines or foods <span class="req">*</span></label>
+            <input type="text" class="form-input" id="food1Likes" placeholder="e.g. Thai, sushi, pasta, tacos...">
+          </div>
+          <div class="form-group">
+            <label>Foods they dislike or won't eat</label>
+            <input type="text" class="form-input" id="food1Dislikes" placeholder="e.g. seafood, spicy food, mushrooms...">
+          </div>
+          <div class="form-group">
+            <label>Allergies or dietary restrictions</label>
+            <input type="text" class="form-input" id="food1Allergies" placeholder="e.g. gluten-free, vegetarian, nut allergy...">
+          </div>
+        </div>
+
+        <!-- Partner 2 Food -->
+        <div class="partner-section" id="food2">
+          <div class="form-group">
+            <label>Favorite cuisines or foods <span class="req">*</span></label>
+            <input type="text" class="form-input" id="food2Likes" placeholder="e.g. Italian, burgers, ramen, BBQ...">
+          </div>
+          <div class="form-group">
+            <label>Foods they dislike or won't eat</label>
+            <input type="text" class="form-input" id="food2Dislikes" placeholder="e.g. olives, raw fish, tofu...">
+          </div>
+          <div class="form-group">
+            <label>Allergies or dietary restrictions</label>
+            <input type="text" class="form-input" id="food2Allergies" placeholder="e.g. dairy-free, vegan, shellfish allergy...">
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn-back" onclick="prevPage(5)">&larr; Back</button>
+          <button class="btn-next" onclick="nextPage(5)">Next &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PAGE 6: Vibes & Style -->
+      <div class="form-page" id="fp6">
+        <div class="fp-icon">🎭</div>
+        <div class="fp-title">What's your vibe?</div>
+        <p class="fp-sub">Help us understand what kind of experience you're after. Pick as many as you like.</p>
+        <div class="form-group">
+          <label>What sounds good? (pick any that apply)</label>
+          <div class="choices" id="vibeChoices" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+            <div class="choice" data-val="romantic" onclick="toggleChoice(this)"><div class="choice-icon">🕯️</div><div class="choice-label">Romantic</div></div>
+            <div class="choice" data-val="adventurous" onclick="toggleChoice(this)"><div class="choice-icon">🌊</div><div class="choice-label">Adventurous</div></div>
+            <div class="choice" data-val="foodie" onclick="toggleChoice(this)"><div class="choice-icon">👨‍🍳</div><div class="choice-label">Foodie</div></div>
+            <div class="choice" data-val="outdoors" onclick="toggleChoice(this)"><div class="choice-icon">🌿</div><div class="choice-label">Outdoors</div></div>
+            <div class="choice" data-val="artsy" onclick="toggleChoice(this)"><div class="choice-icon">🎨</div><div class="choice-label">Artsy / Cultural</div></div>
+            <div class="choice" data-val="lively" onclick="toggleChoice(this)"><div class="choice-icon">🎶</div><div class="choice-label">Lively / Social</div></div>
+            <div class="choice" data-val="cozy" onclick="toggleChoice(this)"><div class="choice-icon">☕</div><div class="choice-label">Cozy / Intimate</div></div>
+            <div class="choice" data-val="surprise" onclick="toggleChoice(this)"><div class="choice-icon">🎁</div><div class="choice-label">Surprise Me</div></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Anything you do NOT want on this date?</label>
+          <textarea class="form-input" id="dealbreakers" placeholder="e.g. no clubs, no hiking, no crowded places..."></textarea>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="prevPage(6)">&larr; Back</button>
+          <button class="btn-next" onclick="nextPage(6)">Next &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PAGE 7: Love Languages + Extras -->
+      <div class="form-page" id="fp7">
+        <div class="fp-icon">💝</div>
+        <div class="fp-title">A few more details.</div>
+        <p class="fp-sub">These are optional, but they help us make your plan truly personal.</p>
+        <div class="form-group">
+          <label>Love languages (if you know them)</label>
+          <input type="text" class="form-input" id="loveLangs" placeholder="e.g. Quality Time, Physical Touch, Words of Affirmation...">
+          <div class="form-hint">Not sure? No worries — skip this one.</div>
+        </div>
+        <div class="form-group">
+          <label>Any specific restaurants or spots you want included?</label>
+          <input type="text" class="form-input" id="specificSpots" placeholder="e.g. We've been wanting to try Catania in La Jolla">
+        </div>
+        <div class="form-group">
+          <label>Do you prefer being surprised, or do you want to give input?</label>
+          <div class="choices" id="surpriseChoices">
+            <div class="choice" data-val="surprise" onclick="selectChoice(this,'surpriseChoices')">
+              <div class="choice-icon">🎁</div>
+              <div class="choice-label">Full Surprise</div>
+              <div class="choice-desc">Don't tell us anything — just wow us</div>
+            </div>
+            <div class="choice" data-val="some-input" onclick="selectChoice(this,'surpriseChoices')">
+              <div class="choice-icon">💬</div>
+              <div class="choice-label">Some Input</div>
+              <div class="choice-desc">General direction is fine, surprise the details</div>
+            </div>
+            <div class="choice" data-val="full-input" onclick="selectChoice(this,'surpriseChoices')">
+              <div class="choice-icon">📋</div>
+              <div class="choice-label">I Want to Know</div>
+              <div class="choice-desc">Show me the plan upfront so I can prep</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Any accessibility needs?</label>
+          <input type="text" class="form-input" id="accessibility" placeholder="e.g. wheelchair accessible, no stairs, etc.">
+        </div>
+        <div class="form-group">
+          <label>Anything else we should know?</label>
+          <textarea class="form-input" id="extraNotes" placeholder="Surprise plans, inside jokes, things your partner loves — anything that helps us make it special."></textarea>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="prevPage(7)">&larr; Back</button>
+          <button class="btn-next" onclick="submitForm()" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a10">Submit &hearts;</button>
+        </div>
+      </div>
+
+      <!-- PAGE 8: Success -->
+      <div class="form-page" id="fp8">
+        <div class="success-page">
+          <div class="success-icon">💘</div>
+          <h2>You're all set!</h2>
+          <p>Our team is already on it. You'll receive your personalized date plan at <strong id="confirmEmail"></strong> within 24 hours.</p>
+          <p style="margin-top:20px;color:var(--text-muted);font-size:.9rem">Keep an eye on your inbox — something special is coming.</p>
+          <button class="btn-primary" style="margin-top:32px" onclick="closeForm()">Back to Home</button>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <script>
+    // ── Floating Hearts ──
+    (function(){
+      var c=document.getElementById('hearts');
+      var emojis=['♥','💕','💘','✨','🌹','💗'];
+      for(var i=0;i<18;i++){
+        var s=document.createElement('span');
+        s.className='hf';
+        s.textContent=emojis[i%emojis.length];
+        s.style.left=Math.random()*100+'%';
+        s.style.animationDelay=Math.random()*14+'s';
+        s.style.animationDuration=(10+Math.random()*10)+'s';
+        s.style.fontSize=(.8+Math.random()*.8)+'rem';
+        c.appendChild(s);
+      }
+    })();
+
+    // ── Nav scroll ──
+    window.addEventListener('scroll',function(){
+      document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+    });
+
+    // ── Reveal on scroll ──
+    var reveals=document.querySelectorAll('.reveal');
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+    },{threshold:.15});
+    reveals.forEach(function(el){io.observe(el)});
+
+    // ── FAQ accordion ──
+    document.querySelectorAll('.faq-q').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var item=btn.parentElement;
+        var wasOpen=item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open')});
+        if(!wasOpen)item.classList.add('open');
+      });
+    });
+
+    // ── Form Logic ──
+    var currentPage=1;
+    var totalPages=7;
+
+    function openForm(){
+      document.getElementById('formOverlay').classList.add('open');
+      document.body.style.overflow='hidden';
+    }
+    function closeForm(){
+      document.getElementById('formOverlay').classList.remove('open');
+      document.body.style.overflow='';
+    }
+    function updateProgress(){
+      var pct=Math.min((currentPage/totalPages)*100,100);
+      document.getElementById('progressFill').style.width=pct+'%';
+    }
+    function goToPage(n){
+      document.querySelectorAll('.form-page').forEach(function(p){p.classList.remove('active')});
+      document.getElementById('fp'+n).classList.add('active');
+      currentPage=n;
+      updateProgress();
+      document.querySelector('.form-wrap').scrollTo({top:0,behavior:'smooth'});
+    }
+    function nextPage(from){
+      // Basic validation for required fields
+      if(from===1){
+        if(!document.getElementById('name1').value||!document.getElementById('name2').value||!document.getElementById('email').value){alert('Please fill in both names and your email.');return}
+        // Update partner tab labels
+        document.getElementById('pt1Label').textContent=document.getElementById('name1').value;
+        document.getElementById('pt2Label').textContent=document.getElementById('name2').value;
+      }
+      if(from===2){
+        var stageSelected=document.querySelector('#stageChoices .choice.selected');
+        if(!stageSelected){alert('Please select your relationship stage.');return}
+      }
+      if(from===3){
+        if(!document.getElementById('dateDay').value||!document.getElementById('startTime').value){alert('Please select a date and start time.');return}
+      }
+      if(from===4){
+        if(!document.getElementById('budget').value){alert('Please select a budget range.');return}
+        var actSelected=document.querySelector('#activityChoices .choice.selected');
+        if(!actSelected){alert('Please select an activity level.');return}
+      }
+      if(from===5){
+        if(!document.getElementById('food1Likes').value||!document.getElementById('food2Likes').value){alert('Please enter food preferences for both partners.');return}
+      }
+      goToPage(from+1);
+    }
+    function prevPage(from){goToPage(from-1)}
+
+    // Choice card selection (single)
+    function selectChoice(el,groupId){
+      document.querySelectorAll('#'+groupId+' .choice').forEach(function(c){c.classList.remove('selected')});
+      el.classList.add('selected');
+    }
+    // Multi-select choice
+    function toggleChoice(el){el.classList.toggle('selected')}
+
+    // Partner tab switching
+    function switchPartner(idx){
+      document.querySelectorAll('.ptab').forEach(function(t,i){t.classList.toggle('active',i===idx)});
+      document.querySelectorAll('.partner-section').forEach(function(s,i){s.classList.toggle('active',i===idx)});
+    }
+
+    // Submit
+    function submitForm(){
+      var email=document.getElementById('email').value;
+      document.getElementById('confirmEmail').textContent=email;
+      goToPage(8);
+      document.getElementById('progressFill').style.width='100%';
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(e){
+        var target=document.querySelector(this.getAttribute('href'));
+        if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}
+      });
+    });
+  </script>
 </body>
 </html>
