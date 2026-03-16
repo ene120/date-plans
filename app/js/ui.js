@@ -1,33 +1,17 @@
 // ── Toast Notifications ──
 export function showToast(message, type = 'success') {
-  // Remove existing toasts
   document.querySelectorAll('.toast').forEach(t => t.remove());
 
   const toast = document.createElement('div');
-  toast.className = 'toast toast-' + type;
-
-  const colors = {
-    success: { bg: 'rgba(0,184,148,.12)', border: 'rgba(0,184,148,.2)', color: '#00b894' },
-    error: { bg: 'rgba(214,48,49,.12)', border: 'rgba(214,48,49,.2)', color: '#ff6b6b' },
-    info: { bg: 'rgba(116,185,255,.12)', border: 'rgba(116,185,255,.2)', color: '#74b9ff' },
-  };
-  const c = colors[type] || colors.success;
-
-  toast.style.cssText = `
-    position:fixed;top:24px;right:24px;z-index:200;
-    padding:14px 24px;border-radius:14px;
-    background:${c.bg};border:1px solid ${c.border};color:${c.color};
-    font-size:.88rem;font-weight:600;
-    backdrop-filter:blur(12px);
-    animation:fadeIn .3s ease;
-    max-width:400px;box-shadow:0 8px 24px rgba(0,0,0,.3);
-  `;
+  toast.className = `toast toast-${type}`;
   toast.textContent = message;
   document.body.appendChild(toast);
+
   setTimeout(() => {
     toast.style.opacity = '0';
-    toast.style.transition = 'opacity .3s';
-    setTimeout(() => toast.remove(), 300);
+    toast.style.transform = 'translateX(20px)';
+    toast.style.transition = 'opacity .25s, transform .25s';
+    setTimeout(() => toast.remove(), 250);
   }, 3500);
 }
 
@@ -38,15 +22,15 @@ export function showLoading(container) {
   overlay.innerHTML = '<div class="loading-spinner"></div>';
   overlay.style.cssText = `
     position:absolute;top:0;left:0;width:100%;height:100%;
-    background:rgba(13,7,17,.85);backdrop-filter:blur(6px);
+    background:rgba(8,5,12,.85);backdrop-filter:blur(4px);
     display:flex;align-items:center;justify-content:center;
     z-index:50;border-radius:inherit;
   `;
   const spinner = overlay.querySelector('.loading-spinner');
   spinner.style.cssText = `
-    width:36px;height:36px;border:3px solid rgba(255,255,255,.08);
+    width:32px;height:32px;border:2px solid rgba(255,255,255,.06);
     border-top-color:var(--rose);border-radius:50%;
-    animation:spin .8s linear infinite;
+    animation:spin .7s linear infinite;
   `;
   if (!document.getElementById('spin-style')) {
     const style = document.createElement('style');
@@ -73,7 +57,7 @@ export function showConfirm(title, message, onConfirm) {
         <h3>${title}</h3>
         <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">&times;</button>
       </div>
-      <p style="color:var(--text-soft);font-size:.9rem;line-height:1.7">${message}</p>
+      <p style="color:var(--text-soft);font-size:.88rem;line-height:1.7">${message}</p>
       <div class="modal-actions">
         <button class="btn-ghost btn-small cancel-btn">Cancel</button>
         <button class="btn-danger confirm-btn">Confirm</button>
@@ -114,6 +98,36 @@ export function getInitials(name) {
   return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
 }
 
+// ── Animated Counter ──
+export function animateCounter(el, target, duration = 600) {
+  if (typeof target !== 'number' || isNaN(target)) {
+    el.textContent = target;
+    return;
+  }
+  const start = 0;
+  const startTime = performance.now();
+  function tick(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(start + (target - start) * ease);
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+// ── Cursor Glow on Cards ──
+export function initCursorGlow(selector) {
+  document.querySelectorAll(selector).forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
+  });
+}
+
 // ── Render Sidebar ──
 export function renderSidebar(activePage, user) {
   const sidebar = document.getElementById('sidebar');
@@ -131,15 +145,8 @@ export function renderSidebar(activePage, user) {
   const displayName = user?.user_metadata?.display_name || user?.email?.split('@')[0] || 'User';
   const email = user?.email || '';
 
-  // Time based greeting
-  const hour = new Date().getHours();
-  let greeting = 'Good evening';
-  if (hour < 12) greeting = 'Good morning';
-  else if (hour < 17) greeting = 'Good afternoon';
-
   sidebar.innerHTML = `
     <div class="sidebar-logo">DateFlo</div>
-    <div class="sidebar-greeting">${greeting}</div>
     <nav class="sidebar-nav">
       ${pages.map(p => `
         <a href="${p.href}" class="nav-item ${p.id === activePage ? 'active' : ''}">

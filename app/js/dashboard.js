@@ -1,6 +1,6 @@
 import { requireAuth, getUser, signOut } from './auth.js';
 import { getProfile, getPlans, createCouple, updateProfile, getCouple, acceptInvite, upsertPreferences, getFavorites, getPreferences, getCoupleMembers } from './api.js';
-import { renderSidebar, renderMobileTabs, showToast, statusBadge, formatDate } from './ui.js';
+import { renderSidebar, renderMobileTabs, showToast, statusBadge, formatDate, animateCounter, initCursorGlow } from './ui.js';
 
 // ── Init ──
 const session = await requireAuth();
@@ -12,10 +12,9 @@ const profile = await getProfile(user.id);
 renderSidebar('dashboard', user);
 renderMobileTabs('dashboard');
 
-// Sign out handler
 document.getElementById('signOutBtn')?.addEventListener('click', signOut);
 
-// ── Check for stored invite code (from login flow) ──
+// ── Check for stored invite code ──
 const storedCode = localStorage.getItem('dateflo_invite_code');
 if (storedCode && !profile?.couple_id) {
   const { error } = await acceptInvite(storedCode);
@@ -30,7 +29,7 @@ if (storedCode && !profile?.couple_id) {
   }
 }
 
-// ── Route: Onboarding or Dashboard ──
+// ── Route ──
 if (!profile?.couple_id) {
   showOnboarding();
 } else {
@@ -41,12 +40,10 @@ function showOnboarding() {
   document.getElementById('onboardingSection').classList.remove('hidden');
   document.getElementById('dashboardContent').classList.add('hidden');
 
-  // Pre fill name from profile
   if (profile?.display_name) {
     document.getElementById('onboardName1').value = profile.display_name;
   }
 
-  // Show invite code notice if stored
   if (storedCode) {
     document.getElementById('inviteCodeNotice').classList.remove('hidden');
   }
@@ -64,7 +61,6 @@ function showOnboarding() {
     btn.disabled = true;
     btn.textContent = 'Setting up...';
 
-    // Create couple
     const coupleName = `${name1} & ${name2}`;
     const { data: couple, error } = await createCouple(coupleName, user.id);
 
@@ -75,10 +71,7 @@ function showOnboarding() {
       return;
     }
 
-    // Update display name
     await updateProfile(user.id, { display_name: name1 });
-
-    // Create initial preferences with names
     await upsertPreferences(couple.id, {
       partner1_name: name1,
       partner2_name: name2
@@ -93,13 +86,8 @@ async function showDashboard() {
   document.getElementById('onboardingSection').classList.add('hidden');
   document.getElementById('dashboardContent').classList.remove('hidden');
 
-  // Get couple data
   const couple = await getCouple(profile.couple_id);
   const firstName = profile?.display_name || user.email?.split('@')[0] || 'there';
-
-  // Welcome banner
-  const heading = document.getElementById('welcomeHeading');
-  const sub = document.getElementById('welcomeSub');
 
   // Time based greeting
   const hour = new Date().getHours();
@@ -107,10 +95,10 @@ async function showDashboard() {
   if (hour < 12) greeting = 'Good morning';
   else if (hour < 17) greeting = 'Good afternoon';
 
-  heading.textContent = `${greeting}, ${firstName}`;
+  document.getElementById('welcomeHeading').textContent = `${greeting}, ${firstName}`;
 
   if (couple?.name) {
-    sub.textContent = `Here's everything for ${couple.name}.`;
+    document.getElementById('welcomeSub').textContent = `Here's everything for ${couple.name}.`;
   }
 
   // Load data in parallel
@@ -121,10 +109,12 @@ async function showDashboard() {
     getCoupleMembers(profile.couple_id)
   ]);
 
-  // Quick Stats
-  document.getElementById('statPlans').textContent = plans.length;
-  document.getElementById('statFavorites').textContent = favorites.length;
-  document.getElementById('statCity').textContent = preferences?.city || '\u2014';
+  // Animated stat counters
+  animateCounter(document.getElementById('statPlans'), plans.length);
+  animateCounter(document.getElementById('statFavorites'), favorites.length);
+
+  const cityEl = document.getElementById('statCity');
+  cityEl.textContent = preferences?.city || '\u2014';
 
   const partner = members.find(m => m.id !== user.id);
   document.getElementById('statPartner').textContent = partner ? 'Connected' : 'Solo';
@@ -137,13 +127,12 @@ async function showDashboard() {
       <a href="./request.html" class="plan-card plan-card-new">
         <div class="new-icon">✨</div>
         <h4>Request Your First Date Plan</h4>
-        <p>Tell us about your perfect date and our team will craft a personalized plan.</p>
+        <p>Tell us about your perfect date.</p>
       </a>
     `;
     return;
   }
 
-  // Render plan cards
   grid.innerHTML = plans.map(plan => `
     <a href="./plan.html?id=${plan.id}" class="plan-card">
       <div class="plan-card-thumb" ${plan.thumbnail_url ? `style="background:url('${plan.thumbnail_url}') center/cover"` : ''}>
@@ -164,4 +153,7 @@ async function showDashboard() {
       <p>Plan your next unforgettable date.</p>
     </a>
   `;
+
+  // Init cursor glow on plan cards
+  initCursorGlow('.plan-card:not(.plan-card-new)');
 }

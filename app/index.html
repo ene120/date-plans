@@ -14,88 +14,82 @@
   <style>
     .login-page{
       min-height:100vh;display:flex;align-items:center;justify-content:center;
-      background:var(--bg-dark);
+      background:var(--bg-base);
       padding:clamp(20px,4vw,40px);position:relative;overflow:hidden;
     }
     .login-page::before{
-      content:'';position:absolute;top:-20%;right:-15%;width:700px;height:700px;
-      background:radial-gradient(circle,rgba(224,87,128,.07) 0%,transparent 70%);
+      content:'';position:absolute;top:-25%;right:-15%;width:600px;height:600px;
+      background:radial-gradient(circle,rgba(224,87,128,.05) 0%,transparent 70%);
       pointer-events:none;animation:floatGlow 10s ease-in-out infinite;
     }
     .login-page::after{
-      content:'';position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;
-      background:radial-gradient(circle,rgba(142,58,89,.06) 0%,transparent 70%);
+      content:'';position:absolute;bottom:-25%;left:-10%;width:400px;height:400px;
+      background:radial-gradient(circle,rgba(142,58,89,.04) 0%,transparent 70%);
       pointer-events:none;animation:floatGlow 12s ease-in-out infinite reverse;
     }
     @keyframes floatGlow{
-      0%,100%{transform:translate(0,0) scale(1);opacity:.6}
-      50%{transform:translate(20px,15px) scale(1.1);opacity:1}
+      0%,100%{transform:translate(0,0) scale(1);opacity:.5}
+      50%{transform:translate(15px,10px) scale(1.08);opacity:1}
     }
     .login-card{
-      background:var(--glass);border:1px solid var(--glass-border);
-      border-radius:var(--radius-xl);padding:clamp(36px,5vw,52px);
-      backdrop-filter:blur(20px);max-width:440px;width:100%;
+      background:var(--bg-surface);border:1px solid var(--border-subtle);
+      border-radius:var(--radius-xl);padding:clamp(32px,5vw,48px);
+      max-width:420px;width:100%;
       position:relative;z-index:1;text-align:center;
-      box-shadow:0 16px 48px rgba(0,0,0,.3);
-    }
-    .login-card::before{
-      content:'';position:absolute;inset:0;border-radius:inherit;
-      background:linear-gradient(145deg,rgba(255,255,255,.04),transparent 50%);
-      pointer-events:none;
+      box-shadow:0 16px 48px rgba(0,0,0,.35);
     }
     .login-logo{
-      font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;
-      margin-bottom:6px;
+      font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;
+      margin-bottom:4px;
       background:linear-gradient(135deg,#e05780,#f9ca24);
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
       background-clip:text;
     }
-    .login-tagline{color:var(--text-muted);font-size:.85rem;margin-bottom:36px}
+    .login-tagline{color:var(--text-muted);font-size:.82rem;margin-bottom:32px}
     .login-title{
-      font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,1.9rem);
-      font-weight:700;margin-bottom:8px;
+      font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,1.8rem);
+      font-weight:700;margin-bottom:6px;letter-spacing:-.01em;
     }
-    .login-sub{color:var(--text-soft);font-size:.9rem;margin-bottom:32px;line-height:1.7}
+    .login-sub{color:var(--text-soft);font-size:.88rem;margin-bottom:28px;line-height:1.7}
     .login-form{text-align:left}
-    .login-btn{width:100%;justify-content:center;margin-top:8px;padding:16px}
+    .login-btn{width:100%;justify-content:center;margin-top:6px;padding:14px}
     .login-divider{
-      display:flex;align-items:center;gap:16px;margin:28px 0;
-      color:var(--text-muted);font-size:.8rem;
+      display:flex;align-items:center;gap:14px;margin:24px 0;
+      color:var(--text-muted);font-size:.78rem;
     }
     .login-divider::before,.login-divider::after{
-      content:'';flex:1;height:1px;background:var(--glass-border);
+      content:'';flex:1;height:1px;background:var(--border-subtle);
     }
     .invite-toggle{
-      color:var(--text-muted);font-size:.85rem;cursor:pointer;
-      transition:color .2s;background:none;border:none;
+      color:var(--text-muted);font-size:.84rem;cursor:pointer;
+      transition:color .15s;background:none;border:none;
       text-decoration:underline;text-underline-offset:3px;
     }
     .invite-toggle:hover{color:var(--rose)}
-    .invite-section{display:none;margin-top:20px;text-align:left}
+    .invite-section{display:none;margin-top:18px;text-align:left}
     .invite-section.open{display:block;animation:fadeIn .3s ease}
     .login-footer{
-      margin-top:32px;padding-top:24px;border-top:1px solid var(--glass-border);
-      font-size:.82rem;color:var(--text-muted);
+      margin-top:28px;padding-top:20px;border-top:1px solid var(--border-subtle);
+      font-size:.8rem;color:var(--text-muted);
     }
-    .login-footer a{color:var(--rose);text-decoration:underline;text-underline-offset:3px;transition:color .2s}
+    .login-footer a{color:var(--rose);text-decoration:underline;text-underline-offset:3px;transition:color .15s}
     .login-footer a:hover{color:var(--rose-light)}
 
-    /* Success state */
     .email-sent{display:none;text-align:center}
     .email-sent.show{display:block;animation:fadeIn .4s ease}
     .email-sent .sent-icon{
-      font-size:2.4rem;margin-bottom:20px;
-      width:72px;height:72px;border-radius:50%;
-      background:rgba(0,184,148,.08);border:1px solid rgba(0,184,148,.15);
+      font-size:2rem;margin-bottom:16px;
+      width:60px;height:60px;border-radius:50%;
+      background:rgba(0,184,148,.06);border:1px solid rgba(0,184,148,.1);
       display:inline-flex;align-items:center;justify-content:center;
     }
-    .email-sent h2{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:10px}
-    .email-sent p{color:var(--text-soft);font-size:.9rem;line-height:1.7}
+    .email-sent h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:8px}
+    .email-sent p{color:var(--text-soft);font-size:.88rem;line-height:1.7}
     .email-sent .email-highlight{color:var(--rose);font-weight:600}
     .email-resend{
-      margin-top:24px;color:var(--text-muted);font-size:.82rem;
+      margin-top:20px;color:var(--text-muted);font-size:.8rem;
       background:none;border:none;cursor:pointer;text-decoration:underline;
-      text-underline-offset:3px;transition:color .2s;
+      text-underline-offset:3px;transition:color .15s;
     }
     .email-resend:hover{color:var(--rose)}
   </style>
@@ -106,7 +100,6 @@
       <div class="login-logo">DateFlo</div>
       <div class="login-tagline">Your date planning dashboard</div>
 
-      <!-- Login Form -->
       <div id="loginForm">
         <div class="login-title">Sign Up or Sign In</div>
         <p class="login-sub">Enter your email and we'll send you a magic link. No password needed.</p>
@@ -139,12 +132,11 @@
         </div>
       </div>
 
-      <!-- Email Sent Confirmation -->
       <div class="email-sent" id="emailSent">
         <div class="sent-icon">✉️</div>
         <h2>Check Your Email</h2>
         <p>We sent a magic link to<br><span class="email-highlight" id="sentEmailDisplay"></span></p>
-        <p style="margin-top:12px;font-size:.85rem;color:var(--text-muted)">Click the link in the email to sign in. It may take a minute to arrive.</p>
+        <p style="margin-top:10px;font-size:.82rem;color:var(--text-muted)">Click the link in the email to sign in. It may take a minute to arrive.</p>
         <button class="email-resend" onclick="handleResend()">Didn't get it? Resend</button>
       </div>
     </div>
@@ -153,19 +145,16 @@
   <script type="module">
     import { getSession, sendMagicLink } from './js/auth.js';
 
-    // If already authenticated, redirect to dashboard
     const session = await getSession();
     if (session) {
       window.location.href = './dashboard.html';
     }
 
-    // Check if returning from magic link with invite code stored
     const storedCode = localStorage.getItem('dateflo_invite_code');
     if (storedCode && session) {
       window.location.href = './dashboard.html';
     }
 
-    // Make functions available globally
     window.handleSendLink = async function() {
       const email = document.getElementById('emailInput').value.trim();
       if (!email) { alert('Please enter your email address.'); return; }
@@ -183,7 +172,6 @@
         return;
       }
 
-      // Show success state
       document.getElementById('loginForm').style.display = 'none';
       document.getElementById('emailSent').classList.add('show');
       document.getElementById('sentEmailDisplay').textContent = email;
@@ -212,7 +200,6 @@
       document.querySelector('.login-sub').textContent = 'Great! Enter your email to sign in and join your partner.';
     };
 
-    // Handle Enter key
     document.getElementById('emailInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') window.handleSendLink();
     });
