@@ -87,13 +87,18 @@ function populateView() {
     }
   }
 
-  // Update food section titles with names
-  if (prefs.partner1_name) {
-    document.getElementById('food1Title').textContent = `${prefs.partner1_name}'s Food Preferences`;
-  }
-  if (prefs.partner2_name) {
-    document.getElementById('food2Title').textContent = `${prefs.partner2_name}'s Food Preferences`;
-  }
+  // Update section titles and labels with actual names
+  const name1 = prefs.partner1_name || 'Partner 1';
+  const name2 = prefs.partner2_name || 'Partner 2';
+
+  document.getElementById('food1Title').textContent = `${name1}'s Food Preferences`;
+  document.getElementById('food2Title').textContent = `${name2}'s Food Preferences`;
+
+  // Love language labels
+  document.getElementById('viewLoveLangs1Label').textContent = `${name1}'s Love Languages`;
+  document.getElementById('viewLoveLangs2Label').textContent = `${name2}'s Love Languages`;
+  document.getElementById('editLoveLangs1Label').textContent = `${name1}'s Love Languages`;
+  document.getElementById('editLoveLangs2Label').textContent = `${name2}'s Love Languages`;
 }
 
 function populateEditFields() {
