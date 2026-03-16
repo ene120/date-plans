@@ -1,0 +1,291 @@
+/* ── Phase 1: Interaction Upgrades ── */
+
+/* ═══════════════════════════════════════
+   1. SCROLL-DRIVEN CARD REVEALS
+   ═══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .55s cubic-bezier(.22,1,.36,1),
+              transform .55s cubic-bezier(.22,1,.36,1);
+  will-change: opacity, transform;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children inside grids */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms }
+
+/* Slide from left/right variants */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity .55s cubic-bezier(.22,1,.36,1),
+              transform .55s cubic-bezier(.22,1,.36,1);
+  will-change: opacity, transform;
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity .55s cubic-bezier(.22,1,.36,1),
+              transform .55s cubic-bezier(.22,1,.36,1);
+  will-change: opacity, transform;
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale up variant */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(.92);
+  transition: opacity .55s cubic-bezier(.22,1,.36,1),
+              transform .55s cubic-bezier(.22,1,.36,1);
+  will-change: opacity, transform;
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* ═══════════════════════════════════════
+   2. MAGNETIC BUTTONS
+   ═══════════════════════════════════════ */
+.btn-magnetic {
+  position: relative;
+  transition: transform .25s cubic-bezier(.22,1,.36,1);
+}
+.btn-magnetic:active {
+  transform: scale(.97) !important;
+}
+
+
+/* ═══════════════════════════════════════
+   3. 3D CARD TILT
+   ═══════════════════════════════════════ */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform .3s cubic-bezier(.22,1,.36,1),
+              box-shadow .3s ease;
+  will-change: transform;
+}
+.tilt-card:hover {
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(224,87,128,.08);
+}
+/* Inner content lifts on hover */
+.tilt-card .tilt-inner {
+  transition: transform .3s cubic-bezier(.22,1,.36,1);
+}
+.tilt-card:hover .tilt-inner {
+  transform: translateZ(20px);
+}
+
+
+/* ═══════════════════════════════════════
+   4. PAGE TRANSITIONS (View Transitions API fallback)
+   ═══════════════════════════════════════ */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animate main content on page load */
+.page-content,
+.main-content {
+  animation: fadeSlideIn .4s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* View Transitions API styles (progressive enhancement) */
+::view-transition-old(root) {
+  animation: fadeSlideOut .2s ease-in both;
+}
+::view-transition-new(root) {
+  animation: fadeSlideIn .3s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes fadeSlideOut {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   5. CELEBRATION OVERLAY
+   ═══════════════════════════════════════ */
+.celebration-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+
+/* ═══════════════════════════════════════
+   6. CHIP & CHOICE CARD MICRO-INTERACTIONS
+   ═══════════════════════════════════════ */
+.chip {
+  transition: all .2s cubic-bezier(.22,1,.36,1);
+}
+.chip:active {
+  transform: scale(.94);
+}
+
+.date-type-card {
+  transition: all .25s cubic-bezier(.22,1,.36,1);
+}
+.date-type-card:hover {
+  transform: translateY(-3px);
+}
+.date-type-card:active {
+  transform: scale(.97);
+}
+.date-type-card.active {
+  transform: translateY(-2px);
+}
+
+.choice-card {
+  transition: all .25s cubic-bezier(.22,1,.36,1);
+}
+.choice-card:hover {
+  transform: translateY(-2px);
+}
+.choice-card:active {
+  transform: scale(.97);
+}
+
+
+/* ═══════════════════════════════════════
+   7. BUTTON HOVER LIFT
+   ═══════════════════════════════════════ */
+.btn-primary {
+  transition: all .25s cubic-bezier(.22,1,.36,1);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(224,87,128,.35);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(.98);
+}
+
+.btn-ghost {
+  transition: all .2s cubic-bezier(.22,1,.36,1);
+}
+.btn-ghost:hover {
+  transform: translateY(-1px);
+}
+.btn-ghost:active {
+  transform: translateY(0) scale(.98);
+}
+
+
+/* ═══════════════════════════════════════
+   8. NAV ITEM HOVER
+   ═══════════════════════════════════════ */
+.nav-item {
+  transition: all .2s cubic-bezier(.22,1,.36,1);
+}
+.nav-item:hover:not(.active) {
+  transform: translateX(3px);
+}
+
+
+/* ═══════════════════════════════════════
+   9. STAT CARD HOVER
+   ═══════════════════════════════════════ */
+.stat-card {
+  transition: all .25s cubic-bezier(.22,1,.36,1);
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+
+/* ═══════════════════════════════════════
+   10. SUCCESS PAGE ANIMATION
+   ═══════════════════════════════════════ */
+@keyframes successPop {
+  0% { transform: scale(0); opacity: 0 }
+  50% { transform: scale(1.15) }
+  100% { transform: scale(1); opacity: 1 }
+}
+@keyframes successFadeUp {
+  from { opacity: 0; transform: translateY(20px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+
+.success-icon-animated {
+  animation: successPop .5s cubic-bezier(.22,1,.36,1) both;
+}
+.success-text-animated {
+  animation: successFadeUp .5s cubic-bezier(.22,1,.36,1) .2s both;
+}
+.success-actions-animated {
+  animation: successFadeUp .5s cubic-bezier(.22,1,.36,1) .4s both;
+}
+
+
+/* ═══════════════════════════════════════
+   11. TOAST ENTRANCE
+   ═══════════════════════════════════════ */
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px) scale(.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+.toast {
+  animation: toastSlideIn .35s cubic-bezier(.22,1,.36,1) both;
+}
+
+
+/* ═══════════════════════════════════════
+   12. FORM INPUT FOCUS GLOW
+   ═══════════════════════════════════════ */
+.form-input:focus {
+  box-shadow: 0 0 0 3px rgba(224,87,128,.15), 0 2px 8px rgba(0,0,0,.2);
+}
+
+
+/* ═══════════════════════════════════════
+   MOBILE: reduce motion for performance
+   ═══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right, .reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .tilt-card { transform: none !important }
+  .page-content, .main-content { animation: none }
+  .celebration-canvas { display: none }
+}

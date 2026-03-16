@@ -1,6 +1,7 @@
 import { requireAuth, getUser, signOut } from './auth.js';
 import { getProfile, getEvents, joinEventByCode, leaveEvent } from './api.js';
 import { renderSidebar, renderMobileTabs, showToast, showConfirm, formatDate, icon } from './ui.js';
+import { initInteractions } from './interactions.js';
 
 // ── Init ──
 const session = await requireAuth();
@@ -139,3 +140,5 @@ async function handleJoin() {
 
   await loadEvents();
 }
+
+initInteractions();

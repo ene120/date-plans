@@ -125,8 +125,12 @@
     }
     .section-sub{font-size:clamp(.95rem,1.6vw,1.1rem);color:var(--text-soft);max-width:600px;line-height:1.8}
 
-    /* ── Reveal Animation (disabled — content always visible) ── */
-    .reveal{opacity:1;transform:none}
+    /* ── Scroll Reveal Animations ── */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-scale{opacity:0;transform:scale(.92);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+    .reveal-scale.visible{opacity:1;transform:scale(1)}
+    @media(prefers-reduced-motion:reduce){.reveal,.reveal-scale{opacity:1;transform:none;transition:none}}
 
     /* ═══════════ HERO ═══════════ */
     .hero{
@@ -180,6 +184,7 @@
       box-shadow:0 4px 20px rgba(224,87,128,.3);
     }
     .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(224,87,128,.45)}
+    .btn-primary:active{transform:translateY(0) scale(.97)}
     .btn-ghost{
       display:inline-flex;align-items:center;gap:8px;
       padding:clamp(16px,2.5vw,20px) clamp(28px,4vw,40px);
@@ -209,7 +214,7 @@
       border-radius:20px;padding:clamp(28px,4vw,40px);
       backdrop-filter:blur(12px);transition:transform .4s,border-color .4s;position:relative;overflow:visible;
     }
-    .how-card:hover{transform:translateY(-6px);border-color:rgba(224,87,128,.3)}
+    .how-card:hover{transform:translateY(-6px);border-color:rgba(224,87,128,.3);box-shadow:0 12px 40px rgba(224,87,128,.1)}
     .how-num{
       font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:800;
       color:var(--rose);-webkit-text-fill-color:var(--rose);position:absolute;top:12px;right:20px;line-height:1;
@@ -1193,6 +1198,32 @@
         if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}
       });
     });
+
+    // Scroll reveal observer
+    var revealEls=document.querySelectorAll('.reveal,.reveal-scale');
+    if(revealEls.length){
+      var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+      revealEls.forEach(function(el){obs.observe(el)});
+    }
+
+    // Button hover lift for nav CTA
+    var navCta=document.querySelector('.nav-cta');
+    if(navCta){
+      navCta.addEventListener('mousemove',function(e){
+        var r=navCta.getBoundingClientRect();
+        var x=e.clientX-r.left-r.width/2;
+        var y=e.clientY-r.top-r.height/2;
+        navCta.style.transform='translate('+x*0.12+'px,'+y*0.12+'px)';
+      });
+      navCta.addEventListener('mouseleave',function(){navCta.style.transform=''});
+    }
   </script>
 </body>
 </html>

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/cards.css">
   <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/interactions.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -56,34 +57,34 @@
     <div id="dashboardContent" class="hidden">
 
       <!-- Welcome Banner -->
-      <div class="welcome-banner fade-in" id="welcomeBanner">
+      <div class="welcome-banner reveal" id="welcomeBanner">
         <p class="section-label" style="margin-bottom:6px">Dashboard</p>
         <h2 id="welcomeHeading">Welcome back</h2>
         <p id="welcomeSub">Your personalized date plans, all in one place.</p>
         <div class="welcome-actions">
-          <a href="./request.html" class="btn-primary">Plan a New Date &rarr;</a>
+          <a href="./request.html" class="btn-primary btn-magnetic">Plan a New Date &rarr;</a>
           <a href="./settings.html" class="btn-ghost">Update Preferences</a>
         </div>
       </div>
 
       <!-- Quick Stats -->
-      <div class="quick-stats stagger" id="quickStats">
-        <div class="stat-card">
+      <div class="quick-stats reveal-stagger" id="quickStats">
+        <div class="stat-card reveal">
           <div class="stat-icon" id="statIconPlans"></div>
           <div class="stat-value" id="statPlans">0</div>
           <div class="stat-label">Date Plans</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal">
           <div class="stat-icon" id="statIconFavs"></div>
           <div class="stat-value" id="statFavorites">0</div>
           <div class="stat-label">Saved Venues</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal">
           <div class="stat-icon" id="statIconCity"></div>
           <div class="stat-value" id="statCity">&mdash;</div>
           <div class="stat-label">Your City</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal">
           <div class="stat-icon" id="statIconPartner"></div>
           <div class="stat-value" id="statPartner">&mdash;</div>
           <div class="stat-label">Partner Status</div>
@@ -95,7 +96,7 @@
         <p class="section-label" style="margin-bottom:0">Your Date Plans</p>
       </div>
 
-      <div class="plan-grid stagger" id="planGrid">
+      <div class="plan-grid reveal-stagger" id="planGrid">
         <!-- Plan cards injected here -->
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { requireAuth, getUser } from './auth.js';
 import { getPlan, getProfile, addFavorite } from './api.js';
 import { showToast } from './ui.js';
+import { celebrate } from './interactions.js';
 
 // ── Init ──
 const session = await requireAuth();
@@ -52,6 +53,15 @@ if (plan.plan_html) {
       frame.style.height = '2000px';
     }
   });
+
+  // Celebrate on first view of a delivered plan
+  if (plan.status === 'delivered') {
+    const viewedKey = `dateflo_viewed_${planId}`;
+    if (!localStorage.getItem(viewedKey)) {
+      localStorage.setItem(viewedKey, '1');
+      setTimeout(() => celebrate('confetti'), 600);
+    }
+  }
 } else if (plan.plan_url) {
   // Legacy: use src URL
   frame.src = plan.plan_url;

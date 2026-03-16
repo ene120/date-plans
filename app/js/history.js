@@ -1,6 +1,7 @@
 import { requireAuth, getUser, signOut } from './auth.js';
 import { getProfile, getPlans } from './api.js';
 import { renderSidebar, renderMobileTabs, formatDate, statusBadge } from './ui.js';
+import { initInteractions } from './interactions.js';
 
 // ── Init ──
 const session = await requireAuth();
@@ -58,3 +59,5 @@ if (plans.length === 0) {
     `;
   }).join('');
 }
+
+initInteractions();

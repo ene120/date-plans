@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/interactions.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -331,7 +332,7 @@
         <!-- Authenticated: show submit button -->
         <div class="form-nav" id="authSubmitArea">
           <button class="btn-back" onclick="prevPage(5)">&larr; Back</button>
-          <button class="btn-primary" style="margin-left:auto;padding:14px 36px" id="submitRequestBtn" onclick="submitRequest()">
+          <button class="btn-primary btn-magnetic" style="margin-left:auto;padding:14px 36px" id="submitRequestBtn" onclick="submitRequest()">
             Submit Request &rarr;
           </button>
         </div>
@@ -376,17 +377,19 @@
       <!-- Success Page -->
       <div class="form-page" id="pageSuccess">
         <div style="text-align:center;padding:40px 0">
-          <div style="margin-bottom:14px">
+          <div class="success-icon-animated" style="margin-bottom:14px">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--status-delivered)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
           </div>
-          <h2>Request Submitted!</h2>
-          <p class="text-soft mt-8" style="font-size:.9rem;line-height:1.7">
-            Our team has received your request and will get to work right away.
-            You'll receive an email when your date plan is ready.
-          </p>
-          <div style="margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-            <a href="./dashboard.html" class="btn-primary">View My Plans</a>
-            <a href="./request.html" class="btn-ghost">Request Another</a>
+          <div class="success-text-animated">
+            <h2>You're all set!</h2>
+            <p class="text-soft mt-8" style="font-size:.9rem;line-height:1.7">
+              We're already working on something amazing for you two.
+              You'll get an email the moment your date plan is ready.
+            </p>
+          </div>
+          <div class="success-actions-animated" style="margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <a href="./dashboard.html" class="btn-primary btn-magnetic">View My Plans</a>
+            <a href="./request.html" class="btn-ghost">Plan Another Date</a>
           </div>
         </div>
       </div>

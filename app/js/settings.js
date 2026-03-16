@@ -2,6 +2,7 @@ import { requireAuth, getUser, signOut, supabase } from './auth.js';
 import { getProfile, updateProfile, getCouple, getCoupleMembers, createInvite, getPreferences, upsertPreferences } from './api.js';
 import { renderSidebar, renderMobileTabs, showToast, showConfirm } from './ui.js';
 import { APP_BASE_URL } from './config.js';
+import { initInteractions } from './interactions.js';
 
 // ── Init ──
 const session = await requireAuth();
@@ -355,3 +356,5 @@ function generateCode() {
     .map(b => b.toString(16).padStart(2, '0'))
     .join('');
 }
+
+initInteractions();

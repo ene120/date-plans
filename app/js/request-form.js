@@ -2,6 +2,7 @@ import { getSession, getUser, signOut, sendMagicLink } from './auth.js';
 import { getProfile, getPreferences, createPlanRequest, createCouple, updateProfile, upsertPreferences } from './api.js';
 import { renderSidebar, renderMobileTabs, showToast, formatDate } from './ui.js';
 import { SHEET_URL, APP_BASE_URL } from './config.js';
+import { celebrate, initInteractions } from './interactions.js';
 
 // ── Init: check auth but don't require it ──
 const session = await getSession();
@@ -549,10 +550,11 @@ window.submitRequest = async function() {
     return;
   }
 
-  // Show success
+  // Show success with celebration
   document.getElementById('page6').classList.remove('active');
   document.getElementById('pageSuccess').classList.add('active');
   document.getElementById('progressFill').style.width = '100%';
+  celebrate('hearts');
 };
 
 // ── Post-signup auto submit (user just signed up, no couple yet) ──
@@ -612,6 +614,7 @@ async function handlePostSignupSubmit(storedData) {
   document.querySelectorAll('.form-page').forEach(p => p.classList.remove('active'));
   document.getElementById('pageSuccess').classList.add('active');
   document.getElementById('progressFill').style.width = '100%';
+  celebrate('hearts');
   showToast('Welcome to DateFlo! Your request has been submitted.');
 }
 
@@ -645,5 +648,9 @@ async function autoSubmitStored(storedData) {
   document.querySelectorAll('.form-page').forEach(p => p.classList.remove('active'));
   document.getElementById('pageSuccess').classList.add('active');
   document.getElementById('progressFill').style.width = '100%';
+  celebrate('hearts');
   showToast('Your date request has been submitted!');
 }
+
+// ── Init interactions ──
+initInteractions();

@@ -1,6 +1,7 @@
 import { requireAuth, getUser, signOut } from './auth.js';
 import { getProfile, getFavorites, addFavorite, deleteFavorite, getPreferences } from './api.js';
 import { renderSidebar, renderMobileTabs, showToast, showConfirm } from './ui.js';
+import { initInteractions } from './interactions.js';
 
 // ── Init ──
 const session = await requireAuth();
@@ -175,3 +176,4 @@ document.getElementById('saveFavBtn')?.addEventListener('click', async () => {
 
 // ── Initial Load ──
 await loadFavorites();
+initInteractions();

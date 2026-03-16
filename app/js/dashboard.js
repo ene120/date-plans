@@ -1,6 +1,7 @@
 import { requireAuth, getUser, signOut } from './auth.js';
 import { getProfile, getPlans, createCouple, updateProfile, getCouple, acceptInvite, upsertPreferences, getFavorites, getPreferences, getCoupleMembers } from './api.js';
 import { renderSidebar, renderMobileTabs, showToast, statusBadge, formatDate, animateCounter, initCursorGlow, icon } from './ui.js';
+import { initInteractions } from './interactions.js';
 
 // ── Init ──
 const session = await requireAuth();
@@ -97,17 +98,22 @@ async function showDashboard() {
   const couple = await getCouple(profile.couple_id);
   const firstName = profile?.display_name || user.email?.split('@')[0] || 'there';
 
-  // Time based greeting
+  // Warm, time-based greeting
   const hour = new Date().getHours();
-  let greeting = 'Good evening';
-  if (hour < 12) greeting = 'Good morning';
-  else if (hour < 17) greeting = 'Good afternoon';
-
-  document.getElementById('welcomeHeading').textContent = `${greeting}, ${firstName}`;
-
-  if (couple?.name) {
-    document.getElementById('welcomeSub').textContent = `Here's everything for ${couple.name}.`;
+  let greeting, subLine;
+  if (hour < 12) {
+    greeting = `Good morning, ${firstName}`;
+    subLine = couple?.name ? `A fresh start for ${couple.name} — what shall we plan today?` : 'Ready to plan something special?';
+  } else if (hour < 17) {
+    greeting = `Hey ${firstName}`;
+    subLine = couple?.name ? `Here's what's happening for ${couple.name}.` : 'Let\'s make tonight unforgettable.';
+  } else {
+    greeting = `Good evening, ${firstName}`;
+    subLine = couple?.name ? `Winding down with ${couple.name} — or just getting started?` : 'The night is young. Let\'s plan something.';
   }
+
+  document.getElementById('welcomeHeading').textContent = greeting;
+  document.getElementById('welcomeSub').textContent = subLine;
 
   // Load data in parallel
   const [plans, favorites, preferences, members] = await Promise.all([
@@ -146,17 +152,18 @@ async function showDashboard() {
 
   if (plans.length === 0) {
     grid.innerHTML = `
-      <a href="./request.html" class="plan-card plan-card-new">
+      <a href="./request.html" class="plan-card plan-card-new tilt-card">
         <div class="new-icon">${plusIcon}</div>
-        <h4>Request Your First Date Plan</h4>
-        <p>Tell us about your perfect date.</p>
+        <h4>Plan your first unforgettable date</h4>
+        <p>Tell us what you love — we'll handle the rest.</p>
       </a>
     `;
+    initInteractions();
     return;
   }
 
   grid.innerHTML = plans.map(plan => `
-    <a href="./plan.html?id=${plan.id}" class="plan-card">
+    <a href="./plan.html?id=${plan.id}" class="plan-card tilt-card reveal">
       <div class="plan-card-thumb" ${plan.thumbnail_url ? `style="background:url('${plan.thumbnail_url}') center/cover"` : ''}>
         <div class="plan-card-status">${statusBadge(plan.status)}</div>
       </div>
@@ -169,12 +176,13 @@ async function showDashboard() {
       </div>
     </a>
   `).join('') + `
-    <a href="./request.html" class="plan-card plan-card-new">
+    <a href="./request.html" class="plan-card plan-card-new tilt-card reveal">
       <div class="new-icon">${plusIcon}</div>
-      <h4>Request Another Plan</h4>
-      <p>Plan your next unforgettable date.</p>
+      <h4>Ready for another adventure?</h4>
+      <p>We'll craft something you'll both love.</p>
     </a>
   `;
 
   initCursorGlow('.plan-card:not(.plan-card-new)');
+  initInteractions();
 }
