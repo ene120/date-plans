@@ -435,6 +435,178 @@
     @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
     .success-page h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:12px}
     .success-page p{color:var(--text-soft);font-size:1rem;line-height:1.8;max-width:420px;margin:0 auto}
+
+    /* ═══════════ LIQUID GLASS ENHANCEMENTS ═══════════ */
+
+    /* Ambient orb enhancement — add a third drifting orb */
+    body::after{
+      content:'';position:fixed;width:400px;height:400px;
+      bottom:-8%;right:-5%;
+      background:radial-gradient(circle,rgba(116,185,255,.04) 0%,transparent 70%);
+      filter:blur(60px);pointer-events:none;z-index:0;
+      animation:orbDrift 22s ease-in-out infinite;
+    }
+    @keyframes orbDrift{
+      0%,100%{transform:translate(0,0) scale(1)}
+      33%{transform:translate(-25px,15px) scale(1.06)}
+      66%{transform:translate(15px,-10px) scale(.94)}
+    }
+
+    /* Hero orbs — upgrade to liquid glass style */
+    .hero::before{
+      filter:blur(40px);
+      animation:heroOrb1 14s ease-in-out infinite;
+    }
+    .hero::after{
+      filter:blur(50px);
+      animation:heroOrb2 18s ease-in-out infinite;
+    }
+    @keyframes heroOrb1{
+      0%,100%{transform:translate(0,0) scale(1);opacity:.5}
+      33%{transform:translate(-25px,20px) scale(1.1);opacity:.8}
+      66%{transform:translate(15px,-15px) scale(.95);opacity:.6}
+    }
+    @keyframes heroOrb2{
+      0%,100%{transform:translate(0,0) scale(1);opacity:.4}
+      50%{transform:translate(20px,-10px) scale(1.08);opacity:.7}
+    }
+
+    /* Hero badge — glass pill with specular */
+    .hero-badge{
+      box-shadow:0 4px 16px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter:blur(16px);
+    }
+
+    /* Nav scrolled — liquid glass */
+    .nav.scrolled{
+      box-shadow:0 4px 20px rgba(0,0,0,.2);
+    }
+    .nav.scrolled::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,rgba(255,255,255,.02),rgba(255,255,255,.08) 50%,rgba(255,255,255,.02));
+      pointer-events:none;
+    }
+
+    /* How-it-works cards — liquid glass */
+    .how-card{
+      backdrop-filter:blur(20px);
+      box-shadow:0 8px 32px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06);
+      transition:transform .35s cubic-bezier(.4,0,.2,1),border-color .3s,box-shadow .3s;
+    }
+    .how-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:50%;
+      background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 40%,transparent 60%);
+      pointer-events:none;border-radius:20px 20px 0 0;z-index:0;
+    }
+    .how-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 16px 48px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    /* Research visual — liquid glass */
+    .research-visual{
+      backdrop-filter:blur(20px);
+      box-shadow:0 8px 32px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .research-visual::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:50%;
+      background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 40%,transparent 60%);
+      pointer-events:none;border-radius:24px 24px 0 0;z-index:0;
+    }
+
+    /* Team content — liquid glass */
+    .team-content{
+      backdrop-filter:blur(20px);
+      box-shadow:0 8px 32px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .team-content::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:50%;
+      background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 40%,transparent 60%);
+      pointer-events:none;border-radius:24px 24px 0 0;z-index:0;
+    }
+
+    /* Delivery cards — liquid glass */
+    .del-card{
+      backdrop-filter:blur(20px);
+      box-shadow:0 8px 24px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.06);
+      transition:transform .35s cubic-bezier(.4,0,.2,1),border-color .3s,box-shadow .3s;
+    }
+    .del-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:50%;
+      background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 40%,transparent 60%);
+      pointer-events:none;border-radius:20px 20px 0 0;z-index:0;
+    }
+    .del-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 40px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    /* Includes items — subtle glass lift */
+    .inc-item{
+      transition:background .3s,transform .3s,box-shadow .3s;
+    }
+    .inc-item:hover{
+      background:rgba(255,255,255,.06);
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(0,0,0,.15);
+    }
+
+    /* Pricing placeholder — glass */
+    .pricing-placeholder{
+      backdrop-filter:blur(16px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    /* Form inputs — frosted glass */
+    .form-input{
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .form-input:focus{
+      box-shadow:0 0 0 3px rgba(224,87,128,.12),inset 0 1px 0 rgba(255,255,255,.08),0 4px 12px rgba(224,87,128,.06);
+    }
+
+    /* Choice cards — liquid glass */
+    .choice{
+      backdrop-filter:blur(12px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+      transition:all .3s cubic-bezier(.4,0,.2,1);
+    }
+    .choice:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 20px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    /* Buttons — glass shine */
+    .btn-primary{
+      position:relative;overflow:hidden;
+      box-shadow:0 4px 20px rgba(224,87,128,.3),inset 0 1px 0 rgba(255,255,255,.1);
+    }
+    .btn-primary:hover{
+      box-shadow:0 8px 32px rgba(224,87,128,.45),0 0 16px rgba(224,87,128,.15),inset 0 1px 0 rgba(255,255,255,.12);
+    }
+    .btn-ghost{
+      backdrop-filter:blur(8px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    /* Mobile drawer — frosted glass */
+    .mobile-drawer{
+      box-shadow:-8px 0 32px rgba(0,0,0,.3);
+    }
+
+    /* FAQ items — subtle hover glass */
+    .faq-q:hover{
+      background:rgba(255,255,255,.02);
+      border-radius:12px;
+      padding-left:12px;padding-right:12px;
+      margin:0 -12px;
+    }
+
+    /* Reduced motion */
+    @media(prefers-reduced-motion:reduce){
+      body::after,.hero::before,.hero::after{animation:none}
+      .how-card,.del-card,.inc-item,.choice{transition-duration:.01ms!important}
+    }
   </style>
 </head>
 <body>
