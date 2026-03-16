@@ -749,7 +749,7 @@
         </div>
         <div class="info-btns">
           <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelA1r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
-          <button class="info-btn info-btn-vibe" onclick="togglePanel(this,'panelA1v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-vibe open" onclick="togglePanel(this,'panelA1v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
         </div>
         <div class="info-panel info-panel-reviews" id="panelA1r">
           <div class="review-box">
@@ -757,7 +757,7 @@
             <a class="review-badge" href="https://www.yelp.com/biz/balboa-park-san-diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">4.6</span></div><div class="review-count">2,300+ reviews</div></div></a>
           </div>
         </div>
-        <div class="info-panel info-panel-vibe" id="panelA1v">
+        <div class="info-panel info-panel-vibe show" id="panelA1v">
           <div class="vibe-slider" data-slider>
             <button class="vibe-slider-btn prev" onclick="slideVibe(this,-1)">‹</button>
             <div class="vibe-slider-track">
@@ -826,7 +826,7 @@
         <div class="info-btns">
           <button class="info-btn info-btn-hh" onclick="togglePanel(this,'panelA2h')"><i data-lucide="beer" style="width:14px;height:14px"></i> Happy Hour <span class="chev">&#9660;</span></button>
           <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelA2r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
-          <button class="info-btn info-btn-vibe" onclick="togglePanel(this,'panelA2v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-vibe open" onclick="togglePanel(this,'panelA2v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
         </div>
         <div class="info-panel info-panel-hh" id="panelA2h">
           <div class="hh-header"><span class="hh-icon">&#127866;</span><span class="hh-label">Happy Hour</span></div>
@@ -844,7 +844,7 @@
             <a class="review-badge" href="https://www.yelp.com/biz/steamy-piggy-san-diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="review-rating">4.2</span></div><div class="review-count">4,200+ reviews</div></div></a>
           </div>
         </div>
-        <div class="info-panel info-panel-vibe" id="panelA2v">
+        <div class="info-panel info-panel-vibe show" id="panelA2v">
           <div class="vibe-slider" data-slider>
             <button class="vibe-slider-btn prev" onclick="slideVibe(this,-1)">‹</button>
             <div class="vibe-slider-track">
@@ -925,14 +925,14 @@
         <div class="info-btns">
           <span class="info-btn info-btn-hh-none"><i data-lucide="clock" style="width:14px;height:14px"></i> No Happy Hour</span>
           <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelA3r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
-          <button class="info-btn info-btn-vibe" onclick="togglePanel(this,'panelA3v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-vibe open" onclick="togglePanel(this,'panelA3v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
         </div>
         <div class="info-panel info-panel-reviews" id="panelA3r">
           <div class="review-box">
             <a class="review-badge" href="https://www.yelp.com/biz/yun-tea-house-san-diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">5.0</span></div><div class="review-count">3,265 reviews</div></div></a>
           </div>
         </div>
-        <div class="info-panel info-panel-vibe" id="panelA3v">
+        <div class="info-panel info-panel-vibe show" id="panelA3v">
           <div class="vibe-slider" data-slider>
             <button class="vibe-slider-btn prev" onclick="slideVibe(this,-1)">‹</button>
             <div class="vibe-slider-track">
@@ -1068,7 +1068,7 @@
         </div>
         <div class="info-btns">
           <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelB1r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
-          <button class="info-btn info-btn-vibe" onclick="togglePanel(this,'panelB1v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-vibe open" onclick="togglePanel(this,'panelB1v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
         </div>
         <div class="info-panel info-panel-reviews" id="panelB1r">
           <div class="review-box">
@@ -1076,7 +1076,7 @@
             <a class="review-badge" href="https://www.yelp.com/biz/la-jolla-cove-la-jolla" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">4.5</span></div><div class="review-count">1,800+ reviews</div></div></a>
           </div>
         </div>
-        <div class="info-panel info-panel-vibe" id="panelB1v">
+        <div class="info-panel info-panel-vibe show" id="panelB1v">
           <div class="vibe-slider" data-slider>
             <button class="vibe-slider-btn prev" onclick="slideVibe(this,-1)">‹</button>
             <div class="vibe-slider-track">
@@ -1133,7 +1133,7 @@
         <div class="info-btns">
           <span class="info-btn info-btn-hh-none"><i data-lucide="clock" style="width:14px;height:14px"></i> No Happy Hour</span>
           <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelB2r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
-          <button class="info-btn info-btn-vibe" onclick="togglePanel(this,'panelB2v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-vibe open" onclick="togglePanel(this,'panelB2v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
         </div>
         <div class="info-panel info-panel-reviews" id="panelB2r">
           <div class="review-box">
@@ -1141,7 +1141,7 @@
             <a class="review-badge" href="https://www.opentable.com/r/catania-san-diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="OpenTable"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">4.8</span></div><div class="review-count">2,292 reviews</div></div></a>
           </div>
         </div>
-        <div class="info-panel info-panel-vibe" id="panelB2v">
+        <div class="info-panel info-panel-vibe show" id="panelB2v">
           <div class="vibe-slider" data-slider>
             <button class="vibe-slider-btn prev" onclick="slideVibe(this,-1)">‹</button>
             <div class="vibe-slider-track">
@@ -1210,7 +1210,7 @@
         <div class="info-btns">
           <span class="info-btn info-btn-hh-none"><i data-lucide="clock" style="width:14px;height:14px"></i> No Happy Hour</span>
           <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelB3r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
-          <button class="info-btn info-btn-vibe" onclick="togglePanel(this,'panelB3v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-vibe open" onclick="togglePanel(this,'panelB3v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
         </div>
         <div class="info-panel info-panel-reviews" id="panelB3r">
           <div class="review-box">
@@ -1218,7 +1218,7 @@
             <a class="review-badge" href="https://www.tripadvisor.com/Restaurant_Review-Bobboi_Natural_Gelato" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="TripAdvisor"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">4.9</span></div><div class="review-count">721 reviews</div></div></a>
           </div>
         </div>
-        <div class="info-panel info-panel-vibe" id="panelB3v">
+        <div class="info-panel info-panel-vibe show" id="panelB3v">
           <div class="vibe-slider" data-slider>
             <button class="vibe-slider-btn prev" onclick="slideVibe(this,-1)">‹</button>
             <div class="vibe-slider-track">
