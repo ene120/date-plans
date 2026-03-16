@@ -49,6 +49,68 @@
     }
     .nav-cta:hover{background:var(--rose-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(224,87,128,.3)}
 
+    /* ── Hamburger Button (mobile only) ── */
+    .hamburger{
+      display:none;background:none;border:none;cursor:pointer;
+      width:44px;height:44px;padding:10px;position:relative;z-index:301;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .hamburger span{
+      display:block;width:22px;height:2px;background:var(--text);
+      border-radius:2px;transition:all .3s ease;margin:0 auto;
+    }
+    .hamburger span:nth-child(1){margin-bottom:6px}
+    .hamburger span:nth-child(3){margin-top:6px}
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5.5px,5.5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5.5px,-5.5px)}
+
+    /* ── Mobile Drawer ── */
+    .mobile-drawer{
+      position:fixed;top:0;right:0;width:min(320px,85vw);height:100%;
+      background:rgba(26,10,16,.98);backdrop-filter:blur(24px);
+      z-index:300;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+      display:flex;flex-direction:column;padding:100px 32px 40px;
+      border-left:1px solid var(--glass-border);
+    }
+    .mobile-drawer.open{transform:translateX(0)}
+    .mobile-drawer-overlay{
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,.5);z-index:299;opacity:0;
+      pointer-events:none;transition:opacity .35s ease;
+    }
+    .mobile-drawer-overlay.open{opacity:1;pointer-events:auto}
+
+    .drawer-auth{
+      margin-bottom:32px;padding-bottom:24px;
+      border-bottom:1px solid var(--glass-border);
+    }
+    .drawer-auth a{
+      display:flex;align-items:center;gap:12px;
+      color:var(--rose);text-decoration:none;font-size:1rem;font-weight:600;
+      padding:12px 0;transition:opacity .2s;
+    }
+    .drawer-auth a:hover{opacity:.8}
+    .drawer-auth svg{width:22px;height:22px;stroke:var(--rose);flex-shrink:0}
+
+    .drawer-links{flex:1;display:flex;flex-direction:column;gap:4px}
+    .drawer-links a{
+      color:var(--text-soft);text-decoration:none;font-size:1.05rem;font-weight:500;
+      padding:14px 0;border-bottom:1px solid rgba(255,255,255,.04);
+      transition:color .2s,padding-left .2s;
+    }
+    .drawer-links a:hover{color:var(--rose);padding-left:8px}
+
+    .drawer-cta{margin-top:auto;padding-top:32px}
+    .drawer-cta a{
+      display:block;text-align:center;
+      background:linear-gradient(135deg,var(--rose),var(--rose-deep));
+      color:white;padding:16px 32px;border-radius:50px;
+      font-weight:600;font-size:1rem;text-decoration:none;
+      transition:all .3s;box-shadow:0 4px 20px rgba(224,87,128,.3);
+    }
+    .drawer-cta a:hover{background:var(--rose-light);transform:translateY(-2px)}
+
     /* ── Section Utility ── */
     section{position:relative;z-index:1}
     .container{max-width:1100px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
@@ -275,23 +337,17 @@
 
     /* ═══════════ RESPONSIVE ═══════════ */
     @media(max-width:768px){
-      .nav-links a:not(.nav-cta):not([href="/app/"]){display:none}
+      .nav-links{display:none}
+      .hamburger{display:flex;flex-direction:column;justify-content:center;align-items:center}
       .nav{padding:14px clamp(14px,3vw,20px)}
       .nav-logo{font-size:1.3rem}
-      .nav-links{gap:8px}
-      .nav-links a[href="/app/"]{font-size:.72rem;white-space:nowrap}
-      .nav-cta{padding:8px 14px;font-size:.75rem;white-space:nowrap}
       .research-grid{grid-template-columns:1fr}
       .delivery-grid{grid-template-columns:1fr}
-
       .hero-trust{flex-direction:column;align-items:center;gap:16px}
     }
     @media(max-width:390px){
       .nav{padding:12px 10px}
       .nav-logo{font-size:1.15rem}
-      .nav-links{gap:6px}
-      .nav-links a[href="/app/"]{font-size:.68rem}
-      .nav-cta{padding:7px 12px;font-size:.7rem}
     }
 
     /* ═══════════ FORM OVERLAY ═══════════ */
@@ -398,7 +454,30 @@
       <a href="/app/" style="color:var(--rose);font-weight:600">Sign Up / Sign In</a>
       <a class="nav-cta" onclick="openForm()">Plan Your Date</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleDrawer()">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-auth">
+      <a href="/app/">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Sign Up / Sign In
+      </a>
+    </div>
+    <div class="drawer-links">
+      <a href="#how" onclick="toggleDrawer()">How It Works</a>
+      <a href="#included" onclick="toggleDrawer()">What's Included</a>
+      <a href="#pricing" onclick="toggleDrawer()">Pricing</a>
+      <a href="#faq" onclick="toggleDrawer()">FAQ</a>
+    </div>
+    <div class="drawer-cta">
+      <a href="#" onclick="toggleDrawer();openForm();return false;">Plan Your Date</a>
+    </div>
+  </div>
 
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero">
@@ -948,6 +1027,18 @@
   </div>
 
   <script>
+    // ── Mobile Drawer ──
+    function toggleDrawer(){
+      var d=document.getElementById('mobileDrawer');
+      var o=document.getElementById('drawerOverlay');
+      var h=document.getElementById('hamburger');
+      var isOpen=d.classList.contains('open');
+      d.classList.toggle('open');
+      o.classList.toggle('open');
+      h.classList.toggle('active');
+      document.body.style.overflow=isOpen?'':'hidden';
+    }
+
     // ── Floating Hearts ──
     (function(){
       var c=document.getElementById('hearts');
