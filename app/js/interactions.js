@@ -337,7 +337,194 @@ export function initParallax() {
 }
 
 // ═══════════════════════════════════════
-// 11. AUTO-INIT (call on any page)
+// 11. RIPPLE EFFECT ON BUTTONS
+// ═══════════════════════════════════════
+export function initRippleButtons() {
+  document.querySelectorAll('.btn-primary, .btn-next, .btn-ripple').forEach(btn => {
+    if (btn.dataset.rippleInit) return;
+    btn.dataset.rippleInit = 'true';
+    btn.style.position = 'relative';
+    btn.style.overflow = 'hidden';
+    btn.addEventListener('click', (e) => {
+      const circle = document.createElement('span');
+      circle.className = 'ripple-circle';
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      circle.style.width = circle.style.height = size + 'px';
+      circle.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      circle.style.top = (e.clientY - rect.top - size / 2) + 'px';
+      btn.appendChild(circle);
+      setTimeout(() => circle.remove(), 500);
+    });
+  });
+}
+
+// ═══════════════════════════════════════
+// 12. SCROLL-TO-TOP BUTTON
+// ═══════════════════════════════════════
+export function initScrollToTop() {
+  // Don't add on landing page (it has its own scroll logic)
+  if (document.querySelector('.scroll-top-btn')) return;
+
+  const btn = document.createElement('button');
+  btn.className = 'scroll-top-btn';
+  btn.setAttribute('aria-label', 'Scroll to top');
+  btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>';
+  document.body.appendChild(btn);
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        btn.classList.toggle('visible', window.scrollY > 300);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+// ═══════════════════════════════════════
+// 13. AMBIENT GRADIENT FOLLOWS MOUSE
+// ═══════════════════════════════════════
+export function initAmbientGlow() {
+  if (window.matchMedia('(hover: none)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let targetX = 50, targetY = 30, currentX = 50, currentY = 30;
+
+  document.addEventListener('mousemove', (e) => {
+    targetX = (e.clientX / window.innerWidth) * 100;
+    targetY = (e.clientY / window.innerHeight) * 100;
+  });
+
+  function animate() {
+    currentX += (targetX - currentX) * 0.02;
+    currentY += (targetY - currentY) * 0.02;
+    document.body.style.setProperty('--ambient-x', currentX + '%');
+    document.body.style.setProperty('--ambient-y', currentY + '%');
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+}
+
+// ═══════════════════════════════════════
+// 14. LOADING QUOTES (romantic/fun)
+// ═══════════════════════════════════════
+const loadingQuotes = [
+  "Finding the perfect spot for you two...",
+  "Checking reservation availability...",
+  "Curating something unforgettable...",
+  "Sprinkling a little magic on your evening...",
+  "Making sure everything's just right...",
+  "Handpicking the best experiences...",
+  "Crafting your perfect date night...",
+  "Adding the finishing touches...",
+];
+
+export function getLoadingQuote() {
+  return loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
+}
+
+export function showLoadingWithQuote(container) {
+  const overlay = document.createElement('div');
+  overlay.className = 'loading-overlay';
+  overlay.innerHTML = `
+    <div class="loading-quote">
+      <div class="loading-heart">♥</div>
+      <div class="quote-text">${getLoadingQuote()}</div>
+    </div>
+  `;
+  overlay.style.cssText = `
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    background:rgba(8,5,12,.9);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;
+    z-index:50;border-radius:inherit;
+  `;
+  container.style.position = 'relative';
+  container.appendChild(overlay);
+  return overlay;
+}
+
+// ═══════════════════════════════════════
+// 15. ANIMATED COUNTERS (for landing page)
+// ═══════════════════════════════════════
+export function initLandingCounters() {
+  const counters = document.querySelectorAll('.proof-stat .num');
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const text = el.textContent.trim();
+        const numMatch = text.match(/(\d+)/);
+        if (numMatch) {
+          const target = parseInt(numMatch[1]);
+          const suffix = text.replace(numMatch[1], '');
+          let start = 0;
+          const duration = 1200;
+          const startTime = performance.now();
+
+          function tick(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(start + (target - start) * ease);
+            el.textContent = current + suffix;
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              el.classList.add('counted');
+            }
+          }
+          requestAnimationFrame(tick);
+        }
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  counters.forEach(c => observer.observe(c));
+}
+
+// ═══════════════════════════════════════
+// 16. EASTER EGG: KONAMI CODE
+// ═══════════════════════════════════════
+export function initEasterEggs() {
+  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let konamiIndex = 0;
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === konamiCode[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiCode.length) {
+        konamiIndex = 0;
+        // Trigger a celebration!
+        import('./interactions.js').then(m => m.celebrate('hearts'));
+        // Show a special toast
+        const toast = document.createElement('div');
+        toast.className = 'toast toast-success';
+        toast.textContent = '💕 You found the secret! You two are perfect together.';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transition = 'opacity .25s';
+          setTimeout(() => toast.remove(), 250);
+        }, 4000);
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+}
+
+// ═══════════════════════════════════════
+// 17. AUTO-INIT (call on any page)
 // ═══════════════════════════════════════
 export function initInteractions() {
   initScrollReveal();
@@ -345,4 +532,8 @@ export function initInteractions() {
   initTiltCards();
   initPageTransitions();
   initParallax();
+  initRippleButtons();
+  initScrollToTop();
+  initAmbientGlow();
+  initEasterEggs();
 }

@@ -118,10 +118,9 @@ select.form-input option{background:var(--bg-elevated);color:white}
   border-radius:2px;transition:width .4s cubic-bezier(.25,.1,.25,1);
 }
 
-/* Multi Page Form */
+/* Multi Page Form — animation handled by interactions.css */
 .form-page{display:none}
-.form-page.active{display:block;animation:slideUp .35s cubic-bezier(.25,.1,.25,1)}
-@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.form-page.active{display:block}
 .fp-icon{margin-bottom:12px;display:flex;align-items:center}
 .fp-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:5px}
 .fp-sub{color:var(--text-muted);font-size:.86rem;margin-bottom:clamp(20px,3vh,32px);line-height:1.7}

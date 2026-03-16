@@ -139,6 +139,37 @@
     @media(hover:none){.cursor-dot,.cursor-trail{display:none}}
     @media(prefers-reduced-motion:reduce){.cursor-dot,.cursor-trail{display:none}}
 
+    /* ── Selection highlight ── */
+    ::selection{background:rgba(224,87,128,.3);color:#fff}
+    :focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+
+    /* ── Custom scrollbar ── */
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:rgba(255,255,255,.02)}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,rgba(224,87,128,.2),rgba(224,87,128,.08));border-radius:3px}
+    ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,rgba(224,87,128,.35),rgba(224,87,128,.15))}
+    *{scrollbar-width:thin;scrollbar-color:rgba(224,87,128,.15) transparent}
+
+    /* ── Scroll indicator ── */
+    .scroll-indicator{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);opacity:.4;z-index:3}
+    @keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+    .scroll-indicator{animation:scrollBounce 2s ease-in-out infinite}
+    .scroll-indicator svg{width:24px;height:24px;stroke:var(--text-muted)}
+
+    /* ── Scroll-to-top ── */
+    .scroll-top-btn{position:fixed;bottom:28px;right:28px;width:42px;height:42px;border-radius:50%;background:var(--bg-elevated,#18121f);border:1px solid rgba(255,255,255,.06);color:var(--rose);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:90;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,background .2s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+    .scroll-top-btn.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+    .scroll-top-btn:hover{background:rgba(224,87,128,.08);border-color:rgba(224,87,128,.2);transform:translateY(-2px)}
+
+    /* ── Ripple ── */
+    .btn-ripple{position:relative;overflow:hidden}
+    .ripple-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.2);transform:scale(0);animation:rippleExpand .5s ease-out;pointer-events:none}
+    @keyframes rippleExpand{to{transform:scale(4);opacity:0}}
+
+    /* ── Counter glow ── */
+    @keyframes countGlow{0%,100%{text-shadow:0 0 0 transparent}50%{text-shadow:0 0 20px rgba(224,87,128,.3)}}
+    .proof-stat .num.counted{animation:countGlow 1s ease-out}
+
     /* ── Card shimmer sweep ── */
     .shimmer-card{position:relative;overflow:hidden}
     .shimmer-card::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.03) 40%,rgba(255,255,255,.06) 50%,rgba(255,255,255,.03) 60%,transparent 100%);pointer-events:none;z-index:2}
@@ -518,6 +549,9 @@
         <span class="trust-item"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Personalized to both partners</span>
         <span class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Serving couples across the United States</span>
       </div>
+    </div>
+    <div class="scroll-indicator">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </div>
   </section>
 
@@ -1292,6 +1326,55 @@
           setTimeout(tick,35);
         }
       },2500);
+    })();
+
+    // Scroll-to-top button
+    (function(){
+      var btn=document.createElement('button');btn.className='scroll-top-btn';btn.setAttribute('aria-label','Scroll to top');
+      btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>';
+      document.body.appendChild(btn);
+      btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+      var tick=false;
+      window.addEventListener('scroll',function(){
+        if(!tick){requestAnimationFrame(function(){btn.classList.toggle('visible',window.scrollY>300);tick=false});tick=true}
+      },{passive:true});
+    })();
+
+    // Ripple on primary buttons
+    document.querySelectorAll('.btn-primary').forEach(function(btn){
+      btn.style.position='relative';btn.style.overflow='hidden';
+      btn.addEventListener('click',function(e){
+        var c=document.createElement('span');c.className='ripple-circle';
+        var r=btn.getBoundingClientRect();var sz=Math.max(r.width,r.height);
+        c.style.width=c.style.height=sz+'px';
+        c.style.left=(e.clientX-r.left-sz/2)+'px';c.style.top=(e.clientY-r.top-sz/2)+'px';
+        btn.appendChild(c);setTimeout(function(){c.remove()},500);
+      });
+    });
+
+    // Animated stat counters on scroll
+    (function(){
+      var nums=document.querySelectorAll('.proof-stat .num');
+      if(!nums.length)return;
+      var ob=new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            var el=entry.target;var txt=el.textContent.trim();
+            var m=txt.match(/(\d+)/);
+            if(m){
+              var target=parseInt(m[1]);var suffix=txt.replace(m[1],'');
+              var dur=1200;var st=performance.now();
+              (function tick(now){
+                var p=Math.min((now-st)/dur,1);var ease=1-Math.pow(1-p,3);
+                el.textContent=Math.round(target*ease)+suffix;
+                if(p<1)requestAnimationFrame(tick);else el.classList.add('counted');
+              })(performance.now());
+            }
+            ob.unobserve(el);
+          }
+        });
+      },{threshold:0.3});
+      nums.forEach(function(n){ob.observe(n)});
     })();
 
     // Parallax hero orbs on scroll

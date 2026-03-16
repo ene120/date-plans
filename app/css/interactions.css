@@ -439,6 +439,346 @@
 
 
 /* ═══════════════════════════════════════
+   PHASE 3: MICRO-INTERACTIONS
+   ═══════════════════════════════════════ */
+
+/* 19. RIPPLE EFFECT ON BUTTONS */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple .ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  transform: scale(0);
+  animation: rippleExpand .5s ease-out;
+  pointer-events: none;
+}
+@keyframes rippleExpand {
+  to { transform: scale(4); opacity: 0 }
+}
+
+/* 20. ANIMATED PROGRESS BAR */
+.form-progress-fill {
+  position: relative;
+  overflow: hidden;
+}
+.form-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,.25) 50%,
+    transparent 100%
+  );
+  animation: progressShine 2s ease-in-out infinite;
+}
+@keyframes progressShine {
+  0% { transform: translateX(-100%) }
+  100% { transform: translateX(100%) }
+}
+
+/* 21. ANIMATED CHECK ON SELECTION */
+@keyframes checkPop {
+  0% { transform: scale(0) rotate(-45deg); opacity: 0 }
+  50% { transform: scale(1.2) rotate(0); opacity: 1 }
+  100% { transform: scale(1) rotate(0); opacity: 1 }
+}
+.date-type-card.active::after,
+.chip.active::after {
+  content: '✓';
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: .65rem;
+  color: var(--rose);
+  font-weight: 700;
+  animation: checkPop .3s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* 22. INPUT FOCUS UNDERLINE ANIMATION */
+.form-input-wrap {
+  position: relative;
+}
+.form-input-wrap .focus-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--grad-warm);
+  transition: width .3s cubic-bezier(.22,1,.36,1), left .3s cubic-bezier(.22,1,.36,1);
+  border-radius: 2px;
+}
+.form-input-wrap .form-input:focus ~ .focus-line {
+  width: 100%;
+  left: 0;
+}
+
+/* 23. PULSE ON ACTIVE NAV */
+@keyframes navPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(224,87,128,.2) }
+  50% { box-shadow: 0 0 0 4px rgba(224,87,128,0) }
+}
+.nav-item.active {
+  animation: navPulse 2s ease-in-out;
+}
+
+
+/* ═══════════════════════════════════════
+   PHASE 4: EMOTIONAL DESIGN
+   ═══════════════════════════════════════ */
+
+/* 24. CUSTOM SCROLLBAR (rose-tinted) */
+::-webkit-scrollbar { width: 6px }
+::-webkit-scrollbar-track { background: rgba(255,255,255,.02) }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(224,87,128,.2), rgba(224,87,128,.08));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(224,87,128,.35), rgba(224,87,128,.15));
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(224,87,128,.15) transparent;
+}
+
+/* 25. HEART LOADING SPINNER */
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1) }
+  25% { transform: scale(1.15) }
+  40% { transform: scale(1) }
+  60% { transform: scale(1.1) }
+}
+.loading-heart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: heartBeat 1.2s ease-in-out infinite;
+  color: var(--rose);
+  font-size: 1.5rem;
+}
+
+/* 26. AMBIENT GRADIENT SHIFT ON BODY */
+@keyframes ambientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse 800px 600px at var(--ambient-x, 50%) var(--ambient-y, 30%),
+    rgba(224,87,128,.02) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  transition: background .5s ease;
+}
+
+/* 27. EMPTY STATE WITH FLOATING ANIMATION */
+@keyframes emptyFloat {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-8px) }
+}
+.empty-state .empty-icon {
+  animation: emptyFloat 3s ease-in-out infinite;
+}
+
+/* 28. TOOLTIP WITH PERSONALITY */
+.tooltip-wrap {
+  position: relative;
+}
+.tooltip-wrap::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 6px 14px;
+  background: var(--bg-overlay);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-soft);
+  font-size: .75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s, transform .2s;
+  z-index: 100;
+}
+.tooltip-wrap:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ═══════════════════════════════════════
+   PHASE 5: ADVANCED UX
+   ═══════════════════════════════════════ */
+
+/* 29. SCROLL-TO-TOP BUTTON */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--rose);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 90;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .3s, transform .3s, background .2s;
+  pointer-events: none;
+  box-shadow: var(--shadow-md);
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.scroll-top-btn:hover {
+  background: rgba(224,87,128,.08);
+  border-color: rgba(224,87,128,.2);
+  transform: translateY(-2px);
+}
+@media (max-width: 768px) {
+  .scroll-top-btn {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    right: 16px;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* 30. ANIMATED LANDING PAGE COUNTERS */
+@keyframes countGlow {
+  0%, 100% { text-shadow: 0 0 0 transparent }
+  50% { text-shadow: 0 0 20px rgba(224,87,128,.3) }
+}
+.proof-stat .num.counted {
+  animation: countGlow 1s ease-out;
+}
+
+/* 31. SMOOTH SCROLL INDICATOR */
+.scroll-indicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: .4;
+  transition: opacity .3s;
+  z-index: 3;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0) }
+  50% { transform: translateX(-50%) translateY(6px) }
+}
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+.scroll-indicator svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--text-muted);
+}
+
+
+/* ═══════════════════════════════════════
+   PHASE 6: FINAL POLISH
+   ═══════════════════════════════════════ */
+
+/* 32. LOADING QUOTES CONTAINER */
+.loading-quote {
+  text-align: center;
+  padding: 48px 24px;
+}
+.loading-quote .quote-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-soft);
+  max-width: 400px;
+  margin: 0 auto 16px;
+  line-height: 1.7;
+  animation: fadeIn .5s ease both;
+}
+.loading-quote .loading-heart {
+  margin-bottom: 12px;
+}
+
+/* 33. GLASSMORPHISM MODAL UPGRADE */
+.modal {
+  backdrop-filter: blur(20px);
+  background: rgba(24,18,31,.85);
+}
+
+/* 34. INTERACTIVE BADGE PULSE */
+.badge-progress::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--status-progress);
+  animation: pulse-badge 2s ease-in-out infinite;
+  margin-right: 2px;
+}
+
+/* 35. SELECTION HIGHLIGHT */
+::selection {
+  background: rgba(224,87,128,.3);
+  color: #fff;
+}
+
+/* 36. FOCUS VISIBLE OUTLINES (accessibility) */
+:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 2px;
+}
+button:focus-visible,
+.btn-primary:focus-visible,
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 2px;
+}
+
+
+/* ═══════════════════════════════════════
    MOBILE: reduce motion for performance
    ═══════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
@@ -454,10 +794,14 @@
   .skel-bone { animation: none }
   .cursor-dot, .cursor-trail { display: none }
   .shimmer-card::after { animation: none !important }
+  .empty-state .empty-icon { animation: none }
+  .loading-heart { animation: none }
+  .scroll-indicator { animation: none }
 }
 
 /* Disable heavy effects on mobile (touch devices) */
 @media (hover: none) {
   .cursor-dot, .cursor-trail { display: none }
   .shimmer-card::after { display: none }
+  .tooltip-wrap::after { display: none }
 }
