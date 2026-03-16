@@ -42,7 +42,6 @@ const fieldMap = {
   viewLoveLangs1: 'love_langs1',
   viewLoveLangs2: 'love_langs2',
   viewAccessibility: 'accessibility',
-  viewSurprise: 'surprise_pref',
   viewNotes: 'extra_notes',
 };
 
@@ -65,9 +64,6 @@ const labels = {
   rideshare: 'Rideshare (Uber/Lyft)',
   public: 'Public Transit',
   walking: 'Walking / Biking',
-  full_surprise: "Full surprise (don't tell us anything)",
-  partial: 'Give us the general idea',
-  no_surprise: 'We want to know everything ahead of time',
 };
 
 function populateView() {
@@ -131,7 +127,6 @@ function populateEditFields() {
     editBudget: 'budget',
     editActivity: 'activity_level',
     editTransport: 'transport',
-    editSurprise: 'surprise_pref',
   };
 
   for (const [elId, field] of Object.entries(selectMap)) {
@@ -218,7 +213,6 @@ window.saveSection = async function(section) {
         love_langs1: document.getElementById('editLoveLangs1').value.trim(),
         love_langs2: document.getElementById('editLoveLangs2').value.trim(),
         accessibility: document.getElementById('editAccessibility').value.trim(),
-        surprise_pref: document.getElementById('editSurprise').value,
         extra_notes: document.getElementById('editNotes').value.trim(),
       };
       break;
