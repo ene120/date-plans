@@ -125,9 +125,8 @@
     }
     .section-sub{font-size:clamp(.95rem,1.6vw,1.1rem);color:var(--text-soft);max-width:600px;line-height:1.8}
 
-    /* ── Reveal Animation ── */
-    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
+    /* ── Reveal Animation (disabled — content always visible) ── */
+    .reveal{opacity:1;transform:none}
 
     /* ═══════════ HERO ═══════════ */
     .hero{
@@ -1060,12 +1059,7 @@
       document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
     });
 
-    // ── Reveal on scroll ──
-    var reveals=document.querySelectorAll('.reveal');
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
-    },{threshold:.15});
-    reveals.forEach(function(el){io.observe(el)});
+    // ── Reveal on scroll (disabled — all content visible immediately) ──
 
     // ── FAQ accordion ──
     document.querySelectorAll('.faq-q').forEach(function(btn){
