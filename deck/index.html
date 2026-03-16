@@ -5,35 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DateFlo Presents</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --rose: #e63946;
-      --deep-rose: #b5172a;
-      --gold: #d4a853;
-      --darker: #0f0f1e;
+      --rose: #ff4d5e;
+      --gold: #ffc947;
+      --bg: #000000;
+      --text: #ffffff;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--darker);
-      color: #f0e8e0;
+      background: var(--bg);
+      color: var(--text);
       overflow: hidden;
       height: 100vh;
       width: 100vw;
-    }
-
-    .bg-glow {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse 600px 600px at 20% 30%, rgba(230,57,70,0.08), transparent),
-        radial-gradient(ellipse 500px 500px at 80% 70%, rgba(212,168,83,0.06), transparent);
     }
 
     .slide {
@@ -45,7 +34,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 60px 40px;
+      padding: 60px 48px;
       z-index: 1;
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
@@ -65,24 +54,25 @@
     /* SLIDE 1 */
     .slide-1 .badge {
       display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 4px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 5px;
       text-transform: uppercase;
       color: var(--gold);
-      border: 1px solid rgba(212,168,83,0.3);
-      padding: 8px 24px;
+      border: 2px solid var(--gold);
+      padding: 10px 28px;
       border-radius: 50px;
-      margin-bottom: 40px;
+      margin-bottom: 44px;
       animation: fadeDown 1s ease-out;
     }
 
     .slide-1 h1 {
       font-family: 'Playfair Display', serif;
       font-weight: 900;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.1;
-      margin-bottom: 12px;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.08;
+      margin-bottom: 16px;
+      color: #ffffff;
       animation: fadeUp 1s ease-out 0.2s both;
     }
 
@@ -93,62 +83,63 @@
 
     .slide-1 .event-date {
       font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
       color: var(--gold);
       margin-bottom: 48px;
       animation: fadeUp 1s ease-out 0.4s both;
     }
 
     .slide-1 .pitch {
-      max-width: 700px;
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      line-height: 1.9;
-      font-weight: 300;
-      color: rgba(240,232,224,0.8);
+      max-width: 780px;
+      font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+      line-height: 1.85;
+      font-weight: 400;
+      color: rgba(255,255,255,0.92);
       animation: fadeUp 1s ease-out 0.6s both;
     }
 
     .slide-1 .pitch strong {
-      color: #fff;
-      font-weight: 600;
+      color: #ffffff;
+      font-weight: 700;
     }
 
     /* SLIDE 2 */
     .slide-2 .qr-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 4px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 5px;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
 
     .slide-2 .qr-box {
-      background: #fff;
-      border-radius: 20px;
-      padding: 24px;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 28px;
       display: inline-block;
-      margin-bottom: 32px;
-      box-shadow: 0 0 60px rgba(230,57,70,0.15), 0 0 120px rgba(212,168,83,0.08);
+      margin-bottom: 36px;
+      box-shadow: 0 0 80px rgba(255,77,94,0.2), 0 0 160px rgba(255,201,71,0.1);
     }
 
     .slide-2 .qr-box img {
       display: block;
-      width: 260px;
-      height: 260px;
+      width: 300px;
+      height: 300px;
     }
 
     .slide-2 .scan-text {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 10px;
     }
 
     .slide-2 .scan-sub {
-      font-size: 1rem;
-      color: rgba(240,232,224,0.5);
-      font-weight: 300;
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
     }
 
     /* NAV */
@@ -157,21 +148,20 @@
       bottom: 40px;
       z-index: 10;
       padding: 14px 32px;
-      border: 1px solid rgba(212,168,83,0.3);
+      border: 2px solid var(--gold);
       border-radius: 50px;
-      background: rgba(212,168,83,0.08);
+      background: rgba(255,201,71,0.12);
       color: var(--gold);
       font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 0.9rem;
+      font-weight: 600;
       letter-spacing: 1px;
       cursor: pointer;
       transition: all 0.3s;
     }
 
     .nav-btn:hover {
-      background: rgba(212,168,83,0.15);
-      border-color: var(--gold);
+      background: rgba(255,201,71,0.25);
     }
 
     #nextBtn { right: 40px; }
@@ -189,7 +179,7 @@
 
     @media (max-width: 600px) {
       .slide { padding: 40px 24px; }
-      .slide-2 .qr-box img { width: 200px; height: 200px; }
+      .slide-2 .qr-box img { width: 220px; height: 220px; }
       .nav-btn { bottom: 24px; padding: 12px 24px; font-size: 0.8rem; }
       #nextBtn { right: 24px; }
       #prevBtn { left: 24px; }
@@ -197,7 +187,6 @@
   </style>
 </head>
 <body>
-  <div class="bg-glow"></div>
 
   <!-- SLIDE 1: The Pitch -->
   <div class="slide slide-1 visible" id="slide1">
@@ -216,7 +205,7 @@
   <div class="slide slide-2 hidden" id="slide2">
     <p class="qr-label">Sign Up to Attend</p>
     <div class="qr-box">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=https%3A%2F%2Fdateflo.com%2Fevent%2F&color=0f0f1e&bgcolor=ffffff" alt="QR Code to dateflo.com/event/">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fdateflo.com%2Fevent%2F&color=000000&bgcolor=ffffff" alt="QR Code to dateflo.com/event/">
     </div>
     <p class="scan-text">Scan to reserve your spot</p>
     <p class="scan-sub">dateflo.com/event</p>
@@ -241,7 +230,6 @@
       nextBtn.style.display = currentSlide === 1 ? 'none' : 'block';
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', function(e) {
       if ((e.key === 'ArrowRight' || e.key === ' ') && currentSlide === 0) goSlide(1);
       if ((e.key === 'ArrowLeft' || e.key === 'Backspace') && currentSlide === 1) goSlide(0);
