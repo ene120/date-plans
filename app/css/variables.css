@@ -69,11 +69,4 @@
   --shadow-md: 0 8px 24px rgba(0,0,0,.35);
   --shadow-lg: 0 16px 48px rgba(0,0,0,.45);
   --shadow-glow: 0 0 40px rgba(224,87,128,.12);
-
-  /* Liquid Glass */
-  --lg-blur: 20px;
-  --lg-blur-heavy: 40px;
-  --lg-specular: linear-gradient(135deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.03) 40%, transparent 60%);
-  --lg-refraction: linear-gradient(160deg, rgba(224,87,128,.04) 0%, rgba(116,185,255,.03) 50%, rgba(249,202,36,.02) 100%);
-  --lg-inset: inset 0 1px 0 rgba(255,255,255,.06);
 }

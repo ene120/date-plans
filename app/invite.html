@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/forms.css">
-  <link rel="stylesheet" href="css/liquid-glass.css">
   <style>
     .invite-page{
       min-height:100vh;display:flex;align-items:center;justify-content:center;
@@ -18,32 +17,16 @@
       padding:clamp(20px,4vw,40px);position:relative;overflow:hidden;
     }
     .invite-page::before{
-      content:'';position:absolute;top:-20%;left:-15%;width:600px;height:600px;
-      background:radial-gradient(circle,rgba(224,87,128,.08) 0%,rgba(224,87,128,.03) 40%,transparent 70%);
-      pointer-events:none;filter:blur(40px);
-      animation:inviteOrb 12s ease-in-out infinite;
+      content:'';position:absolute;top:-30%;left:-20%;width:600px;height:600px;
+      background:radial-gradient(circle,rgba(224,87,128,.1) 0%,transparent 70%);
+      pointer-events:none;
     }
-    .invite-page::after{
-      content:'';position:absolute;bottom:-15%;right:-10%;width:450px;height:450px;
-      background:radial-gradient(circle,rgba(116,185,255,.06) 0%,transparent 70%);
-      pointer-events:none;filter:blur(50px);
-      animation:inviteOrb 16s ease-in-out infinite reverse;
-    }
-    @keyframes inviteOrb{0%,100%{transform:translate(0,0) scale(1);opacity:.5}50%{transform:translate(20px,-15px) scale(1.08);opacity:.8}}
     .invite-card{
-      background:rgba(16,11,22,.85);border:1px solid rgba(255,255,255,.08);
+      background:var(--glass);border:1px solid var(--glass-border);
       border-radius:var(--radius-xl);padding:clamp(36px,5vw,52px);
-      backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-      max-width:440px;width:100%;
+      backdrop-filter:blur(16px);max-width:440px;width:100%;
       position:relative;z-index:1;text-align:center;
-      box-shadow:var(--shadow-lg),var(--lg-inset);
-      overflow:hidden;
     }
-    .invite-card::before{
-      content:'';position:absolute;top:0;left:0;right:0;height:50%;
-      background:var(--lg-specular);pointer-events:none;z-index:0;border-radius:inherit;
-    }
-    .invite-card > *{position:relative;z-index:1}
     .invite-logo{
       font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;
       color:var(--rose);margin-bottom:8px;

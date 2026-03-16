@@ -11,60 +11,33 @@
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/forms.css">
-  <link rel="stylesheet" href="css/liquid-glass.css">
   <style>
     .login-page{
       min-height:100vh;display:flex;align-items:center;justify-content:center;
       background:var(--bg-base);
       padding:clamp(20px,4vw,40px);position:relative;overflow:hidden;
     }
-    /* Ambient orbs for liquid glass refraction */
     .login-page::before{
-      content:'';position:absolute;top:-20%;right:-15%;width:600px;height:600px;
-      background:radial-gradient(circle,rgba(224,87,128,.08) 0%,rgba(224,87,128,.03) 40%,transparent 70%);
-      pointer-events:none;animation:loginOrb1 12s ease-in-out infinite;
-      filter:blur(40px);
+      content:'';position:absolute;top:-25%;right:-15%;width:600px;height:600px;
+      background:radial-gradient(circle,rgba(224,87,128,.05) 0%,transparent 70%);
+      pointer-events:none;animation:floatGlow 10s ease-in-out infinite;
     }
     .login-page::after{
-      content:'';position:absolute;bottom:-15%;left:-10%;width:450px;height:450px;
-      background:radial-gradient(circle,rgba(116,185,255,.06) 0%,rgba(249,202,36,.03) 40%,transparent 70%);
-      pointer-events:none;animation:loginOrb2 16s ease-in-out infinite;
-      filter:blur(50px);
+      content:'';position:absolute;bottom:-25%;left:-10%;width:400px;height:400px;
+      background:radial-gradient(circle,rgba(142,58,89,.04) 0%,transparent 70%);
+      pointer-events:none;animation:floatGlow 12s ease-in-out infinite reverse;
     }
-    @keyframes loginOrb1{
+    @keyframes floatGlow{
       0%,100%{transform:translate(0,0) scale(1);opacity:.5}
-      33%{transform:translate(-20px,30px) scale(1.1);opacity:.8}
-      66%{transform:translate(15px,-20px) scale(.95);opacity:.6}
-    }
-    @keyframes loginOrb2{
-      0%,100%{transform:translate(0,0) scale(1);opacity:.4}
-      50%{transform:translate(25px,-15px) scale(1.08);opacity:.7}
+      50%{transform:translate(15px,10px) scale(1.08);opacity:1}
     }
     .login-card{
-      background:rgba(16,11,22,.85);
-      border:1px solid rgba(255,255,255,.08);
+      background:var(--bg-surface);border:1px solid var(--border-subtle);
       border-radius:var(--radius-xl);padding:clamp(32px,5vw,48px);
-      backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
       max-width:420px;width:100%;
       position:relative;z-index:1;text-align:center;
-      box-shadow:var(--shadow-lg),var(--lg-inset);
-      overflow:hidden;
+      box-shadow:0 16px 48px rgba(0,0,0,.35);
     }
-    /* Specular highlight */
-    .login-card::before{
-      content:'';position:absolute;top:0;left:0;right:0;
-      height:50%;
-      background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 40%,transparent 60%);
-      pointer-events:none;z-index:0;border-radius:inherit;
-    }
-    /* Refraction tint */
-    .login-card::after{
-      content:'';position:absolute;inset:0;
-      background:var(--lg-refraction);
-      pointer-events:none;z-index:0;border-radius:inherit;
-      opacity:.4;
-    }
-    .login-card > *{position:relative;z-index:1}
     .login-logo{
       font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;
       margin-bottom:4px;
