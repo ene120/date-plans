@@ -228,11 +228,7 @@
       margin-bottom:30px;text-align:center;
       box-shadow:3px 3px 0px rgba(142,58,89,.15);
     }
-    .route-tag p{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--deep-rose);font-weight:500;margin:0;line-height:2.6;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-    .route-btn{display:inline-block;background:var(--cupid);color:#fff !important;padding:5px 16px;border-radius:50px;text-decoration:none;font-weight:700;font-size:clamp(.72rem,1.2vw,.82rem);box-shadow:2px 2px 0px var(--deep-rose);transition:all .2s ease;cursor:pointer;white-space:nowrap;margin:2px 0}
-    .route-btn:hover{transform:translateY(-2px);box-shadow:3px 3px 0px var(--deep-rose)}
-    .route-btn-b{background:#5b86e5;box-shadow:2px 2px 0px #3a5ca0}
-    .route-btn-b:hover{box-shadow:3px 3px 0px #3a5ca0}
+    .route-tag p{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--deep-rose);font-weight:500;margin:0}
 
     /* ── Weather ── */
     .weather-note{
@@ -446,6 +442,11 @@
     /* ── Stop Feedback ── */
     .stop-fb{margin-top:18px;padding-top:18px;border-top:3px solid var(--cream)}
     .stop-fb-label{font-size:clamp(.82rem,1.4vw,.9rem);color:var(--text-dark);margin-bottom:10px;font-weight:700}
+    .stop-fb .sc-who,.stop-fb .qt-row,.stop-fb .stop-fb-wrap,.stop-fb .stop-fb-sent{display:none}
+    .stop-fb.fb-open .sc-who,.stop-fb.fb-open .qt-row,.stop-fb.fb-open .stop-fb-wrap{display:flex}
+    .stop-fb.fb-open .stop-fb-sent{display:none}
+    .fb-chev{font-size:.6em;transition:transform .3s ease;display:inline-block;margin-left:4px}
+    .stop-fb.fb-open .fb-chev{transform:rotate(180deg)}
     .sc-who{display:flex;gap:6px;margin-bottom:12px}
     .sc-who-btn{
       padding:6px 14px;border-radius:50px;border:3px solid var(--wing-pink);
@@ -608,14 +609,12 @@
 
     <div class="chooser">
       <div class="choose-card" onclick="showOption('A')">
-        <span class="card-emoji">&#127918;</span>
         <div class="card-label">Plan 1</div>
         <div class="card-title">Playful &amp; Dressed-Up</div>
         <p class="card-desc">Bookstore browse &rarr; dinner at One Door North &rarr; arcade &rarr; gelato. Polished without feeling stiff.</p>
         <span class="card-cta">View This Date &rarr;</span>
       </div>
       <div class="choose-card" onclick="showOption('B')">
-        <span class="card-emoji">&#127912;</span>
         <div class="card-label">Plan 2</div>
         <div class="card-title">Artsy &amp; A Little Softer</div>
         <p class="card-desc">Gallery &rarr; bookstore &rarr; dinner at Encontro &rarr; quiet close. Calm, thoughtful, and intentional.</p>
@@ -645,7 +644,7 @@
         <p>This one feels polished without feeling stiff. You start with a cozy browse, slide into a more special dinner, get one genuinely fun activity after, then end with gelato before the short walk back to the car. It fits you both well because it feels intentional, gives you something to do after dinner, and still stays easy.</p>
       </div>
       <div class="route-tag">
-        <p>&#128694; <strong>Route:</strong> Parking &rarr; <a href="#stop-a1" class="route-btn">Bookstore</a> &rarr; <a href="#stop-a2" class="route-btn">Dinner</a> &rarr; <a href="#stop-a3" class="route-btn">Arcade</a> &rarr; <a href="#stop-a4" class="route-btn">Gelato</a> &rarr; Car</p>
+        <p>&#128694; <strong>Route:</strong> Parking &rarr; Bookstore &rarr; Dinner &rarr; Arcade &rarr; Gelato &rarr; Car</p>
       </div>
 
       <!-- Weather (top) -->
@@ -846,7 +845,7 @@
         <p>This one feels more calm, thoughtful, and a little more &ldquo;we planned this on purpose.&rdquo; You start with art, add a bookstore stop, then settle into dinner and finish with a mellow North Park close before heading back to the car. Lower-energy rhythm that still feels like a full date, not just errands plus food.</p>
       </div>
       <div class="route-tag" style="background:linear-gradient(135deg,rgba(91,134,229,0.1),rgba(91,134,229,0.05));border-color:rgba(91,134,229,0.2)">
-        <p style="color:#4a5a99">&#128694; <strong>Route:</strong> Parking &rarr; <a href="#stop-b1" class="route-btn route-btn-b">Gallery</a> &rarr; <a href="#stop-b2" class="route-btn route-btn-b">Bookstore</a> &rarr; <a href="#stop-b3" class="route-btn route-btn-b">Dinner</a> &rarr; <a href="#stop-b4" class="route-btn route-btn-b">Quiet Close</a> &rarr; Car</p>
+        <p style="color:#4a5a99">&#128694; <strong>Route:</strong> Parking &rarr; Gallery &rarr; Bookstore &rarr; Dinner &rarr; Quiet Close &rarr; Car</p>
       </div>
 
       <!-- Weather (top) -->
@@ -1021,7 +1020,6 @@
   </div>
 
   <script>
-    document.querySelectorAll('.route-btn').forEach(function(btn){btn.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'})}})});
     // Floating hearts
     (function(){
       var c=document.getElementById('heartsBg');

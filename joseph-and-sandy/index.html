@@ -252,11 +252,7 @@
       margin-bottom:30px;text-align:center;
       box-shadow:3px 3px 0px rgba(142,58,89,.15);
     }
-    .route-tag p{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--deep-rose);font-weight:500;margin:0;line-height:2.6;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-    .route-btn{display:inline-block;background:var(--cupid);color:#fff !important;padding:5px 16px;border-radius:50px;text-decoration:none;font-weight:700;font-size:clamp(.72rem,1.2vw,.82rem);box-shadow:2px 2px 0px var(--deep-rose);transition:all .2s ease;cursor:pointer;white-space:nowrap;margin:2px 0}
-    .route-btn:hover{transform:translateY(-2px);box-shadow:3px 3px 0px var(--deep-rose)}
-    .route-btn-b{background:#5b86e5;box-shadow:2px 2px 0px #3a5ca0}
-    .route-btn-b:hover{box-shadow:3px 3px 0px #3a5ca0}
+    .route-tag p{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--deep-rose);font-weight:500;margin:0}
 
     /* ── Weather ── */
     .weather-note{
@@ -521,6 +517,12 @@
 
     /* ── Stop Feedback ── */
     .stop-fb{margin-top:18px;padding-top:18px;border-top:3px solid var(--cream)}
+    .stop-fb .sc-who,.stop-fb .qt-row,.stop-fb .stop-fb-wrap,.stop-fb .stop-fb-sent{display:none}
+    .stop-fb.fb-open .sc-who,.stop-fb.fb-open .qt-row,.stop-fb.fb-open .stop-fb-wrap{display:flex}
+    .stop-fb.fb-open .stop-fb-sent{display:none}
+    .fb-chev{font-size:.6em;transition:transform .3s ease;display:inline-block;margin-left:4px}
+    .stop-fb.fb-open .fb-chev{transform:rotate(180deg)}
+    .walk-tag{text-align:center;font-size:clamp(.72rem,1.2vw,.8rem);color:var(--text-muted);padding:12px 0;font-weight:500;letter-spacing:.3px}
     .stop-fb-label{font-size:clamp(.82rem,1.4vw,.9rem);color:var(--text-dark);margin-bottom:10px;font-weight:700}
     .sc-who{display:flex;gap:6px;margin-bottom:12px}
     .sc-who-btn{
@@ -722,7 +724,7 @@
         <p>A relaxed stroll through Balboa Park&rsquo;s most romantic gardens while the afternoon light filters through Spanish colonial architecture, followed by a trendy Chinese fusion dinner at one of Convoy&rsquo;s most popular spots: think rainbow dumplings, bulgogi chow mein, and cute pig-shaped buns. End with boba at the highest-rated tea house in San Diego.</p>
       </div>
 
-      <div class="route-tag"><p>&#128663; Lakeside &rarr; <a href="#stop-a1" class="route-btn">Balboa Park</a> &rarr; <a href="#stop-a2" class="route-btn">Steamy Piggy</a> &rarr; <a href="#stop-a3" class="route-btn">Yun Tea House</a> &rarr; Home</p></div>
+      <div class="route-tag"><p>&#128663; Lakeside &rarr; Balboa Park &rarr; Steamy Piggy &rarr; Yun Tea House &rarr; Home</p></div>
 
       <!-- Stop 1: Balboa Park -->
       <div class="stop" id="stop-a1">
@@ -788,7 +790,7 @@
         </div>
         <div class="transit-tag"><i data-lucide="car" style="width:14px;height:14px"></i> ~15 min drive to Convoy</div>
         <div class="stop-fb" id="sfb-A1">
-          <div class="stop-fb-label">How was this stop?</div>
+          <div class="stop-fb-label" onclick="this.parentElement.classList.toggle('fb-open')" style="cursor:pointer">How was this stop? <span class="fb-chev">&#9660;</span></div>
           <div class="sc-who" id="who-A1"><button class="sc-who-btn active" onclick="pickWho('A1','Joseph')">Joseph</button><button class="sc-who-btn" onclick="pickWho('A1','Sandy')">Sandy</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="A1-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
@@ -798,6 +800,8 @@
           <div class="stop-fb-sent" id="sc-A1-ok">&#10003; Sent, thank you!</div>
         </div>
       </div>
+
+      <div class="walk-tag">&#128694; ~10 min drive to Convoy St</div>
 
       <!-- Stop 2: Steamy Piggy -->
       <div class="stop" id="stop-a2">
@@ -893,7 +897,7 @@
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~7 min walk to Yun Tea House</div>
         <div class="stop-fb" id="sfb-A2">
-          <div class="stop-fb-label">How was this stop?</div>
+          <div class="stop-fb-label" onclick="this.parentElement.classList.toggle('fb-open')" style="cursor:pointer">How was this stop? <span class="fb-chev">&#9660;</span></div>
           <div class="sc-who" id="who-A2"><button class="sc-who-btn active" onclick="pickWho('A2','Joseph')">Joseph</button><button class="sc-who-btn" onclick="pickWho('A2','Sandy')">Sandy</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="A2-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
@@ -903,6 +907,8 @@
           <div class="stop-fb-sent" id="sc-A2-ok">&#10003; Sent, thank you!</div>
         </div>
       </div>
+
+      <div class="walk-tag">&#128694; ~2 min walk to next stop</div>
 
       <!-- Stop 3: Yun Tea House -->
       <div class="stop" id="stop-a3">
@@ -962,7 +968,7 @@
           </div>
         </div>
         <div class="stop-fb" id="sfb-A3">
-          <div class="stop-fb-label">How was this stop?</div>
+          <div class="stop-fb-label" onclick="this.parentElement.classList.toggle('fb-open')" style="cursor:pointer">How was this stop? <span class="fb-chev">&#9660;</span></div>
           <div class="sc-who" id="who-A3"><button class="sc-who-btn active" onclick="pickWho('A3','Joseph')">Joseph</button><button class="sc-who-btn" onclick="pickWho('A3','Sandy')">Sandy</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="A3-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
@@ -1043,7 +1049,7 @@
         <p>A scenic coastal walk along La Jolla&rsquo;s bluffs with sea caves and seal sightings, then a Michelin-recognized Italian dinner on a third-floor ocean-view terrace as the sun sets over the Pacific. End the night walking through the village with artisan gelato from the #3-rated spot in all of La Jolla. Romantic, elevated, and effortless.</p>
       </div>
 
-      <div class="route-tag" style="background:linear-gradient(135deg,rgba(91,134,229,0.1),rgba(91,134,229,0.05));border-color:rgba(196,208,245,0.2)"><p style="color:#8fa4d4">&#128663; Lakeside &rarr; <a href="#stop-b1" class="route-btn route-btn-b">La Jolla Coast Walk</a> &rarr; <a href="#stop-b2" class="route-btn route-btn-b">Catania</a> &rarr; <a href="#stop-b3" class="route-btn route-btn-b">Bobboi Gelato</a> &rarr; Home</p></div>
+      <div class="route-tag" style="background:linear-gradient(135deg,rgba(91,134,229,0.1),rgba(91,134,229,0.05));border-color:rgba(196,208,245,0.2)"><p style="color:#8fa4d4">&#128663; Lakeside &rarr; La Jolla Coast Walk &rarr; Catania &rarr; Bobboi Gelato &rarr; Home</p></div>
 
       <!-- Stop 1: La Jolla Coast Walk -->
       <div class="stop" id="stop-b1">
@@ -1099,7 +1105,7 @@
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~10 min walk uphill to Catania</div>
         <div class="stop-fb" id="sfb-B1">
-          <div class="stop-fb-label">How was this stop?</div>
+          <div class="stop-fb-label" onclick="this.parentElement.classList.toggle('fb-open')" style="cursor:pointer">How was this stop? <span class="fb-chev">&#9660;</span></div>
           <div class="sc-who" id="who-B1"><button class="sc-who-btn active" onclick="pickWho('B1','Joseph')">Joseph</button><button class="sc-who-btn" onclick="pickWho('B1','Sandy')">Sandy</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="B1-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
@@ -1109,6 +1115,8 @@
           <div class="stop-fb-sent" id="sc-B1-ok">&#10003; Sent, thank you!</div>
         </div>
       </div>
+
+      <div class="walk-tag">&#128694; ~10 min walk uphill to village</div>
 
       <!-- Stop 2: Catania -->
       <div class="stop" id="stop-b2">
@@ -1186,7 +1194,7 @@
         </div>
         <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> Bobboi is downstairs in the same building</div>
         <div class="stop-fb" id="sfb-B2">
-          <div class="stop-fb-label">How was this stop?</div>
+          <div class="stop-fb-label" onclick="this.parentElement.classList.toggle('fb-open')" style="cursor:pointer">How was this stop? <span class="fb-chev">&#9660;</span></div>
           <div class="sc-who" id="who-B2"><button class="sc-who-btn active" onclick="pickWho('B2','Joseph')">Joseph</button><button class="sc-who-btn" onclick="pickWho('B2','Sandy')">Sandy</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="B2-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
@@ -1196,6 +1204,8 @@
           <div class="stop-fb-sent" id="sc-B2-ok">&#10003; Sent, thank you!</div>
         </div>
       </div>
+
+      <div class="walk-tag">&#128694; ~2 min walk downstairs</div>
 
       <!-- Stop 3: Bobboi Gelato -->
       <div class="stop" id="stop-b3">
@@ -1238,7 +1248,7 @@
           <p><strong>Saturday hours:</strong> 11 AM to 10 PM.</p>
         </div>
         <div class="stop-fb" id="sfb-B3">
-          <div class="stop-fb-label">How was this stop?</div>
+          <div class="stop-fb-label" onclick="this.parentElement.classList.toggle('fb-open')" style="cursor:pointer">How was this stop? <span class="fb-chev">&#9660;</span></div>
           <div class="sc-who" id="who-B3"><button class="sc-who-btn active" onclick="pickWho('B3','Joseph')">Joseph</button><button class="sc-who-btn" onclick="pickWho('B3','Sandy')">Sandy</button></div>
           <div class="qt-row">
             <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="B3-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
@@ -1298,8 +1308,6 @@
   </div>
 
   <script>
-    document.querySelectorAll('.route-btn').forEach(function(btn){btn.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'})}})});
-
     // ── Config ──
     var COUPLE={id:'joseph-2026',partner1:'Joseph',partner2:'Sandy',dateEvent:'Saturday, March 14, 2026'};
     var DATE_START=new Date('2026-03-14T16:00:00-07:00');
