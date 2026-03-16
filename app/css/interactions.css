@@ -384,34 +384,6 @@
 
 
 /* ═══════════════════════════════════════
-   16. CURSOR TRAIL (landing page)
-   ═══════════════════════════════════════ */
-.cursor-dot {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: var(--rose);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 0;
-  transition: opacity .15s;
-  mix-blend-mode: screen;
-}
-.cursor-dot.visible { opacity: .5 }
-.cursor-trail {
-  position: fixed;
-  width: 5px;
-  height: 5px;
-  background: rgba(224,87,128,.3);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9997;
-  mix-blend-mode: screen;
-}
-
-
-/* ═══════════════════════════════════════
    17. HERO TYPING CURSOR
    ═══════════════════════════════════════ */
 @keyframes blink {
@@ -792,7 +764,6 @@ button:focus-visible,
   .celebration-canvas { display: none }
   .form-page.active { animation: none; opacity: 1 }
   .skel-bone { animation: none }
-  .cursor-dot, .cursor-trail { display: none }
   .shimmer-card::after { animation: none !important }
   .empty-state .empty-icon { animation: none }
   .loading-heart { animation: none }
@@ -801,7 +772,6 @@ button:focus-visible,
 
 /* Disable heavy effects on mobile (touch devices) */
 @media (hover: none) {
-  .cursor-dot, .cursor-trail { display: none }
   .shimmer-card::after { display: none }
   .tooltip-wrap::after { display: none }
 }
