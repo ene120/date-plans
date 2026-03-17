@@ -21,7 +21,17 @@ if (storedCode && !profile?.couple_id) {
   const { error } = await acceptInvite(storedCode);
   if (!error) {
     localStorage.removeItem('dateflo_invite_code');
-    showToast("You've joined your partner's profile!");
+
+    // Set Partner 2's display_name from preferences if available
+    const updatedProfile = await getProfile(user.id);
+    if (updatedProfile?.couple_id && !updatedProfile.display_name) {
+      const prefs = await getPreferences(updatedProfile.couple_id);
+      if (prefs?.partner2_name) {
+        await updateProfile(user.id, { display_name: prefs.partner2_name });
+      }
+    }
+
+    showToast("You've joined your partner's profile! Welcome to DateFlo 💕");
     window.location.reload();
     throw new Error('reloading');
   } else {

@@ -83,6 +83,14 @@ export async function acceptInvite(inviteCode) {
   return { data, error };
 }
 
+// Look up invite details for personalized greeting (uses RPC to bypass RLS)
+export async function getInviteDetails(inviteCode) {
+  const { data, error } = await supabase
+    .rpc('get_invite_details', { p_invite_code: inviteCode });
+  if (error) console.error('getInviteDetails error:', error);
+  return { data, error };
+}
+
 // ── Preferences ──
 export async function getPreferences(coupleId) {
   const { data, error } = await supabase
