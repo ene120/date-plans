@@ -1346,5 +1346,44 @@
       },{passive:true});
     }
   </script>
+
+  <!-- Check if user is logged into the dashboard app -->
+  <script>
+    (function(){
+      try {
+        // Supabase stores session in localStorage with this key pattern
+        var key = 'sb-xttidhabldfsxwreyths-auth-token';
+        var raw = localStorage.getItem(key);
+        if (!raw) return;
+        var session = JSON.parse(raw);
+        var user = session && session.user;
+        if (!user) return;
+
+        var name = (user.user_metadata && user.user_metadata.display_name)
+          || (user.email && user.email.split('@')[0])
+          || 'there';
+
+        // Capitalize first letter
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+
+        // Replace desktop nav "Sign Up / Sign In" link
+        var navLinks = document.querySelectorAll('.nav-links a');
+        for (var i = 0; i < navLinks.length; i++) {
+          if (navLinks[i].textContent.trim().indexOf('Sign') === 0) {
+            navLinks[i].textContent = 'Hello, ' + name;
+            navLinks[i].href = '/app/dashboard.html';
+            break;
+          }
+        }
+
+        // Replace mobile drawer "Sign Up / Sign In"
+        var drawerAuth = document.querySelector('.drawer-auth a');
+        if (drawerAuth) {
+          drawerAuth.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Hello, ' + name;
+          drawerAuth.href = '/app/dashboard.html';
+        }
+      } catch(e) {}
+    })();
+  </script>
 </body>
 </html>
