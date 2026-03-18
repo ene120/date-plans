@@ -398,6 +398,7 @@
         <div class="iphone-screen">
           <div class="dynamic-island"></div>
           <iframe
+            id="phoneIframe"
             src="https://dateflo.com/joseph-and-sandy/"
             title="Joseph & Sandy Date Plan Preview"
             loading="lazy"
@@ -411,5 +412,31 @@
 
   </section>
 
+  <script>
+    // Keep all link clicks inside the phone iframe (same-origin)
+    const iframe = document.getElementById('phoneIframe');
+    iframe.addEventListener('load', () => {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        // Rewrite all target="_blank" links to stay in iframe
+        doc.querySelectorAll('a[target="_blank"]').forEach(a => {
+          a.removeAttribute('target');
+        });
+        // Intercept all link clicks
+        doc.addEventListener('click', (e) => {
+          const link = e.target.closest('a');
+          if (!link) return;
+          const href = link.getAttribute('href');
+          if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
+          // Keep navigation inside the iframe
+          e.preventDefault();
+          iframe.contentWindow.location.href = link.href;
+        });
+      } catch (err) {
+        // Cross-origin — can't modify, but same-domain should work
+        console.log('Could not access iframe:', err);
+      }
+    });
+  </script>
 </body>
 </html>
