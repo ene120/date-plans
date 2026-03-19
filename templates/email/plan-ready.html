@@ -6,230 +6,185 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Your DateFlo Plan is Ready</title>
   <!--[if mso]>
-  <noscript>
-    <xml>
-      <o:OfficeDocumentSettings>
-        <o:PixelsPerInch>96</o:PixelsPerInch>
-      </o:OfficeDocumentSettings>
-    </xml>
-  </noscript>
+  <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
   <![endif]-->
   <style>
-    /* Reset */
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
     table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
-    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
-    body { margin: 0; padding: 0; width: 100% !important; height: 100% !important; }
-
-    /* Google Fonts fallback */
+    body { margin: 0; padding: 0; width: 100% !important; }
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap');
-
-    /* Dark mode support */
     @media (prefers-color-scheme: dark) {
-      .email-bg { background-color: #2d1f28 !important; }
-      .card-bg { background-color: #3d2a35 !important; }
-      .text-dark { color: #f5e6ee !important; }
-      .text-muted { color: #d4b8c7 !important; }
-      .divider { border-color: #5a3d4e !important; }
-      .footer-text { color: #b89aaa !important; }
+      .bg-outer { background-color: #1a0a10 !important; }
+      .bg-card { background-color: #2d1320 !important; }
+      .bg-hero { background: #2d1320 !important; }
+      .bg-info { background: #3a1428 !important; border-color: #5a3d4e !important; }
+      .bg-option { border-color: #5a3d4e !important; }
+      .c-dark { color: #f5e6ee !important; }
+      .c-body { color: #d4b8c7 !important; }
+      .c-foot { color: #8a6a7a !important; }
     }
-
-    /* Mobile */
     @media only screen and (max-width: 600px) {
-      .email-container { width: 100% !important; max-width: 100% !important; }
-      .mobile-padding { padding-left: 24px !important; padding-right: 24px !important; }
-      .hero-title { font-size: 28px !important; }
-      .hero-subtitle { font-size: 15px !important; }
-      .cta-btn { padding: 16px 40px !important; font-size: 15px !important; }
-      .stop-card { padding: 20px !important; }
-      .stop-name { font-size: 18px !important; }
+      .wrap { width: 100% !important; }
+      .px { padding-left: 20px !important; padding-right: 20px !important; }
+      .h1 { font-size: 26px !important; }
+      .sub { font-size: 14px !important; }
+      .cta { padding: 14px 32px !important; font-size: 14px !important; }
     }
   </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #fff0f5; font-family: 'Montserrat', Arial, Helvetica, sans-serif;">
+<body style="margin:0; padding:0; background:#fdf2f5; font-family:'Montserrat',Arial,sans-serif;">
 
-  <!-- Preview text (hidden) -->
-  <div style="display: none; max-height: 0px; overflow: hidden;">
-    Your personalized date plan is ready to explore! &#8199;&#65279;&#847; &#8199;&#65279;&#847; &#8199;&#65279;&#847;
-  </div>
+<!-- Preview -->
+<div style="display:none; max-height:0; overflow:hidden;">Your personalized date plan is ready &#8199;&#65279;&#847;</div>
 
-  <!-- Outer wrapper -->
-  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #fff0f5;" class="email-bg">
-    <tr>
-      <td align="center" style="padding: 32px 16px;">
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#fdf2f5;" class="bg-outer">
+<tr><td align="center" style="padding:40px 16px;">
 
-        <!-- Email container -->
-        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="520" style="max-width: 520px; width: 100%;" class="email-container">
+<!-- Container -->
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="520" style="max-width:520px; width:100%;" class="wrap">
 
-          <!-- ═══════ FLOATING HEARTS HEADER ═══════ -->
-          <tr>
-            <td align="center" style="padding: 0 0 8px;">
-              <span style="font-size: 18px; letter-spacing: 12px; opacity: 0.4;">&#x1F90D; &#x1F90D; &#x1F90D;</span>
-            </td>
-          </tr>
+  <!-- Decorative top line -->
+  <tr>
+    <td align="center" style="padding-bottom:24px;">
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="200">
+        <tr>
+          <td style="height:1px; background:linear-gradient(90deg, transparent, #e05780, transparent);"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
 
-          <!-- ═══════ MAIN CARD ═══════ -->
-          <tr>
-            <td>
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(196,69,105,0.1);" class="card-bg">
+  <!-- Main card -->
+  <tr><td>
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#ffffff; border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(180,60,100,0.08);" class="bg-card">
 
-                <!-- Hero gradient header -->
+      <!-- Hero -->
+      <tr>
+        <td style="background:linear-gradient(165deg,#fef0f3,#fff8fa 40%,#fef0f3); padding:48px 40px 36px; text-align:center;" class="px bg-hero">
+          <p style="font-family:'Playfair Display',Georgia,serif; font-size:11px; color:#c44569; letter-spacing:4px; text-transform:uppercase; margin:0 0 20px; font-weight:600;">DATEFLO</p>
+          <h1 style="font-family:'Playfair Display',Georgia,serif; font-size:30px; font-weight:800; color:#2d1320; margin:0 0 14px; line-height:1.3;" class="h1 c-dark">Your Date Plan is Ready</h1>
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center"><tr><td style="width:48px; height:2px; background:linear-gradient(135deg,#e05780,#c44569); border-radius:1px;"></td></tr></table>
+          <p style="font-family:'Montserrat',Arial,sans-serif; font-size:15px; color:#6b4a5e; line-height:1.8; margin:20px auto 0; max-width:380px;" class="sub c-body">{{FIRST_NAME}}, the wait is over. Your date plan is done and we honestly cannot wait for you and {{PARTNER_NAME}} to see what we came up with.</p>
+        </td>
+      </tr>
+
+      <!-- CTA -->
+      <tr>
+        <td style="padding:4px 40px 36px; text-align:center;" class="px">
+          <!--[if mso]>
+          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{PLAN_URL}}" style="height:50px;v-text-anchor:middle;width:240px;" arcsize="50%" strokecolor="#c44569" fillcolor="#e05780">
+            <w:anchorlock/><center style="color:#ffffff;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">View Your Date Plan</center>
+          </v:roundrect>
+          <![endif]-->
+          <!--[if !mso]><!-->
+          <a href="{{PLAN_URL}}" target="_blank" style="display:inline-block; background:linear-gradient(135deg,#e05780,#c44569); color:#ffffff; text-decoration:none; padding:16px 44px; border-radius:50px; font-family:'Montserrat',Arial,sans-serif; font-size:15px; font-weight:700; letter-spacing:0.4px; box-shadow:0 8px 24px rgba(196,69,105,0.3); mso-hide:all;" class="cta">View Your Date Plan</a>
+          <!--<![endif]-->
+        </td>
+      </tr>
+
+      <!-- Info card -->
+      <tr>
+        <td style="padding:0 40px 28px;" class="px">
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#fef8fa; border-radius:12px; border-left:3px solid #e05780;" class="bg-info">
+            <tr><td style="padding:18px 20px;">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
-                  <td style="background: linear-gradient(160deg, #fce4ec 0%, #fff0f5 30%, #ffeef8 60%, #fce4ec 100%); padding: 48px 40px 36px; text-align: center;" class="mobile-padding">
-
-                    <!-- Cupid icon -->
-                    <div style="font-size: 48px; margin-bottom: 12px;">&#x1F498;</div>
-
-                    <!-- Brand -->
-                    <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 13px; color: #e05780; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 12px; font-weight: 500;">
-                      DATEFLO
-                    </p>
-
-                    <!-- Title -->
-                    <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 32px; font-weight: 800; color: #3d2435; margin: 0 0 16px; line-height: 1.2;" class="hero-title text-dark">
-                      Your Date Plan<br>is Ready!
-                    </h1>
-
-                    <!-- Divider -->
-                    <div style="width: 60px; height: 3px; background: linear-gradient(135deg, #ff6b9d, #c44569); margin: 0 auto 20px; border-radius: 2px;"></div>
-
-                    <!-- Greeting -->
-                    <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 16px; color: #6b4a5e; line-height: 1.7; margin: 0; max-width: 400px; display: inline-block;" class="hero-subtitle text-muted">
-                      Hey {{FIRST_NAME}}! I'm so excited for you to check this out. I put together <strong style="color: #c44569;">{{NUM_OPTIONS}} options</strong> based on everything we talked about.
-                    </p>
+                  <td style="vertical-align:top; width:33%; padding-right:8px;">
+                    <p style="font-family:'Montserrat',Arial,sans-serif; font-size:9px; color:#c44569; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:0 0 3px;">Date</p>
+                    <p style="font-family:'Montserrat',Arial,sans-serif; font-size:13px; font-weight:600; color:#2d1320; margin:0;" class="c-dark">{{DATE_DAY}}</p>
+                  </td>
+                  <td style="vertical-align:top; width:33%; padding-right:8px;">
+                    <p style="font-family:'Montserrat',Arial,sans-serif; font-size:9px; color:#c44569; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:0 0 3px;">City</p>
+                    <p style="font-family:'Montserrat',Arial,sans-serif; font-size:13px; font-weight:600; color:#2d1320; margin:0;" class="c-dark">{{CITY}}</p>
+                  </td>
+                  <td style="vertical-align:top; width:34%;">
+                    <p style="font-family:'Montserrat',Arial,sans-serif; font-size:9px; color:#c44569; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:0 0 3px;">Planned For</p>
+                    <p style="font-family:'Montserrat',Arial,sans-serif; font-size:13px; font-weight:600; color:#2d1320; margin:0;" class="c-dark">{{COUPLE_NAME}}</p>
                   </td>
                 </tr>
-
-                <!-- CTA Button Section -->
-                <tr>
-                  <td style="padding: 8px 40px 36px; text-align: center; background-color: #ffffff;" class="mobile-padding">
-
-                    <!-- CTA Button -->
-                    <!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{PLAN_URL}}" style="height:52px;v-text-anchor:middle;width:260px;" arcsize="50%" strokecolor="#c44569" fillcolor="#e05780">
-                      <w:anchorlock/>
-                      <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;">View Your Date Plan</center>
-                    </v:roundrect>
-                    <![endif]-->
-                    <!--[if !mso]><!-->
-                    <a href="{{PLAN_URL}}" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #ff6b9d, #c44569); color: #ffffff; text-decoration: none; padding: 16px 48px; border-radius: 50px; font-family: 'Montserrat', Arial, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 8px 30px rgba(224,87,128,0.35); mso-hide: all;" class="cta-btn">
-                      View Your Date Plan
-                    </a>
-                    <!--<![endif]-->
-
-                  </td>
-                </tr>
-
-                <!-- ─── Date Info Card ─── -->
-                <tr>
-                  <td style="padding: 0 40px 32px;" class="mobile-padding">
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background: linear-gradient(135deg, #fff8fa, #fff0f5); border-radius: 16px; border-left: 4px solid #e05780;">
-                      <tr>
-                        <td style="padding: 20px 24px;">
-                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                            <tr>
-                              <td style="vertical-align: top; width: 50%;">
-                                <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 10px; color: #e05780; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 4px;">Date</p>
-                                <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 15px; font-weight: 600; color: #3d2435; margin: 0;" class="text-dark">{{DATE_DAY}}</p>
-                              </td>
-                              <td style="vertical-align: top; width: 50%;">
-                                <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 10px; color: #e05780; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 4px;">Options</p>
-                                <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 15px; font-weight: 600; color: #3d2435; margin: 0;" class="text-dark">{{NUM_OPTIONS}} curated plans</p>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
-                <!-- ─── Plan Options Preview ─── -->
-                {{#EACH_OPTION}}
-                <tr>
-                  <td style="padding: 0 40px 16px;" class="mobile-padding">
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border: 2px solid #ffe4f1; border-radius: 20px; overflow: hidden;" class="stop-card">
-                      <tr>
-                        <td style="padding: 24px;">
-                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                            <tr>
-                              <td style="vertical-align: middle; width: 44px;">
-                                <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #ff6b9d, #c44569); border-radius: 50%; text-align: center; line-height: 36px; color: #ffffff; font-family: 'Montserrat', Arial, sans-serif; font-size: 14px; font-weight: 700;">
-                                  {{OPTION_NUMBER}}
-                                </div>
-                              </td>
-                              <td style="vertical-align: middle; padding-left: 14px;">
-                                <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 10px; color: #e05780; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 4px;">Option {{OPTION_NUMBER}}</p>
-                                <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 700; color: #3d2435; margin: 0; line-height: 1.3;" class="stop-name text-dark">{{OPTION_NAME}}</p>
-                              </td>
-                            </tr>
-                          </table>
-                          <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 14px; color: #6b4a5e; line-height: 1.7; margin: 14px 0 0;" class="text-muted">
-                            {{OPTION_DESCRIPTION}}
-                          </p>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                {{/EACH_OPTION}}
-
-                <!-- Spacer after options -->
-                <tr><td style="height: 8px;"></td></tr>
-
-                <!-- ─── Personal Note ─── -->
-                <tr>
-                  <td style="padding: 0 40px 36px;" class="mobile-padding">
-                    <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 15px; color: #6b4a5e; line-height: 1.8; margin: 0;" class="text-muted">
-                      Take a look when you get a chance and let me know if you have any questions or want to swap anything around. I want this to be perfect for you two.
-                    </p>
-                    <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 15px; color: #6b4a5e; line-height: 1.8; margin: 16px 0 0;" class="text-muted">
-                      {{PERSONAL_NOTE}}
-                    </p>
-                  </td>
-                </tr>
-
-                <!-- ─── Divider ─── -->
-                <tr>
-                  <td style="padding: 0 40px;" class="mobile-padding">
-                    <div style="border-top: 2px solid #ffe4f1; margin: 0;" class="divider"></div>
-                  </td>
-                </tr>
-
-                <!-- ─── Sign-off ─── -->
-                <tr>
-                  <td style="padding: 28px 40px 36px; text-align: center;" class="mobile-padding">
-                    <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: #3d2435; margin: 0 0 4px;" class="text-dark">
-                      &#x2014; DateFlo
-                    </p>
-                    <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 12px; color: #e05780; letter-spacing: 2px; text-transform: uppercase; margin: 0;">
-                      curated with love
-                    </p>
-                  </td>
-                </tr>
-
               </table>
-            </td>
-          </tr>
+            </td></tr>
+          </table>
+        </td>
+      </tr>
 
-          <!-- ═══════ FOOTER ═══════ -->
-          <tr>
-            <td style="padding: 28px 20px 16px; text-align: center;">
-              <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 12px; color: #b89aaa; margin: 0 0 6px; line-height: 1.6;" class="footer-text">
-                You're receiving this because you used DateFlo to plan a date.
-              </p>
-              <p style="font-family: 'Montserrat', Arial, sans-serif; font-size: 12px; color: #b89aaa; margin: 0;" class="footer-text">
-                <a href="https://dateflo.com" style="color: #e05780; text-decoration: none; font-weight: 500;">dateflo.com</a>
-              </p>
-            </td>
-          </tr>
+      <!-- Option A -->
+      <tr>
+        <td style="padding:0 40px 12px;" class="px">
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border:1px solid #f0dce5; border-radius:14px;" class="bg-option">
+            <tr><td style="padding:20px 20px 18px;">
+              <p style="font-family:'Montserrat',Arial,sans-serif; font-size:9px; color:#c44569; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin:0 0 6px;">Plan A</p>
+              <p style="font-family:'Playfair Display',Georgia,serif; font-size:17px; font-weight:700; color:#2d1320; margin:0 0 8px; line-height:1.35;" class="c-dark">{{OPTION_A_NAME}}</p>
+              <p style="font-family:'Montserrat',Arial,sans-serif; font-size:13px; color:#6b4a5e; line-height:1.7; margin:0;" class="c-body">{{OPTION_A_DESCRIPTION}}</p>
+            </td></tr>
+          </table>
+        </td>
+      </tr>
 
-        </table>
-        <!-- /Email container -->
+      <!-- Option B -->
+      <tr>
+        <td style="padding:0 40px 12px;" class="px">
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border:1px solid #f0dce5; border-radius:14px;" class="bg-option">
+            <tr><td style="padding:20px 20px 18px;">
+              <p style="font-family:'Montserrat',Arial,sans-serif; font-size:9px; color:#c44569; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin:0 0 6px;">Plan B</p>
+              <p style="font-family:'Playfair Display',Georgia,serif; font-size:17px; font-weight:700; color:#2d1320; margin:0 0 8px; line-height:1.35;" class="c-dark">{{OPTION_B_NAME}}</p>
+              <p style="font-family:'Montserrat',Arial,sans-serif; font-size:13px; color:#6b4a5e; line-height:1.7; margin:0;" class="c-body">{{OPTION_B_DESCRIPTION}}</p>
+            </td></tr>
+          </table>
+        </td>
+      </tr>
 
-      </td>
-    </tr>
-  </table>
+      <!-- Spacer -->
+      <tr><td style="height:16px;"></td></tr>
+
+      <!-- Note -->
+      <tr>
+        <td style="padding:0 40px 28px;" class="px">
+          <p style="font-family:'Montserrat',Arial,sans-serif; font-size:14px; color:#6b4a5e; line-height:1.8; margin:0;" class="c-body">P.S. You are already winning at date night just by planning ahead. Most people are still arguing over where to eat.</p>
+          <p style="font-family:'Montserrat',Arial,sans-serif; font-size:14px; color:#6b4a5e; line-height:1.8; margin:14px 0 0;" class="c-body">{{PERSONAL_NOTE}}</p>
+        </td>
+      </tr>
+
+      <!-- Divider -->
+      <tr>
+        <td style="padding:0 40px;" class="px">
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr><td style="border-top:1px solid #f0dce5;"></td></tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- Sign-off -->
+      <tr>
+        <td style="padding:24px 40px 36px; text-align:center;" class="px">
+          <p style="font-family:'Playfair Display',Georgia,serif; font-size:18px; font-weight:700; color:#2d1320; margin:0 0 4px;" class="c-dark">&mdash; DateFlo</p>
+          <p style="font-family:'Montserrat',Arial,sans-serif; font-size:10px; color:#c44569; letter-spacing:2.5px; text-transform:uppercase; margin:0; font-weight:500;">curated with care</p>
+        </td>
+      </tr>
+
+    </table>
+  </td></tr>
+
+  <!-- Decorative bottom line -->
+  <tr>
+    <td align="center" style="padding-top:24px;">
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="200">
+        <tr><td style="height:1px; background:linear-gradient(90deg, transparent, #e05780, transparent);"></td></tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- Footer -->
+  <tr>
+    <td style="padding:20px 20px 8px; text-align:center;">
+      <p style="font-family:'Montserrat',Arial,sans-serif; font-size:11px; color:#a88a9a; margin:0 0 4px; line-height:1.6;" class="c-foot">You received this because a date plan was created for you on DateFlo.</p>
+      <p style="font-family:'Montserrat',Arial,sans-serif; font-size:11px; color:#a88a9a; margin:0;" class="c-foot"><a href="https://dateflo.com" style="color:#c44569; text-decoration:none; font-weight:600;">dateflo.com</a></p>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
 
 </body>
 </html>

@@ -1188,6 +1188,10 @@
       document.querySelectorAll('.partner-section').forEach(function(s,i){s.classList.toggle('active',i===idx)});
     }
 
+    // Supabase config (same project as dashboard app)
+    var SUPA_URL='https://xttidhabldfsxwreyths.supabase.co';
+    var SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0dGlkaGFibGRmc3h3cmV5dGhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2MTk4NzgsImV4cCI6MjA4OTE5NTg3OH0.LbXC-6GK2tUh7t-iu8M2_u_ZAWCR7eMe_mhPYGgmHfY';
+
     // Submit
     function submitForm(){
       var email=document.getElementById('email').value;
@@ -1199,7 +1203,7 @@
       var getMulti=function(id){var els=document.querySelectorAll('#'+id+' .choice.selected');var vals=[];els.forEach(function(e){vals.push(e.getAttribute('data-val'))});return vals.join(', ')};
 
       var formData={
-        timestamp: new Date().toLocaleString(),
+        timestamp: new Date().toISOString(),
         name1: getVal('name1'),
         name2: getVal('name2'),
         email: email,
@@ -1229,9 +1233,20 @@
         extraNotes: getVal('extraNotes')
       };
 
-      // Send to Google Sheets
-      var SHEET_URL='https://script.google.com/macros/s/AKfycbz8CIFb5RDf6qI7e4Qu3VBnsAUBSLLYWpK4BJfAsJlPF9mNYV_7RJPeyNWKFbMWVBDe8Q/exec';
-      fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(formData)});
+      // Send to Supabase plan_requests table
+      fetch(SUPA_URL+'/rest/v1/plan_requests',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'apikey':SUPA_KEY,
+          'Authorization':'Bearer '+SUPA_KEY,
+          'Prefer':'return=minimal'
+        },
+        body:JSON.stringify({
+          form_data: formData,
+          source: 'landing_page'
+        })
+      }).catch(function(e){ console.error('Supabase submit error:', e); });
 
       goToPage(8);
       document.getElementById('progressFill').style.width='100%';
