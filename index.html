@@ -491,6 +491,7 @@
       <a href="#how">How It Works</a>
       <a href="#included">What's Included</a>
       <a href="#pricing">Pricing</a>
+      <a href="#events">Events</a>
       <a href="#faq">FAQ</a>
       <a id="navAuthLink" href="/app/" style="color:var(--rose);font-weight:600">Sign Up / Sign In</a>
       <a class="nav-cta" onclick="openForm()">Plan Your Date</a>
@@ -540,6 +541,7 @@
       <a href="#how" onclick="toggleDrawer()">How It Works</a>
       <a href="#included" onclick="toggleDrawer()">What's Included</a>
       <a href="#pricing" onclick="toggleDrawer()">Pricing</a>
+      <a href="#events" onclick="toggleDrawer()">Events</a>
       <a href="#faq" onclick="toggleDrawer()">FAQ</a>
     </div>
     <div class="drawer-cta">
@@ -782,6 +784,73 @@
       </div>
     </div>
   </section>
+
+  <!-- ═══════════ EVENTS ═══════════ -->
+  <section class="section-pad" id="events" style="overflow:hidden">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">Events</div>
+        <div class="section-title">Come hang with us.</div>
+        <p class="section-sub" style="margin:0 auto">We host real events for real people. Meet new faces, bring your date, or find one.</p>
+      </div>
+
+      <div class="reveal" style="max-width:880px;margin:48px auto 0;display:flex;gap:clamp(24px,4vw,48px);align-items:center;flex-wrap:wrap;justify-content:center">
+
+        <!-- Flyer -->
+        <a href="./event/" style="flex-shrink:0;display:block;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 80px rgba(224,87,128,.12);transition:transform .3s,box-shadow .3s;max-width:340px;width:100%" class="event-flyer-link">
+          <img src="./event/SDSU%20Blind%20Dating%20Show.PNG" alt="SDSU Blind Dating Show Flyer" style="width:100%;display:block">
+        </a>
+
+        <!-- Details -->
+        <div style="flex:1;min-width:280px">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(224,87,128,.1);border:1px solid rgba(224,87,128,.18);color:var(--rose);font-size:.72rem;font-weight:700;padding:5px 14px;border-radius:100px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase">
+            🔥 Next Event
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;line-height:1.15;margin-bottom:16px">
+            SDSU Blind<br>Dating Show
+          </h3>
+          <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
+            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
+              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">📅</span>
+              Saturday, March 21, 2026
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
+              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">🕐</span>
+              Doors 5:30pm · Show 6:15–9:30pm
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
+              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">📍</span>
+              5360 West Falls View Dr.
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
+              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">🎟️</span>
+              $6 Entry · Cash & Venmo
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
+              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">👗</span>
+              Date Night Chic · Max 125
+            </li>
+          </ul>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a href="./event/" class="hero-btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px">
+              RSVP Now &rarr;
+            </a>
+          </div>
+          <p style="font-size:.78rem;color:var(--text-muted);margin-top:14px">Couples & singles welcome · Mocktails served</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .event-flyer-link:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 28px 70px rgba(0,0,0,.5),0 0 100px rgba(224,87,128,.18)}
+    @media(max-width:700px){
+      #events .reveal > div{flex-direction:column !important;text-align:center}
+      #events ul{align-items:center}
+      #events div[style*="display:flex;gap:12px"]{justify-content:center}
+      .event-flyer-link{max-width:280px !important;margin:0 auto}
+    }
+  </style>
 
   <!-- ═══════════ FAQ ═══════════ -->
   <section class="section-pad" id="faq">
