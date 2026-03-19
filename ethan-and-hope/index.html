@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethan & Hope's Date Plan | DateFlo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --cupid:#e84393;--rose-red:#d63031;--arrow-gold:#f9ca24;
+      --blush:#fff0f5;--card-bg:#fff5f7;--wing-pink:#fd79a8;
+      --deep-rose:#8e3a59;--cream:#fff8fa;
+      --text-dark:#2d132c;--text-muted:#7b5e7b;
+    }
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      background:var(--blush);color:var(--text-dark);
+      min-height:100vh;line-height:1.7;overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ── Cupid Arrow Pattern Background ── */
+    body::before{
+      content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+      pointer-events:none;z-index:0;
+      background-image:
+        radial-gradient(circle, var(--cupid) 0.8px, transparent 0.8px),
+        radial-gradient(circle, var(--wing-pink) 0.5px, transparent 0.5px);
+      background-size:52px 52px, 34px 34px;
+      background-position:0 0, 17px 17px;
+      opacity:.035;
+    }
+
+    /* ── Floating Hearts & Arrows ── */
+    .hearts-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+    .heart-float{
+      position:absolute;bottom:-80px;
+      font-size:1.4rem;opacity:0;
+      animation:floatUp linear infinite;
+    }
+    @keyframes floatUp{
+      0%{opacity:0;transform:translateY(0) rotate(0deg) scale(.7)}
+      10%{opacity:.18}
+      90%{opacity:.08}
+      100%{opacity:0;transform:translateY(-110vh) rotate(45deg) scale(1)}
+    }
+
+    /* ── Hero ── */
+    .hero{
+      position:relative;z-index:1;
+      min-height:100svh;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;padding:clamp(40px,8vh,80px) clamp(16px,4vw,32px);
+      background:linear-gradient(160deg,#ffe0ec 0%,#fff0f5 30%,#ffe8f0 60%,#ffd6e8 100%);
+    }
+    .hero::before{
+      content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+      background:radial-gradient(ellipse at 30% 20%, rgba(232,67,147,.08) 0%, transparent 50%),
+                 radial-gradient(ellipse at 70% 80%, rgba(249,202,36,.08) 0%, transparent 50%);
+      pointer-events:none;
+    }
+    .hero::after{
+      content:'';position:absolute;bottom:0;left:0;width:100%;height:120px;
+      background:repeating-conic-gradient(var(--cupid) 0% 25%, transparent 0% 50%) 0 0/40px 40px;
+      opacity:.025;pointer-events:none;
+    }
+    .cupid-icon{font-size:clamp(3.2rem,7vw,4.5rem);margin-bottom:10px;animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    .hero-brand{
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      font-size:clamp(.9rem,1.8vw,1.1rem);
+      color:var(--cupid);letter-spacing:.15em;text-transform:uppercase;
+      margin-bottom:8px;font-weight:600;
+    }
+    .hero h1{
+      font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,3.6rem);
+      font-weight:700;color:var(--text-dark);margin-bottom:12px;line-height:1.15;
+    }
+    .hero h1 span{
+      background:linear-gradient(135deg,var(--cupid),var(--rose-red));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+      display:inline-block;font-style:italic;
+    }
+    .hero-sub{font-size:clamp(.92rem,1.8vw,1.05rem);color:var(--text-muted);margin-bottom:8px;max-width:480px;font-weight:400}
+    .hero-sub strong{color:var(--cupid)}
+    .hero-note{font-size:clamp(.82rem,1.5vw,.9rem);color:var(--text-muted);max-width:520px;margin-bottom:12px;line-height:1.65;font-style:italic;opacity:.8}
+
+    .hero-greeting{font-size:clamp(.95rem,1.8vw,1.1rem);color:var(--text-muted);margin-bottom:4px;max-width:520px;font-weight:500;line-height:1.5}
+    .hero-greeting strong{color:var(--cupid)}
+
+    /* ── Hero CTA Buttons ── */
+    .hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:clamp(16px,3vh,28px);position:relative;z-index:2}
+    .hero-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:clamp(14px,2vw,18px) clamp(28px,4vw,40px);border-radius:50px;
+      text-decoration:none;font-size:clamp(.95rem,1.6vw,1.05rem);font-weight:700;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      transition:all .3s ease;cursor:pointer;border:3px solid transparent;
+      min-height:52px;letter-spacing:.02em;
+    }
+    .hero-btn-primary{
+      background:var(--cupid);color:white;border-color:var(--cupid);
+      box-shadow:4px 4px 0px var(--deep-rose);
+    }
+    .hero-btn-primary:hover{transform:translateY(-3px);box-shadow:5px 5px 0px var(--deep-rose)}
+
+    /* ── Countdown ── */
+    .cd-wrap{margin:clamp(20px,4vh,36px) 0 clamp(12px,2vh,18px)}
+    .cd-label{font-size:clamp(.64rem,1.1vw,.72rem);letter-spacing:.25em;text-transform:uppercase;color:var(--cupid);margin-bottom:12px;font-weight:700}
+    .cd{display:flex;gap:clamp(10px,2.5vw,16px);justify-content:center;align-items:center}
+    .cd-block{text-align:center}
+    .cd-num{
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:700;
+      color:var(--text-dark);line-height:1;
+      background:var(--card-bg);
+      border:3px solid var(--cupid);
+      border-radius:16px;
+      padding:clamp(10px,2vw,16px) clamp(14px,2.8vw,22px);
+      box-shadow:4px 4px 0px var(--deep-rose);
+      min-width:clamp(62px,15vw,84px);
+    }
+    .cd-unit{font-size:clamp(.58rem,1vw,.66rem);letter-spacing:.14em;text-transform:uppercase;color:var(--cupid);margin-top:8px;font-weight:700}
+    .cd-sep{font-size:clamp(1.4rem,3vw,2rem);color:var(--deep-rose);padding-bottom:22px;font-weight:300}
+
+    /* ── Hero Calendar Buttons ── */
+    .hero-cal{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:clamp(28px,5vh,44px)}
+    .cal-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:clamp(12px,2vw,14px) clamp(20px,3.5vw,28px);
+      border-radius:50px;text-decoration:none;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      font-size:clamp(.82rem,1.4vw,.9rem);font-weight:600;
+      transition:all .3s ease;cursor:pointer;border:none;min-height:48px;
+      letter-spacing:.02em;
+    }
+    .cal-btn:hover{transform:translateY(-3px)}
+    .cal-btn-google{background:var(--cupid);color:white;box-shadow:3px 3px 0px var(--deep-rose)}
+    .cal-btn-google:hover{box-shadow:5px 5px 0px var(--deep-rose)}
+    .cal-btn-apple{background:var(--text-dark);color:white;box-shadow:3px 3px 0px #1a0a18}
+    .cal-btn-apple:hover{box-shadow:5px 5px 0px #1a0a18}
+    .cal-btn svg{width:16px;height:16px}
+
+    /* ── Explore CTA ── */
+    .explore-cta{
+      display:inline-flex;align-items:center;gap:10px;
+      margin-top:clamp(16px,3vh,28px);
+      padding:clamp(14px,2.5vw,18px) clamp(32px,5vw,48px);
+      background:linear-gradient(135deg,var(--cupid),var(--rose-red));
+      color:white;border:none;border-radius:50px;cursor:pointer;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      font-size:clamp(.92rem,1.6vw,1.05rem);font-weight:600;
+      letter-spacing:.04em;box-shadow:5px 5px 0px var(--deep-rose);
+      transition:all .35s cubic-bezier(.4,0,.2,1);min-height:56px;
+    }
+    .explore-cta:hover{transform:translateY(-4px);box-shadow:7px 7px 0px var(--deep-rose)}
+    .arrow-hint{margin-top:clamp(16px,3vh,24px);font-size:.85rem;color:var(--text-muted);opacity:.6;animation:bounce 2s ease-in-out infinite}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+    /* ── Date Content ── */
+    .date-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 clamp(16px,4vw,24px) 60px;display:none}
+    .date-wrap.visible{display:block;animation:fadeSlide .5s ease-out}
+    @keyframes fadeSlide{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── Back Button ── */
+    .back-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      margin:clamp(24px,4vh,36px) 0 20px;padding:12px 24px;border-radius:50px;
+      background:var(--card-bg);color:var(--cupid);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      font-size:clamp(.82rem,1.4vw,.9rem);font-weight:600;
+      border:3px solid var(--cupid);cursor:pointer;
+      transition:all .3s ease;min-height:48px;
+      box-shadow:3px 3px 0px var(--deep-rose);
+    }
+    .back-btn:hover{background:var(--cupid);color:white;transform:translateY(-2px);box-shadow:4px 4px 0px var(--deep-rose)}
+
+    /* ── Section Header ── */
+    .section-header{
+      background:linear-gradient(135deg,var(--cupid),var(--rose-red));
+      color:white;padding:clamp(20px,4vw,32px) clamp(16px,3vw,24px);
+      border-radius:20px 20px 0 0;text-align:center;position:relative;overflow:hidden;
+      clip-path:polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+      padding-bottom:clamp(36px,5vw,48px);
+    }
+    .section-header::before{
+      content:'\1F498';position:absolute;top:12px;right:20px;font-size:2.5rem;opacity:.15;
+    }
+    .section-header::after{
+      content:'\1F3F9';position:absolute;bottom:30px;left:20px;font-size:2rem;opacity:.12;
+      transform:rotate(-20deg);
+    }
+    .section-badge{
+      display:inline-block;background:rgba(255,255,255,.2);
+      padding:8px 22px;border-radius:30px;font-size:clamp(.72rem,1.2vw,.8rem);font-weight:600;
+      text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;
+      border:2px solid rgba(255,255,255,.3);
+    }
+    .section-header h2{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;margin-bottom:10px;position:relative}
+    .section-header p{opacity:.9;font-size:clamp(.88rem,1.6vw,1rem);position:relative;font-weight:400}
+
+    /* ── Content Card ── */
+    .content-card{
+      background:var(--card-bg);border-radius:0 0 20px 20px;
+      padding:clamp(14px,2.5vw,22px);
+      box-shadow:6px 6px 0px rgba(142,58,89,.12);
+      margin-bottom:28px;
+      border:3px solid var(--cupid);
+      border-top:none;
+    }
+
+    /* ── Meta ── */
+    .meta{
+      display:flex;gap:20px;flex-wrap:wrap;margin-bottom:30px;
+      background:var(--cream);
+      padding:clamp(10px,1.5vw,14px) clamp(12px,2vw,16px);
+      border-radius:16px;
+      border:2px solid var(--wing-pink);
+    }
+    .meta-item{flex:1;min-width:110px}
+    .meta-label{font-size:clamp(.66rem,1.1vw,.72rem);color:var(--cupid);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+    .meta-value{font-size:clamp(.88rem,1.5vw,1rem);font-weight:600;color:var(--text-dark)}
+
+    /* ── Vibe Summary ── */
+    .summary{
+      background:var(--cream);border-radius:20px;
+      padding:clamp(14px,2vw,18px);margin-bottom:20px;
+      border:2px solid var(--wing-pink);
+      position:relative;
+    }
+    .summary::before{
+      content:'\1F495';position:absolute;top:12px;right:16px;font-size:1.4rem;opacity:.25;
+    }
+    .summary-title{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;font-size:clamp(1.1rem,2vw,1.3rem);font-weight:700;margin-bottom:12px;color:var(--text-dark)}
+    .summary p{color:var(--text-muted);font-size:clamp(.86rem,1.5vw,.93rem);line-height:1.85}
+
+    /* ── Route ── */
+    .route-tag{
+      background:var(--cream);border:3px solid var(--deep-rose);
+      border-radius:14px;padding:clamp(8px,1.5vw,12px) clamp(12px,2vw,16px);
+      margin-bottom:20px;text-align:center;
+      box-shadow:3px 3px 0px rgba(142,58,89,.15);
+    }
+    .route-tag p{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--deep-rose);font-weight:500;margin:0}
+
+    /* ── Weather ── */
+    .weather-note{
+      background:linear-gradient(135deg,#ffe8f0,#ffd6e8);
+      border:3px solid var(--wing-pink);border-radius:14px;
+      padding:clamp(10px,1.5vw,14px);margin-bottom:20px;
+      box-shadow:3px 3px 0px rgba(142,58,89,.12);
+    }
+    .weather-note h4{color:var(--deep-rose);font-size:clamp(.82rem,1.4vw,.9rem);margin-bottom:8px;font-weight:700}
+    .weather-note p{color:var(--text-dark);font-size:clamp(.82rem,1.4vw,.88rem);line-height:1.7}
+
+    /* ── Stops ── */
+    .stop{
+      background:var(--card-bg);border:3px solid var(--cupid);border-radius:20px;
+      padding:clamp(14px,2.5vw,20px);margin-bottom:20px;position:relative;
+      box-shadow:4px 4px 0px var(--deep-rose);
+      transition:box-shadow .3s ease,transform .3s ease;
+      border-left:6px solid var(--cupid);
+    }
+    .stop:nth-child(3n+1){border-left-color:var(--cupid)}
+    .stop:nth-child(3n+2){border-left-color:var(--rose-red);border-color:var(--rose-red)}
+    .stop:nth-child(3n+2) .stop-number{background:var(--rose-red);box-shadow:3px 3px 0px #9a1e1e}
+    .stop:nth-child(3n+2) .stop-time{background:linear-gradient(135deg,#ffe0e0,#ffd0d0);color:#a02020}
+    .stop:nth-child(3n){border-left-color:var(--arrow-gold);border-color:var(--arrow-gold)}
+    .stop:nth-child(3n) .stop-number{background:var(--arrow-gold);color:var(--text-dark);box-shadow:3px 3px 0px #c8a020}
+    .stop:nth-child(3n) .stop-time{background:linear-gradient(135deg,#fff5d0,#ffe8b0);color:#8a6d1b}
+    .stop:hover{transform:translateY(-2px);box-shadow:6px 6px 0px var(--deep-rose)}
+    .stop-number{
+      position:absolute;top:-16px;left:28px;
+      background:var(--cupid);
+      color:white;width:36px;height:36px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:1rem;
+      box-shadow:3px 3px 0px var(--deep-rose);
+    }
+    .stop-header{margin-bottom:16px}
+    .stop-title{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;font-size:clamp(1.3rem,2.8vw,1.6rem);font-weight:700;margin-bottom:6px;color:var(--text-dark)}
+    .stop-location{color:var(--cupid);font-size:clamp(.82rem,1.4vw,.9rem);font-weight:500;margin-bottom:4px}
+    .stop-time{
+      display:inline-block;background:linear-gradient(135deg,#ffe0ec,#ffd0e0);
+      padding:5px 14px;border-radius:8px;font-size:clamp(.76rem,1.2vw,.82rem);font-weight:600;
+      color:var(--deep-rose);margin-bottom:14px;
+      border:2px solid var(--wing-pink);
+    }
+    .stop-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      padding:clamp(10px,1.5vw,12px) clamp(14px,2.2vw,18px);border-radius:50px;text-decoration:none;
+      font-size:clamp(.78rem,1.3vw,.85rem);font-weight:600;transition:all .3s ease;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      min-height:44px;
+    }
+    .btn-dir{background:var(--cupid);color:white;box-shadow:3px 3px 0px var(--deep-rose)}
+    .btn-dir:hover{transform:translateY(-2px);box-shadow:4px 4px 0px var(--deep-rose)}
+    .btn-apple{background:var(--text-dark);color:white;box-shadow:3px 3px 0px #1a0a18}
+    .btn-apple:hover{transform:translateY(-2px);box-shadow:4px 4px 0px #1a0a18}
+    .btn-logo{height:16px;display:block}
+    .btn-phone{background:var(--deep-rose);color:white;box-shadow:3px 3px 0px #5c1a30}
+    .btn-phone:hover{transform:translateY(-2px);box-shadow:4px 4px 0px #5c1a30}
+    .btn-menu{background:var(--card-bg);color:var(--cupid);border:3px solid var(--cupid);box-shadow:2px 2px 0px var(--deep-rose)}
+    .btn-menu:hover{background:var(--cupid);color:white}
+    .btn-res{background:var(--arrow-gold);color:var(--text-dark);box-shadow:3px 3px 0px #c8a020}
+    .btn-res:hover{transform:translateY(-2px);box-shadow:4px 4px 0px #c8a020}
+
+    /* ── Transport Corner Widget ── */
+    .transport-corner{
+      float:right;margin:0 0 10px 14px;
+      display:flex;flex-direction:column;gap:6px;
+      background:var(--cream);
+      border:2px solid var(--wing-pink);border-radius:14px;
+      padding:10px;width:200px;max-width:200px;box-sizing:border-box;z-index:2;overflow:hidden;word-break:break-word;
+      box-shadow:3px 3px 0px rgba(142,58,89,.08);
+    }
+    .tc-group{display:flex;flex-direction:column;gap:4px}
+    .tc-group+.tc-group{border-top:2px solid var(--wing-pink);padding-top:6px}
+    .tc-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cupid);margin-bottom:2px}
+    .tc-btns{display:flex;gap:4px}
+    .tc-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:3px;
+      padding:5px 10px;border-radius:20px;text-decoration:none;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      font-size:.68rem;font-weight:600;
+      transition:all .25s ease;white-space:nowrap;
+    }
+    .tc-btn:hover{transform:translateY(-1px)}
+    .tc-uber{background:#000;color:#fff;box-shadow:2px 2px 0px #555}
+    .tc-uber:hover{box-shadow:3px 3px 0px #555}
+    .tc-lyft{background:var(--rose-red);color:#fff;box-shadow:2px 2px 0px #8a1e1e}
+    .tc-lyft:hover{box-shadow:3px 3px 0px #8a1e1e}
+    .tc-free{background:var(--cupid);color:#fff;box-shadow:2px 2px 0px var(--deep-rose)}
+    .tc-free:hover{box-shadow:3px 3px 0px var(--deep-rose)}
+    .tc-paid{background:var(--arrow-gold);color:var(--text-dark);box-shadow:2px 2px 0px #c8a020}
+    .tc-paid:hover{box-shadow:3px 3px 0px #c8a020}
+    .tc-none{background:#a08090;color:#fff;cursor:default;opacity:.75;font-size:.6rem;border-radius:20px}
+    .tc-none:hover{transform:none;box-shadow:none}
+    .tc-park-stack{display:flex;flex-direction:column;gap:4px;width:100%;min-width:0}
+    .tc-park-label{font-size:.6rem;font-weight:700;color:var(--deep-rose);letter-spacing:.5px;padding:0 4px;white-space:normal;word-break:break-word}
+    .tc-park-row{display:flex;gap:4px}
+    .tc-park-row .tc-btn{flex:1;text-align:center;border-radius:20px;padding:6px 10px;display:flex;align-items:center;justify-content:center}
+    .tc-park-row .tc-btn-apple{flex:1;background:var(--text-dark);color:#fff;box-shadow:2px 2px 0px #1a0a18;border-radius:20px;padding:6px 10px;text-align:center;text-decoration:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .tc-park-row .tc-btn-apple:hover{transform:translateY(-1px);box-shadow:3px 3px 0px #1a0a18}
+    .tc-logo{height:16px;display:block}
+    .tc-google{background:#fff !important;box-shadow:2px 2px 0px #ddd !important;border:1px solid #ccc !important}
+    .tc-google:hover{box-shadow:3px 3px 0px #ccc !important}
+    .btn-google{background:#fff !important;box-shadow:3px 3px 0px #ddd !important;border:1px solid #ccc !important}
+    .btn-google:hover{box-shadow:4px 4px 0px #ccc !important}
+    .venue-box{display:flex;align-items:center;gap:6px;background:var(--blush);border:1.5px solid var(--wing-pink);border-radius:14px;padding:5px 10px;margin-bottom:4px}
+    .venue-name{flex:1;font-size:.7rem;font-weight:700;color:var(--deep-rose);letter-spacing:.3px}
+    .venue-btn{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;flex-shrink:0}
+    .venue-btn:hover{transform:translateY(-1px)}
+    .venue-btn-google{background:#fff;border:1px solid #ccc;box-shadow:1px 1px 0px #ddd}
+    .venue-btn-apple{background:var(--text-dark);box-shadow:1px 1px 0px #1a0a18}
+    .btn-logo{height:14px;display:block}
+    @media(max-width:420px){
+      .transport-corner{float:none;max-width:100%;margin:0 0 14px 0;flex-direction:row;flex-wrap:wrap;gap:8px;align-items:flex-start}
+      .tc-group+.tc-group{border-top:none;padding-top:0;border-left:2px solid var(--wing-pink);padding-left:8px}
+    }
+
+    .btn svg,.btn i{width:14px;height:14px}
+
+    /* ── Info Buttons Row ── */
+    .info-btns{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .info-btn{
+      display:inline-flex;align-items:center;gap:7px;
+      border:3px solid;border-radius:50px;padding:9px 18px;cursor:pointer;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      font-size:clamp(.78rem,1.3vw,.84rem);
+      font-weight:600;transition:all .25s ease;background:transparent;
+    }
+    .info-btn .chev{transition:transform .3s ease;display:inline-block;font-size:.6em}
+    .info-btn.open .chev{transform:rotate(180deg)}
+    .info-btn:hover{transform:translateY(-1px)}
+    .info-btn-reviews{color:var(--arrow-gold);border-color:var(--arrow-gold);background:var(--cream);box-shadow:2px 2px 0px rgba(142,58,89,.1)}
+    .info-btn-reviews:hover{box-shadow:3px 3px 0px rgba(142,58,89,.15)}
+    .info-btn-hh{color:var(--cupid);border-color:var(--cupid);background:var(--cream);box-shadow:2px 2px 0px rgba(142,58,89,.1)}
+    .info-btn-hh:hover{box-shadow:3px 3px 0px rgba(142,58,89,.15)}
+    .info-btn-hh-none{color:#a08090;border-color:#d0b0c0;background:var(--cream);cursor:default;font-weight:500}
+    .info-btn-hh-none:hover{transform:none;box-shadow:none}
+    .info-btn-vibe{color:var(--wing-pink);border-color:var(--wing-pink);background:var(--cream);box-shadow:2px 2px 0px rgba(142,58,89,.1)}
+    .info-btn-vibe:hover{box-shadow:3px 3px 0px rgba(142,58,89,.15)}
+
+    /* ── Dropdown Panels ── */
+    .info-panel{display:none;border-radius:14px;overflow:hidden;margin-top:8px}
+    .info-panel.show{display:block}
+    .info-panel-reviews{background:var(--cream);border:3px solid var(--arrow-gold);padding:clamp(14px,2.5vw,18px) clamp(16px,3vw,22px);box-shadow:3px 3px 0px rgba(142,58,89,.08)}
+    .info-panel-vibe{background:var(--cream);border:3px solid var(--wing-pink);padding:0;box-shadow:3px 3px 0px rgba(142,58,89,.08)}
+    .review-box{display:flex;gap:clamp(12px,2.5vw,20px);flex-wrap:wrap}
+    .review-badge{display:flex;align-items:center;gap:10px;flex:1;min-width:140px}
+    .review-logo{width:22px;height:22px;border-radius:4px}
+    .review-stars{color:var(--arrow-gold);font-size:clamp(.8rem,1.3vw,.88rem);letter-spacing:1px}
+    .review-rating{font-weight:700;font-size:clamp(.82rem,1.4vw,.9rem);color:var(--text-dark)}
+    .review-count{font-size:clamp(.72rem,1.1vw,.78rem);color:var(--text-muted);font-weight:500}
+    .review-info{display:flex;flex-direction:column;gap:1px}
+    a.review-badge{text-decoration:none;color:inherit;transition:transform .2s ease,box-shadow .2s ease;border-radius:10px;padding:6px 10px;margin:-6px -10px}
+    a.review-badge:hover{transform:translateY(-2px);box-shadow:3px 3px 0px rgba(142,58,89,.08);background:rgba(255,240,245,.5)}
+    .info-panel-hh{background:linear-gradient(135deg,#ffe0ec,#ffd0e0);border:3px solid var(--cupid);padding:clamp(14px,2.5vw,18px) clamp(16px,3vw,22px);box-shadow:3px 3px 0px rgba(142,58,89,.08)}
+    .hh-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+    .hh-icon{font-size:1.2rem}
+    .hh-label{font-size:clamp(.66rem,1.1vw,.72rem);font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cupid)}
+
+    .description{margin:20px 0}
+    .description p{color:var(--text-muted);font-size:clamp(.86rem,1.5vw,.93rem);line-height:1.85;margin-bottom:12px}
+    .description strong{color:var(--text-dark);font-weight:600}
+    .transit-tag{
+      display:inline-flex;align-items:center;gap:7px;
+      background:var(--cream);border:2px solid var(--wing-pink);border-radius:50px;
+      padding:8px 16px;font-size:clamp(.76rem,1.2vw,.82rem);color:var(--cupid);font-weight:600;
+      margin:8px 0 0;
+    }
+
+    /* ── Food Recs ── */
+    .food-recs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+    .food-rec{background:var(--cream);border:3px solid var(--wing-pink);border-radius:14px;padding:14px 16px;box-shadow:3px 3px 0px rgba(142,58,89,.08)}
+    .food-rec-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cupid);margin-bottom:10px;display:flex;align-items:center;gap:5px}
+    .food-rec-label span{font-size:.9rem}
+    .food-rec-dish{margin-bottom:10px}
+    .food-rec-dish:last-child{margin-bottom:0}
+    .food-rec-item{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--text-dark);font-weight:600;margin-bottom:2px}
+    .food-rec-note{font-size:clamp(.74rem,1.2vw,.8rem);color:var(--text-muted);line-height:1.55;font-style:italic}
+    .food-rec-shared{background:var(--cream);border:3px solid var(--wing-pink);border-radius:14px;padding:14px 16px;margin-top:0;grid-column:1/-1;box-shadow:3px 3px 0px rgba(142,58,89,.08)}
+    .food-rec-shared .food-rec-dishes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:480px){.food-recs{grid-template-columns:1fr}.food-rec-shared .food-rec-dishes{grid-template-columns:1fr}}
+
+    /* ── Swap Box (Dropdown) ── */
+    .swap-box{background:var(--cream);border:3px dashed var(--wing-pink);border-radius:14px;margin:16px 0;overflow:hidden}
+    .swap-box-toggle{
+      display:flex;align-items:center;justify-content:space-between;width:100%;
+      padding:14px 18px;cursor:pointer;border:none;background:transparent;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+      text-align:left;
+    }
+    .swap-box-title{font-size:clamp(.72rem,1.1vw,.78rem);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--cupid);margin:0}
+    .swap-box-arrow{font-size:.7rem;color:var(--cupid);transition:transform .3s ease}
+    .swap-box.open .swap-box-arrow{transform:rotate(180deg)}
+    .swap-box-content{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 18px}
+    .swap-box.open .swap-box-content{max-height:300px;padding:0 18px 14px}
+    .swap-box-content p{font-size:clamp(.82rem,1.4vw,.88rem);color:var(--text-muted);line-height:1.6}
+    .swap-box a{color:var(--cupid);font-weight:600;text-decoration:none}
+
+    .vibe-slider{position:relative;width:100%;overflow:hidden;border-radius:0 0 11px 11px}
+    .vibe-slider-track{position:relative;width:100%;aspect-ratio:16/10}
+    .vibe-slider-track img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;cursor:pointer;background:var(--cream);opacity:0;transition:opacity .4s ease;pointer-events:none}
+    .vibe-slider-track img.active{opacity:1;pointer-events:auto}
+
+    /* ── Lightbox ── */
+    .lb-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.92);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column;backdrop-filter:blur(8px)}
+    .lb-overlay.open{display:flex}
+    .lb-img-wrap{position:relative;width:100%;max-width:900px;display:flex;align-items:center;justify-content:center;padding:20px;flex:1;min-height:0}
+    .lb-img-wrap img{max-width:100%;max-height:80vh;object-fit:contain;border-radius:12px;transition:opacity .3s ease}
+    .lb-close{position:absolute;top:16px;right:20px;width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);color:white;font-size:1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10001;backdrop-filter:blur(4px)}
+    .lb-close:hover{background:rgba(255,255,255,.2)}
+    .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);color:white;font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10001;backdrop-filter:blur(4px)}
+    .lb-nav:hover{background:rgba(255,255,255,.2)}
+    .lb-prev{left:16px}
+    .lb-next{right:16px}
+    .lb-counter{color:rgba(255,255,255,.7);font-size:.85rem;padding:12px 0 20px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;letter-spacing:.05em}
+    .lb-dots{display:flex;gap:8px;padding-bottom:24px}
+    .lb-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .3s;cursor:pointer}
+    .lb-dot.active{background:white;transform:scale(1.2)}
+    .vibe-slider-btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:36px;height:36px;border-radius:50%;border:2px solid white;
+      background:rgba(0,0,0,.45);color:white;font-size:1rem;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;z-index:2;transition:background .2s;backdrop-filter:blur(4px);
+    }
+    .vibe-slider-btn:hover{background:rgba(0,0,0,.7)}
+    .vibe-slider-btn.prev{left:8px}
+    .vibe-slider-btn.next{right:8px}
+    .vibe-dots{display:flex;justify-content:center;gap:6px;padding:10px 0;background:var(--cream)}
+    .vibe-dot{width:8px;height:8px;border-radius:50%;background:var(--wing-pink);opacity:.3;transition:opacity .3s;cursor:pointer}
+    .vibe-dot.active{opacity:1}
+    .vibe-slider-caption{text-align:center;font-size:.75rem;color:var(--text-muted);padding:4px 12px 10px;background:var(--cream);font-style:italic}
+
+    /* ── Stop Feedback ── */
+    .stop-fb{margin-top:18px;padding-top:18px;border-top:3px solid var(--cream)}
+    .stop-fb .sc-who,.stop-fb .qt-row,.stop-fb .stop-fb-wrap,.stop-fb .stop-fb-sent{display:none}
+    .stop-fb.fb-open .sc-who,.stop-fb.fb-open .qt-row,.stop-fb.fb-open .stop-fb-wrap{display:flex}
+    .stop-fb.fb-open .stop-fb-sent{display:none}
+    .fb-chev{font-size:.6em;transition:transform .3s ease;display:inline-block;margin-left:4px}
+    .stop-fb.fb-open .fb-chev{transform:rotate(180deg)}
+    .walk-tag{text-align:center;font-size:clamp(.72rem,1.2vw,.8rem);color:var(--text-muted);padding:12px 0;font-weight:500;letter-spacing:.3px}
+    .stop-fb-label{font-size:clamp(.82rem,1.4vw,.9rem);color:var(--text-dark);margin-bottom:10px;font-weight:700}
+    .sc-who{display:flex;gap:6px;margin-bottom:12px}
+    .sc-who-btn{
+      padding:6px 14px;border-radius:50px;border:3px solid var(--wing-pink);
+      background:var(--cream);color:var(--text-muted);cursor:pointer;
+      font-family:inherit;font-size:clamp(.72rem,1.1vw,.78rem);font-weight:600;
+      transition:all .25s ease;
+    }
+    .sc-who-btn:hover{border-color:var(--cupid);color:var(--cupid)}
+    .sc-who-btn.active{background:var(--cupid);color:#fff;border-color:var(--cupid);box-shadow:2px 2px 0px var(--deep-rose)}
+    .qt-row{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+    .qt-item{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .qt-label{font-size:clamp(.74rem,1.2vw,.8rem);color:var(--text-muted);font-weight:600;min-width:110px;display:flex;align-items:center;gap:5px}
+    .qt-opts{display:flex;gap:5px;flex-wrap:wrap}
+    .qt-opt{
+      padding:5px 13px;border-radius:50px;border:2px solid var(--wing-pink);
+      background:var(--cream);color:var(--text-muted);cursor:pointer;
+      font-family:inherit;font-size:clamp(.7rem,1.1vw,.76rem);font-weight:600;
+      transition:all .2s ease;
+    }
+    .qt-opt:hover{border-color:var(--cupid);color:var(--cupid)}
+    .qt-opt.sel{background:var(--cupid);color:#fff;border-color:var(--cupid);box-shadow:2px 2px 0px var(--deep-rose)}
+    .stop-fb-wrap{display:flex;gap:8px;align-items:flex-start}
+    .stop-fb-ta{
+      flex:1;padding:10px 14px;
+      background:var(--cream);border:3px solid var(--wing-pink);
+      border-radius:12px;color:var(--text-dark);font-family:inherit;
+      font-size:clamp(.82rem,1.4vw,.88rem);resize:vertical;
+      min-height:48px;max-height:120px;outline:none;line-height:1.5;
+    }
+    .stop-fb-ta::placeholder{color:#b090a0}
+    .stop-fb-ta:focus{border-color:var(--cupid)}
+    .stop-fb-btn{
+      padding:10px 20px;white-space:nowrap;
+      background:var(--cupid);
+      color:white;border:none;border-radius:50px;font-family:inherit;
+      font-size:clamp(.76rem,1.2vw,.82rem);font-weight:600;letter-spacing:.04em;
+      cursor:pointer;transition:all .3s ease;
+      min-height:44px;box-shadow:3px 3px 0px var(--deep-rose);
+    }
+    .stop-fb-btn:hover{box-shadow:4px 4px 0px var(--deep-rose);transform:translateY(-2px)}
+    .stop-fb-btn:disabled{opacity:.4;cursor:default;transform:none!important;box-shadow:none!important}
+    .stop-fb-sent{font-size:clamp(.78rem,1.3vw,.85rem);color:var(--cupid);font-weight:600;padding:8px 0;display:none}
+
+    /* ── Budget ── */
+    .budget{
+      background:linear-gradient(135deg,var(--cupid),var(--rose-red));
+      color:white;padding:clamp(24px,4vw,32px);border-radius:20px;margin-top:30px;text-align:center;
+      box-shadow:5px 5px 0px rgba(142,58,89,.3);
+      position:relative;overflow:hidden;
+    }
+    .budget::before{
+      content:'\1F49D';position:absolute;top:10px;right:16px;font-size:2rem;opacity:.15;
+    }
+    .budget::after{
+      content:'\1F3F9';position:absolute;bottom:10px;left:16px;font-size:1.6rem;opacity:.1;
+      transform:rotate(15deg);
+    }
+    .budget-title{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;font-size:clamp(1.2rem,2.4vw,1.4rem);font-weight:700;margin-bottom:22px;position:relative}
+    .budget-items{display:flex;justify-content:center;gap:clamp(20px,4vw,35px);flex-wrap:wrap;position:relative}
+    .budget-item{text-align:center}
+    .budget-label{font-size:clamp(.7rem,1.1vw,.78rem);opacity:.85;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em;font-weight:500}
+    .budget-value{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:600}
+    .budget-total{margin-top:22px;padding-top:18px;border-top:2px solid rgba(255,255,255,.3)}
+    .budget-total .budget-value{font-size:clamp(1.2rem,2.5vw,1.4rem);font-weight:700}
+    .budget-tip{font-size:clamp(.76rem,1.2vw,.82rem);opacity:.85;margin-top:12px;font-style:italic;position:relative}
+
+    /* ── Checklist ── */
+    .checklist-section{background:var(--cream);border:3px solid var(--cupid);border-radius:18px;padding:clamp(22px,3.5vw,28px);margin-top:28px;box-shadow:4px 4px 0px rgba(142,58,89,.12)}
+    .checklist-section h3{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;font-size:clamp(1.05rem,2vw,1.2rem);font-weight:700;margin-bottom:6px;color:var(--text-dark)}
+    .checklist-subtitle{font-size:clamp(.76rem,1.2vw,.82rem);color:var(--text-muted);margin-bottom:20px;font-style:italic}
+    .cl-item{
+      display:flex;align-items:flex-start;gap:clamp(10px,2vw,14px);
+      padding:clamp(12px,2vw,14px) clamp(14px,2vw,16px);margin-bottom:8px;
+      background:var(--card-bg);border:2px solid var(--wing-pink);border-radius:14px;
+      cursor:pointer;transition:all .25s ease;min-height:48px;
+    }
+    .cl-item:hover{border-color:var(--cupid);background:#fff0f5}
+    .cl-item.pri{border-left:5px solid var(--cupid)}
+    .cl-item input[type="checkbox"]{display:none}
+    .cl-box{
+      width:24px;height:24px;min-width:24px;border-radius:50%;
+      border:3px solid var(--wing-pink);display:flex;align-items:center;justify-content:center;
+      transition:all .25s ease;margin-top:1px;
+    }
+    .cl-box::after{content:"\2665";font-size:.7rem;color:white;opacity:0;transition:opacity .2s ease}
+    .cl-item input:checked ~ .cl-box{background:var(--cupid);border-color:var(--cupid)}
+    .cl-item input:checked ~ .cl-box::after{opacity:1}
+    .cl-item input:checked ~ .cl-text{text-decoration:line-through;opacity:.5}
+    .cl-text{font-size:clamp(.84rem,1.5vw,.9rem);color:var(--text-muted);line-height:1.6;flex:1}
+    .cl-text strong{color:var(--text-dark);font-weight:600}
+    .cl-text a{color:var(--cupid);font-weight:500;text-decoration:none}
+
+    /* ── Feedback ── */
+    .feedback{
+      text-align:center;margin-top:28px;
+      padding:clamp(24px,3.5vw,32px);
+      background:var(--cream);border:3px solid var(--cupid);
+      border-radius:20px;box-shadow:4px 4px 0px var(--deep-rose);
+    }
+    .feedback p{font-size:clamp(.88rem,1.5vw,.95rem);color:var(--text-muted);margin-bottom:16px}
+    .stars{display:flex;justify-content:center;gap:6px;margin-bottom:14px}
+    .star{
+      font-size:clamp(1.6rem,3.5vw,2rem);cursor:pointer;opacity:.25;
+      transition:all .2s ease;color:var(--cupid);
+      min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;
+    }
+    .star:hover,.star.on{opacity:1;transform:scale(1.12);color:var(--rose-red)}
+    .fb-ta{
+      width:100%;max-width:400px;padding:12px 16px;margin:0 auto 14px;
+      background:var(--card-bg);border:3px solid var(--wing-pink);
+      border-radius:12px;color:var(--text-dark);font-family:inherit;
+      font-size:clamp(.84rem,1.5vw,.9rem);resize:vertical;min-height:56px;outline:none;display:block;
+    }
+    .fb-ta::placeholder{color:#b090a0}
+    .fb-ta:focus{border-color:var(--cupid)}
+    .fb-btn{
+      padding:14px 32px;
+      background:var(--cupid);
+      color:white;border:none;border-radius:50px;font-family:inherit;
+      font-size:clamp(.82rem,1.4vw,.88rem);font-weight:600;letter-spacing:.06em;
+      cursor:pointer;transition:all .3s ease;
+      min-height:48px;box-shadow:4px 4px 0px var(--deep-rose);
+    }
+    .fb-btn:hover{box-shadow:5px 5px 0px var(--deep-rose);transform:translateY(-2px)}
+
+    /* ── Footer ── */
+    .footer{
+      text-align:center;padding:clamp(28px,5vh,40px) 24px;margin-top:30px;
+      border-radius:20px;background:linear-gradient(135deg,var(--deep-rose),var(--text-dark));
+      box-shadow:4px 4px 0px rgba(45,19,44,.4);
+    }
+    .footer-tagline{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;font-size:clamp(1rem,1.8vw,1.1rem);color:white;font-style:italic;margin-bottom:4px;font-weight:500}
+    .footer-brand{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;font-size:clamp(.82rem,1.4vw,.9rem);color:rgba(255,240,245,.6);font-weight:400;margin-top:4px}
+
+    /* ── Option Calendar ── */
+    .option-cal{text-align:center;margin-top:28px;padding:24px 0}
+
+    /* ── Responsive ── */
+    @media(max-width:600px){
+      .meta{flex-direction:column;gap:12px}
+      .stop{padding:clamp(12px,2vw,16px)}
+      .budget-items{flex-direction:column;gap:14px}
+      .hero-cal{flex-direction:column;align-items:center;width:100%;max-width:280px}
+      .cal-btn{width:100%;justify-content:center}
+    }
+    @media(min-width:901px){
+      .date-wrap{max-width:920px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <!-- HERO -->
+  <div class="hero" id="hero">
+    <div class="cupid-icon" id="heroEmoji">&#128152;</div>
+    <div class="hero-brand">DateFlo</div>
+    <h1>Ethan &amp; <span>Hope</span></h1>
+    <p class="hero-greeting" id="heroGreeting"></p>
+
+    <div class="hero-buttons">
+      <a class="hero-btn hero-btn-primary" href="#" onclick="showOption('A');return false;">&#127865; A Little Italy Love Story</a>
+    </div>
+
+    <div class="cd-wrap">
+      <div class="cd-label">Counting down</div>
+      <div class="cd">
+        <div class="cd-block"><div class="cd-num" id="cd-d">--</div><div class="cd-unit">Days</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-h">--</div><div class="cd-unit">Hours</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-m">--</div><div class="cd-unit">Min</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════ PLAN A: A LITTLE ITALY LOVE STORY ══════════ -->
+  <div class="date-wrap" id="optionA">
+    <button class="back-btn" onclick="goBack()">&larr; Back</button>
+    <div class="section-header">
+      <div class="section-badge">&#127865; Plan A</div>
+      <h2>A Little Italy Love Story</h2>
+      <p>Golden hour by the harbor, upscale dinner, and rooftop cocktails under the stars</p>
+    </div>
+    <div class="content-card">
+      <div class="weather-note" id="weatherWidget"><h4>&#9748;&#65039; Weather for your date (5 to 10 PM)</h4><p id="weatherText">Loading real forecast...</p></div>
+
+      <div class="meta">
+        <div class="meta-item"><div class="meta-label">Date</div><div class="meta-value">Sat, April 4</div></div>
+        <div class="meta-item"><div class="meta-label">Time</div><div class="meta-value">5:00 to 10:00 PM</div></div>
+        <div class="meta-item"><div class="meta-label">Area</div><div class="meta-value">Little Italy, San Diego</div></div>
+        <div class="meta-item"><div class="meta-label">Vibe</div><div class="meta-value">Romantic, Upscale Casual, Foodie</div></div>
+      </div>
+
+      <div class="summary">
+        <h3 class="summary-title">&#127801; The Vibe</h3>
+        <p>Start with a sunset stroll along San Diego&rsquo;s most scenic waterfront park, catching golden hour over the harbor with Coronado Bridge and USS Midway as your backdrop. Then walk to a Michelin Bib Gourmand dinner in a restored 1920s warehouse where every dish feels like an event. End the night sipping craft cocktails on one of the most stunning art deco rooftops in the city, with Little Italy twinkling below. Romantic, effortless, unforgettable.</p>
+      </div>
+
+      <div class="route-tag"><p>&#128663; Home &rarr; Waterfront Park &rarr; Juniper &amp; Ivy &rarr; Born &amp; Raised &rarr; Home</p></div>
+
+      <!-- Stop 1: Waterfront Park -->
+      <div class="stop" id="stop-a1">
+        <div class="stop-number">1</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Rides</div><div class="tc-btns">
+            <a href="https://m.uber.com/ul/?action=setPickup&dropoff[latitude]=32.7228&dropoff[longitude]=-117.1712&dropoff[nickname]=Waterfront%20Park" target="_blank" class="tc-btn tc-uber">Uber</a>
+            <a href="https://lyft.com/ride?destination[latitude]=32.7228&destination[longitude]=-117.1712" target="_blank" class="tc-btn tc-lyft">Lyft</a>
+          </div></div>
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack">
+            <div class="tc-park-label">Best: 610 W. Ash St ($5 flat)</div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=610+W+Ash+St+San+Diego" target="_blank" class="tc-btn tc-paid tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=610+W+Ash+St,San+Diego,CA&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+            <div class="tc-park-label">Alt: 1536 Kettner ($10 eves)</div>
+            <div class="tc-park-row"><a href="https://www.google.com/maps/dir/?api=1&destination=1536+Kettner+Blvd+San+Diego" target="_blank" class="tc-btn tc-paid tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=1536+Kettner+Blvd,San+Diego,CA&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+          </div></div>
+        </div>
+        <div class="stop-header">
+          <h3 class="stop-title">Sunset at Waterfront Park</h3>
+        </div>
+        <div class="stop-time">5:00 to 5:45 PM</div>
+        <div class="stop-buttons">
+          <div class="venue-box"><span class="venue-name">Waterfront Park</span><a href="https://maps.google.com/?q=Waterfront+Park+San+Diego" target="_blank" class="venue-btn venue-btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a><a href="https://maps.apple.com/?address=1600+Pacific+Highway,San+Diego,CA+92101" target="_blank" class="venue-btn venue-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a></div>
+        </div>
+        <div class="info-btns">
+          <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelA1r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-vibe open" onclick="togglePanel(this,'panelA1v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
+        </div>
+        <div class="info-panel info-panel-reviews" id="panelA1r">
+          <div class="review-box">
+            <a class="review-badge" href="https://www.google.com/maps/place/Waterfront+Park+San+Diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="Google"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">4.7</span></div><div class="review-count">12,000+ reviews</div></div></a>
+            <a class="review-badge" href="https://www.yelp.com/biz/waterfront-park-san-diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">4.5</span></div><div class="review-count">1,200+ reviews</div></div></a>
+          </div>
+        </div>
+        <div class="info-panel info-panel-vibe show" id="panelA1v">
+          <div class="vibe-slider" data-slider>
+            <button class="vibe-slider-btn prev" onclick="slideVibe(this,-1)">&lsaquo;</button>
+            <div class="vibe-slider-track">
+              <img src="https://www.sandiego.gov/sites/default/files/legacy/park-and-recreation/images/parks/waterfront/wpviewofcoronado1500.jpg" alt="Waterfront Park Harbor Views" loading="lazy">
+              <img src="https://www.sandiego.gov/sites/default/files/legacy/park-and-recreation/images/parks/waterfront/wpfountain1500.jpg" alt="Waterfront Park Fountain" loading="lazy">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/San_Diego_County_Administration_Building_and_Waterfront_Park.jpg/1280px-San_Diego_County_Administration_Building_and_Waterfront_Park.jpg" alt="Waterfront Park Aerial" loading="lazy">
+            </div>
+            <button class="vibe-slider-btn next" onclick="slideVibe(this,1)">&rsaquo;</button>
+          </div>
+          <div class="vibe-dots"></div>
+          <div class="vibe-slider-caption">12 acre bayside park with harbor views and Coronado Bridge</div>
+        </div>
+        <div class="description">
+          <p>A stunning 12 acre bayside park right on the harbor. Walk along the promenade with panoramic views of the <strong>Coronado Bridge</strong>, the <strong>USS Midway</strong>, and sailboats dotting the bay. The interactive fountains, lush gardens, and wide open lawns make it one of the most photogenic spots in San Diego. Late March/early April sunset is around <strong>7:15 PM</strong>, so you&rsquo;ll catch the beginning of golden hour while you stroll.</p>
+          <p><strong>Free admission.</strong> Open sunrise to sunset. Perfect for photos and a relaxed start to the evening.</p>
+        </div>
+        <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~10 min walk to Juniper &amp; Ivy</div>
+        <div class="stop-fb" id="sfb-A1">
+          <div class="stop-fb-label" onclick="this.parentElement.classList.toggle('fb-open')" style="cursor:pointer">How was this stop? <span class="fb-chev">&#9660;</span></div>
+          <div class="sc-who" id="who-A1"><button class="sc-who-btn active" onclick="pickWho('A1','Ethan')">Ethan</button><button class="sc-who-btn" onclick="pickWho('A1','Hope')">Hope</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127958;&#65039; Experience</span><div class="qt-opts" data-key="A1-experience"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A1-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A1" placeholder="Anything else? e.g. the sunset was incredible, or we found a great photo spot..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',1,'Waterfront Park')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-A1-ok">&#10003; Sent, thank you!</div>
+        </div>
+      </div>
+
+      <div class="walk-tag">&#128694; ~10 min walk to dinner</div>
+
+      <!-- Stop 2: Juniper & Ivy -->
+      <div class="stop" id="stop-a2">
+        <div class="stop-number">2</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack">
+            <div class="tc-park-label">Keep your spot at 610 W. Ash</div>
+            <div class="tc-park-row"><a href="https://maps.google.com/?q=610+W+Ash+St+San+Diego" target="_blank" class="tc-btn tc-paid tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=610+W+Ash+St,San+Diego,CA&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+          </div></div>
+        </div>
+        <div class="stop-header">
+          <h3 class="stop-title">Dinner at Juniper &amp; Ivy</h3>
+        </div>
+        <div class="stop-time">6:00 to 7:45 PM</div>
+        <div class="stop-buttons">
+          <div class="venue-box"><span class="venue-name">Juniper &amp; Ivy</span><a href="https://maps.google.com/?q=Juniper+%26+Ivy+San+Diego" target="_blank" class="venue-btn venue-btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a><a href="https://maps.apple.com/?address=2228+Kettner+Blvd,San+Diego,CA+92101" target="_blank" class="venue-btn venue-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a></div>
+          <a href="tel:6192699036" class="btn btn-phone"><i data-lucide="phone"></i></a>
+          <a href="https://www.juniperandivy.com/menu/" target="_blank" class="btn btn-menu"><i data-lucide="utensils"></i> Menu</a>
+          <a href="https://www.opentable.com/juniper-and-ivy" target="_blank" class="btn btn-res"><i data-lucide="calendar-check"></i> Reserve</a>
+        </div>
+        <div class="info-btns">
+          <span class="info-btn info-btn-hh-none"><i data-lucide="clock" style="width:14px;height:14px"></i> No Happy Hour</span>
+          <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelA2r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-vibe open" onclick="togglePanel(this,'panelA2v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
+        </div>
+        <div class="info-panel info-panel-reviews" id="panelA2r">
+          <div class="review-box">
+            <a class="review-badge" href="https://www.google.com/maps/place/Juniper+%26+Ivy+San+Diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="Google"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="review-rating">4.5</span></div><div class="review-count">3,100+ reviews</div></div></a>
+            <a class="review-badge" href="https://www.yelp.com/biz/juniper-and-ivy-san-diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="review-rating">4.3</span></div><div class="review-count">4,500+ reviews</div></div></a>
+          </div>
+        </div>
+        <div class="info-panel info-panel-vibe show" id="panelA2v">
+          <div class="vibe-slider" data-slider>
+            <button class="vibe-slider-btn prev" onclick="slideVibe(this,-1)">&lsaquo;</button>
+            <div class="vibe-slider-track">
+              <img src="https://resizer.otstatic.com/v2/photos/wide-huge/3/55018186.jpg" alt="Juniper and Ivy Interior" loading="lazy">
+              <img src="https://resizer.otstatic.com/v2/photos/wide-huge/3/55018187.jpg" alt="Juniper and Ivy Dining Room" loading="lazy">
+              <img src="https://resizer.otstatic.com/v2/photos/wide-huge/3/55018188.jpg" alt="Juniper and Ivy Bar" loading="lazy">
+              <img src="https://resizer.otstatic.com/v2/photos/wide-huge/3/55018189.jpg" alt="Juniper and Ivy Dishes" loading="lazy">
+            </div>
+            <button class="vibe-slider-btn next" onclick="slideVibe(this,1)">&rsaquo;</button>
+          </div>
+          <div class="vibe-dots"></div>
+          <div class="vibe-slider-caption">Michelin Bib Gourmand, 1920s warehouse with open kitchen</div>
+        </div>
+        <div class="description">
+          <p>A <strong>Michelin Bib Gourmand</strong> restaurant set in a beautifully restored <strong>1920s warehouse</strong> with soaring ceilings, an open kitchen, and industrial chic vibes. The menu is New American with seasonal, locally sourced ingredients and creative presentations that make every dish feel special. The atmosphere strikes the perfect balance: elevated enough to feel like an occasion, relaxed enough to be yourselves.</p>
+          <p><strong>Saturday hours:</strong> 5:00 to 10:00 PM. <strong>Reservations strongly recommended</strong>. Book on OpenTable for 6:00 PM.</p>
+        </div>
+        <div class="food-recs">
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127866;</span> Ethan</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Bluefin Crudo</div><div class="food-rec-note">Winter citrus ponzu, jalape&ntilde;o, crispy shallot. A perfect starter that&rsquo;s light and fresh.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Miso Black Cod</div><div class="food-rec-note">Mushroom dashi, bok choy. Rich, umami, and one of their standout entr&eacute;es.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Sticky Toffee Pudding</div><div class="food-rec-note">Cardamom date cake. The dessert everyone talks about. Don&rsquo;t skip it.</div></div>
+          </div>
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127801;</span> Hope</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Kumamoto Oysters</div><div class="food-rec-note">Mojito foam, cucumber. Elegant and refreshing to start.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Hokkaido Scallop</div><div class="food-rec-note">Miso butter, corn, shiso. Perfectly seared and buttery.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Beet Salad</div><div class="food-rec-note">Goat cheese mousse, pistachio. A lighter option that&rsquo;s still incredibly flavorful.</div></div>
+          </div>
+          <div class="food-rec-shared">
+            <div class="food-rec-label" style="justify-content:center"><span>&#127860;</span> Shared</div>
+            <div class="food-rec-dishes">
+              <div class="food-rec-dish"><div class="food-rec-item">Sourdough Bread</div><div class="food-rec-note">With house butter to start. Simple and perfect.</div></div>
+              <div class="food-rec-dish"><div class="food-rec-item">House Ros&eacute;</div><div class="food-rec-note">A glass each. Pairs beautifully with everything on the menu.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="swap-box">
+          <button class="swap-box-toggle" onclick="this.parentElement.classList.toggle('open')">
+            <div class="swap-box-title">Backup Restaurant: Barbusa</div>
+            <span class="swap-box-arrow">&#9660;</span>
+          </button>
+          <div class="swap-box-content">
+            <p><a href="https://maps.google.com/?q=Barbusa+San+Diego" target="_blank">Barbusa</a> (1917 India St). Modern Sicilian, 4.7 stars on OpenTable. Top dishes: Granchio Pasta (blue crab), Short Rib Lasagna. Same neighborhood, similar vibe, slightly more casual. Walk in friendly.</p>
+          </div>
+        </div>
+        <div class="transit-tag"><i data-lucide="footprints" style="width:14px;height:14px"></i> ~5 min walk to Born &amp; Raised</div>
+        <div class="stop-fb" id="sfb-A2">
+          <div class="stop-fb-label" onclick="this.parentElement.classList.toggle('fb-open')" style="cursor:pointer">How was this stop? <span class="fb-chev">&#9660;</span></div>
+          <div class="sc-who" id="who-A2"><button class="sc-who-btn active" onclick="pickWho('A2','Ethan')">Ethan</button><button class="sc-who-btn" onclick="pickWho('A2','Hope')">Hope</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127869;&#65039; Food</span><div class="qt-opts" data-key="A2-food"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A2-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A2" placeholder="Anything else? e.g. the black cod was unreal, or we loved the atmosphere..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',2,'Juniper and Ivy')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-A2-ok">&#10003; Sent, thank you!</div>
+        </div>
+      </div>
+
+      <div class="walk-tag">&#128694; ~5 min walk to rooftop</div>
+
+      <!-- Stop 3: Born & Raised -->
+      <div class="stop" id="stop-a3">
+        <div class="stop-number">3</div>
+        <div class="transport-corner">
+          <div class="tc-group"><div class="tc-label">Parking</div><div class="tc-park-stack">
+            <div class="tc-park-label">Keep your spot at 610 W. Ash</div>
+            <div class="tc-park-row"><a href="https://maps.google.com/?q=610+W+Ash+St+San+Diego" target="_blank" class="tc-btn tc-paid tc-google"><img src="../assets/google-logo.png" alt="Google Maps" class="tc-logo"></a><a href="https://maps.apple.com/?daddr=610+W+Ash+St,San+Diego,CA&dirflg=d" target="_blank" class="tc-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="tc-logo"></a></div>
+          </div></div>
+        </div>
+        <div class="stop-header">
+          <h3 class="stop-title">Rooftop Drinks at Born &amp; Raised</h3>
+        </div>
+        <div class="stop-time">8:00 to 9:30 PM</div>
+        <div class="stop-buttons">
+          <div class="venue-box"><span class="venue-name">Born &amp; Raised</span><a href="https://maps.google.com/?q=Born+%26+Raised+San+Diego" target="_blank" class="venue-btn venue-btn-google"><img src="../assets/google-logo.png" alt="Google Maps" class="btn-logo"></a><a href="https://maps.apple.com/?address=1909+India+St,San+Diego,CA+92101" target="_blank" class="venue-btn venue-btn-apple"><img src="../assets/apple-logo-white.png" alt="Apple Maps" class="btn-logo"></a></div>
+          <a href="tel:6192024577" class="btn btn-phone"><i data-lucide="phone"></i></a>
+        </div>
+        <div class="info-btns">
+          <span class="info-btn info-btn-hh-none"><i data-lucide="clock" style="width:14px;height:14px"></i> No Happy Hour</span>
+          <button class="info-btn info-btn-reviews" onclick="togglePanel(this,'panelA3r')"><i data-lucide="star" style="width:14px;height:14px"></i> Reviews <span class="chev">&#9660;</span></button>
+          <button class="info-btn info-btn-vibe open" onclick="togglePanel(this,'panelA3v')"><i data-lucide="camera" style="width:14px;height:14px"></i> Venue <span class="chev">&#9660;</span></button>
+        </div>
+        <div class="info-panel info-panel-reviews" id="panelA3r">
+          <div class="review-box">
+            <a class="review-badge" href="https://www.google.com/maps/place/Born+%26+Raised+San+Diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="Google"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="review-rating">4.6</span></div><div class="review-count">4,200+ reviews</div></div></a>
+            <a class="review-badge" href="https://www.yelp.com/biz/born-and-raised-san-diego" target="_blank"><img class="review-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/120px-Yelp_Logo.svg.png" alt="Yelp"><div class="review-info"><div><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="review-rating">4.4</span></div><div class="review-count">2,800+ reviews</div></div></a>
+          </div>
+        </div>
+        <div class="info-panel info-panel-vibe show" id="panelA3v">
+          <div class="vibe-slider" data-slider>
+            <button class="vibe-slider-btn prev" onclick="slideVibe(this,-1)">&lsaquo;</button>
+            <div class="vibe-slider-track">
+              <img src="https://resizer.otstatic.com/v2/photos/wide-huge/3/48879671.jpg" alt="Born and Raised Rooftop" loading="lazy">
+              <img src="https://resizer.otstatic.com/v2/photos/wide-huge/3/48879672.jpg" alt="Born and Raised Interior" loading="lazy">
+              <img src="https://resizer.otstatic.com/v2/photos/wide-huge/3/48879673.jpg" alt="Born and Raised Bar" loading="lazy">
+              <img src="https://resizer.otstatic.com/v2/photos/wide-huge/3/48879674.jpg" alt="Born and Raised Cocktails" loading="lazy">
+            </div>
+            <button class="vibe-slider-btn next" onclick="slideVibe(this,1)">&rsaquo;</button>
+          </div>
+          <div class="vibe-dots"></div>
+          <div class="vibe-slider-caption">Art deco rooftop with Little Italy skyline views</div>
+        </div>
+        <div class="description">
+          <p>One of San Diego&rsquo;s most stunning rooftop bars. The open air space features <strong>art deco design</strong>, dramatic murals, and sweeping views of the Little Italy skyline. The cocktail program is world class: think tableside martinis, hand-carved ice, and drinks that feel like an experience. It&rsquo;s the kind of place that turns a great night into an unforgettable one.</p>
+          <p><strong>Saturday rooftop hours:</strong> 5:00 PM to close. No reservations for the rooftop, first come first served. Arriving around 8:00 PM on a Saturday, you should be able to grab seats.</p>
+          <p><strong>Tip:</strong> Bring a <strong>light jacket</strong>. The rooftop can get breezy after sunset, especially in early April.</p>
+        </div>
+        <div class="food-recs">
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127866;</span> Ethan</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Wagyu Old Fashioned</div><div class="food-rec-note">Rich, smoky, and impressive. A conversation starter.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Tableside Martini</div><div class="food-rec-note">If you&rsquo;re feeling fancy. They make a show of it.</div></div>
+          </div>
+          <div class="food-rec">
+            <div class="food-rec-label"><span>&#127801;</span> Hope</div>
+            <div class="food-rec-dish"><div class="food-rec-item">Lillet Collins</div><div class="food-rec-note">Light, floral, refreshing. Perfect for a warm rooftop evening.</div></div>
+            <div class="food-rec-dish"><div class="food-rec-item">Dirty Martini</div><div class="food-rec-note">Classic and clean. You can&rsquo;t go wrong here.</div></div>
+          </div>
+          <div class="food-rec-shared">
+            <div class="food-rec-label" style="justify-content:center"><span>&#127860;</span> Bar Bites to Share</div>
+            <div class="food-rec-dishes">
+              <div class="food-rec-dish"><div class="food-rec-item">Charcoal Roasted Oysters</div><div class="food-rec-note">Smoky, briny, and perfectly paired with cocktails.</div></div>
+              <div class="food-rec-dish"><div class="food-rec-item">Dirty Tots</div><div class="food-rec-note">Their signature bar snack. Indulgent and shareable.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="stop-fb" id="sfb-A3">
+          <div class="stop-fb-label" onclick="this.parentElement.classList.toggle('fb-open')" style="cursor:pointer">How was this stop? <span class="fb-chev">&#9660;</span></div>
+          <div class="sc-who" id="who-A3"><button class="sc-who-btn active" onclick="pickWho('A3','Ethan')">Ethan</button><button class="sc-who-btn" onclick="pickWho('A3','Hope')">Hope</button></div>
+          <div class="qt-row">
+            <div class="qt-item"><span class="qt-label">&#127865; Drinks</span><div class="qt-opts" data-key="A3-drinks"><button class="qt-opt" onclick="qtPick(this)">Loved it</button><button class="qt-opt" onclick="qtPick(this)">It was okay</button><button class="qt-opt" onclick="qtPick(this)">Not for us</button></div></div>
+            <div class="qt-item"><span class="qt-label">&#8617;&#65039; Return?</span><div class="qt-opts" data-key="A3-return"><button class="qt-opt" onclick="qtPick(this)">Yes</button><button class="qt-opt" onclick="qtPick(this)">Maybe</button><button class="qt-opt" onclick="qtPick(this)">No</button></div></div>
+          </div>
+          <div class="stop-fb-wrap"><textarea class="stop-fb-ta" id="sc-A3" placeholder="Anything else? e.g. the rooftop views were stunning, or we tried the Wagyu Old Fashioned..."></textarea><button class="stop-fb-btn" onclick="sendSC('A',3,'Born and Raised')">Send</button></div>
+          <div class="stop-fb-sent" id="sc-A3-ok">&#10003; Sent, thank you!</div>
+        </div>
+      </div>
+
+      <div class="budget">
+        <h3 class="budget-title">&#128176; Estimated Budget</h3>
+        <div class="budget-items">
+          <div class="budget-item"><div class="budget-label">Dinner</div><div class="budget-value">$130 to $170</div></div>
+          <div class="budget-item"><div class="budget-label">Drinks + Bites</div><div class="budget-value">$40 to $60</div></div>
+          <div class="budget-item"><div class="budget-label">Parking</div><div class="budget-value">$5 to $10</div></div>
+          <div class="budget-item"><div class="budget-label">Rideshare</div><div class="budget-value">$15 to $25 ea</div></div>
+        </div>
+        <div class="budget-total budget-item"><div class="budget-label">Total</div><div class="budget-value">$190 to $265</div></div>
+        <p class="budget-tip">Park at the 610 W. Ash garage ($5 flat after 5 PM) and walk everywhere. Saves on rideshare and keeps the night seamless.</p>
+      </div>
+
+      <div class="checklist-section">
+        <h3>&#9745; Before You Go</h3>
+        <p class="checklist-subtitle">Tap to check off. Saves automatically.</p>
+        <label class="cl-item pri"><input type="checkbox" data-key="A-1"><span class="cl-box"></span><span class="cl-text"><strong>Reserve at Juniper &amp; Ivy</strong>. Book on <a href="https://www.opentable.com/juniper-and-ivy" target="_blank">OpenTable</a> for 6:00 PM, 2 guests.</span></label>
+        <label class="cl-item pri"><input type="checkbox" data-key="A-2"><span class="cl-box"></span><span class="cl-text"><strong>Leave campus by 4:15 PM</strong>. Buffer for Saturday traffic from SDSU area.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="A-3"><span class="cl-box"></span><span class="cl-text"><strong>Charge phones</strong>. The waterfront and rooftop are both incredible photo spots.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="A-4"><span class="cl-box"></span><span class="cl-text"><strong>Dress smart casual</strong>. Collared shirt for Ethan, something nice for Hope. Both spots are upscale casual.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="A-5"><span class="cl-box"></span><span class="cl-text"><strong>Bring a light jacket</strong>. The rooftop at Born &amp; Raised can get breezy after sunset.</span></label>
+        <label class="cl-item"><input type="checkbox" data-key="A-6"><span class="cl-box"></span><span class="cl-text"><strong>Download Uber/Lyft</strong> if you haven&rsquo;t already, in case you prefer a ride home.</span></label>
+      </div>
+
+      <!-- Calendar Links -->
+      <div class="option-cal">
+        <h3 class="summary-title">&#128197; Add to Your Calendar</h3>
+        <p style="text-align:center;color:#999;font-size:.88rem;margin-bottom:14px">Save this plan to your calendar so you&rsquo;re all set when the day comes.</p>
+        <div class="hero-cal">
+          <a class="cal-btn cal-btn-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=DateFlo%3A+A+Little+Italy+Love+Story&dates=20260405T000000Z/20260405T050000Z&details=Plan+A%3A+A+Little+Italy+Love+Story%0A%0A5%3A00+PM+Waterfront+Park+Sunset%0A6%3A00+PM+Dinner+at+Juniper+%26+Ivy%0A8%3A00+PM+Rooftop+at+Born+%26+Raised%0A%0AFull+details%3A+dateflo.com%2Fethan-and-hope&location=Little+Italy%2C+San+Diego%2C+CA" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Google Calendar
+          </a>
+          <a class="cal-btn cal-btn-apple" id="icalA" href="#" download="ethan-hope-little-italy.ics">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Apple Calendar
+          </a>
+        </div>
+      </div>
+
+      <div class="feedback" id="fbA">
+        <p>We&rsquo;d love to know how your date went. Your feedback helps us plan something even better next time.</p>
+        <div class="stars" id="starsA"><span class="star" data-val="1">&#9733;</span><span class="star" data-val="2">&#9733;</span><span class="star" data-val="3">&#9733;</span><span class="star" data-val="4">&#9733;</span><span class="star" data-val="5">&#9733;</span></div>
+        <textarea class="fb-ta" id="notesA" placeholder="What did you love? What can we do better next time?"></textarea>
+        <button class="fb-btn" onclick="sendFB('A')">Submit</button>
+      </div>
+      <div class="footer"><div class="footer-tagline">We plan it. You live it.</div><div class="footer-brand">DateFlo</div></div>
+    </div>
+  </div>
+
+  <script>
+    // ── Config ──
+    var COUPLE={id:'ethan-2026',partner1:'Ethan',partner2:'Hope',dateEvent:'Saturday, April 4, 2026'};
+    var DATE_START=new Date('2026-04-04T17:00:00-07:00');
+    var DATE_END=new Date('2026-04-04T22:00:00-07:00');
+
+    // ── Floating Hearts ──
+    (function(){var c=document.getElementById('heartsBg');var h=['\u{1F495}','\u{1F497}','\u{1F496}','\u{1FA77}','\u2661','\u2764\uFE0F','\u{1F498}'];for(var i=0;i<18;i++){var s=document.createElement('span');s.className='heart-float';s.textContent=h[i%h.length];s.style.left=Math.random()*100+'%';s.style.animationDuration=(10+Math.random()*14)+'s';s.style.animationDelay=Math.random()*12+'s';s.style.fontSize=(.9+Math.random()*.8)+'rem';c.appendChild(s)}})();
+
+    // ── Smart Time-Aware Greeting ──
+    (function(){
+      var greetEl=document.getElementById('heroGreeting');
+      var emojiEl=document.getElementById('heroEmoji');
+      var cdWrap=document.querySelector('.cd-wrap');
+      if(!greetEl) return;
+
+      function updateGreeting(){
+        var now=new Date();
+        var diff=DATE_START-now;
+        var diffEnd=DATE_END-now;
+        var hrs=diff/36e5;
+        var h=now.getHours();
+        var dayOfDate=now.toDateString()===DATE_START.toDateString();
+        var dayAfter=new Date(DATE_START);dayAfter.setDate(dayAfter.getDate()+1);
+        var isNextDay=now.toDateString()===dayAfter.toDateString();
+        var isPast=now>DATE_END;
+        var isDuring=now>=DATE_START&&now<=DATE_END;
+
+        if(isDuring){
+          greetEl.innerHTML='Your date is happening <strong>right now</strong>. Have an amazing time! \u{1F495}';
+          emojiEl.textContent='\u2728';
+          if(cdWrap)cdWrap.style.display='none';
+        } else if(isPast){
+          greetEl.innerHTML='We hope your date went <strong>well</strong> \u{1F495}';
+          emojiEl.textContent='\u{1F495}';
+          if(cdWrap)cdWrap.style.display='none';
+        } else if(dayOfDate&&hrs<=3){
+          var minsLeft=Math.ceil(diff/6e4);
+          if(minsLeft>60){
+            greetEl.innerHTML=Math.ceil(hrs)+' hours to go. <strong>Time to get ready!</strong> \u{1F483}';
+          } else {
+            greetEl.innerHTML=minsLeft+' minutes to go. <strong>Time to get ready!</strong> \u{1F483}';
+          }
+          emojiEl.textContent='\u23F0';
+        } else if(dayOfDate){
+          var tod=h<12?'Good morning':'Good afternoon';
+          greetEl.innerHTML=tod+', <strong>your date is tonight!</strong> \u{1F31F}';
+          emojiEl.textContent='\u2600\uFE0F';
+        } else if(hrs<=24){
+          greetEl.innerHTML='Your date is <strong>tomorrow</strong>. Get excited! \u{1F389}';
+          emojiEl.textContent='\u{1F389}';
+        } else if(hrs<=72){
+          var daysLeft=Math.ceil(hrs/24);
+          greetEl.innerHTML='<strong>'+daysLeft+' days</strong> until your date. It\'s almost here! \u{1F498}';
+          emojiEl.textContent='\u{1F498}';
+        } else {
+          greetEl.innerHTML='';
+        }
+      }
+      updateGreeting();
+      setInterval(updateGreeting,60000);
+    })();
+
+    // ── Countdown ──
+    var T=DATE_START.getTime();
+    function tick(){var d=T-Date.now();if(d<=0){document.getElementById('cd-d').textContent='00';document.getElementById('cd-h').textContent='00';document.getElementById('cd-m').textContent='00';return}document.getElementById('cd-d').textContent=String(Math.floor(d/864e5)).padStart(2,'0');document.getElementById('cd-h').textContent=String(Math.floor(d%864e5/36e5)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(d%36e5/6e4)).padStart(2,'0')}
+    tick();setInterval(tick,60000);
+
+    // ── Apple Calendar ICS ──
+    var icalA=document.getElementById('icalA');
+    if(icalA) icalA.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DateFlo//EN','BEGIN:VEVENT','UID:dateflo-ethan-hope-A-'+Date.now()+'@dateflo.com','DTSTART;TZID=America/Los_Angeles:20260404T170000','DTEND;TZID=America/Los_Angeles:20260404T220000','SUMMARY:DateFlo: A Little Italy Love Story','LOCATION:Little Italy, San Diego, CA','DESCRIPTION:Plan A: A Little Italy Love Story\\n5:00 PM Waterfront Park Sunset\\n6:00 PM Dinner at Juniper & Ivy\\n8:00 PM Rooftop at Born & Raised\\n\\nFull details: dateflo.com/ethan-and-hope','STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'].join('\r\n'));
+
+    // ── Weather Widget (Open-Meteo API) ──
+    (function(){
+      var wEl=document.getElementById('weatherText');
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=32.7157&longitude=-117.1611&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max,weathercode&temperature_unit=fahrenheit&windspeed_unit=mph&timezone=America/Los_Angeles&start_date=2026-04-04&end_date=2026-04-04')
+      .then(function(r){return r.json()})
+      .then(function(d){
+        if(d&&d.daily){
+          var hi=Math.round(d.daily.temperature_2m_max[0]);
+          var lo=Math.round(d.daily.temperature_2m_min[0]);
+          var rain=d.daily.precipitation_probability_max[0];
+          var wind=Math.round(d.daily.windspeed_10m_max[0]);
+          var code=d.daily.weathercode[0];
+          var desc='Mostly sunny';
+          if(code>=61)desc='Rainy';else if(code>=51)desc='Light rain possible';else if(code>=3)desc='Overcast';else if(code>=2)desc='Partly cloudy';else if(code>=1)desc='Mostly sunny';else desc='Clear skies';
+          wEl.innerHTML='<strong>'+hi+'\u00B0F high / '+lo+'\u00B0F low</strong>. '+desc+'. '+rain+'% chance of rain. Wind ~'+wind+' mph. Dress smart casual and bring a light jacket for the rooftop. Sunset at <strong>~7:15 PM</strong>.';
+        }
+      })
+      .catch(function(){
+        wEl.innerHTML='<strong>68\u00B0F high / 55\u00B0F low</strong> (typical). Mostly sunny, light breeze. Dress smart casual, bring a light jacket for the rooftop. Sunset at <strong>~7:15 PM</strong>.';
+      });
+    })();
+
+    // ── Info Panel Toggle ──
+    function togglePanel(btn,id){
+      var panel=document.getElementById(id);
+      var isOpen=panel.classList.contains('show');
+      panel.classList.toggle('show',!isOpen);
+      btn.classList.toggle('open',!isOpen);
+      lucide.createIcons();
+    }
+
+    // ── Navigation ──
+    function showOption(o){document.getElementById('hero').style.display='none';document.getElementById('option'+o).classList.add('visible');window.scrollTo({top:0,behavior:'smooth'});lucide.createIcons();initSliders()}
+    function goBack(){document.querySelectorAll('.date-wrap').forEach(function(e){e.classList.remove('visible');e.style.display='none'});document.getElementById('hero').style.display='flex';document.querySelectorAll('.date-wrap').forEach(function(e){e.style.display=''});window.scrollTo({top:0,behavior:'smooth'})}
+
+    // ── Venue Vibe Image Sliders ──
+    function slideVibe(btn,dir){
+      var slider=btn.closest('[data-slider]');
+      var track=slider.querySelector('.vibe-slider-track');
+      var imgs=track.querySelectorAll('img');
+      var total=imgs.length;
+      var idx=parseInt(track.dataset.idx||'0');
+      idx=(idx+dir+total)%total;
+      track.dataset.idx=idx;
+      imgs.forEach(function(img,i){img.classList.toggle('active',i===idx)});
+      var dots=slider.parentElement.querySelector('.vibe-dots');
+      if(dots){dots.querySelectorAll('.vibe-dot').forEach(function(d,i){d.classList.toggle('active',i===idx)})}
+    }
+    function initSliders(){
+      document.querySelectorAll('[data-slider]').forEach(function(slider){
+        var track=slider.querySelector('.vibe-slider-track');
+        var imgs=track.querySelectorAll('img');
+        if(imgs.length>0)imgs[0].classList.add('active');
+        var dots=slider.parentElement.querySelector('.vibe-dots');
+        if(dots&&dots.children.length===0){
+          for(var i=0;i<imgs.length;i++){
+            var dot=document.createElement('span');
+            dot.className='vibe-dot'+(i===0?' active':'');
+            dot.dataset.i=i;
+            dot.addEventListener('click',function(){
+              var idx=parseInt(this.dataset.i);
+              track.dataset.idx=idx;
+              imgs.forEach(function(img,j){img.classList.toggle('active',j===idx)});
+              dots.querySelectorAll('.vibe-dot').forEach(function(d,j){d.classList.toggle('active',j===idx)});
+            });
+            dots.appendChild(dot);
+          }
+        }
+        // Touch/swipe support
+        var startX=0;
+        slider.addEventListener('touchstart',function(e){startX=e.touches[0].clientX},{passive:true});
+        slider.addEventListener('touchend',function(e){
+          var dx=e.changedTouches[0].clientX-startX;
+          if(Math.abs(dx)>40){slideVibe(slider,dx<0?1:-1)}
+        },{passive:true});
+      });
+    }
+    initSliders();
+
+    // ── Checklist (localStorage) ──
+    document.querySelectorAll('.cl-item input[type="checkbox"]').forEach(function(c){
+      var k='datecheck_ethan_'+c.dataset.key;
+      if(localStorage.getItem(k)==='1')c.checked=true;
+      c.addEventListener('change',function(){localStorage.setItem(k,c.checked?'1':'0')});
+    });
+
+    // ── Star Ratings ──
+    var R={A:0};
+    document.querySelectorAll('.stars').forEach(function(c){var p=c.id.replace('stars','');c.querySelectorAll('.star').forEach(function(s){s.addEventListener('click',function(){var v=+s.dataset.val;R[p]=v;c.querySelectorAll('.star').forEach(function(x,i){x.classList.toggle('on',i<v)})})})});
+
+    // ── Partner Selector ──
+    var whoState={};
+    function pickWho(id,label){
+      whoState[id]=label;
+      document.querySelectorAll('#who-'+id+' .sc-who-btn').forEach(function(b){
+        b.classList.toggle('active',b.textContent===label);
+      });
+    }
+
+    // ── Quick Tap Picks ──
+    var qtState={};
+    function qtPick(btn){
+      var row=btn.parentElement;
+      var key=row.dataset.key;
+      row.querySelectorAll('.qt-opt').forEach(function(b){b.classList.remove('sel')});
+      btn.classList.add('sel');
+      qtState[key]=btn.textContent;
+    }
+
+    // ── Per-Stop Feedback ──
+    function sendSC(plan,stopNum,stopName){
+      var key=plan+stopNum;
+      var who=whoState[key]||COUPLE.partner1;
+      var ta=document.getElementById('sc-'+key);
+      var ok=document.getElementById('sc-'+key+'-ok');
+      var btn=ta.parentElement.querySelector('.stop-fb-btn');
+      var taps=[];
+      document.querySelectorAll('#sfb-'+key+' [data-key]').forEach(function(el){
+        var k=el.dataset.key;
+        if(qtState[k]){
+          var label=k.split('-')[1];
+          taps.push(label+':'+qtState[k]);
+        }
+      });
+      var tapStr=taps.join(' | ');
+      var comment=ta.value.trim();
+      if(!tapStr&&!comment){ta.focus();ta.style.borderColor='var(--rose)';setTimeout(function(){ta.style.borderColor=''},1500);return}
+      btn.disabled=true;btn.textContent='Sending...';
+      var partnerComment=who+': '+(comment||'(quick taps only)');
+      fetch('https://script.google.com/macros/s/AKfycbzLuSg10Zf6Tpe_VJajwx3RQAz5F3LBETreJOL0VttYtI6hhIcDs6uimKejuwf_KyQjNg/exec',{
+        method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({coupleId:COUPLE.id,couple:COUPLE.partner1+' & '+COUPLE.partner2,dateEvent:COUPLE.dateEvent,type:'stop-feedback',plan:'A Little Italy Love Story',stop:stopNum+'. '+stopName,partnerComment:partnerComment,rating:'',notes:tapStr,planUrl:location.href})
+      });
+      var fb=document.getElementById('sfb-'+key);
+      fb.querySelector('.qt-row').style.display='none';
+      fb.querySelector('.stop-fb-wrap').style.display='none';
+      ok.style.display='block';
+    }
+
+    // ── Overall Feedback ──
+    function sendFB(p){
+      if(!R[p]){alert('Please tap a star rating first.');return}
+      fetch('https://script.google.com/macros/s/AKfycbzLuSg10Zf6Tpe_VJajwx3RQAz5F3LBETreJOL0VttYtI6hhIcDs6uimKejuwf_KyQjNg/exec',{
+        method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({coupleId:COUPLE.id,couple:COUPLE.partner1+' & '+COUPLE.partner2,dateEvent:COUPLE.dateEvent,type:'overall-feedback',plan:'A Little Italy Love Story',stop:'',partnerComment:'',rating:R[p],notes:document.getElementById('notes'+p).value,planUrl:location.href})
+      });
+      document.getElementById('fb'+p).innerHTML='<p style="color:var(--rose);font-size:1.1rem;font-weight:600;font-family:Playfair Display,serif">Thanks for the feedback \u{1F498}</p>';
+    }
+
+    // ── Lightbox (click to expand + swipe) ──
+    var lbOverlay,lbImg,lbCounter,lbDotsWrap,lbImgs=[],lbIdx=0,lbStartX=0,lbStartY=0;
+    function initLightbox(){
+      lbOverlay=document.createElement('div');lbOverlay.className='lb-overlay';
+      lbOverlay.innerHTML='<button class="lb-close" onclick="closeLB()">&times;</button><button class="lb-nav lb-prev" onclick="lbNav(-1)">&lsaquo;</button><div class="lb-img-wrap"><img src="" alt="Venue photo"></div><button class="lb-nav lb-next" onclick="lbNav(1)">&rsaquo;</button><div class="lb-counter"></div><div class="lb-dots"></div>';
+      document.body.appendChild(lbOverlay);
+      lbImg=lbOverlay.querySelector('.lb-img-wrap img');
+      lbCounter=lbOverlay.querySelector('.lb-counter');
+      lbDotsWrap=lbOverlay.querySelector('.lb-dots');
+      lbOverlay.addEventListener('click',function(e){if(e.target===lbOverlay)closeLB()});
+      document.addEventListener('keydown',function(e){
+        if(!lbOverlay.classList.contains('open'))return;
+        if(e.key==='Escape')closeLB();
+        if(e.key==='ArrowLeft')lbNav(-1);
+        if(e.key==='ArrowRight')lbNav(1);
+      });
+      lbOverlay.addEventListener('touchstart',function(e){lbStartX=e.touches[0].clientX;lbStartY=e.touches[0].clientY},{passive:true});
+      lbOverlay.addEventListener('touchend',function(e){
+        var dx=e.changedTouches[0].clientX-lbStartX;
+        var dy=e.changedTouches[0].clientY-lbStartY;
+        if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){lbNav(dx<0?1:-1)}
+        else if(Math.abs(dy)>100&&dy>0){closeLB()}
+      },{passive:true});
+      document.querySelectorAll('.vibe-slider-track img').forEach(function(img){
+        img.addEventListener('click',function(){
+          var track=img.closest('.vibe-slider-track');
+          lbImgs=Array.from(track.querySelectorAll('img'));
+          lbIdx=lbImgs.indexOf(img);
+          openLB();
+        });
+      });
+    }
+    function openLB(){
+      lbImg.src=lbImgs[lbIdx].src;
+      lbImg.alt=lbImgs[lbIdx].alt||'Venue photo';
+      lbCounter.textContent=(lbIdx+1)+' / '+lbImgs.length;
+      lbDotsWrap.innerHTML='';
+      for(var i=0;i<lbImgs.length;i++){
+        var d=document.createElement('span');d.className='lb-dot'+(i===lbIdx?' active':'');d.dataset.i=i;
+        d.addEventListener('click',function(){lbIdx=parseInt(this.dataset.i);updateLB()});
+        lbDotsWrap.appendChild(d);
+      }
+      lbOverlay.classList.add('open');
+      document.body.style.overflow='hidden';
+    }
+    function closeLB(){lbOverlay.classList.remove('open');document.body.style.overflow=''}
+    function lbNav(dir){
+      lbIdx=(lbIdx+dir+lbImgs.length)%lbImgs.length;
+      updateLB();
+    }
+    function updateLB(){
+      lbImg.style.opacity=0;
+      setTimeout(function(){
+        lbImg.src=lbImgs[lbIdx].src;
+        lbImg.alt=lbImgs[lbIdx].alt||'Venue photo';
+        lbImg.style.opacity=1;
+      },150);
+      lbCounter.textContent=(lbIdx+1)+' / '+lbImgs.length;
+      lbDotsWrap.querySelectorAll('.lb-dot').forEach(function(d,i){d.classList.toggle('active',i===lbIdx)});
+    }
+    initLightbox();
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>
