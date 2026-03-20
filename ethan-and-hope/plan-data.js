@@ -62,7 +62,7 @@ window.PLAN_ALL = [
         location: "Little Italy, San Diego",
         tagline: "Golden hour by the harbor with Coronado Bridge and USS Midway as your backdrop",
         description: "A stunning 12 acre bayside park right on the harbor. Walk along the promenade with panoramic views of the <a href=\"https://www.google.com/maps/search/?api=1&query=Coronado+Bridge+San+Diego\" target=\"_blank\">Coronado Bridge</a>, the <a href=\"https://www.google.com/maps/search/?api=1&query=USS+Midway+Museum+San+Diego\" target=\"_blank\">USS Midway</a>, and sailboats dotting the bay. The interactive fountains, lush gardens, and wide open lawns make it one of the most photogenic spots in San Diego. Late March/early April sunset is around 7:15 PM, so you'll catch the beginning of golden hour while you stroll. Free admission. Open sunrise to sunset.",
-        image: "https://www.sandiego.gov/sites/default/files/legacy/park-and-recreation/images/parks/waterfront/wpviewofcoronado1500.jpg",
+        image: "https://images.unsplash.com/photo-1538097304804-2a1b932c284e?w=800&q=80",
         images: [
           "https://images.unsplash.com/photo-1538097304804-2a1b932c284e?w=800&q=80",
           "https://images.unsplash.com/photo-1562095241-8c6714fd4178?w=800&q=80",
