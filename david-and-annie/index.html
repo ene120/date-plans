@@ -193,6 +193,9 @@
   .badge-boba{background:rgba(108,92,231,.1);color:#6c5ce7}
   .badge-cocktails{background:rgba(116,185,255,.12);color:#5f8fdb}
   .s-meta{display:flex;align-items:center;gap:10px;font-size:.72rem;color:#7b5e7b;margin-bottom:3px}
+  .s-change-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(232,67,147,.15);background:rgba(232,67,147,.04);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all .2s;color:#e84393}
+  .s-change-btn:hover{background:rgba(232,67,147,.1);border-color:rgba(232,67,147,.25)}
+  .s-swap-flow{padding:0 14px;overflow:hidden}
 
   /* Food Preview Line */
   .s-food-preview{
@@ -555,7 +558,7 @@
 </head>
 <body>
 
-<script src="js/plan-data-david-annie.js?v=4"></script>
+<script src="js/plan-data-david-annie.js?v=5"></script>
 
 <div class="app" id="app"></div>
 
@@ -708,7 +711,11 @@
       h += '<div class="s-name-row"><div class="s-name">' + stop.name + '</div><span class="s-badge ' + badgeCls(stop.type) + '">' + stop.type + '</span></div>';
       h += '<div class="s-meta"><span>' + stop.time + '</span><span>&middot;</span><span>' + stop.cost + '</span></div>';
       h += '</div>';
+      if(stop.swapOptions && stop.swapOptions.length) h += '<button class="s-change-btn" onclick="event.stopPropagation();window.__pf.openSwapFlow(' + stop.order + ')" title="Change this stop"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></button>';
       h += '</div>';
+
+      // Swap flow (appears below header when change button clicked)
+      h += '<div class="s-swap-flow" id="pfSwapFlow-' + stop.order + '"></div>';
 
       // Image carousel (always visible) with review badges
       var imgs = stop.images && stop.images.length ? stop.images : [stop.image];
@@ -748,7 +755,7 @@
       h += '<div class="stop-actions">';
       h += '<div class="stop-act" onclick="openGoSheet(' + stop.order + ')"><span class="stop-act-icon">\uD83D\uDCCD</span>' + (goTip ? '<span class="stop-act-tip">' + goTip + '</span>' : '') + '</div>';
       h += '<div class="stop-act" onclick="openMenuSheet(' + stop.order + ')"><span class="stop-act-icon">' + menuIcon + '</span>' + (menuTip ? '<span class="stop-act-tip">' + menuTip + '</span>' : '') + '</div>';
-      h += '<div class="stop-act stop-act-park" onclick="openParkSheet(' + stop.order + ');expandCard(' + stop.order + ')"><span class="stop-act-icon">\uD83C\uDD7F\uFE0F</span>' + (parkTip ? '<span class="stop-act-tip">' + parkTip + '</span>' : '') + '</div>';
+      h += '<div class="stop-act stop-act-park" onclick="openParkSheet(' + stop.order + ')"><span class="stop-act-icon">\uD83C\uDD7F\uFE0F</span>' + (parkTip ? '<span class="stop-act-tip">' + parkTip + '</span>' : '') + '</div>';
       h += '</div>';
 
       // Expanded (description, reviews, reservation, dress code, gallery, swap, feedback)
@@ -771,7 +778,7 @@
 
       // Gallery removed (already shown in card carousel above)
 
-      // Swap
+      // Swap confirmation (rendered by plan-features.js if already swapped)
       h += '<div id="swap-' + stop.order + '"></div>';
 
       // Feedback
@@ -1056,6 +1063,6 @@
 })();
 </script>
 
-<script src="js/plan-features.js?v=4"></script>
+<script src="js/plan-features.js?v=5"></script>
 </body>
 </html>

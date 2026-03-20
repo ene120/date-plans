@@ -488,15 +488,9 @@
       if (s[swapKey]) {
         return `<div class="pf-swap"><div class="pf-swap-confirmed"><div class="pf-swap-confirmed-name">\u2713 Changed to ${s[swapKey].chosen}</div><div class="pf-swap-confirmed-sub">We'll remember this for your next plan</div></div></div>`;
       }
-      return `<div class="pf-swap">
-        <button class="pf-swap-btn" onclick="window.__pf.startSwap(${stop.order})">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
-          Change this stop
-        </button>
-        <div class="pf-swap-flow" id="pfSwapFlow-${stop.order}"></div>
-      </div>`;
+      return '';
     },
-    startSwap(order) {
+    openSwapFlow(order) {
       const flow = document.getElementById(`pfSwapFlow-${order}`);
       if (!flow) return;
       flow.innerHTML = `<div class="pf-swap-why">
@@ -545,9 +539,15 @@
           // Update tagline
           const tagEl = card.querySelector('.s-meta');
           if (tagEl) tagEl.textContent = alt.desc;
-          // Update the swap container to show confirmation
+          // Hide the change button (already swapped)
+          const changeBtn = card.querySelector('.s-change-btn');
+          if (changeBtn) changeBtn.style.display = 'none';
+          // Clear the swap flow and show confirmation below
+          const flowEl = document.getElementById('pfSwapFlow-' + order);
+          if (flowEl) flowEl.innerHTML = `<div class="pf-swap" style="padding:0 0 10px"><div class="pf-swap-confirmed"><div class="pf-swap-confirmed-name">\u2713 Changed to ${alt.name}</div><div class="pf-swap-confirmed-sub">We'll remember this for your next plan</div></div></div>`;
+          // Also update the expanded section swap container
           const swapEl = document.getElementById('swap-' + order);
-          if (swapEl) swapEl.innerHTML = `<div class="pf-swap"><div class="pf-swap-confirmed"><div class="pf-swap-confirmed-name">\u2713 Changed to ${alt.name}</div><div class="pf-swap-confirmed-sub">We'll remember this for your next plan</div></div></div>`;
+          if (swapEl) swapEl.innerHTML = '';
           // Dissolve back in
           card.classList.remove('pf-dissolve-out');
           card.classList.add('pf-dissolve-in');
