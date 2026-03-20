@@ -503,7 +503,7 @@
 
   <!-- Swap auth links instantly before anything else renders -->
   <script>
-    (function(){try{var r=localStorage.getItem('sb-xttidhabldfsxwreyths-auth-token');if(!r)return;var u=JSON.parse(r).user;if(!u)return;var n=localStorage.getItem('dateflo_user_name')||(u.user_metadata&&u.user_metadata.display_name)||(u.email?u.email.split('@')[0]:'')||'there';n=n.charAt(0).toUpperCase()+n.slice(1);var a=document.getElementById('navAuthLink');if(a){a.textContent='Hey, '+n;a.href='/app/dashboard.html'}}catch(e){}})();
+    (function(){try{var r=localStorage.getItem('sb-xttidhabldfsxwreyths-auth-token');if(!r)return;var u=JSON.parse(r).user;if(!u)return;var n=localStorage.getItem('dateflo_user_name')||(u.user_metadata&&u.user_metadata.display_name)||'';if(n){n=n.charAt(0).toUpperCase()+n.slice(1);}var a=document.getElementById('navAuthLink');if(a){a.textContent=n?'Hey, '+n:'My Dashboard';a.href='/app/dashboard.html'}}catch(e){}})();
   </script>
 
   <!-- Mobile Drawer -->
@@ -515,11 +515,10 @@
         <span id="drawerAuthText">Sign Up / Sign In</span>
       </a>
     </div>
-    <script>(function(){try{var r=localStorage.getItem('sb-xttidhabldfsxwreyths-auth-token');if(!r)return;var u=JSON.parse(r).user;if(!u)return;var n=localStorage.getItem('dateflo_user_name')||(u.user_metadata&&u.user_metadata.display_name)||(u.email?u.email.split('@')[0]:'')||'there';n=n.charAt(0).toUpperCase()+n.slice(1);var t=document.getElementById('drawerAuthText');if(t)t.textContent='Hey, '+n;var a=document.getElementById('drawerAuthLink');if(a)a.href='/app/dashboard.html'}catch(e){}})();</script>
+    <script>(function(){try{var r=localStorage.getItem('sb-xttidhabldfsxwreyths-auth-token');if(!r)return;var u=JSON.parse(r).user;if(!u)return;var n=localStorage.getItem('dateflo_user_name')||(u.user_metadata&&u.user_metadata.display_name)||'';if(n){n=n.charAt(0).toUpperCase()+n.slice(1);}var t=document.getElementById('drawerAuthText');if(t)t.textContent=n?'Hey, '+n:'My Dashboard';var a=document.getElementById('drawerAuthLink');if(a)a.href='/app/dashboard.html'}catch(e){}})();</script>
     <script>
-    // Async: fetch display_name from Supabase profiles if not cached
+    // Async: fetch display_name from Supabase profiles and update greeting
     (function(){try{
-      if(localStorage.getItem('dateflo_user_name'))return;
       var r=localStorage.getItem('sb-xttidhabldfsxwreyths-auth-token');if(!r)return;
       var parsed=JSON.parse(r);var u=parsed.user;var token=parsed.access_token;if(!u||!token)return;
       var url='https://xttidhabldfsxwreyths.supabase.co/rest/v1/profiles?id=eq.'+u.id+'&select=display_name';
@@ -528,7 +527,6 @@
       .then(function(data){
         if(!data||!data[0])return;
         var name=data[0].display_name;
-        if(!name){name=u.email?u.email.split('@')[0]:'';}
         if(!name)return;
         localStorage.setItem('dateflo_user_name',name);
         name=name.charAt(0).toUpperCase()+name.slice(1);
