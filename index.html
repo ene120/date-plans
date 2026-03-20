@@ -700,28 +700,36 @@
   <style>
     /* Phone preview — renders iframe at real phone size then scales down */
     .phone-frame{
-      width:300px;height:620px;
-      background:#1c1c1e;border-radius:44px;padding:12px;
-      box-shadow:0 0 0 2px #2a2a2e,0 0 0 4px #1a1a1e,0 20px 60px rgba(0,0,0,.5),0 0 80px rgba(224,87,128,.15);
+      width:375px;height:780px;
+      background:#1c1c1e;border-radius:50px;padding:14px;
+      box-shadow:0 0 0 2px #2a2a2e,0 0 0 4px #1a1a1e,0 25px 70px rgba(0,0,0,.5),0 0 90px rgba(224,87,128,.15);
       overflow:hidden;
     }
     .phone-screen{
-      width:100%;height:100%;border-radius:34px;overflow:hidden;background:#fff0f5;
+      width:100%;height:100%;border-radius:38px;overflow:hidden;background:#fff0f5;
       position:relative;
     }
     .phone-iframe{
       width:390px;height:844px;
       border:none;border-radius:0;
-      transform:scale(0.707);
+      transform:scale(0.89);
       transform-origin:top left;
       position:absolute;top:0;left:0;
     }
-    @media(max-width:480px){
-      .phone-frame{width:260px;height:540px;border-radius:38px;padding:10px}
-      .phone-screen{border-radius:28px}
+    @media(max-width:768px){
+      .phone-frame{width:340px;height:700px;border-radius:46px;padding:12px}
+      .phone-screen{border-radius:34px}
       .phone-iframe{
         width:390px;height:844px;
-        transform:scale(0.615);
+        transform:scale(0.81);
+      }
+    }
+    @media(max-width:480px){
+      .phone-frame{width:300px;height:620px;border-radius:42px;padding:11px}
+      .phone-screen{border-radius:32px}
+      .phone-iframe{
+        width:390px;height:844px;
+        transform:scale(0.712);
       }
     }
   </style>
