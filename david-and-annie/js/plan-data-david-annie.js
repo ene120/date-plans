@@ -120,11 +120,11 @@ window.PLAN_ALL = [
           "Stay back from the edges, some areas have erosion",
           "The 0.9 mile trail from the parking lot is easy and flat with incredible views the whole way"
         ],
-        swapVenue: {
-          name: "Kate Sessions Park",
-          desc: "Panoramic bay and city views from Pacific Beach. Great for photos, easier parking.",
-          googleMapsUrl: "https://maps.google.com/?q=Kate+Sessions+Park+San+Diego"
-        }
+        swapOptions: [
+          { name: "Cabrillo National Monument", desc: "Rugged coastal trail at the tip of Point Loma with tidepools, whale watching, and sweeping Pacific views", googleMapsUrl: "https://www.google.com/maps/search/Cabrillo+National+Monument+San+Diego+CA" },
+          { name: "Kate Sessions Memorial Park", desc: "Sweeping hilltop park in Pacific Beach with panoramic views of Mission Bay, downtown, and the ocean", googleMapsUrl: "https://www.google.com/maps/search/Kate+Sessions+Memorial+Park+San+Diego" },
+          { name: "Harbor Island Park", desc: "Flat bayfront walking path with skyline views, Coronado Bridge vistas, and a relaxed waterfront vibe", googleMapsUrl: "https://www.google.com/maps/search/Harbor+Island+Park+San+Diego+CA" }
+        ]
       },
       {
         order: 2,
@@ -212,11 +212,11 @@ window.PLAN_ALL = [
           "Call ahead for a reservation on weekend evenings to avoid the 40+ minute wait",
           "Ask for the kimchi fried rice to be made on your grill at the end, it's a hidden move"
         ],
-        swapVenue: {
-          name: "Gen Korean BBQ House",
-          desc: "Larger spot with similar AYCE format. 10 min drive in Mission Valley. Great atmosphere.",
-          googleMapsUrl: "https://maps.google.com/?q=Gen+Korean+BBQ+House+San+Diego"
-        }
+        swapOptions: [
+          { name: "Manna Heaven BBQ", desc: "Beloved all you can eat Korean BBQ on Convoy since 2010 with quality marinated meats and fresh banchan", googleMapsUrl: "https://www.google.com/maps/search/Manna+Heaven+BBQ+4428+Convoy+St+San+Diego" },
+          { name: "Song Hak Korean BBQ", desc: "Upscale Korean BBQ where staff cook premium prime grade meats for you, known for their specialty cuts", googleMapsUrl: "https://www.google.com/maps/search/Song+Hak+Korean+BBQ+4681+Convoy+St+San+Diego" },
+          { name: "SOT BBQ", desc: "Sleek newer Korean BBQ spot on Convoy with premium a la carte and combo options, more refined experience", googleMapsUrl: "https://www.google.com/maps/search/SOT+BBQ+Convoy+San+Diego" }
+        ]
       },
       {
         order: 3,
@@ -273,11 +273,11 @@ window.PLAN_ALL = [
           "Their freshly brewed boba milk tea is some of the best on Convoy",
           "It's a 3 minute walk from Olleh so just leave the car and stroll over"
         ],
-        swapVenue: {
-          name: "Sweet Vibe",
-          desc: "Amazing Thai tea and curated desserts. 5 min walk. Great for a more chill ending.",
-          googleMapsUrl: "https://maps.google.com/?q=Sweet+Vibe+San+Diego"
-        }
+        swapOptions: [
+          { name: "Iceskimo", desc: "Taiwanese shaved snow with real ingredients, lighter than ice cream with flavors like ube, matcha, and Thai tea", googleMapsUrl: "https://www.google.com/maps/search/Iceskimo+4609+Convoy+St+San+Diego" },
+          { name: "Happy Lemon", desc: "Popular boba chain with house brewed teas, fresh citrus drinks, and their signature salted cheese foam topping", googleMapsUrl: "https://www.google.com/maps/search/Happy+Lemon+4633+Convoy+St+San+Diego" },
+          { name: "Bopomofo Cafe", desc: "Elevated boba and sandwich cafe with handmade drinks and a warm community focused vibe near Convoy", googleMapsUrl: "https://www.google.com/maps/search/Bopomofo+Cafe+7951+Othello+Ave+San+Diego" }
+        ]
       }
     ],
 
@@ -427,11 +427,11 @@ window.PLAN_ALL = [
           "Golden hour light makes this the perfect photo spot",
           "The park is spacious and never feels crowded even on weekends"
         ],
-        swapVenue: {
-          name: "Mount Soledad",
-          desc: "Even more dramatic panoramic views from the top of La Jolla. 15 min drive. Less walking, more driving.",
-          googleMapsUrl: "https://maps.google.com/?q=Mount+Soledad+San+Diego"
-        }
+        swapOptions: [
+          { name: "La Jolla Coast Walk Trail", desc: "Stunning cliffside trail from La Jolla Cove to La Jolla Shores with ocean views, sea lions, and sandstone scenery", googleMapsUrl: "https://www.google.com/maps/search/La+Jolla+Coast+Walk+Trail+San+Diego" },
+          { name: "Cabrillo National Monument", desc: "Rugged coastal trail at the tip of Point Loma with tidepools, whale watching, and sweeping Pacific views", googleMapsUrl: "https://www.google.com/maps/search/Cabrillo+National+Monument+San+Diego+CA" },
+          { name: "Harbor Island Park", desc: "Flat bayfront walking path with skyline views, Coronado Bridge vistas, and a relaxed waterfront vibe", googleMapsUrl: "https://www.google.com/maps/search/Harbor+Island+Park+San+Diego+CA" }
+        ]
       },
       {
         order: 2,
@@ -512,11 +512,11 @@ window.PLAN_ALL = [
           "The garlic butter chicken wings are a must, everyone orders them for a reason",
           "They're closed Monday and Tuesday, so plan accordingly"
         ],
-        swapVenue: {
-          name: "Shank & Bone",
-          desc: "Modern Vietnamese in North Park. Trendier atmosphere, slightly higher prices. 15 min drive.",
-          googleMapsUrl: "https://maps.google.com/?q=Shank+and+Bone+San+Diego"
-        }
+        swapOptions: [
+          { name: "Pho Nom", desc: "Vibrant Vietnamese spot on Convoy with authentic pho, modern touches, and incredible noodle soups and rice plates", googleMapsUrl: "https://www.google.com/maps/search/Pho+Nom+4646+Convoy+St+San+Diego" },
+          { name: "Pho Duyen Mai", desc: "Widely considered one of the best pho spots in San Diego with rich hours simmered broth and must try beef rib pho", googleMapsUrl: "https://www.google.com/maps/search/Pho+Duyen+Mai+5375+Kearny+Villa+Rd+San+Diego" },
+          { name: "Mien Trung Restaurant", desc: "Cash only gem specializing in Central Vietnamese dishes like bun bo hue and bun rieu, authentic and beloved", googleMapsUrl: "https://www.google.com/maps/search/Mien+Trung+Restaurant+7530+Mesa+College+Dr+San+Diego" }
+        ]
       },
       {
         order: 3,
@@ -573,11 +573,11 @@ window.PLAN_ALL = [
           "Freshly brewed boba milk tea is a must try",
           "It's a short walk from Phuong Trang, no need to drive"
         ],
-        swapVenue: {
-          name: "Sweet Vibe",
-          desc: "Heavenly Green Thai Tea and curated desserts. 5 min walk on Convoy.",
-          googleMapsUrl: "https://maps.google.com/?q=Sweet+Vibe+San+Diego"
-        }
+        swapOptions: [
+          { name: "Iceskimo", desc: "Taiwanese shaved snow with real ingredients, lighter than ice cream with flavors like ube, matcha, and Thai tea", googleMapsUrl: "https://www.google.com/maps/search/Iceskimo+4609+Convoy+St+San+Diego" },
+          { name: "Happy Lemon", desc: "Popular boba chain with house brewed teas, fresh citrus drinks, and their signature salted cheese foam topping", googleMapsUrl: "https://www.google.com/maps/search/Happy+Lemon+4633+Convoy+St+San+Diego" },
+          { name: "Bopomofo Cafe", desc: "Elevated boba and sandwich cafe with handmade drinks and a warm community focused vibe near Convoy", googleMapsUrl: "https://www.google.com/maps/search/Bopomofo+Cafe+7951+Othello+Ave+San+Diego" }
+        ]
       }
     ],
 

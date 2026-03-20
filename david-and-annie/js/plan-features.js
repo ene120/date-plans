@@ -60,9 +60,14 @@
     .pf-fb-toggle svg{width:16px;height:16px;transition:transform .3s}
     .pf-fb-toggle.open svg{transform:rotate(180deg)}
     .pf-fb-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
-    .pf-fb-body.open{max-height:500px}
+    .pf-fb-body.open{max-height:600px}
     .pf-fb-inner{padding-top:14px}
     .pf-fb-note{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.5;margin-bottom:16px;font-style:italic}
+    .pf-fb-tabs{display:flex;gap:6px;margin-bottom:14px;background:rgba(255,255,255,.04);padding:4px;border-radius:12px}
+    .pf-fb-tab{flex:1;padding:10px 8px;border-radius:10px;border:none;background:transparent;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.5);cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;text-align:center}
+    .pf-fb-tab.active{background:rgba(255,255,255,.08);color:var(--rose-light,#ff6b9d);box-shadow:0 2px 8px rgba(224,87,128,.1)}
+    .pf-fb-panel{display:none}
+    .pf-fb-panel.active{display:block}
     .pf-fb-partner-block{padding:14px;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);margin-bottom:12px}
     .pf-fb-partner-block:last-child{margin-bottom:0}
     .pf-fb-partner-name{font-size:.82rem;font-weight:700;color:var(--rose-light,#ff6b9d);margin-bottom:10px}
@@ -172,10 +177,35 @@
     .pf-pref-avoid{color:rgba(255,100,100,.6)}
 
     /* Swap venue */
-    .pf-swap{margin-top:12px;padding:12px;border-radius:10px;border:1px dashed rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
-    .pf-swap-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:6px}
-    .pf-swap-name{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.6)}
-    .pf-swap-desc{font-size:.78rem;color:rgba(255,255,255,.35);margin-top:2px}
+    .pf-swap{margin-top:16px}
+    .pf-swap-btn{display:flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);cursor:pointer;width:100%;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.5);transition:all .2s}
+    .pf-swap-btn:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.7)}
+    .pf-swap-btn svg{width:16px;height:16px;flex-shrink:0}
+    .pf-swap-flow{margin-top:12px;overflow:hidden}
+    .pf-swap-why{padding:16px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);animation:pfFadeIn .3s ease}
+    .pf-swap-why-title{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:12px}
+    .pf-swap-why-opts{display:flex;flex-direction:column;gap:8px}
+    .pf-swap-why-opt{padding:12px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.5);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s;text-align:left;font-family:'Inter',sans-serif}
+    .pf-swap-why-opt:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.1)}
+    .pf-swap-alts{animation:pfFadeIn .3s ease}
+    .pf-swap-alts-title{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.4);margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em}
+    .pf-swap-alt{padding:14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);margin-bottom:10px;cursor:pointer;transition:all .25s}
+    .pf-swap-alt:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);transform:translateY(-1px)}
+    .pf-swap-alt:last-child{margin-bottom:0}
+    .pf-swap-alt-name{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.7)}
+    .pf-swap-alt-desc{font-size:.76rem;color:rgba(255,255,255,.4);margin-top:4px;line-height:1.45}
+    .pf-swap-alt-link{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;color:var(--rose-light,#ff6b9d);font-weight:600;margin-top:6px;text-decoration:none}
+    .pf-swap-cancel{margin-top:10px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.06);background:transparent;color:rgba(255,255,255,.35);font-size:.76rem;font-weight:500;cursor:pointer;width:100%;font-family:'Inter',sans-serif;transition:all .2s}
+    .pf-swap-cancel:hover{color:rgba(255,255,255,.5);background:rgba(255,255,255,.03)}
+    .pf-swap-confirmed{padding:14px;border-radius:12px;background:rgba(0,184,148,.08);border:1px solid rgba(0,184,148,.15);animation:pfFadeIn .3s ease}
+    .pf-swap-confirmed-name{font-size:.85rem;font-weight:600;color:#00b894}
+    .pf-swap-confirmed-sub{font-size:.76rem;color:rgba(255,255,255,.4);margin-top:4px}
+    @keyframes pfFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+    /* Apple Hide Distracting Items animation */
+    .pf-dissolve-out{animation:pfDissolve .5s ease forwards}
+    .pf-dissolve-in{animation:pfDissolveIn .5s ease forwards}
+    @keyframes pfDissolve{0%{opacity:1;filter:blur(0);transform:scale(1)}60%{opacity:.3;filter:blur(4px);transform:scale(.98)}100%{opacity:0;filter:blur(8px);transform:scale(.96)}}
+    @keyframes pfDissolveIn{0%{opacity:0;filter:blur(8px);transform:scale(.96)}40%{opacity:.3;filter:blur(4px);transform:scale(.98)}100%{opacity:1;filter:blur(0);transform:scale(1)}}
 
     /* Footer */
     .pf-footer{text-align:center;padding:40px 0 20px;font-size:.75rem;color:rgba(255,255,255,.2)}
@@ -266,6 +296,15 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a"); a.href = url; a.download = `dateflo-${P.coupleId}.ics`; a.click(); URL.revokeObjectURL(url);
     },
+    switchStopFbTab(order, partner) {
+      const fb = document.querySelector(`[data-fb-panel="${order}-${partner}"]`);
+      if (!fb) return;
+      const container = fb.closest('.pf-fb-inner');
+      container.querySelectorAll('.pf-fb-tab').forEach(t => t.classList.remove('active'));
+      container.querySelectorAll('.pf-fb-panel').forEach(p => p.classList.remove('active'));
+      container.querySelectorAll('.pf-fb-tab').forEach(t => { if (t.textContent.toLowerCase() === partner) t.classList.add('active'); });
+      fb.classList.add('active');
+    },
     switchRatingTab(partner) {
       document.querySelectorAll('.pf-rating-tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.pf-rating-panel').forEach(p => p.classList.remove('active'));
@@ -298,10 +337,16 @@
       let html = `<div class="pf-fb">
         <button class="pf-fb-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">How was this spot?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="pf-fb-body"><div class="pf-fb-inner">
-          <div class="pf-fb-note">Share your thoughts so we can make your next date even more you.</div>`;
-      [P.partner1, P.partner2].forEach(name => {
+          <div class="pf-fb-note">Share your thoughts so we can make your next date even more you.</div>
+          <div class="pf-fb-tabs">
+            <button class="pf-fb-tab active" onclick="window.__pf.switchStopFbTab(${order},'${P.partner1.toLowerCase()}')">${P.partner1}</button>
+            <button class="pf-fb-tab" onclick="window.__pf.switchStopFbTab(${order},'${P.partner2.toLowerCase()}')">${P.partner2}</button>
+          </div>`;
+      [P.partner1, P.partner2].forEach((name, i) => {
         const pk = name.toLowerCase();
         const fbKey = `fb-${order}-${pk}`;
+        const activeClass = i === 0 ? ' active' : '';
+        html += `<div class="pf-fb-panel${activeClass}" data-fb-panel="${order}-${pk}">`;
         if (s[fbKey]) {
           html += `<div class="pf-fb-partner-block"><div class="pf-fb-partner-name">${name}</div><div class="pf-fb-sent">✓ Got it, thanks ${name}!</div></div>`;
         } else {
@@ -321,6 +366,7 @@
             <button class="pf-fb-send" onclick="window.__pf.submitStopFb(${order},'${pk}',this)">Send ${name}'s Feedback</button>
           </div>`;
         }
+        html += `</div>`;
       });
       html += `</div></div></div>`;
       return html;
@@ -433,10 +479,81 @@
       return '';
     },
 
-    // Swap venue HTML
+    // Swap venue HTML — "Change" button → Why question → 3 alternatives
     getSwapHtml(stop) {
-      if (!stop.swapVenue) return '';
-      return `<div class="pf-swap"><div class="pf-swap-label">Swap This Stop</div><div class="pf-swap-name">${stop.swapVenue.name}</div><div class="pf-swap-desc">${stop.swapVenue.desc}</div></div>`;
+      if (!stop.swapOptions || !stop.swapOptions.length) return '';
+      const s = getStore();
+      const swapKey = `swap-${stop.order}`;
+      // Already swapped — show confirmation
+      if (s[swapKey]) {
+        return `<div class="pf-swap"><div class="pf-swap-confirmed"><div class="pf-swap-confirmed-name">\u2713 Changed to ${s[swapKey].chosen}</div><div class="pf-swap-confirmed-sub">We'll remember this for your next plan</div></div></div>`;
+      }
+      return `<div class="pf-swap">
+        <button class="pf-swap-btn" onclick="window.__pf.startSwap(${stop.order})">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+          Change this stop
+        </button>
+        <div class="pf-swap-flow" id="pfSwapFlow-${stop.order}"></div>
+      </div>`;
+    },
+    startSwap(order) {
+      const flow = document.getElementById(`pfSwapFlow-${order}`);
+      if (!flow) return;
+      flow.innerHTML = `<div class="pf-swap-why">
+        <div class="pf-swap-why-title">Quick question \u2014 why the change?</div>
+        <div class="pf-swap-why-opts">
+          <button class="pf-swap-why-opt" onclick="window.__pf.showAlts(${order},'I\\'ve been here before')">I've been here before</button>
+          <button class="pf-swap-why-opt" onclick="window.__pf.showAlts(${order},'Not really my style')">Not really my style</button>
+          <button class="pf-swap-why-opt" onclick="window.__pf.showAlts(${order},'Just want to explore something new')">Just want to explore something new</button>
+        </div>
+        <button class="pf-swap-cancel" onclick="document.getElementById('pfSwapFlow-${order}').innerHTML=''">Never mind, keep it</button>
+      </div>`;
+    },
+    showAlts(order, reason) {
+      const stop = P.stops.find(s => s.order === order);
+      if (!stop || !stop.swapOptions) return;
+      const flow = document.getElementById(`pfSwapFlow-${order}`);
+      let html = `<div class="pf-swap-alts">
+        <div class="pf-swap-alts-title">Pick your replacement</div>`;
+      stop.swapOptions.forEach((alt, i) => {
+        html += `<div class="pf-swap-alt" onclick="window.__pf.confirmSwap(${order},${i},'${reason.replace(/'/g,"\\'")}')">
+          <div class="pf-swap-alt-name">${alt.name}</div>
+          <div class="pf-swap-alt-desc">${alt.desc}</div>
+          <a class="pf-swap-alt-link" href="${alt.googleMapsUrl}" target="_blank" onclick="event.stopPropagation()">View on Maps \u2192</a>
+        </div>`;
+      });
+      html += `<button class="pf-swap-cancel" onclick="document.getElementById('pfSwapFlow-${order}').innerHTML=''">Never mind, keep it</button></div>`;
+      flow.innerHTML = html;
+    },
+    confirmSwap(order, altIndex, reason) {
+      const stop = P.stops.find(s => s.order === order);
+      if (!stop) return;
+      const alt = stop.swapOptions[altIndex];
+      // Store swap data for personalization
+      const s = getStore();
+      s[`swap-${order}`] = { original: stop.name, chosen: alt.name, reason, date: new Date().toISOString() };
+      setStore(s);
+      console.log(`Swap [stop ${order}]:`, { original: stop.name, chosen: alt.name, reason });
+      // Apple "Hide Distracting Items" dissolve animation on the stop card
+      const card = document.getElementById('stop' + order);
+      if (card) {
+        card.classList.add('pf-dissolve-out');
+        setTimeout(() => {
+          // Update the stop name in the card header
+          const nameEl = card.querySelector('.s-name');
+          if (nameEl) nameEl.textContent = alt.name;
+          // Update tagline
+          const tagEl = card.querySelector('.s-meta');
+          if (tagEl) tagEl.textContent = alt.desc;
+          // Update the swap container to show confirmation
+          const swapEl = document.getElementById('swap-' + order);
+          if (swapEl) swapEl.innerHTML = `<div class="pf-swap"><div class="pf-swap-confirmed"><div class="pf-swap-confirmed-name">\u2713 Changed to ${alt.name}</div><div class="pf-swap-confirmed-sub">We'll remember this for your next plan</div></div></div>`;
+          // Dissolve back in
+          card.classList.remove('pf-dissolve-out');
+          card.classList.add('pf-dissolve-in');
+          setTimeout(() => card.classList.remove('pf-dissolve-in'), 500);
+        }, 500);
+      }
     },
 
     // Lightbox

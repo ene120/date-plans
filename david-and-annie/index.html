@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-<title>DateFlo — David & Annie's Date Plan</title>
+<title>DateFlo — Custom Plan Viewer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -141,7 +141,7 @@
     box-shadow:0 2px 12px rgba(45,19,44,.04);
     overflow:hidden;transition:all .3s ease;
   }
-  .stop-card.is-checked .stop-collapsed{opacity:.55}
+  .stop-card.is-checked .stop-collapsed{opacity:1}
   .stop-card.is-checked .s-name{text-decoration:line-through}
   .stop-card.is-checked .card-gallery,
   .stop-card.is-checked .stop-actions,
@@ -482,6 +482,9 @@
   .pf-fb{background:#fff!important;border-color:rgba(232,67,147,.1)!important}
   .pf-fb-toggle{color:#7b5e7b!important}
   .pf-fb-note{color:#7b5e7b!important}
+  .pf-fb-tabs{background:rgba(232,67,147,.06)!important;padding:4px!important}
+  .pf-fb-tab{color:#7b5e7b!important}
+  .pf-fb-tab.active{background:#fff!important;color:#e84393!important;box-shadow:0 2px 8px rgba(232,67,147,.1)!important}
   .pf-fb-partner-block{background:rgba(232,67,147,.02)!important;border-color:rgba(232,67,147,.08)!important}
   .pf-fb-partner-name{color:#e84393!important}
   .pf-fb-sent{color:#00b894!important}
@@ -494,10 +497,23 @@
   .pf-fb-opt.sel{background:rgba(232,67,147,.1)!important;border-color:#e84393!important;color:#e84393!important}
   .pf-fb-ta{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.1)!important;color:#2d132c!important}
   .pf-fb-ta::placeholder{color:#c4a0b8!important}
-  .pf-swap{border-color:rgba(232,67,147,.12)!important;background:rgba(232,67,147,.02)!important}
-  .pf-swap-label{color:#7b5e7b!important}
-  .pf-swap-name{color:#2d132c!important}
-  .pf-swap-desc{color:#7b5e7b!important}
+  .pf-swap-btn{border-color:rgba(232,67,147,.12)!important;background:rgba(232,67,147,.03)!important;color:#7b5e7b!important}
+  .pf-swap-btn:hover{background:rgba(232,67,147,.06)!important;color:#2d132c!important}
+  .pf-swap-why{background:rgba(232,67,147,.02)!important;border-color:rgba(232,67,147,.1)!important}
+  .pf-swap-why-title{color:#2d132c!important}
+  .pf-swap-why-opt{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.1)!important;color:#7b5e7b!important}
+  .pf-swap-why-opt:hover{background:rgba(232,67,147,.08)!important;color:#2d132c!important;border-color:rgba(232,67,147,.15)!important}
+  .pf-swap-alt{background:#fff!important;border-color:rgba(232,67,147,.1)!important}
+  .pf-swap-alt:hover{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.18)!important}
+  .pf-swap-alt-name{color:#2d132c!important}
+  .pf-swap-alt-desc{color:#7b5e7b!important}
+  .pf-swap-alt-link{color:#e84393!important}
+  .pf-swap-cancel{border-color:rgba(232,67,147,.08)!important;color:#b8a0b8!important}
+  .pf-swap-cancel:hover{color:#7b5e7b!important;background:rgba(232,67,147,.03)!important}
+  .pf-swap-confirmed{background:rgba(0,184,148,.06)!important;border-color:rgba(0,184,148,.12)!important}
+  .pf-swap-confirmed-name{color:#00b894!important}
+  .pf-swap-confirmed-sub{color:#7b5e7b!important}
+  .pf-swap-alts-title{color:#7b5e7b!important}
   .pf-review{background:rgba(232,67,147,.04)!important;border-color:rgba(232,67,147,.08)!important;color:#7b5e7b!important}
   .pf-food-partner{color:#e84393!important}
   .pf-food-name{color:#2d132c!important}
@@ -732,11 +748,8 @@
       h += '<div class="stop-actions">';
       h += '<div class="stop-act" onclick="openGoSheet(' + stop.order + ')"><span class="stop-act-icon">\uD83D\uDCCD</span>' + (goTip ? '<span class="stop-act-tip">' + goTip + '</span>' : '') + '</div>';
       h += '<div class="stop-act" onclick="openMenuSheet(' + stop.order + ')"><span class="stop-act-icon">' + menuIcon + '</span>' + (menuTip ? '<span class="stop-act-tip">' + menuTip + '</span>' : '') + '</div>';
-      h += '<div class="stop-act stop-act-park" onclick="openParkSheet(' + stop.order + ')"><span class="stop-act-icon">\uD83C\uDD7F\uFE0F</span>' + (parkTip ? '<span class="stop-act-tip">' + parkTip + '</span>' : '') + '</div>';
+      h += '<div class="stop-act stop-act-park" onclick="openParkSheet(' + stop.order + ');expandCard(' + stop.order + ')"><span class="stop-act-icon">\uD83C\uDD7F\uFE0F</span>' + (parkTip ? '<span class="stop-act-tip">' + parkTip + '</span>' : '') + '</div>';
       h += '</div>';
-
-      // Expand button
-      h += '<div class="expand-btn" onclick="toggleExpand(' + stop.order + ')"><span class="eb-text"></span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>';
 
       // Expanded (description, reviews, reservation, dress code, gallery, swap, feedback)
       h += '<div class="stop-expanded"><div class="exp-inner">';
@@ -784,6 +797,11 @@
 
   window.toggleExpand = function(order){
     document.getElementById('stop'+order).classList.toggle('is-open');
+  };
+
+  window.expandCard = function(order){
+    var card = document.getElementById('stop'+order);
+    if(card && !card.classList.contains('is-open')) card.classList.add('is-open');
   };
 
   window.toggleFav = function(){
@@ -895,12 +913,7 @@
       });
     }
     if(s.dressCode) tab2 += '<div class="ms-note-tip"><span class="ms-note-num">Dress</span>' + s.dressCode + '</div>';
-    if(s.swapVenue){
-      tab2 += '<div style="margin-top:14px;padding:14px;border-radius:12px;border:1px dashed rgba(232,67,147,.15);background:rgba(232,67,147,.03)">' +
-        '<div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b8a0b8;margin-bottom:4px">\u21BB Backup Option</div>' +
-        '<div style="font-size:.85rem;font-weight:600;color:#2d132c">' + s.swapVenue.name + '</div>' +
-        '<div style="font-size:.78rem;color:#7b5e7b;margin-top:2px;line-height:1.4">' + s.swapVenue.desc + '</div></div>';
-    }
+    // Swap options are now rendered in the card body via plan-features.js getSwapHtml
 
     var h = '<div class="ms-tabs">' +
       '<button class="ms-tab active" onclick="switchMenuTab(this,0)">' + tab1Label + '</button>' +
