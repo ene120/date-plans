@@ -355,6 +355,9 @@
       display:inline-block;margin-top:8px;font-size:.72rem;font-weight:600;
       color:#00b894;background:rgba(0,184,148,.1);padding:3px 10px;border-radius:8px;
     }
+    .price-features li.pending::before{content:'';width:8px;height:8px;border-radius:50%;border:2px solid rgba(224,87,128,.3);flex-shrink:0;margin-top:4px}
+    .price-features li.pending{color:var(--text-muted)}
+    .price-features li.pending::after{content:'Pending';font-size:.62rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--rose);opacity:.6;background:rgba(224,87,128,.08);padding:1px 6px;border-radius:4px;margin-left:auto;flex-shrink:0}
     @media(max-width:800px){.pricing-grid{grid-template-columns:1fr;max-width:380px}}
 
     /* ═══════════ DELIVERY ═══════════ */
@@ -845,6 +848,9 @@
             <li>Weather and outfit guide</li>
             <li>Backup venues for each stop</li>
             <li>Pre-date checklist</li>
+            <li>Reviews and ratings for every stop</li>
+            <li>Budget breakdown</li>
+            <li>No venue swap button</li>
           </ul>
           <a class="price-cta price-cta-outline" onclick="openForm()">Plan My Date &rarr;</a>
         </div>
@@ -859,13 +865,13 @@
           <ul class="price-features">
             <li>Everything in Single Date</li>
             <li>3 separate date plans, each with 2 variations</li>
+            <li>2 venue swaps per stop</li>
             <li>No repeated venues across plans</li>
-            <li>Reviews and ratings for every stop</li>
             <li>Live countdown timer on each plan</li>
-            <li>Post-date feedback to improve future plans</li>
             <li>Calendar integration (Google + Apple)</li>
-            <li>Budget breakdown per date</li>
             <li>Priority delivery within 24 hours</li>
+            <li class="pending">Post-date feedback to improve future plans</li>
+            <li class="pending">Seasonal and event-aware planning</li>
           </ul>
           <a class="price-cta price-cta-primary" onclick="openForm()">Get 3 Dates &rarr;</a>
           <div class="price-save">Save $5 per date</div>
@@ -880,13 +886,13 @@
           <ul class="price-features">
             <li>Everything in 3-Day Pack</li>
             <li>6 unique date plans, each with 2 variations</li>
+            <li>3 venue swaps per stop</li>
             <li>Venues curated across different neighborhoods</li>
             <li>Mix of vibes: casual, romantic, adventurous</li>
-            <li>Seasonal and event-aware planning</li>
             <li>Liked plans saved to your profile</li>
-            <li>Plan history and preference learning</li>
-            <li>Event and conflict alerts</li>
-            <li>Early access to DateFlo events</li>
+            <li class="pending">Plan history and preference learning</li>
+            <li class="pending">Event and conflict alerts</li>
+            <li class="pending">Early access to DateFlo events</li>
           </ul>
           <a class="price-cta price-cta-outline" onclick="openForm()">Get 6 Dates &rarr;</a>
           <div class="price-save">Save $3.67 per date</div>
