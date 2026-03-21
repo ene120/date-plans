@@ -363,6 +363,13 @@
   }
   .stop-act:hover .stop-act-tip{opacity:1}
 
+  /* ── Stop Tagline (short description under buttons) ── */
+  .stop-tagline{
+    font-size:.8rem;color:#7b5e7b;line-height:1.5;
+    padding:0 4px;margin-top:2px;
+    font-style:italic;
+  }
+
   /* ── Bottom Sheet ── */
   .sheet-overlay{
     position:fixed;inset:0;background:rgba(45,19,44,.4);
@@ -738,6 +745,11 @@
       h += '<div class="stop-act stop-act-park" onclick="openParkSheet(' + stop.order + ');expandCard(' + stop.order + ')"><span class="stop-act-icon">\uD83C\uDD7F\uFE0F</span>' + (parkTip ? '<span class="stop-act-tip">' + parkTip + '</span>' : '') + '</div>';
       h += '</div>';
 
+      // Short description under the action buttons
+      if(stop.tagline){
+        h += '<div class="stop-tagline">' + stop.tagline + '</div>';
+      }
+
       // Expanded (description, reviews, reservation, dress code, gallery, swap, feedback)
       h += '<div class="stop-expanded"><div class="exp-inner">';
       h += '<div class="exp-desc">' + stop.description + '</div>';
@@ -860,6 +872,7 @@
     document.getElementById('menuTitle').textContent = sheetTitle;
 
     var tab1Label = s.foodRecs ? 'Our Picks' : 'Highlights';
+    var tabIdx = 0;
 
     // Tab 1: Our Picks
     var tab1 = '';
@@ -885,14 +898,31 @@
       if(s.tips && s.tips.length > 0) tab1 += '<div class="ms-tip">' + s.tips[0] + '</div>';
     }
 
-    // Happy Hour (right under food recs)
-    if(s.happyHour){
-      tab1 += '<div class="ms-hh"><div class="ms-hh-title">Happy Hour</div><div class="ms-hh-times">' + s.happyHour.times + '</div><div class="ms-hh-deals">' + s.happyHour.deals.map(function(d){ return '<div class="ms-hh-deal">\u2022 ' + d + '</div>'; }).join('') + '</div></div>';
-    }
-
     if(s.menuUrl) tab1 += '<a class="ms-menu-btn" href="' + s.menuUrl + '" target="_blank">View Full Menu</a>';
 
-    // Tab 2: Insider Notes
+    // Tab 2: Happy Hour (separate tab, only if available)
+    var tabHH = '';
+    var hasHH = !!s.happyHour;
+    if(hasHH){
+      tabHH += '<div class="ms-hh" style="margin-top:0;border:none;background:transparent;padding:0">';
+      tabHH += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span style="font-size:1.4rem">\uD83C\uDF78</span><div><div class="ms-hh-title" style="margin-bottom:0">Happy Hour</div><div class="ms-hh-times">' + s.happyHour.times + '</div></div></div>';
+      tabHH += '<div class="ms-hh-deals" style="display:flex;flex-direction:column;gap:4px">';
+      s.happyHour.deals.forEach(function(d){
+        var parts = d.match(/^(\$\d+)\s+(.+?)(?:\s*—\s*(.+))?$/);
+        if(parts){
+          tabHH += '<div class="ms-food-item" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0">';
+          tabHH += '<span style="background:rgba(0,184,148,.12);color:#00b894;font-weight:700;font-size:.78rem;padding:3px 8px;border-radius:8px;flex-shrink:0;margin-top:1px">' + parts[1] + '</span>';
+          tabHH += '<div><div class="ms-food-name">' + parts[2] + '</div>';
+          if(parts[3]) tabHH += '<div class="ms-food-desc">' + parts[3] + '</div>';
+          tabHH += '</div></div>';
+        } else {
+          tabHH += '<div class="ms-hh-deal">\u2022 ' + d + '</div>';
+        }
+      });
+      tabHH += '</div></div>';
+    }
+
+    // Tab 3: Insider Notes
     var tab2 = '<div class="ms-note-header"><div class="ms-note-title">Insider Notes</div><div class="ms-note-sub">Tips to make this stop even better</div></div>';
     if(s.tips && s.tips.length){
       s.tips.forEach(function(t, i){
@@ -907,12 +937,16 @@
         '<div style="font-size:.78rem;color:#7b5e7b;margin-top:2px;line-height:1.4">' + s.swapVenue.desc + '</div></div>';
     }
 
+    // Build tabs
+    var notesIdx = hasHH ? 2 : 1;
     var h = '<div class="ms-tabs">' +
-      '<button class="ms-tab active" onclick="switchMenuTab(this,0)">' + tab1Label + '</button>' +
-      '<button class="ms-tab" onclick="switchMenuTab(this,1)">Insider Notes</button>' +
+      '<button class="ms-tab active" onclick="switchMenuTab(this,0)">' + tab1Label + '</button>';
+    if(hasHH) h += '<button class="ms-tab" onclick="switchMenuTab(this,1)">Happy Hour</button>';
+    h += '<button class="ms-tab" onclick="switchMenuTab(this,' + notesIdx + ')">Insider Notes</button>' +
     '</div>' +
-    '<div class="ms-tab-panel active" id="msPanel0">' + tab1 + '</div>' +
-    '<div class="ms-tab-panel" id="msPanel1">' + tab2 + '</div>';
+    '<div class="ms-tab-panel active" id="msPanel0">' + tab1 + '</div>';
+    if(hasHH) h += '<div class="ms-tab-panel" id="msPanel1">' + tabHH + '</div>';
+    h += '<div class="ms-tab-panel" id="msPanel' + notesIdx + '">' + tab2 + '</div>';
 
     document.getElementById('menuBody').innerHTML = h;
     openSheetById('menuSheet');

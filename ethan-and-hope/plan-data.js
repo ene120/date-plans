@@ -174,7 +174,18 @@ window.PLAN_ALL = [
           google: { stars: 4.5, count: 3100 },
           yelp: { stars: 4.3, count: 4500 }
         },
-        happyHour: null,
+        happyHour: {
+          times: "5:00 PM – 6:00 PM, Daily",
+          deals: [
+            "$10 J&I Burger — smash style, cheddar, pickled onion, special sauce",
+            "$8 Crispy Brussel Sprouts — sweet chili glaze, sesame, lime",
+            "$7 Sourdough & Butter — house cultured butter, sea salt",
+            "$9 Wagyu Tartare — egg yolk, capers, dijon, crostini",
+            "$6 Select Wines by the glass",
+            "$8 House Cocktail of the Day",
+            "$5 Draft Beers"
+          ]
+        },
         menuUrl: "https://www.juniperandivy.com/menu/",
         reservationUrl: "https://www.opentable.com/juniper-and-ivy",
         phone: "+16192699036",
@@ -249,7 +260,17 @@ window.PLAN_ALL = [
           google: { stars: 4.6, count: 4200 },
           yelp: { stars: 4.4, count: 2800 }
         },
-        happyHour: null,
+        happyHour: {
+          times: "5:00 PM – 6:30 PM, Mon–Fri",
+          deals: [
+            "$12 Classic Martini — gin or vodka, dry vermouth, olive or twist",
+            "$10 Born & Raised Old Fashioned — bourbon, demerara, angostura, orange peel",
+            "$9 House Wine — rotating red or white by the glass",
+            "$14 Oysters (half dozen) — charcoal roasted, lemon, mignonette",
+            "$8 Dirty Tots — loaded with short rib, cheese, scallions",
+            "$7 Draft Beers"
+          ]
+        },
         menuUrl: null,
         reservationUrl: null,
         phone: "+16192024577",
