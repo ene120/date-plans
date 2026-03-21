@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-<title>Ethan & Hope's Date Plan | DateFlo</title>
+<title>DateFlo — Custom Plan Viewer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -193,6 +193,9 @@
   .badge-boba{background:rgba(108,92,231,.1);color:#6c5ce7}
   .badge-cocktails{background:rgba(116,185,255,.12);color:#5f8fdb}
   .s-meta{display:flex;align-items:center;gap:10px;font-size:.72rem;color:#7b5e7b;margin-bottom:3px}
+  .s-change-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(232,67,147,.15);background:rgba(232,67,147,.04);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all .2s;color:#e84393}
+  .s-change-btn:hover{background:rgba(232,67,147,.1);border-color:rgba(232,67,147,.25)}
+  .s-swap-flow{padding:0 14px;overflow:hidden}
 
   /* Food Preview Line */
   .s-food-preview{
@@ -363,13 +366,6 @@
   }
   .stop-act:hover .stop-act-tip{opacity:1}
 
-  /* ── Stop Tagline (short description under buttons) ── */
-  .stop-tagline{
-    font-size:.8rem;color:#7b5e7b;line-height:1.5;
-    padding:0 4px;margin-top:2px;
-    font-style:italic;
-  }
-
   /* ── Bottom Sheet ── */
   .sheet-overlay{
     position:fixed;inset:0;background:rgba(45,19,44,.4);
@@ -504,10 +500,23 @@
   .pf-fb-opt.sel{background:rgba(232,67,147,.1)!important;border-color:#e84393!important;color:#e84393!important}
   .pf-fb-ta{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.1)!important;color:#2d132c!important}
   .pf-fb-ta::placeholder{color:#c4a0b8!important}
-  .pf-swap{border-color:rgba(232,67,147,.12)!important;background:rgba(232,67,147,.02)!important}
-  .pf-swap-label{color:#7b5e7b!important}
-  .pf-swap-name{color:#2d132c!important}
-  .pf-swap-desc{color:#7b5e7b!important}
+  .pf-swap-btn{border-color:rgba(232,67,147,.12)!important;background:rgba(232,67,147,.03)!important;color:#7b5e7b!important}
+  .pf-swap-btn:hover{background:rgba(232,67,147,.06)!important;color:#2d132c!important}
+  .pf-swap-why{background:rgba(232,67,147,.02)!important;border-color:rgba(232,67,147,.1)!important}
+  .pf-swap-why-title{color:#2d132c!important}
+  .pf-swap-why-opt{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.1)!important;color:#7b5e7b!important}
+  .pf-swap-why-opt:hover{background:rgba(232,67,147,.08)!important;color:#2d132c!important;border-color:rgba(232,67,147,.15)!important}
+  .pf-swap-alt{background:#fff!important;border-color:rgba(232,67,147,.1)!important}
+  .pf-swap-alt:hover{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.18)!important}
+  .pf-swap-alt-name{color:#2d132c!important}
+  .pf-swap-alt-desc{color:#7b5e7b!important}
+  .pf-swap-alt-link{color:#e84393!important}
+  .pf-swap-cancel{border-color:rgba(232,67,147,.08)!important;color:#b8a0b8!important}
+  .pf-swap-cancel:hover{color:#7b5e7b!important;background:rgba(232,67,147,.03)!important}
+  .pf-swap-confirmed{background:rgba(0,184,148,.06)!important;border-color:rgba(0,184,148,.12)!important}
+  .pf-swap-confirmed-name{color:#00b894!important}
+  .pf-swap-confirmed-sub{color:#7b5e7b!important}
+  .pf-swap-alts-title{color:#7b5e7b!important}
   .pf-review{background:rgba(232,67,147,.04)!important;border-color:rgba(232,67,147,.08)!important;color:#7b5e7b!important}
   .pf-food-partner{color:#e84393!important}
   .pf-food-name{color:#2d132c!important}
@@ -549,7 +558,7 @@
 </head>
 <body>
 
-<script src="plan-data.js"></script>
+<script src="js/plan-data-ethan.js"></script>
 
 <div class="app" id="app"></div>
 
@@ -673,27 +682,15 @@
     h += '<div class="route-pill"><strong>Route:</strong> ' + P.route + '</div>';
 
 
-    // Stops
-    P.stops.forEach(function(stop, idx){
-      if(idx > 0){
-        var tt = P.travelTimes.find(function(t){ return t.from === P.stops[idx-1].order && t.to === stop.order; });
-        if(tt){
-          var icon = tt.mode === 'car' ? 'Drive' : 'Walk';
-          h += '<div class="travel-label"><span class="travel-dash"></span>' + icon + ' ' + tt.duration + '<span class="travel-dash"></span></div>';
-        }
-      }
-
+    // ── Build a single stop card (reusable for swaps) ──
+    window.buildStopCardInner = function(stop, P, store){
+      var h = '';
       var checked = store['stop-' + stop.order] ? ' is-checked' : '';
-      var preview = foodPreview(stop);
-
-      // Contextual menu button label
-      var menuLabel = 'Menu', menuIcon = '\uD83C\uDF7D\uFE0F';
-      if(stop.type === 'Walk'){ menuLabel = 'Explore'; menuIcon = '\uD83E\uDDED'; }
-      else if(stop.type === 'Boba'){ menuLabel = 'Drinks'; menuIcon = '\uD83E\uDDCB'; }
-      else if(stop.type === 'Dessert'){ menuLabel = 'Treats'; menuIcon = '\uD83C\uDF68'; }
-      else if(stop.type === 'Cocktails'){ menuLabel = 'Drinks'; menuIcon = '\uD83C\uDF78'; }
-
-      h += '<div class="stop-card' + checked + '" data-order="' + stop.order + '" id="stop' + stop.order + '">';
+      var menuIcon = '\uD83C\uDF7D\uFE0F';
+      if(stop.type === 'Walk') menuIcon = '\uD83E\uDDED';
+      else if(stop.type === 'Boba') menuIcon = '\uD83E\uDDCB';
+      else if(stop.type === 'Dessert') menuIcon = '\uD83C\uDF68';
+      else if(stop.type === 'Cocktails') menuIcon = '\uD83C\uDF78';
 
       // Collapsed row
       h += '<div class="stop-collapsed">';
@@ -702,7 +699,11 @@
       h += '<div class="s-name-row"><div class="s-name">' + stop.name + '</div><span class="s-badge ' + badgeCls(stop.type) + '">' + stop.type + '</span></div>';
       h += '<div class="s-meta"><span>' + stop.time + '</span><span>&middot;</span><span>' + stop.cost + '</span></div>';
       h += '</div>';
+      if(stop.swapOptions && stop.swapOptions.length) h += '<button class="s-change-btn" onclick="event.stopPropagation();window.__pf.openSwapFlow(' + stop.order + ')" title="Change this stop"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></button>';
       h += '</div>';
+
+      // Swap flow (appears below header when change button clicked)
+      h += '<div class="s-swap-flow" id="pfSwapFlow-' + stop.order + '"></div>';
 
       // Image carousel (always visible) with review badges
       var imgs = stop.images && stop.images.length ? stop.images : [stop.image];
@@ -710,7 +711,6 @@
       h += '<div class="card-gal-track">';
       imgs.forEach(function(img, i){ h += '<img class="card-gal-img" src="' + img + '" alt="Photo ' + (i+1) + '" onclick="event.stopPropagation();openLightbox(' + stop.order + ',' + i + ')" style="cursor:zoom-in">'; });
       h += '</div>';
-      // Review badges over image (bottom left)
       if(stop.reviews){
         h += '<div class="card-gal-reviews">';
         Object.entries(stop.reviews).forEach(function(e){
@@ -725,7 +725,7 @@
       }
       h += '</div>';
 
-      // Action buttons (Go / Menu / Park) with hover tooltips
+      // Action buttons (Go / Menu / Park)
       var goTip = stop.address;
       var menuTip = '', parkTip = '';
       if(stop.foodRecs){
@@ -742,41 +742,57 @@
       h += '<div class="stop-actions">';
       h += '<div class="stop-act" onclick="openGoSheet(' + stop.order + ')"><span class="stop-act-icon">\uD83D\uDCCD</span>' + (goTip ? '<span class="stop-act-tip">' + goTip + '</span>' : '') + '</div>';
       h += '<div class="stop-act" onclick="openMenuSheet(' + stop.order + ')"><span class="stop-act-icon">' + menuIcon + '</span>' + (menuTip ? '<span class="stop-act-tip">' + menuTip + '</span>' : '') + '</div>';
-      h += '<div class="stop-act stop-act-park" onclick="openParkSheet(' + stop.order + ');expandCard(' + stop.order + ')"><span class="stop-act-icon">\uD83C\uDD7F\uFE0F</span>' + (parkTip ? '<span class="stop-act-tip">' + parkTip + '</span>' : '') + '</div>';
+      h += '<div class="stop-act stop-act-park" onclick="openParkSheet(' + stop.order + ')"><span class="stop-act-icon">\uD83C\uDD7F\uFE0F</span>' + (parkTip ? '<span class="stop-act-tip">' + parkTip + '</span>' : '') + '</div>';
       h += '</div>';
 
-      // Short description under the action buttons
-      if(stop.tagline){
-        h += '<div class="stop-tagline">' + stop.tagline + '</div>';
-      }
-
-      // Expanded (description, reviews, reservation, dress code, gallery, swap, feedback)
+      // Expanded section
       h += '<div class="stop-expanded"><div class="exp-inner">';
       h += '<div class="exp-desc">' + stop.description + '</div>';
-
-      // Reservation
       if(stop.reservation){
         h += '<div class="exp-label">Reservation <span class="exp-divider"></span></div>';
         h += '<div class="res-box"><div class="res-dot"></div><span>Reservation suggested · ' + stop.reservation.time + ', party of ' + stop.reservation.partySize;
         if(stop.reservation.notes) h += ' · ' + stop.reservation.notes;
         h += '</span></div>';
       }
-
-      // Dress code
       if(stop.dressCode){
         h += '<div class="exp-label">Dress Code <span class="exp-divider"></span></div>';
         h += '<div class="dress-box">' + stop.dressCode + '</div>';
       }
-
-      // Gallery removed (already shown in card carousel above)
-
-      // Swap
       h += '<div id="swap-' + stop.order + '"></div>';
-
-      // Feedback
       h += '<div id="feedback-' + stop.order + '"></div>';
-
       h += '</div></div>';
+      return h;
+    };
+
+    // ── Re-render a single stop card (used by swap) ──
+    window.rerenderStop = function(order){
+      var P = window.PLAN, store = getStore();
+      var stop = P.stops.find(function(s){ return s.order === order; });
+      if(!stop) return;
+      var card = document.getElementById('stop' + order);
+      if(!card) return;
+      card.innerHTML = window.buildStopCardInner(stop, P, store);
+      // Re-inject plan-features for this stop
+      if(window.__pf){
+        var el = document.getElementById('swap-' + order);
+        if(el) el.innerHTML = window.__pf.getSwapHtml(stop);
+        el = document.getElementById('feedback-' + order);
+        if(el) el.innerHTML = window.__pf.getStopFeedbackHtml(order);
+      }
+    };
+
+    // Stops
+    P.stops.forEach(function(stop, idx){
+      if(idx > 0){
+        var tt = P.travelTimes.find(function(t){ return t.from === P.stops[idx-1].order && t.to === stop.order; });
+        if(tt){
+          var icon = tt.mode === 'car' ? 'Drive' : 'Walk';
+          h += '<div class="travel-label"><span class="travel-dash"></span>' + icon + ' ' + tt.duration + '<span class="travel-dash"></span></div>';
+        }
+      }
+
+      h += '<div class="stop-card' + (store['stop-' + stop.order] ? ' is-checked' : '') + '" data-order="' + stop.order + '" id="stop' + stop.order + '">';
+      h += window.buildStopCardInner(stop, P, store);
       h += '</div>';
     });
 
@@ -872,7 +888,6 @@
     document.getElementById('menuTitle').textContent = sheetTitle;
 
     var tab1Label = s.foodRecs ? 'Our Picks' : 'Highlights';
-    var tabIdx = 0;
 
     // Tab 1: Our Picks
     var tab1 = '';
@@ -898,31 +913,14 @@
       if(s.tips && s.tips.length > 0) tab1 += '<div class="ms-tip">' + s.tips[0] + '</div>';
     }
 
-    if(s.menuUrl) tab1 += '<a class="ms-menu-btn" href="' + s.menuUrl + '" target="_blank">View Full Menu</a>';
-
-    // Tab 2: Happy Hour (separate tab, only if available)
-    var tabHH = '';
-    var hasHH = !!s.happyHour;
-    if(hasHH){
-      tabHH += '<div class="ms-hh" style="margin-top:0;border:none;background:transparent;padding:0">';
-      tabHH += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span style="font-size:1.4rem">\uD83C\uDF78</span><div><div class="ms-hh-title" style="margin-bottom:0">Happy Hour</div><div class="ms-hh-times">' + s.happyHour.times + '</div></div></div>';
-      tabHH += '<div class="ms-hh-deals" style="display:flex;flex-direction:column;gap:4px">';
-      s.happyHour.deals.forEach(function(d){
-        var parts = d.match(/^(\$\d+)\s+(.+?)(?:\s*—\s*(.+))?$/);
-        if(parts){
-          tabHH += '<div class="ms-food-item" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0">';
-          tabHH += '<span style="background:rgba(0,184,148,.12);color:#00b894;font-weight:700;font-size:.78rem;padding:3px 8px;border-radius:8px;flex-shrink:0;margin-top:1px">' + parts[1] + '</span>';
-          tabHH += '<div><div class="ms-food-name">' + parts[2] + '</div>';
-          if(parts[3]) tabHH += '<div class="ms-food-desc">' + parts[3] + '</div>';
-          tabHH += '</div></div>';
-        } else {
-          tabHH += '<div class="ms-hh-deal">\u2022 ' + d + '</div>';
-        }
-      });
-      tabHH += '</div></div>';
+    // Happy Hour (right under food recs)
+    if(s.happyHour){
+      tab1 += '<div class="ms-hh"><div class="ms-hh-title">Happy Hour</div><div class="ms-hh-times">' + s.happyHour.times + '</div><div class="ms-hh-deals">' + s.happyHour.deals.map(function(d){ return '<div class="ms-hh-deal">\u2022 ' + d + '</div>'; }).join('') + '</div></div>';
     }
 
-    // Tab 3: Insider Notes
+    if(s.menuUrl) tab1 += '<a class="ms-menu-btn" href="' + s.menuUrl + '" target="_blank">View Full Menu</a>';
+
+    // Tab 2: Insider Notes
     var tab2 = '<div class="ms-note-header"><div class="ms-note-title">Insider Notes</div><div class="ms-note-sub">Tips to make this stop even better</div></div>';
     if(s.tips && s.tips.length){
       s.tips.forEach(function(t, i){
@@ -930,23 +928,14 @@
       });
     }
     if(s.dressCode) tab2 += '<div class="ms-note-tip"><span class="ms-note-num">Dress</span>' + s.dressCode + '</div>';
-    if(s.swapVenue){
-      tab2 += '<div style="margin-top:14px;padding:14px;border-radius:12px;border:1px dashed rgba(232,67,147,.15);background:rgba(232,67,147,.03)">' +
-        '<div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b8a0b8;margin-bottom:4px">\u21BB Backup Option</div>' +
-        '<div style="font-size:.85rem;font-weight:600;color:#2d132c">' + s.swapVenue.name + '</div>' +
-        '<div style="font-size:.78rem;color:#7b5e7b;margin-top:2px;line-height:1.4">' + s.swapVenue.desc + '</div></div>';
-    }
+    // Swap options are now rendered in the card body via plan-features.js getSwapHtml
 
-    // Build tabs
-    var notesIdx = hasHH ? 2 : 1;
     var h = '<div class="ms-tabs">' +
-      '<button class="ms-tab active" onclick="switchMenuTab(this,0)">' + tab1Label + '</button>';
-    if(hasHH) h += '<button class="ms-tab" onclick="switchMenuTab(this,1)">Happy Hour</button>';
-    h += '<button class="ms-tab" onclick="switchMenuTab(this,' + notesIdx + ')">Insider Notes</button>' +
+      '<button class="ms-tab active" onclick="switchMenuTab(this,0)">' + tab1Label + '</button>' +
+      '<button class="ms-tab" onclick="switchMenuTab(this,1)">Insider Notes</button>' +
     '</div>' +
-    '<div class="ms-tab-panel active" id="msPanel0">' + tab1 + '</div>';
-    if(hasHH) h += '<div class="ms-tab-panel" id="msPanel1">' + tabHH + '</div>';
-    h += '<div class="ms-tab-panel" id="msPanel' + notesIdx + '">' + tab2 + '</div>';
+    '<div class="ms-tab-panel active" id="msPanel0">' + tab1 + '</div>' +
+    '<div class="ms-tab-panel" id="msPanel1">' + tab2 + '</div>';
 
     document.getElementById('menuBody').innerHTML = h;
     openSheetById('menuSheet');
@@ -1082,6 +1071,6 @@
 })();
 </script>
 
-<script src="plan-features.js?v=3"></script>
+<script src="js/plan-features.js?v=3"></script>
 </body>
 </html>
