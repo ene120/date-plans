@@ -20,7 +20,6 @@
             min-height: 100vh;
         }
 
-        /* Download bar at top of page (not printed) */
         .download-bar {
             width: 100%;
             background: #111;
@@ -45,7 +44,6 @@
         }
         .download-bar button:hover { opacity: 0.7; }
 
-        /* The printable menu */
         .menu-page {
             width: 8.5in;
             min-height: 11in;
@@ -60,9 +58,8 @@
         /* Header */
         .menu-header {
             text-align: center;
-            padding-bottom: 18px;
+            padding-bottom: 20px;
             border-bottom: 1.5px solid #111;
-            margin-bottom: 20px;
         }
         .menu-header h1 {
             font-family: 'Playfair Display', serif;
@@ -79,38 +76,40 @@
             color: #555;
         }
 
-        /* Drink items */
+        /* Glass showcase */
+        .glass-showcase {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 32px;
+            padding: 28px 0 20px;
+            border-bottom: 0.5px solid #ddd;
+        }
+        .glass-showcase img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+
+        /* Drink list - text only */
         .drinks-list {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            padding-top: 8px;
         }
 
         .drink-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
-            padding: 10px 0;
-            border-bottom: 0.5px solid #ddd;
+            padding: 14px 0;
+            border-bottom: 0.5px solid #eee;
         }
         .drink-item:last-child { border-bottom: none; }
 
-        .drink-img {
-            width: 90px;
-            height: 90px;
-            flex-shrink: 0;
-            object-fit: contain;
-        }
-
-        .drink-details {
-            flex: 1;
-        }
         .drink-name-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
         .drink-name {
             font-family: 'Playfair Display', serif;
@@ -127,7 +126,7 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: #777;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         .drink-ingredients {
             font-size: 13px;
@@ -135,7 +134,7 @@
             line-height: 1.5;
         }
 
-        /* Footer section */
+        /* Footer */
         .menu-footer {
             margin-top: 16px;
             padding-top: 16px;
@@ -146,9 +145,7 @@
             gap: 20px;
         }
 
-        .footer-info {
-            flex: 1;
-        }
+        .footer-info { flex: 1; }
         .footer-info h3 {
             font-family: 'Playfair Display', serif;
             font-size: 13px;
@@ -164,7 +161,7 @@
             color: #333;
         }
         .footer-info ul li::before {
-            content: "—  ";
+            content: "\2014\2002";
             color: #999;
         }
 
@@ -196,7 +193,6 @@
             margin-top: 6px;
         }
 
-        /* Branding at very bottom */
         .brand-line {
             text-align: center;
             font-size: 9px;
@@ -207,7 +203,6 @@
             padding-top: 10px;
         }
 
-        /* Print styles */
         @media print {
             body { background: none; }
             .download-bar { display: none; }
@@ -218,13 +213,9 @@
                 min-height: auto;
                 padding: 0.45in 0.55in;
             }
-            @page {
-                size: letter portrait;
-                margin: 0;
-            }
+            @page { size: letter portrait; margin: 0; }
         }
 
-        /* Mobile */
         @media (max-width: 768px) {
             .menu-page {
                 width: 100%;
@@ -233,7 +224,7 @@
                 margin: 0;
                 box-shadow: none;
             }
-            .drink-img { width: 70px; height: 70px; }
+            .glass-showcase img { width: 90px; height: 90px; }
             .drink-name { font-size: 16px; }
             .menu-header h1 { font-size: 28px; letter-spacing: 4px; }
             .menu-footer { flex-direction: column; align-items: center; text-align: center; }
@@ -253,66 +244,57 @@
             <div class="subtitle">All drinks are non-alcoholic &nbsp;&#183;&nbsp; Served in a keepsake Mount Fuji glass</div>
         </div>
 
+        <div class="glass-showcase">
+            <img src="images/drinks/glass-plain.png" alt="Mount Fuji glass with LED ice cube">
+            <img src="images/drinks/glass-umbrella.png" alt="Mount Fuji glass with umbrella">
+            <img src="images/drinks/glass-cherry.png" alt="Mount Fuji glass with cherry">
+        </div>
+
         <div class="drinks-list">
 
             <div class="drink-item">
-                <img src="images/drinks/glass-plain.png" alt="Moscow Mule Mocktail" class="drink-img">
-                <div class="drink-details">
-                    <div class="drink-name-row">
-                        <span class="drink-name">Moscow Mule</span>
-                        <span class="drink-price">$5</span>
-                    </div>
-                    <div class="drink-comparison">Non-alcoholic take on the classic Moscow Mule</div>
-                    <div class="drink-ingredients">Ginger beer, lime, simple syrup, fresh mint</div>
+                <div class="drink-name-row">
+                    <span class="drink-name">Moscow Mule</span>
+                    <span class="drink-price">$5</span>
                 </div>
+                <div class="drink-comparison">Non-alcoholic take on the classic Moscow Mule</div>
+                <div class="drink-ingredients">Ginger beer, lime, simple syrup, fresh mint</div>
             </div>
 
             <div class="drink-item">
-                <img src="images/drinks/glass-umbrella.png" alt="Virgin Mojito" class="drink-img">
-                <div class="drink-details">
-                    <div class="drink-name-row">
-                        <span class="drink-name">Virgin Mojito</span>
-                        <span class="drink-price">$5</span>
-                    </div>
-                    <div class="drink-comparison">Non-alcoholic take on the classic Mojito</div>
-                    <div class="drink-ingredients">Soda water, simple syrup, lime, fresh mint</div>
+                <div class="drink-name-row">
+                    <span class="drink-name">Virgin Mojito</span>
+                    <span class="drink-price">$5</span>
                 </div>
+                <div class="drink-comparison">Non-alcoholic take on the classic Mojito</div>
+                <div class="drink-ingredients">Soda water, simple syrup, lime, fresh mint</div>
             </div>
 
             <div class="drink-item">
-                <img src="images/drinks/glass-cherry.png" alt="Shirley Temple" class="drink-img">
-                <div class="drink-details">
-                    <div class="drink-name-row">
-                        <span class="drink-name">Shirley Temple</span>
-                        <span class="drink-price">$5</span>
-                    </div>
-                    <div class="drink-comparison">The original classic mocktail &nbsp;&#183;&nbsp; Comparable to a Greyhound</div>
-                    <div class="drink-ingredients">7UP, grenadine, maraschino cherry</div>
+                <div class="drink-name-row">
+                    <span class="drink-name">Shirley Temple</span>
+                    <span class="drink-price">$5</span>
                 </div>
+                <div class="drink-comparison">The original classic mocktail &nbsp;&#183;&nbsp; Comparable to a Greyhound</div>
+                <div class="drink-ingredients">7UP, grenadine, maraschino cherry</div>
             </div>
 
             <div class="drink-item">
-                <img src="images/drinks/glass-umbrella.png" alt="Cucumber Lime Mocktail" class="drink-img">
-                <div class="drink-details">
-                    <div class="drink-name-row">
-                        <span class="drink-name">Cucumber Lime</span>
-                        <span class="drink-price">$5</span>
-                    </div>
-                    <div class="drink-comparison">Non-alcoholic take on a Cucumber Gimlet</div>
-                    <div class="drink-ingredients">Coconut water, lime, simple syrup, fresh cucumber</div>
+                <div class="drink-name-row">
+                    <span class="drink-name">Cucumber Lime</span>
+                    <span class="drink-price">$5</span>
                 </div>
+                <div class="drink-comparison">Non-alcoholic take on a Cucumber Gimlet</div>
+                <div class="drink-ingredients">Coconut water, lime, simple syrup, fresh cucumber</div>
             </div>
 
             <div class="drink-item">
-                <img src="images/drinks/glass-plain.png" alt="Tonic Refresh" class="drink-img">
-                <div class="drink-details">
-                    <div class="drink-name-row">
-                        <span class="drink-name">Tonic Refresh</span>
-                        <span class="drink-price">$5</span>
-                    </div>
-                    <div class="drink-comparison">Non-alcoholic take on a classic Gin &amp; Tonic</div>
-                    <div class="drink-ingredients">Tonic water, lime, simple syrup</div>
+                <div class="drink-name-row">
+                    <span class="drink-name">Tonic Refresh</span>
+                    <span class="drink-price">$5</span>
                 </div>
+                <div class="drink-comparison">Non-alcoholic take on a classic Gin &amp; Tonic</div>
+                <div class="drink-ingredients">Tonic water, lime, simple syrup</div>
             </div>
 
         </div>
