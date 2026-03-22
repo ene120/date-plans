@@ -528,7 +528,7 @@
       <a href="#how">How It Works</a>
       <a href="#included">What's Included</a>
       <a href="#pricing">Pricing</a>
-      <a href="#events">Events</a>
+
       <a href="#faq">FAQ</a>
       <a id="navAuthLink" href="/app/" style="color:var(--rose);font-weight:600;white-space:nowrap">Sign Up / Sign In</a>
       <a class="nav-cta" onclick="openForm()">Plan Your Date</a>
@@ -576,7 +576,6 @@
       <a href="#how" onclick="toggleDrawer()">How It Works</a>
       <a href="#included" onclick="toggleDrawer()">What's Included</a>
       <a href="#pricing" onclick="toggleDrawer()">Pricing</a>
-      <a href="#events" onclick="toggleDrawer()">Events</a>
       <a href="#faq" onclick="toggleDrawer()">FAQ</a>
     </div>
     <div class="drawer-cta">
@@ -900,92 +899,9 @@
 
       </div>
 
-      <!-- SDSU Students Section -->
-      <div class="reveal" style="max-width:480px;margin:48px auto 0">
-        <div class="price-card" style="border-style:dashed;text-align:center">
-          <div class="price-name">SDSU Students</div>
-          <div class="price-desc">Got a code from our event? Unlock your free date plan.</div>
-          <div style="display:flex;gap:8px;margin:20px 0 8px">
-            <input type="text" id="sdsuCodeInput" placeholder="Enter your code" style="flex:1;padding:14px 16px;border-radius:12px;border:1px solid var(--glass-border);background:var(--glass);color:var(--text-primary);font-size:.92rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='var(--glass-border)'">
-            <button onclick="unlockSDSU()" class="price-cta price-cta-primary" style="padding:14px 24px;white-space:nowrap;border:none;cursor:pointer;border-radius:12px">Unlock</button>
-          </div>
-          <div id="sdsuCodeMsg" style="font-size:.78rem;min-height:20px;margin-top:4px"></div>
-          <ul class="price-features" style="margin-top:16px">
-            <li>1 personalized date plan with 2 variations</li>
-            <li>All core features included</li>
-            <li>No payment required</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- ═══════════ EVENTS ═══════════ -->
-  <section class="section-pad" id="events" style="overflow:hidden">
-    <div class="container">
-      <div class="reveal" style="text-align:center">
-        <div class="section-label">Events</div>
-        <div class="section-title">Come hang with us.</div>
-        <p class="section-sub" style="margin:0 auto">We host real events for real people. Meet new faces, bring your date, or find one.</p>
-      </div>
-
-      <div class="reveal" style="max-width:880px;margin:48px auto 0;display:flex;gap:clamp(24px,4vw,48px);align-items:center;flex-wrap:wrap;justify-content:center">
-
-        <!-- Flyer -->
-        <a href="./event/" style="flex-shrink:0;display:block;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 80px rgba(224,87,128,.12);transition:transform .3s,box-shadow .3s;max-width:340px;width:100%" class="event-flyer-link">
-          <img src="./event/SDSU%20Blind%20Dating%20Show.PNG" alt="SDSU Blind Dating Show Flyer" style="width:100%;display:block">
-        </a>
-
-        <!-- Details -->
-        <div style="flex:1;min-width:280px">
-          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(224,87,128,.1);border:1px solid rgba(224,87,128,.18);color:var(--rose);font-size:.72rem;font-weight:700;padding:5px 14px;border-radius:100px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase">
-            🔥 Next Event
-          </div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;line-height:1.15;margin-bottom:16px">
-            SDSU Blind<br>Dating Show
-          </h3>
-          <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
-            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
-              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">📅</span>
-              Saturday, March 21, 2026
-            </li>
-            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
-              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">🕐</span>
-              Doors 5:30pm · Show 6:15–9:30pm
-            </li>
-            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
-              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">📍</span>
-              5360 West Falls View Dr.
-            </li>
-            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
-              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">🎟️</span>
-              $6 Entry · Cash & Venmo
-            </li>
-            <li style="display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text-soft)">
-              <span style="width:34px;height:34px;border-radius:10px;background:rgba(224,87,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">👗</span>
-              Date Night Chic · Max 125
-            </li>
-          </ul>
-          <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <a href="./event/" class="hero-btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px">
-              RSVP Now &rarr;
-            </a>
-          </div>
-          <p style="font-size:.78rem;color:var(--text-muted);margin-top:14px">Couples & singles welcome · Mocktails served</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <style>
-    .event-flyer-link:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 28px 70px rgba(0,0,0,.5),0 0 100px rgba(224,87,128,.18)}
-    @media(max-width:700px){
-      #events .reveal > div{flex-direction:column !important;text-align:center}
-      #events ul{align-items:center}
-      #events div[style*="display:flex;gap:12px"]{justify-content:center}
-      .event-flyer-link{max-width:280px !important;margin:0 auto}
-    }
-  </style>
 
   <!-- ═══════════ FAQ ═══════════ -->
   <section class="section-pad" id="faq">
@@ -1427,27 +1343,6 @@
     var currentPage=1;
     var totalPages=7;
 
-    function unlockSDSU(){
-      var code = document.getElementById('sdsuCodeInput').value.trim().toUpperCase();
-      var msg = document.getElementById('sdsuCodeMsg');
-      if(code === 'SDSU2026NEW'){
-        localStorage.setItem('dateflo_sdsu_unlocked', 'true');
-        localStorage.setItem('dateflo_sdsu_type', 'new_couple');
-        msg.style.color = '#00b894';
-        msg.textContent = 'Welcome! Redirecting to plan your first date...';
-        setTimeout(function(){ openForm(); }, 800);
-      } else if(code === 'SDSU2026COUPLE'){
-        localStorage.setItem('dateflo_sdsu_unlocked', 'true');
-        localStorage.setItem('dateflo_sdsu_type', 'existing_couple');
-        msg.style.color = '#00b894';
-        msg.textContent = 'Code accepted! Redirecting to plan your date...';
-        setTimeout(function(){ openForm(); }, 800);
-      } else {
-        msg.style.color = '#ff6b6b';
-        msg.textContent = 'Invalid code. Check the code from the event and try again.';
-      }
-    }
-
     function startCheckout(plan){
       // Get user info from localStorage if logged in
       var userId = null, email = null;
@@ -1594,19 +1489,10 @@
         extraNotes: getVal('extraNotes')
       };
 
-      // Check if SDSU student flow
-      var isSDSU = localStorage.getItem('dateflo_sdsu_unlocked') === 'true';
-      var sdsuType = localStorage.getItem('dateflo_sdsu_type') || '';
-      if(isSDSU) formData.sdsu_type = sdsuType;
       var requestBody = {
         form_data: formData,
-        source: isSDSU ? 'sdsu_event_' + sdsuType : 'landing_page',
-        requires_approval: isSDSU ? true : false
+        source: 'landing_page'
       };
-      if(isSDSU){
-        localStorage.removeItem('dateflo_sdsu_unlocked');
-        localStorage.removeItem('dateflo_sdsu_type');
-      }
 
       // Send to Supabase plan_requests table
       fetch(SUPA_URL+'/rest/v1/plan_requests',{
