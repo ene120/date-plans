@@ -1732,3 +1732,5 @@ window.PLAN_ALL = [
     }
   }
 ];
+
+window.PLAN = window.PLAN_ALL[0];
