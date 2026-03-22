@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DateFlo | Payment Confirmed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#0d0a12;--bg-mid:#141019;--rose:#e05780;--deep-rose:#9b2c5a;--text:#f4f0f7;--text-soft:#b8b0c4;--text-muted:#6e6480;--glass:rgba(255,255,255,.03);--glass-border:rgba(255,255,255,.06)}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden}
+    .success-container{max-width:560px;width:100%;text-align:center;position:relative;z-index:1}
+
+    /* Animated checkmark */
+    .check-circle{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--deep-rose));margin:0 auto 32px;display:flex;align-items:center;justify-content:center;animation:scaleIn .5s cubic-bezier(.175,.885,.32,1.275);box-shadow:0 0 60px rgba(224,87,128,.3)}
+    .check-circle svg{width:48px;height:48px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .check-circle svg path{stroke-dasharray:60;stroke-dashoffset:60;animation:drawCheck .4s .4s ease forwards}
+
+    @keyframes scaleIn{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+    @keyframes drawCheck{to{stroke-dashoffset:0}}
+
+    h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:12px;line-height:1.15}
+    h1 span{background:linear-gradient(135deg,var(--rose),#f39);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .subtitle{color:var(--text-soft);font-size:1rem;line-height:1.7;margin-bottom:12px}
+
+    /* Order summary card */
+    .order-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:24px;margin:32px 0;text-align:left}
+    .order-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
+    .order-row:not(:last-child){border-bottom:1px solid var(--glass-border)}
+    .order-label{color:var(--text-muted);font-size:.85rem}
+    .order-value{font-weight:600;font-size:.92rem}
+    .order-value.plan-name{color:var(--rose)}
+
+    /* CTA button */
+    .cta-btn{display:inline-flex;align-items:center;gap:10px;padding:18px 40px;border-radius:14px;background:linear-gradient(135deg,var(--rose),var(--deep-rose));color:#fff;font-weight:700;font-size:1.05rem;text-decoration:none;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 30px rgba(224,87,128,.3);margin-top:8px;font-family:'Inter',sans-serif}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(224,87,128,.4)}
+    .cta-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+
+    .note{color:var(--text-muted);font-size:.78rem;margin-top:20px;line-height:1.6}
+
+    /* Confetti-like background elements */
+    .bg-glow{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(224,87,128,.08) 0%,transparent 60%);filter:blur(100px);pointer-events:none;z-index:0}
+    .sparkle{position:fixed;width:4px;height:4px;border-radius:50%;background:var(--rose);opacity:0;animation:sparkle 2s ease-in-out infinite;pointer-events:none;z-index:0}
+
+    @keyframes sparkle{0%,100%{opacity:0;transform:translateY(0) scale(0)}50%{opacity:.6;transform:translateY(-30px) scale(1)}}
+
+    /* Steps indicator */
+    .steps{display:flex;align-items:center;justify-content:center;gap:0;margin:32px 0 8px}
+    .step{display:flex;align-items:center;gap:0}
+    .step-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700}
+    .step-dot.done{background:rgba(0,184,148,.15);color:#00b894;border:1px solid rgba(0,184,148,.3)}
+    .step-dot.current{background:rgba(224,87,128,.15);color:var(--rose);border:1px solid rgba(224,87,128,.3);animation:pulse 2s infinite}
+    .step-line{width:40px;height:2px;background:var(--glass-border);margin:0 4px}
+    .step-line.done{background:rgba(0,184,148,.3)}
+    .step-label{font-size:.7rem;color:var(--text-muted);margin-top:6px;text-align:center}
+    .step-wrap{display:flex;flex-direction:column;align-items:center}
+
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(224,87,128,.3)}50%{box-shadow:0 0 0 8px rgba(224,87,128,0)}}
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="success-container">
+    <!-- Animated checkmark -->
+    <div class="check-circle">
+      <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+    </div>
+
+    <h1>Payment <span>Confirmed</span></h1>
+    <p class="subtitle">You're all set. A receipt has been sent to your email.</p>
+
+    <!-- Order summary -->
+    <div class="order-card">
+      <div class="order-row">
+        <span class="order-label">Plan</span>
+        <span class="order-value plan-name" id="planName">Loading...</span>
+      </div>
+      <div class="order-row">
+        <span class="order-label">Amount</span>
+        <span class="order-value" id="planAmount">--</span>
+      </div>
+      <div class="order-row">
+        <span class="order-label">Email</span>
+        <span class="order-value" id="planEmail">--</span>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="steps">
+      <div class="step-wrap">
+        <div class="step-dot done">1</div>
+        <div class="step-label">Payment</div>
+      </div>
+      <div class="step-line done"></div>
+      <div class="step-wrap">
+        <div class="step-dot current">2</div>
+        <div class="step-label">Plan Your Date</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-wrap">
+        <div class="step-dot" style="background:var(--glass);border:1px solid var(--glass-border);color:var(--text-muted)">3</div>
+        <div class="step-label">Receive Plan</div>
+      </div>
+    </div>
+
+    <p class="subtitle" style="margin-top:24px">Now tell us about your ideal date so we can craft something special for you.</p>
+
+    <button class="cta-btn" id="startFormBtn">
+      Plan Your Date
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+
+    <p class="note">Your plan will be delivered within 24 hours of submission.</p>
+  </div>
+
+  <script>
+    // Parse URL params from Stripe redirect
+    var params = new URLSearchParams(window.location.search);
+    var plan = params.get('plan') || '';
+    var sessionId = params.get('session_id') || '';
+
+    // Plan details mapping
+    var planInfo = {
+      single: { name: 'Single Date', amount: '$10.00', dates: 1 },
+      '3day': { name: '3-Day Pack', amount: '$15.00', dates: 3 },
+      '6date': { name: '6-Date Pack', amount: '$20.00', dates: 6 }
+    };
+
+    var info = planInfo[plan] || planInfo.single;
+    document.getElementById('planName').textContent = info.name;
+    document.getElementById('planAmount').textContent = info.amount;
+
+    // Get email from localStorage
+    try {
+      var token = localStorage.getItem('sb-xttidhabldfsxwreyths-auth-token');
+      if (token) {
+        var user = JSON.parse(token).user;
+        if (user && user.email) {
+          document.getElementById('planEmail').textContent = user.email;
+        }
+      }
+    } catch(e) {}
+
+    // Store plan info for the form
+    localStorage.setItem('dateflo_paid_plan', plan);
+    localStorage.setItem('dateflo_paid_session', sessionId);
+    localStorage.setItem('dateflo_paid_dates', info.dates);
+
+    // CTA → open the date plan form on the main site
+    document.getElementById('startFormBtn').addEventListener('click', function() {
+      window.location.href = '/?openform=1';
+    });
+
+    // Add sparkles
+    for (var i = 0; i < 12; i++) {
+      var s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = (10 + Math.random() * 80) + '%';
+      s.style.top = (10 + Math.random() * 80) + '%';
+      s.style.animationDelay = (Math.random() * 2) + 's';
+      s.style.width = s.style.height = (2 + Math.random() * 4) + 'px';
+      document.body.appendChild(s);
+    }
+  </script>
+</body>
+</html>

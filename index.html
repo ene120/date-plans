@@ -1510,6 +1510,12 @@
       document.getElementById('progressFill').style.width='100%';
     }
 
+    // Auto-open form if redirected from payment success
+    if(new URLSearchParams(window.location.search).get('openform') === '1'){
+      openForm();
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(function(a){
       a.addEventListener('click',function(e){
