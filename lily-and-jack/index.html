@@ -826,6 +826,11 @@
     if(card && !card.classList.contains('is-open')) card.classList.add('is-open');
   };
 
+  window.switchPlan = function(index){
+    window.PLAN = window.PLAN_ALL[index];
+    window._renderPlan();
+  };
+
   window.toggleFav = function(){
     var s = getStore(); s.fav = !s.fav; setStore(s);
     document.getElementById('favSvg').setAttribute('fill', s.fav ? '#e84393' : 'none');
