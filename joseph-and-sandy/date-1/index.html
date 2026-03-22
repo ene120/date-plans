@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>DateFlo — Custom Plan Viewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:'Inter',sans-serif;
+    background:#fff0f5;
+    color:#2d132c;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-thumb{background:#e84393;border-radius:4px}
+
+  .app{max-width:520px;margin:0 auto;padding-bottom:40px}
+
+  /* ── Plan Selector ── */
+  .plan-selector{
+    display:flex;gap:8px;margin:16px 20px 0;
+  }
+  .plan-tab{
+    flex:1;padding:12px 10px;border-radius:14px;
+    background:#fff;border:2px solid rgba(232,67,147,.12);
+    font-size:.82rem;font-weight:600;color:#7b5e7b;
+    cursor:pointer;text-align:center;transition:all .25s;
+    box-shadow:0 2px 8px rgba(232,67,147,.04);
+  }
+  .plan-tab:hover{border-color:rgba(232,67,147,.3)}
+  .plan-tab.active{
+    background:linear-gradient(135deg,#e84393,#c0406a);
+    color:#fff;border-color:transparent;
+    box-shadow:0 4px 16px rgba(232,67,147,.3);
+  }
+
+  /* ── Sticky Top Bar ── */
+  .top-bar{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,240,245,.92);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    padding:10px 16px;
+    border-bottom:1px solid rgba(232,67,147,.08);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .tb-left{display:flex;align-items:center;gap:10px}
+  .tb-back{
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(232,67,147,.08);border:none;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;color:#e84393;flex-shrink:0;
+  }
+  .tb-info h1{
+    font-family:'Playfair Display',serif;
+    font-size:1rem;font-weight:600;color:#2d132c;line-height:1.2;
+  }
+  .tb-info p{font-size:.72rem;color:#7b5e7b;font-weight:500}
+  .tb-actions{display:flex;gap:6px}
+  .tb-actions button{
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(232,67,147,.08);border:none;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:1rem;transition:all .2s;
+  }
+  .tb-actions button:hover{background:rgba(232,67,147,.14)}
+
+  /* ── Header Card ── */
+  .header{
+    position:relative;padding:24px 20px 28px;
+    background:linear-gradient(135deg,#e84393 0%,#c0406a 100%);
+    color:#fff;border-radius:28px;overflow:hidden;
+  }
+  .header::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 20%,rgba(249,202,36,.2) 0%,transparent 60%);
+    pointer-events:none;
+  }
+  .header-body{position:relative;z-index:1;text-align:center}
+  .h-plan-name{
+    font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;
+    margin-bottom:10px;letter-spacing:-.01em;
+  }
+  .h-plan-vibe{
+    font-size:.82rem;font-weight:400;
+    opacity:.85;margin-bottom:18px;line-height:1.45;
+  }
+  .h-meta{display:flex;align-items:center;justify-content:center;gap:16px;font-size:.78rem;opacity:.8}
+  .h-meta span{display:flex;align-items:center;gap:4px}
+  .h-weather{
+    margin-top:18px;padding:10px 16px;border-radius:14px;
+    background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.15);font-size:.76rem;
+  }
+  .h-weather-row{display:flex;align-items:center;justify-content:center;gap:16px}
+  .h-weather-item{display:flex;align-items:center;gap:4px}
+  .h-weather-label{opacity:.7;font-size:.68rem;text-transform:uppercase;letter-spacing:.04em}
+
+  /* ── Route Pill ── */
+  .route-pill{
+    margin:16px 20px;padding:12px 16px;border-radius:14px;
+    background:#fff;border:1px solid rgba(232,67,147,.1);
+    box-shadow:0 2px 12px rgba(232,67,147,.06);
+    font-size:.76rem;color:#7b5e7b;text-align:center;line-height:1.5;
+  }
+  .route-pill strong{color:#e84393}
+
+  /* ── Progress Bar ── */
+  .progress-wrap{
+    margin:0 20px 12px;padding:12px 16px;border-radius:14px;
+    background:#fff;border:1px solid rgba(232,67,147,.08);
+    box-shadow:0 2px 8px rgba(232,67,147,.04);
+  }
+  .prog-label{
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.74rem;color:#7b5e7b;margin-bottom:8px;font-weight:500;
+  }
+  .prog-label .prog-count{font-weight:700;color:#e84393}
+  .prog-track{height:6px;border-radius:3px;background:rgba(232,67,147,.1);overflow:hidden}
+  .prog-fill{
+    height:100%;border-radius:3px;
+    background:linear-gradient(90deg,#e84393,#f9ca24);
+    transition:width .5s ease;width:0%;
+  }
+
+  /* ── Travel Label ── */
+  .travel-label{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    padding:8px 0;font-size:.72rem;color:#b8a0b8;
+  }
+  .travel-dash{width:24px;height:1px;background:rgba(232,67,147,.2)}
+
+  /* ── Stop Card ── */
+  .stop-card{
+    margin:0 16px 6px;border-radius:18px;background:#fff;
+    border:1px solid rgba(232,67,147,.08);
+    box-shadow:0 2px 12px rgba(45,19,44,.04);
+    overflow:hidden;transition:all .3s ease;
+  }
+  .stop-card.is-checked .stop-collapsed{opacity:1}
+  .stop-card.is-checked .s-name{text-decoration:line-through}
+  .stop-card.is-checked .card-gallery,
+  .stop-card.is-checked .stop-actions,
+  .stop-card.is-checked .expand-btn,
+  .stop-card.is-checked .s-meta,
+  .stop-card.is-checked .stop-expanded{display:none!important;max-height:0!important}
+
+  /* Collapsed */
+  .stop-collapsed{
+    display:flex;align-items:center;gap:12px;
+    padding:14px 14px 14px 12px;
+    transition:opacity .3s;
+  }
+
+  /* Checkbox */
+  .s-checkbox{
+    width:28px;height:28px;border-radius:50%;flex-shrink:0;
+    border:2px solid rgba(232,67,147,.2);
+    display:flex;align-items:center;justify-content:center;
+    transition:all .3s;background:rgba(232,67,147,.02);
+    cursor:pointer;position:relative;
+  }
+  .s-checkbox .heart{
+    width:14px;height:14px;opacity:0;transition:all .3s;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .stop-card.is-checked .s-checkbox{
+    background:#e84393;
+    border-color:#e84393;
+  }
+  .stop-card.is-checked .s-checkbox .heart{
+    opacity:1;
+  }
+
+  /* Info */
+  .s-info{flex:1;min-width:0}
+  .s-name-row{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+  .s-name{
+    font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;
+    color:#2d132c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .s-badge{
+    padding:2px 8px;border-radius:6px;font-size:.6rem;font-weight:700;
+    letter-spacing:.04em;text-transform:uppercase;flex-shrink:0;
+  }
+  .badge-walk{background:rgba(0,184,148,.1);color:#00b894}
+  .badge-dinner{background:rgba(232,67,147,.1);color:#e84393}
+  .badge-dessert{background:rgba(249,202,36,.15);color:#d4a810}
+  .badge-boba{background:rgba(108,92,231,.1);color:#6c5ce7}
+  .badge-cocktails{background:rgba(116,185,255,.12);color:#5f8fdb}
+  .s-meta{display:flex;align-items:center;gap:10px;font-size:.72rem;color:#7b5e7b;margin-bottom:3px}
+  .s-change-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(232,67,147,.15);background:rgba(232,67,147,.04);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all .2s;color:#e84393}
+  .s-change-btn:hover{background:rgba(232,67,147,.1);border-color:rgba(232,67,147,.25)}
+  .s-swap-flow{padding:0 14px;overflow:hidden}
+
+  /* Food Preview Line */
+  .s-food-preview{
+    font-size:.7rem;color:#7b5e7b;line-height:1.4;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .s-food-preview b{color:#e84393;font-weight:600}
+
+  /* Thumbnail */
+  .s-thumb{
+    width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;
+    border:1px solid rgba(232,67,147,.08);
+  }
+
+  /* Expand button */
+  .expand-btn{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    padding:10px 14px;margin:0 14px 10px;
+    border-radius:10px;border:1px solid rgba(232,67,147,.1);
+    background:rgba(232,67,147,.03);
+    color:#7b5e7b;font-size:.76rem;font-weight:600;
+    cursor:pointer;transition:all .2s;
+    font-family:'Inter',sans-serif;
+  }
+  .expand-btn:hover{background:rgba(232,67,147,.07)}
+  .expand-btn svg{transition:transform .3s}
+  .stop-card.is-open .expand-btn svg{transform:rotate(180deg)}
+  .stop-card.is-open .expand-btn .eb-text::after{content:'Less'}
+  .stop-card:not(.is-open) .expand-btn .eb-text::after{content:'More Details'}
+
+  /* Review badges on image */
+  .card-gal-reviews{
+    position:absolute;bottom:6px;left:6px;
+    display:flex;gap:5px;flex-wrap:wrap;z-index:2;
+  }
+  .card-review-badge{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:5px 14px;border-radius:14px;
+    background:rgba(253,248,235,.92);
+    font-size:.78rem;font-weight:500;color:#5a4a3a;
+    border:1px solid rgba(220,200,160,.35);
+    box-shadow:0 1px 4px rgba(0,0,0,.06);
+  }
+  .card-review-stars{color:#d4a810;font-size:.82rem;letter-spacing:1px}
+  .card-review-count{color:#8a7a6a;font-weight:400}
+
+  /* Expanded */
+  .stop-expanded{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+  .stop-card.is-open .stop-expanded{max-height:4000px}
+  .exp-inner{padding:0 14px 18px}
+
+  .exp-hero{width:100%;height:200px;object-fit:cover;border-radius:14px;margin-bottom:14px}
+  .exp-desc{font-size:.84rem;color:#5a3d56;line-height:1.65;margin-bottom:14px}
+  .exp-desc a{color:#e84393;text-decoration:none}
+  .exp-desc a:hover{opacity:.8}
+
+  /* Nav Buttons */
+  .nav-btns{display:flex;gap:8px;margin-bottom:14px}
+  .nav-btn{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px;border-radius:12px;font-size:.82rem;font-weight:600;
+    text-decoration:none;transition:all .2s;cursor:pointer;border:none;
+  }
+  .nav-btn:hover{transform:translateY(-1px)}
+  .nav-btn img{width:18px;height:18px}
+  .nav-google{background:#fff;color:#333;border:1px solid #e0d0e0;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .nav-apple{background:#000;color:#fff}
+
+  /* Section Labels */
+  .exp-label{
+    font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:#b8a0b8;margin:14px 0 8px;display:flex;align-items:center;gap:6px;
+  }
+  .exp-divider{flex:1;height:1px;background:rgba(232,67,147,.08)}
+
+  /* Dress Code */
+  .dress-box{
+    padding:10px 12px;border-radius:10px;background:rgba(249,202,36,.05);
+    border:1px solid rgba(249,202,36,.1);font-size:.78rem;color:#5a3d56;line-height:1.5;
+  }
+
+  /* Reservation */
+  .res-box{
+    padding:10px 12px;border-radius:10px;
+    background:rgba(0,184,148,.05);border:1px solid rgba(0,184,148,.1);
+    font-size:.78rem;color:#2d132c;display:flex;align-items:center;gap:8px;
+  }
+  .res-dot{width:8px;height:8px;border-radius:50%;background:#00b894;flex-shrink:0}
+
+  /* Happy Hour */
+  .hh-box{
+    padding:10px 12px;border-radius:10px;
+    background:rgba(249,202,36,.06);border:1px solid rgba(249,202,36,.12);
+    font-size:.78rem;color:#5a3d56;line-height:1.6;
+  }
+  .hh-title{font-weight:700;color:#d4a810;margin-bottom:4px}
+  .hh-deal{color:#7b5e7b;font-size:.74rem}
+
+  /* Rideshare buttons */
+  .ride-btns{display:flex;gap:8px;margin-top:10px}
+  .ride-btn{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+    padding:11px;border-radius:12px;font-size:.8rem;font-weight:600;
+    text-decoration:none;transition:all .2s;min-height:44px;
+  }
+  .ride-btn:hover{transform:translateY(-1px)}
+  .ride-uber{background:#000;color:#fff}
+  .ride-lyft{background:#ff00bf;color:#fff}
+
+  /* Swap */
+  .swap-box{
+    margin-top:14px;padding:12px;border-radius:12px;
+    border:1px dashed rgba(232,67,147,.15);background:rgba(232,67,147,.02);
+  }
+  .swap-lbl{font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b8a0b8;margin-bottom:4px}
+  .swap-name{font-size:.82rem;font-weight:600;color:#2d132c}
+  .swap-desc{font-size:.74rem;color:#7b5e7b;margin-top:2px;line-height:1.4}
+
+  /* ── Card Image Carousel ── */
+  .card-gallery{position:relative;margin:0 14px 10px;border-radius:14px;overflow:hidden}
+  .card-gal-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .card-gal-track::-webkit-scrollbar{display:none}
+  .card-gal-img{flex:0 0 100%;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 30%;scroll-snap-align:start}
+  /* Gallery arrows */
+  .card-gal-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:28px;height:28px;border-radius:50%;
+    background:rgba(255,255,255,.7);border:none;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;z-index:3;transition:all .2s;
+    color:#2d132c;font-size:.7rem;
+    backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  }
+  .card-gal-arrow:hover{background:rgba(255,255,255,.9)}
+  .card-gal-arrow.left{left:6px}
+  .card-gal-arrow.right{right:6px}
+
+  /* ── Action Buttons (Go / Menu / Park) ── */
+  .stop-actions{
+    display:flex;gap:8px;padding:0 14px 10px;
+  }
+  .stop-act{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+    padding:11px 6px;border-radius:12px;
+    border:1px solid rgba(232,67,147,.12);
+    background:rgba(232,67,147,.04);
+    color:#e84393;font-size:.78rem;font-weight:600;
+    cursor:pointer;transition:all .15s;min-height:44px;
+    position:relative;
+  }
+  .stop-act:hover{background:rgba(232,67,147,.09);border-color:rgba(232,67,147,.2)}
+  .stop-act:active{transform:scale(.96)}
+  .stop-act-icon{display:flex;align-items:center;justify-content:center}
+  .stop-act-icon svg{width:18px;height:18px;stroke:#e84393;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .stop-act-park{color:#2d132c}
+  /* Hover tooltip */
+  .stop-act-tip{
+    position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+    white-space:nowrap;max-width:220px;white-space:normal;text-align:center;
+    padding:6px 10px;border-radius:8px;
+    background:#2d132c;color:#fff;
+    font-size:.68rem;font-weight:500;line-height:1.35;
+    pointer-events:none;opacity:0;transition:opacity .2s;
+    box-shadow:0 4px 12px rgba(45,19,44,.2);z-index:10;
+  }
+  .stop-act-tip::after{
+    content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    border:5px solid transparent;border-top-color:#2d132c;
+  }
+  .stop-act:hover .stop-act-tip{opacity:1}
+
+  /* ── Bottom Sheet ── */
+  .sheet-overlay{
+    position:fixed;inset:0;background:rgba(45,19,44,.4);
+    backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+    z-index:500;opacity:0;pointer-events:none;transition:opacity .25s;
+  }
+  .sheet-overlay.open{opacity:1;pointer-events:auto}
+  .sheet{
+    position:fixed;bottom:0;left:0;right:0;z-index:501;
+    max-width:480px;margin:0 auto;
+    background:#fff;border-radius:20px 20px 0 0;
+    max-height:82dvh;overflow-y:auto;
+    transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);
+    padding:20px 20px 32px;
+    box-shadow:0 -4px 30px rgba(45,19,44,.12);
+    overscroll-behavior:contain;
+  }
+  .sheet.open{transform:translateY(0)}
+  .sheet::-webkit-scrollbar{display:none}
+  .sheet-handle{width:36px;height:4px;border-radius:2px;background:#e0d0e0;margin:0 auto 16px}
+  .sheet-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:#2d132c;margin-bottom:14px;text-align:center}
+  .sheet-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(232,67,147,.08);color:#7b5e7b;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+  /* Go Sheet */
+  .go-nav-btns{display:flex;gap:8px;margin-bottom:14px}
+  .go-nav-btn{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px;border-radius:12px;font-size:.85rem;font-weight:600;
+    text-decoration:none;transition:all .2s;min-height:52px;
+  }
+  .go-nav-btn img{width:20px;height:20px;object-fit:contain}
+  .go-nav-google{background:#fff;color:#333;border:1px solid #e0d0e0;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .go-nav-apple{background:#000;color:#fff}
+  .go-ride-label{
+    font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:#b8a0b8;margin:16px 0 8px;
+  }
+  .go-ride-btns{display:flex;gap:8px}
+  .go-ride-btn{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+    padding:13px;border-radius:12px;font-size:.82rem;font-weight:600;
+    text-decoration:none;transition:all .2s;min-height:48px;
+  }
+  .go-ride-btn img{width:24px;height:24px;object-fit:contain}
+  .go-ride-uber{background:#000;color:#fff}
+  .go-ride-lyft{background:#FF00BF;color:#fff}
+  .go-address{text-align:center;font-size:.78rem;color:#7b5e7b;margin-bottom:14px;line-height:1.5}
+
+  /* Menu Sheet */
+  .ms-tabs{display:flex;gap:6px;margin-bottom:16px;background:rgba(232,67,147,.04);padding:4px;border-radius:12px}
+  .ms-tab{
+    flex:1;padding:10px 8px;border-radius:10px;border:none;
+    background:transparent;font-size:.78rem;font-weight:600;
+    color:#7b5e7b;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;
+  }
+  .ms-tab.active{background:#fff;color:#e84393;box-shadow:0 2px 8px rgba(232,67,147,.1)}
+  .ms-tab-panel{display:none}
+  .ms-tab-panel.active{display:block}
+  .ms-food-box{
+    padding:14px;border-radius:14px;margin-bottom:10px;
+    background:rgba(232,67,147,.03);border:1px solid rgba(232,67,147,.1);
+  }
+  .ms-food-partner{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e84393;margin:0 0 8px}
+  .ms-food-item{padding:8px 0;border-bottom:1px solid rgba(232,67,147,.06)}
+  .ms-food-item:last-child{border-bottom:none}
+  .ms-food-rank{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(232,67,147,.1);color:#e84393;font-size:.62rem;font-weight:700;margin-right:6px;flex-shrink:0;vertical-align:middle}
+  .ms-food-name{font-size:.84rem;font-weight:600;color:#2d132c;display:inline}
+  .ms-food-desc{font-size:.78rem;color:#7b5e7b;margin-top:2px;line-height:1.45}
+  .ms-hh{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(249,202,36,.08);border:1px solid rgba(249,202,36,.12)}
+  .ms-hh-title{font-weight:700;color:#2d132c;font-size:.85rem;margin-bottom:2px}
+  .ms-hh-times{font-size:.78rem;color:#e84393;font-weight:600;margin-bottom:6px}
+  .ms-hh-deal{font-size:.8rem;color:#7b5e7b;padding:2px 0;line-height:1.45}
+  .ms-menu-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:14px;border-radius:12px;background:linear-gradient(135deg,#e84393,#c0406a);color:#fff;text-align:center;text-decoration:none;font-size:.88rem;font-weight:700;min-height:52px}
+  .ms-reviews{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .ms-review{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:10px;background:rgba(249,202,36,.08);border:1px solid rgba(249,202,36,.12);font-size:.75rem;color:#7b5e7b}
+  .ms-review-stars{color:#f9ca24}
+  .ms-note-header{text-align:center;margin-bottom:14px}
+  .ms-note-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:#2d132c}
+  .ms-note-sub{font-size:.76rem;color:#7b5e7b;margin-top:4px;font-style:italic}
+  .ms-note-tip{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(232,67,147,.06);font-size:.82rem;color:#5a3d56;line-height:1.5}
+  .ms-note-tip:last-child{border-bottom:none}
+  .ms-note-num{width:22px;height:22px;border-radius:50%;background:rgba(232,67,147,.08);color:#e84393;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ms-tip{padding:10px 12px;border-radius:10px;background:rgba(249,202,36,.05);border:1px solid rgba(249,202,36,.1);font-size:.78rem;color:#5a3d56;line-height:1.5;margin-top:8px}
+
+  /* ═══ plan-features.js light-theme overrides ═══ */
+  #planFeatures{padding-top:10px}
+  .pf-section-title{color:#2d132c !important}
+  .pf-chk{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.1)!important}
+  .pf-chk:hover{background:rgba(232,67,147,.06)!important}
+  .pf-chk.done{opacity:.5!important}
+  .pf-chk-box{border-color:rgba(232,67,147,.2)!important;color:transparent!important}
+  .pf-chk.done .pf-chk-box{background:#e84393!important;border-color:#e84393!important;color:#fff!important}
+  .pf-chk-text{color:#7b5e7b!important}
+  .pf-chk-text strong{color:#2d132c!important}
+  .pf-budget-card{background:linear-gradient(135deg,#e84393 0%,#c0406a 100%)!important}
+  .pf-btip{background:rgba(255,255,255,.15)!important;border-color:rgba(255,255,255,.2)!important;color:rgba(255,255,255,.85)!important}
+  .pf-rating-tabs{background:rgba(232,67,147,.06)!important;padding:4px!important}
+  .pf-rating-tab{color:#7b5e7b!important}
+  .pf-rating-tab.active{background:#fff!important;color:#e84393!important;box-shadow:0 2px 8px rgba(232,67,147,.1)!important}
+  .pf-cal-google{background:#fff!important;color:#333!important;border:1px solid #e0e0e0}
+  .pf-cal-apple{background:#000!important;color:#fff!important;border:none!important}
+  .pf-rating{background:#fff!important;border-color:rgba(232,67,147,.1)!important;box-shadow:0 2px 10px rgba(232,67,147,.06)}
+  .pf-rating-prompt{color:#7b5e7b!important;font-style:italic}
+  .pf-rating-ta{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.1)!important;color:#2d132c!important}
+  .pf-rating-ta::placeholder{color:#c4a0b8!important}
+  .pf-rating-sub{background:linear-gradient(135deg,#e84393,#c0406a)!important}
+  .pf-rating-panel{display:none!important}
+  .pf-rating-panel.active{display:block!important}
+  .pf-footer{color:#c4a0b8!important}
+  .pf-footer-brand{color:#e84393!important}
+  .pf-prefs{display:none!important}
+  .pf-pref-card{background:#fff!important;border-color:rgba(232,67,147,.1)!important}
+  .pf-pref-name{color:#e84393!important}
+  .pf-pref-val{color:#5a3d56!important}
+  .pf-pref-label{color:#7b5e7b!important}
+  .pf-pref-avoid{color:#d63031!important}
+  .pf-fb{background:#fff!important;border-color:rgba(232,67,147,.1)!important}
+  .pf-fb-toggle{color:#7b5e7b!important}
+  .pf-fb-note{color:#7b5e7b!important}
+  .pf-fb-tabs{background:rgba(232,67,147,.06)!important;padding:4px!important}
+  .pf-fb-tab{color:#7b5e7b!important}
+  .pf-fb-tab.active{background:#fff!important;color:#e84393!important;box-shadow:0 2px 8px rgba(232,67,147,.1)!important}
+  .pf-fb-partner-block{background:rgba(232,67,147,.02)!important;border-color:rgba(232,67,147,.08)!important}
+  .pf-fb-partner-name{color:#e84393!important}
+  .pf-fb-sent{color:#00b894!important}
+  .pf-rating-prompt{color:#7b5e7b!important}
+  .pf-rating-partner{background:rgba(232,67,147,.02)!important;border-color:rgba(232,67,147,.08)!important}
+  .pf-rating-name{color:#e84393!important}
+  .pf-rating-done{color:#00b894!important}
+  .pf-fb-qlabel{color:#7b5e7b!important}
+  .pf-fb-opt{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.08)!important;color:#7b5e7b!important}
+  .pf-fb-opt.sel{background:rgba(232,67,147,.1)!important;border-color:#e84393!important;color:#e84393!important}
+  .pf-fb-ta{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.1)!important;color:#2d132c!important}
+  .pf-fb-ta::placeholder{color:#c4a0b8!important}
+  .pf-swap-btn{border-color:rgba(232,67,147,.12)!important;background:rgba(232,67,147,.03)!important;color:#7b5e7b!important}
+  .pf-swap-btn:hover{background:rgba(232,67,147,.06)!important;color:#2d132c!important}
+  .pf-swap-why{background:rgba(232,67,147,.02)!important;border-color:rgba(232,67,147,.1)!important}
+  .pf-swap-why-title{color:#2d132c!important}
+  .pf-swap-why-opt{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.1)!important;color:#7b5e7b!important}
+  .pf-swap-why-opt:hover{background:rgba(232,67,147,.08)!important;color:#2d132c!important;border-color:rgba(232,67,147,.15)!important}
+  .pf-swap-alt{background:#fff!important;border-color:rgba(232,67,147,.1)!important}
+  .pf-swap-alt:hover{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.18)!important}
+  .pf-swap-alt-name{color:#2d132c!important}
+  .pf-swap-alt-desc{color:#7b5e7b!important}
+  .pf-swap-alt-link{color:#e84393!important}
+  .pf-swap-cancel{border-color:rgba(232,67,147,.08)!important;color:#b8a0b8!important}
+  .pf-swap-cancel:hover{color:#7b5e7b!important;background:rgba(232,67,147,.03)!important}
+  .pf-swap-confirmed{background:rgba(0,184,148,.06)!important;border-color:rgba(0,184,148,.12)!important}
+  .pf-swap-confirmed-name{color:#00b894!important}
+  .pf-swap-confirmed-sub{color:#7b5e7b!important}
+  .pf-swap-alts-title{color:#7b5e7b!important}
+  .pf-review{background:rgba(232,67,147,.04)!important;border-color:rgba(232,67,147,.08)!important;color:#7b5e7b!important}
+  .pf-food-partner{color:#e84393!important}
+  .pf-food-name{color:#2d132c!important}
+  .pf-food-desc{color:#7b5e7b!important}
+  .pf-food-item{border-color:rgba(232,67,147,.06)!important}
+  .pf-action{background:rgba(232,67,147,.04)!important;border-color:rgba(232,67,147,.1)!important;color:#5a3d56!important}
+  .pf-action:hover{background:rgba(232,67,147,.08)!important;color:#2d132c!important}
+  .pf-gal-dots{display:none!important}
+  .pf-gal-dot{display:none!important}
+  .pf-star{filter:grayscale(1) opacity(.3)}
+  .pf-star.on{filter:none;transform:scale(1.15)}
+
+  /* Parking dropdown light-theme overrides */
+  .pf-parking-btn{background:linear-gradient(135deg,#e84393,#c0406a)!important;color:#fff!important;box-shadow:0 4px 14px rgba(232,67,147,.25)!important}
+  .pf-parking-btn:hover{box-shadow:0 6px 20px rgba(232,67,147,.35)!important}
+  .pf-park-option{background:rgba(232,67,147,.03)!important;border-color:rgba(232,67,147,.08)!important}
+  .pf-park-name{color:#2d132c!important}
+  .pf-park-label{color:#7b5e7b!important}
+  .pf-park-val{color:#5a3d56!important}
+  .pf-park-tip{background:rgba(249,202,36,.08)!important;border-color:rgba(249,202,36,.15)!important;color:#9a8200!important}
+  .pf-park-map-google{background:#fff!important;color:#333!important;border:1px solid #e0d0e0!important}
+  .pf-park-map-apple{background:#000!important;color:#fff!important;border:none!important}
+  .pf-park-type-free{background:rgba(0,184,148,.1)!important;color:#00b894!important}
+  .pf-park-type-paid{background:rgba(108,92,231,.1)!important;color:#6c5ce7!important}
+  .pf-park-rec{background:rgba(249,202,36,.15)!important;color:#d4a810!important}
+
+  /* Fullscreen image lightbox */
+  .lightbox-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column;cursor:zoom-out}
+  .lightbox-overlay.open{display:flex}
+  .lightbox-img{max-width:95vw;max-height:85vh;object-fit:contain;border-radius:8px;user-select:none}
+  .lightbox-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
+  .lightbox-close:hover{background:rgba(255,255,255,.25)}
+  .lightbox-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
+  .lightbox-arrow:hover{background:rgba(255,255,255,.22)}
+  .lightbox-arrow.left{left:12px}
+  .lightbox-arrow.right{right:12px}
+  .lightbox-counter{position:absolute;bottom:20px;color:rgba(255,255,255,.7);font-size:.78rem;font-weight:500;letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<script src="js/plan-data-joseph-sandy-1.js"></script>
+
+<div class="app" id="app"></div>
+
+<!-- Sheet overlay -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+
+<!-- Go Sheet -->
+<div class="sheet" id="goSheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-close" onclick="closeSheet()">&times;</button>
+  <div class="sheet-title" id="goTitle"></div>
+  <div id="goBody"></div>
+</div>
+
+<!-- Menu Sheet -->
+<div class="sheet" id="menuSheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-close" onclick="closeSheet()">&times;</button>
+  <div class="sheet-title" id="menuTitle"></div>
+  <div id="menuBody"></div>
+</div>
+
+<!-- Park Sheet -->
+<div class="sheet" id="parkSheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-close" onclick="closeSheet()">&times;</button>
+  <div class="sheet-title" id="parkTitle"></div>
+  <div id="parkBody"></div>
+</div>
+
+<!-- Fullscreen Image Lightbox -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+  <button class="lightbox-arrow left" onclick="event.stopPropagation();lightboxNav(-1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="Full size photo">
+  <button class="lightbox-arrow right" onclick="event.stopPropagation();lightboxNav(1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg></button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+(function(){
+
+  // ── State ──
+  function storeKey(){ return 'dateflo-custom-' + (window.PLAN.coupleId || 'plan') + '-' + window.PLAN.id; }
+  function getStore(){ try{ return JSON.parse(localStorage.getItem(storeKey())||'{}'); } catch(e){ return {}; } }
+  function setStore(d){ try{ localStorage.setItem(storeKey(), JSON.stringify(d)); } catch(e){} }
+
+  function badgeCls(type){
+    var t = type.toLowerCase();
+    if(t==='walk') return 'badge-walk';
+    if(t==='dinner') return 'badge-dinner';
+    if(t==='dessert') return 'badge-dessert';
+    if(t==='boba') return 'badge-boba';
+    if(t==='cocktails') return 'badge-cocktails';
+    return 'badge-walk';
+  }
+
+  function foodPreview(stop){
+    var P = window.PLAN;
+    if(stop.foodRecs){
+      var parts = [];
+      var p1k = P.partner1.toLowerCase(), p2k = P.partner2.toLowerCase();
+      var p1r = stop.foodRecs[p1k], p2r = stop.foodRecs[p2k];
+      if(p1r && p1r[0]) parts.push(p1r[0].name + ' <b>(' + P.partner1 + ')</b>');
+      if(p2r && p2r[0]) parts.push(p2r[0].name + ' <b>(' + P.partner2 + ')</b>');
+      if(parts.length) return 'Try: ' + parts.join(' &middot; ');
+    }
+    if(stop.tips && stop.tips[0]) return stop.tips[0];
+    return '';
+  }
+
+  function starsStr(n){ var s=''; for(var i=0;i<Math.round(n);i++) s+='\u2605'; return s; }
+
+  // ── Render ──
+  window._renderPlan = function(){
+    var P = window.PLAN;
+    var store = getStore();
+    var app = document.getElementById('app');
+    var h = '';
+
+    // Plan Selector
+    h += '<div class="plan-selector">';
+    window.PLAN_ALL.forEach(function(plan, i){
+      var cls = (plan.id === P.id) ? ' active' : '';
+      h += '<button class="plan-tab' + cls + '" onclick="window.switchPlan(' + i + ')">' + plan.planName + '</button>';
+    });
+    h += '</div>';
+
+    // Sticky top bar (couple name, plan, date)
+    h += '<div class="top-bar">';
+    h += '<div class="tb-left">';
+    h += '<button class="tb-back" onclick="history.back()" aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>';
+    h += '<div class="tb-info"><h1>' + P.couple + '</h1><p>' + P.planName + ' · ' + P.dateShort + '</p></div>';
+    h += '</div>';
+    h += '<div class="tb-actions">';
+    h += '<button id="favBtn" onclick="toggleFav()" aria-label="Favorite"><svg id="favSvg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e84393" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>';
+    h += '<button onclick="sharePlan()" aria-label="Share"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7b5e7b" stroke-width="2" stroke-linecap="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>';
+    h += '</div></div>';
+
+    // Header card (plan name large, weather)
+    h += '<div class="header" style="margin:12px 16px 0">';
+    h += '<div class="header-body">';
+    h += '<div class="h-plan-name">' + P.planName + '</div>';
+    h += '<div class="h-plan-vibe">' + P.planVibe + '</div>';
+    h += '<div class="h-meta">';
+    h += '<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ' + P.dateShort + '</span>';
+    h += '<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ' + P.startTime + ' \u2013 ' + P.endTime + '</span>';
+    h += '</div>';
+    h += '<div class="h-weather">';
+    h += '<div class="h-weather-row">';
+    h += '<span class="h-weather-item"><span class="h-weather-label">High</span> ' + P.weather.high + '</span>';
+    h += '<span class="h-weather-item"><span class="h-weather-label">Low</span> ' + P.weather.low + '</span>';
+    h += '<span class="h-weather-item">' + P.weather.conditions.split(',')[0] + '</span>';
+    h += '<span class="h-weather-item"><span class="h-weather-label">Sunset</span> ' + P.weather.sunset + '</span>';
+    h += '</div>';
+    h += '<div style="text-align:center;font-size:.64rem;opacity:.6;margin-top:6px">Forecast for ' + P.startTime + ' to ' + P.endTime + '</div>';
+    h += '</div>';
+    h += '</div></div>';
+
+    // Route Pill
+    h += '<div class="route-pill"><strong>Route:</strong> ' + P.route + '</div>';
+
+
+    // ── Build a single stop card (reusable for swaps) ──
+    window.buildStopCardInner = function(stop, P, store){
+      var h = '';
+      var checked = store['stop-' + stop.order] ? ' is-checked' : '';
+      // SVG icons for action buttons (no emojis)
+      var menuIcon = '<svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>'; // default: menu lines
+      if(stop.type === 'Restaurant' || stop.type === 'Food') menuIcon = '<svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>'; // coffee/food
+      else if(stop.type === 'Walk' || stop.type === 'Activity') menuIcon = '<svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>'; // compass
+      else if(stop.type === 'Boba' || stop.type === 'Dessert' || stop.type === 'Coffee') menuIcon = '<svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>'; // cup
+      else if(stop.type === 'Cocktails' || stop.type === 'Bar' || stop.type === 'Drinks') menuIcon = '<svg viewBox="0 0 24 24"><path d="M8 22h8"/><path d="M12 11v11"/><path d="M19 3l-7 8-7-8h14z"/></svg>'; // cocktail glass
+      else if(stop.type === 'Shopping') menuIcon = '<svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>'; // shopping bag
+      else if(stop.type === 'Art' || stop.type === 'Museum' || stop.type === 'Gallery') menuIcon = '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'; // gallery
+      else if(stop.type === 'Comedy' || stop.type === 'Show' || stop.type === 'Entertainment') menuIcon = '<svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>'; // smiley
+
+      // Collapsed row
+      h += '<div class="stop-collapsed">';
+      h += '<div class="s-checkbox" onclick="event.stopPropagation();toggleCheck(' + stop.order + ')"><span class="heart"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span></div>';
+      h += '<div class="s-info">';
+      h += '<div class="s-name-row"><div class="s-name">' + stop.name + '</div><span class="s-badge ' + badgeCls(stop.type) + '">' + stop.type + '</span></div>';
+      h += '<div class="s-meta"><span>' + stop.time + '</span><span>&middot;</span><span>' + stop.cost + '</span></div>';
+      h += '</div>';
+      if(stop.swapOptions && stop.swapOptions.length) h += '<button class="s-change-btn" onclick="event.stopPropagation();window.__pf.openSwapFlow(' + stop.order + ')" title="Change this stop"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></button>';
+      h += '</div>';
+
+      // Swap flow (appears below header when change button clicked)
+      h += '<div class="s-swap-flow" id="pfSwapFlow-' + stop.order + '"></div>';
+
+      // Image carousel (always visible) with review badges
+      var imgs = stop.images && stop.images.length ? stop.images : [stop.image];
+      h += '<div class="card-gallery" data-stop="' + stop.order + '">';
+      h += '<div class="card-gal-track">';
+      imgs.forEach(function(img, i){ h += '<img class="card-gal-img" src="' + img + '" alt="Photo ' + (i+1) + '" onclick="event.stopPropagation();openLightbox(' + stop.order + ',' + i + ')" style="cursor:zoom-in">'; });
+      h += '</div>';
+      if(stop.reviews){
+        h += '<div class="card-gal-reviews">';
+        Object.entries(stop.reviews).forEach(function(e){
+          var src = e[0], r = e[1], label = src.charAt(0).toUpperCase() + src.slice(1);
+          h += '<span class="card-review-badge"><span class="card-review-stars">' + starsStr(r.stars) + '</span> ' + r.stars + ' <span class="card-review-count">' + r.count.toLocaleString() + ' ' + label + '</span></span>';
+        });
+        h += '</div>';
+      }
+      if(imgs.length > 1){
+        h += '<button class="card-gal-arrow left" onclick="event.stopPropagation();cardGalNav(' + stop.order + ',-1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>';
+        h += '<button class="card-gal-arrow right" onclick="event.stopPropagation();cardGalNav(' + stop.order + ',1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg></button>';
+      }
+      h += '</div>';
+
+      // Action buttons (Go / Menu / Park)
+      var goTip = stop.address;
+      var menuTip = '', parkTip = '';
+      if(stop.foodRecs){
+        var p1k = P.partner1.toLowerCase();
+        if(stop.foodRecs[p1k] && stop.foodRecs[p1k][0]) menuTip = 'Try the ' + stop.foodRecs[p1k][0].name;
+      } else if(stop.tips && stop.tips[0]){
+        menuTip = stop.tips[0];
+      }
+      if(stop.happyHour) menuTip = 'Happy hour ' + stop.happyHour.times + ' — tap for deals';
+      if(stop.parkingOptions && stop.parkingOptions[0]){
+        var pk = stop.parkingOptions[0];
+        parkTip = pk.name + ' — ' + pk.cost;
+      }
+      var goIcon = '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+      var parkIcon = '<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M9 17V7h4a3 3 0 010 6H9"/></svg>';
+      h += '<div class="stop-actions">';
+      h += '<div class="stop-act" onclick="openGoSheet(' + stop.order + ')"><span class="stop-act-icon">' + goIcon + '</span>' + (goTip ? '<span class="stop-act-tip">' + goTip + '</span>' : '') + '</div>';
+      h += '<div class="stop-act" onclick="openMenuSheet(' + stop.order + ')"><span class="stop-act-icon">' + menuIcon + '</span>' + (menuTip ? '<span class="stop-act-tip">' + menuTip + '</span>' : '') + '</div>';
+      h += '<div class="stop-act stop-act-park" onclick="openParkSheet(' + stop.order + ');expandCard(' + stop.order + ')"><span class="stop-act-icon">' + parkIcon + '</span>' + (parkTip ? '<span class="stop-act-tip">' + parkTip + '</span>' : '') + '</div>';
+      h += '</div>';
+
+      // Expanded section
+      h += '<div class="stop-expanded"><div class="exp-inner">';
+      h += '<div class="exp-desc">' + stop.description + '</div>';
+      if(stop.reservation){
+        h += '<div class="exp-label">Reservation <span class="exp-divider"></span></div>';
+        h += '<div class="res-box"><div class="res-dot"></div><span>Reservation suggested · ' + stop.reservation.time + ', party of ' + stop.reservation.partySize;
+        if(stop.reservation.notes) h += ' · ' + stop.reservation.notes;
+        h += '</span></div>';
+      }
+      if(stop.dressCode){
+        h += '<div class="exp-label">Dress Code <span class="exp-divider"></span></div>';
+        h += '<div class="dress-box">' + stop.dressCode + '</div>';
+      }
+      h += '<div id="swap-' + stop.order + '"></div>';
+      h += '<div id="feedback-' + stop.order + '"></div>';
+      h += '</div></div>';
+      return h;
+    };
+
+    // ── Re-render a single stop card (used by swap) ──
+    window.rerenderStop = function(order){
+      var P = window.PLAN, store = getStore();
+      var stop = P.stops.find(function(s){ return s.order === order; });
+      if(!stop) return;
+      var card = document.getElementById('stop' + order);
+      if(!card) return;
+      card.innerHTML = window.buildStopCardInner(stop, P, store);
+      // Re-inject plan-features for this stop
+      if(window.__pf){
+        var el = document.getElementById('swap-' + order);
+        if(el) el.innerHTML = window.__pf.getSwapHtml(stop);
+        el = document.getElementById('feedback-' + order);
+        if(el) el.innerHTML = window.__pf.getStopFeedbackHtml(order);
+      }
+    };
+
+    // Stops
+    P.stops.forEach(function(stop, idx){
+      if(idx > 0){
+        var tt = P.travelTimes.find(function(t){ return t.from === P.stops[idx-1].order && t.to === stop.order; });
+        if(tt){
+          var icon = tt.mode === 'car' ? 'Drive' : 'Walk';
+          h += '<div class="travel-label"><span class="travel-dash"></span>' + icon + ' ' + tt.duration + '<span class="travel-dash"></span></div>';
+        }
+      }
+
+      h += '<div class="stop-card' + (store['stop-' + stop.order] ? ' is-checked' : '') + '" data-order="' + stop.order + '" id="stop' + stop.order + '">';
+      h += window.buildStopCardInner(stop, P, store);
+      h += '</div>';
+    });
+
+    app.innerHTML = h;
+    var favSvg = document.getElementById('favSvg');
+    if(favSvg && getStore().fav) favSvg.setAttribute('fill','#e84393');
+    injectPf();
+  };
+
+  window.toggleCheck = function(order){
+    var card = document.getElementById('stop'+order);
+    card.classList.toggle('is-checked');
+    var s = getStore();
+    s['stop-'+order] = card.classList.contains('is-checked');
+    setStore(s);
+  };
+
+  window.toggleExpand = function(order){
+    document.getElementById('stop'+order).classList.toggle('is-open');
+  };
+
+  window.expandCard = function(order){
+    var card = document.getElementById('stop'+order);
+    if(card && !card.classList.contains('is-open')) card.classList.add('is-open');
+  };
+
+  window.toggleFav = function(){
+    var s = getStore(); s.fav = !s.fav; setStore(s);
+    document.getElementById('favSvg').setAttribute('fill', s.fav ? '#e84393' : 'none');
+  };
+
+  window.sharePlan = function(){
+    var P = window.PLAN;
+    if(navigator.share){
+      navigator.share({title:'DateFlo: '+P.planName, text:P.couple+"'s date plan \u2014 "+P.planName, url:window.location.href});
+    } else {
+      var ta = document.createElement('textarea'); ta.value = window.location.href;
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+      document.body.removeChild(ta); alert('Link copied!');
+    }
+  };
+
+  // ── Sheet Helpers ──
+  function openSheetById(id){
+    document.getElementById('sheetOverlay').classList.add('open');
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  window.closeSheet = function(){
+    document.querySelectorAll('.sheet').forEach(function(s){ s.classList.remove('open'); });
+    document.getElementById('sheetOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  // ── Go Sheet ──
+  window.openGoSheet = function(order){
+    var P = window.PLAN, s = P.stops.find(function(x){ return x.order === order; });
+    if(!s) return;
+    document.getElementById('goTitle').textContent = 'Navigate to ' + s.name;
+    var h = '<div class="go-address">' + s.address + '</div>';
+    h += '<div class="go-nav-btns">';
+    h += '<a class="go-nav-btn go-nav-google" href="' + s.googleMapsUrl + '" target="_blank"><img src="assets/google-logo.png" alt="Google"> Maps</a>';
+    h += '<a class="go-nav-btn go-nav-apple" href="' + s.appleMapsUrl + '" target="_blank"><img src="assets/apple-logo-white.png" alt="Apple"> Maps</a>';
+    h += '</div>';
+    if(s.transit){
+      h += '<div class="go-ride-label">Rideshare</div>';
+      h += '<div class="go-ride-btns">';
+      if(s.transit.uber) h += '<a class="go-ride-btn go-ride-uber" href="' + s.transit.uber + '" target="_blank"><img src="assets/uber-logo.png" alt="Uber"></a>';
+      if(s.transit.lyft) h += '<a class="go-ride-btn go-ride-lyft" href="' + s.transit.lyft + '" target="_blank"><img src="assets/lyft-logo.png" alt="Lyft"></a>';
+      h += '</div>';
+    }
+    document.getElementById('goBody').innerHTML = h;
+    openSheetById('goSheet');
+  };
+
+  // ── Menu Sheet ──
+  window.switchMenuTab = function(btn, idx){
+    btn.parentElement.querySelectorAll('.ms-tab').forEach(function(t){ t.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.ms-tab-panel').forEach(function(p, i){ p.classList.toggle('active', i === idx); });
+  };
+
+  window.openMenuSheet = function(order){
+    var P = window.PLAN, s = P.stops.find(function(x){ return x.order === order; });
+    if(!s) return;
+
+    var sheetTitle = s.name;
+    if(s.type === 'Walk') sheetTitle += ' \u2014 Guide';
+    else if(s.type === 'Boba') sheetTitle += ' \u2014 Drinks';
+    else if(s.type === 'Dessert') sheetTitle += ' \u2014 Treats';
+    else if(s.type === 'Cocktails') sheetTitle += ' \u2014 Cocktails';
+    else sheetTitle += ' \u2014 Menu';
+    document.getElementById('menuTitle').textContent = sheetTitle;
+
+    var tab1Label = s.foodRecs ? 'Our Picks' : 'Highlights';
+
+    // Tab 1: Our Picks
+    var tab1 = '';
+    if(s.foodRecs){
+      var f = s.foodRecs, p1k = P.partner1.toLowerCase(), p2k = P.partner2.toLowerCase();
+      if(f[p1k]){
+        tab1 += '<div class="ms-food-box"><div class="ms-food-partner">' + P.partner1 + '\'s Picks</div>';
+        f[p1k].forEach(function(i, idx){ tab1 += '<div class="ms-food-item"><div><span class="ms-food-rank">' + (idx+1) + '</span><div class="ms-food-name">' + i.name + '</div></div><div class="ms-food-desc">' + i.desc + '</div></div>'; });
+        tab1 += '</div>';
+      }
+      if(f[p2k]){
+        tab1 += '<div class="ms-food-box"><div class="ms-food-partner">' + P.partner2 + '\'s Picks</div>';
+        f[p2k].forEach(function(i, idx){ tab1 += '<div class="ms-food-item"><div><span class="ms-food-rank">' + (idx+1) + '</span><div class="ms-food-name">' + i.name + '</div></div><div class="ms-food-desc">' + i.desc + '</div></div>'; });
+        tab1 += '</div>';
+      }
+      if(f.shared){
+        tab1 += '<div class="ms-food-box"><div class="ms-food-partner">Share Together</div>';
+        f.shared.forEach(function(i){ tab1 += '<div class="ms-food-item"><div class="ms-food-name">' + i.name + '</div><div class="ms-food-desc">' + i.desc + '</div></div>'; });
+        tab1 += '</div>';
+      }
+    } else {
+      tab1 += '<div style="padding:12px 0;color:#7b5e7b;font-size:.85rem">Here\'s what to look out for at this stop.</div>';
+      if(s.tips && s.tips.length > 0) tab1 += '<div class="ms-tip">' + s.tips[0] + '</div>';
+    }
+
+    // Happy Hour (right under food recs)
+    if(s.happyHour){
+      tab1 += '<div class="ms-hh"><div class="ms-hh-title">Happy Hour</div><div class="ms-hh-times">' + s.happyHour.times + '</div><div class="ms-hh-deals">' + s.happyHour.deals.map(function(d){ return '<div class="ms-hh-deal">\u2022 ' + d + '</div>'; }).join('') + '</div></div>';
+    }
+
+    if(s.menuUrl) tab1 += '<a class="ms-menu-btn" href="' + s.menuUrl + '" target="_blank">View Full Menu</a>';
+
+    // Tab 2: Insider Notes
+    var tab2 = '<div class="ms-note-header"><div class="ms-note-title">Insider Notes</div><div class="ms-note-sub">Tips to make this stop even better</div></div>';
+    if(s.tips && s.tips.length){
+      s.tips.forEach(function(t, i){
+        tab2 += '<div class="ms-note-tip"><span class="ms-note-num">' + (i+1) + '</span>' + t + '</div>';
+      });
+    }
+    if(s.dressCode) tab2 += '<div class="ms-note-tip"><span class="ms-note-num">Dress</span>' + s.dressCode + '</div>';
+    // Swap options are now rendered in the card body via plan-features.js getSwapHtml
+
+    var h = '<div class="ms-tabs">' +
+      '<button class="ms-tab active" onclick="switchMenuTab(this,0)">' + tab1Label + '</button>' +
+      '<button class="ms-tab" onclick="switchMenuTab(this,1)">Insider Notes</button>' +
+    '</div>' +
+    '<div class="ms-tab-panel active" id="msPanel0">' + tab1 + '</div>' +
+    '<div class="ms-tab-panel" id="msPanel1">' + tab2 + '</div>';
+
+    document.getElementById('menuBody').innerHTML = h;
+    openSheetById('menuSheet');
+  };
+
+  // ── Park Sheet ──
+  window.openParkSheet = function(order){
+    var P = window.PLAN, s = P.stops.find(function(x){ return x.order === order; });
+    if(!s) return;
+    document.getElementById('parkTitle').textContent = 'Parking \u2014 ' + s.name;
+    var h = '';
+    if(window.__pf && window.__pf.getParkingHtml){
+      h += window.__pf.getParkingHtml(s);
+    } else if(s.parkingOptions && s.parkingOptions.length){
+      s.parkingOptions.forEach(function(o){
+        h += '<div style="padding:12px;margin-bottom:8px;border-radius:12px;border:1px solid rgba(232,67,147,.08);background:rgba(232,67,147,.03)">';
+        h += '<div style="font-weight:600;color:#2d132c">' + o.name + '</div>';
+        h += '<div style="font-size:.78rem;color:#7b5e7b;margin-top:4px">' + (o.cost || 'Free') + '</div>';
+        if(o.tip) h += '<div style="font-size:.78rem;color:#9a8200;margin-top:4px;font-style:italic">' + o.tip + '</div>';
+        h += '</div>';
+      });
+    }
+    document.getElementById('parkBody').innerHTML = h;
+    openSheetById('parkSheet');
+  };
+
+  // ── Inject plan-features (reviews, gallery, swap, feedback) ──
+  function injectPf(){
+    if(!window.__pf){ setTimeout(injectPf, 100); return; }
+    var P = window.PLAN;
+    P.stops.forEach(function(stop){
+      var el;
+
+      el = document.getElementById('swap-'+stop.order);
+      if(el) el.innerHTML = window.__pf.getSwapHtml(stop);
+
+      el = document.getElementById('feedback-'+stop.order);
+      if(el) el.innerHTML = window.__pf.getStopFeedbackHtml(stop.order);
+    });
+  }
+
+  // ── Card gallery navigation (infinite loop) ──
+  var galIdx = {}; // track current index per stop
+  window.cardGalNav = function(order, dir){
+    var gal = document.querySelector('.card-gallery[data-stop="' + order + '"]');
+    if(!gal) return;
+    var imgs = gal.querySelectorAll('.card-gal-img');
+    var total = imgs.length;
+    if(!total) return;
+    if(galIdx[order] === undefined) galIdx[order] = 0;
+    galIdx[order] = (galIdx[order] + dir + total) % total; // wraps around
+    imgs[galIdx[order]].scrollIntoView({behavior:'smooth', block:'nearest', inline:'start'});
+  };
+
+  // ── Fullscreen Lightbox ──
+  var lbImages = [], lbIdx = 0;
+  window.openLightbox = function(order, imgIdx){
+    var gal = document.querySelector('.card-gallery[data-stop="' + order + '"]');
+    if(!gal) return;
+    lbImages = [].slice.call(gal.querySelectorAll('.card-gal-img')).map(function(img){ return img.src; });
+    lbIdx = imgIdx || 0;
+    var overlay = document.getElementById('lightboxOverlay');
+    document.getElementById('lightboxImg').src = lbImages[lbIdx];
+    document.getElementById('lightboxCounter').textContent = (lbIdx + 1) + ' / ' + lbImages.length;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeLightbox = function(e){
+    if(e && e.target && (e.target.classList.contains('lightbox-arrow') || e.target.closest('.lightbox-arrow'))) return;
+    document.getElementById('lightboxOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  window.lightboxNav = function(dir){
+    lbIdx = (lbIdx + dir + lbImages.length) % lbImages.length;
+    document.getElementById('lightboxImg').src = lbImages[lbIdx];
+    document.getElementById('lightboxCounter').textContent = (lbIdx + 1) + ' / ' + lbImages.length;
+  };
+  document.addEventListener('keydown', function(e){
+    if(!document.getElementById('lightboxOverlay').classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowRight') lightboxNav(1);
+    if(e.key === 'ArrowLeft') lightboxNav(-1);
+  });
+
+  // Also support swipe infinite looping
+  setTimeout(function(){
+    document.querySelectorAll('.card-gal-track').forEach(function(track){
+      var gal = track.closest('.card-gallery');
+      var order = gal.getAttribute('data-stop');
+      track.addEventListener('scrollend', function(){
+        var w = track.offsetWidth;
+        var idx = Math.round(track.scrollLeft / w);
+        var total = track.querySelectorAll('.card-gal-img').length;
+        // Wrap on swipe: if at last image and swiped right, jump to first
+        galIdx[order] = idx;
+      });
+      // Infinite swipe via touch
+      var touchStartX = 0;
+      track.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; });
+      track.addEventListener('touchend', function(e){
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        var w = track.offsetWidth;
+        var idx = Math.round(track.scrollLeft / w);
+        var total = track.querySelectorAll('.card-gal-img').length;
+        // If swiped left at last image, loop to first
+        if(diff > 30 && idx >= total - 1){
+          galIdx[order] = 0;
+          track.scrollTo({left:0, behavior:'smooth'});
+        }
+        // If swiped right at first image, loop to last
+        if(diff < -30 && idx <= 0){
+          galIdx[order] = total - 1;
+          track.scrollTo({left: w * (total - 1), behavior:'smooth'});
+        }
+      });
+    });
+  }, 300);
+
+  // ── Swipe-to-close sheets ──
+  (function(){
+    var startY = 0;
+    document.querySelectorAll('.sheet').forEach(function(sheet){
+      sheet.addEventListener('touchstart', function(e){ startY = e.touches[0].clientY; });
+      sheet.addEventListener('touchmove', function(e){
+        if(e.touches[0].clientY - startY > 80) closeSheet();
+      });
+    });
+  })();
+
+  // ── Initial render ──
+  window._renderPlan();
+
+})();
+</script>
+
+<script src="js/plan-features.js?v=4"></script>
+</body>
+</html>
