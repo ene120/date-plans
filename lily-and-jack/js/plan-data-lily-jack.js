@@ -838,7 +838,31 @@ window.PLAN_ALL = [
           }
         ]
       }
-    ]
+    ],
+    travelTimes: [
+      { from: 1, to: 2, duration: "8 min", mode: "rideshare" },
+      { from: 2, to: 3, duration: "7 min", mode: "rideshare" }
+    ],
+    budget: [
+      { label: "Taste of Thai (dinner for two)", cost: "$30 to $45" },
+      { label: "Mister A's (cocktails for two)", cost: "$30 to $40" },
+      { label: "Extraordinary Desserts (birthday dessert)", cost: "$15 to $25" },
+      { label: "Rideshare (3 rides)", cost: "$15 to $25" }
+    ],
+    budgetTotal: "$90 to $135",
+    budgetTip: "Taste of Thai is very reasonably priced so you can splurge a little more at Mister A's without going over budget. Ask your server about the birthday special at Extraordinary Desserts.",
+    checklist: [
+      { id: "reservation", text: "Make a reservation at Mister A's (recommended for Friday sunset)", bold: true },
+      { id: "allergy", text: "Mention Jack's brazil nut allergy at each restaurant", bold: true },
+      { id: "dress", text: "Mister A's has a smart casual dress code" },
+      { id: "sunset", text: "Sunset is at 7:22 PM so plan to arrive at Mister A's by 7:00" },
+      { id: "camera", text: "The rooftop views are incredible so bring your phone fully charged" }
+    ],
+    calendar: {
+      title: "Birthday Date Night: Lily & Jack",
+      location: "Hillcrest / Bankers Hill / Little Italy, San Diego",
+      description: "Plan A: Hillcrest Sunset Birthday\n\n6:00 PM Taste of Thai (Dinner)\n7:30 PM Mister A's (Rooftop Sunset Cocktails)\n9:00 PM Extraordinary Desserts (Birthday Dessert)\n\nHappy Birthday!"
+    }
   },
 
   // ════════════════════════════════════
@@ -1658,7 +1682,31 @@ window.PLAN_ALL = [
           }
         ]
       }
-    ]
+    ],
+    travelTimes: [
+      { from: 1, to: 2, duration: "5 min", mode: "rideshare" },
+      { from: 2, to: 3, duration: "8 min", mode: "rideshare" }
+    ],
+    budget: [
+      { label: "Royal India (dinner for two)", cost: "$35 to $50" },
+      { label: "The Nolen (cocktails for two)", cost: "$30 to $40" },
+      { label: "Extraordinary Desserts (birthday dessert)", cost: "$15 to $25" },
+      { label: "Rideshare (3 rides)", cost: "$15 to $25" }
+    ],
+    budgetTotal: "$95 to $140",
+    budgetTip: "Royal India's lunch portions are generous so you might not need appetizers. Save room for that birthday dessert at Extraordinary Desserts.",
+    checklist: [
+      { id: "reservation", text: "Make a reservation at Royal India (recommended for Friday night)", bold: true },
+      { id: "allergy", text: "Mention Jack's brazil nut allergy at each restaurant", bold: true },
+      { id: "nolen", text: "The Nolen can get busy on Fridays so arrive early for the best seats" },
+      { id: "layers", text: "Bring a light layer for the rooftop since it can get breezy after sunset" },
+      { id: "camera", text: "The 14th floor views are unbelievable so charge your phone" }
+    ],
+    calendar: {
+      title: "Birthday Date Night: Lily & Jack",
+      location: "Gaslamp / Little Italy, San Diego",
+      description: "Plan B: Little Italy Birthday Night\n\n6:00 PM Royal India (Dinner)\n7:45 PM The Nolen (Rooftop Cocktails)\n9:15 PM Extraordinary Desserts (Birthday Dessert)\n\nHappy Birthday!"
+    }
   }
 ];
 
